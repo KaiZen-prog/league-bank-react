@@ -1,0 +1,15 @@
+@mixin button {
+  display: block;
+
+  text-align: center;
+  text-transform: uppercase;
+
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-style: normal;
+  font-size: 14px;
+
+  line-height: 19px;
+  letter-spacing: 0.12em;
+
+  border: none;
+}
