@@ -1,0 +1,158 @@
+.header {
+  background-color: $color-white;
+}
+
+.header__wrapper {
+  display: flex;
+
+  width: $desktop-width-max;
+  min-height: 91px;
+
+  box-sizing: content-box;
+
+  font-weight: 400;
+
+  margin: auto;
+  padding-left: 96px;
+}
+
+.header__logo {
+  position: relative;
+
+  width: 170px;
+
+  font-weight: bold;
+  font-size: 20px;
+
+  line-height: 91px;
+
+  color: $color-dark-blue;
+
+  letter-spacing: 1.3px;
+
+  padding-left: 38px;
+
+  &::before {
+    @include background-image("../img/logo-desktop.svg", 30px, 27px);
+
+    top: 26px;
+    left: 1px;
+  }
+}
+
+.header__nav-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  list-style: none;
+
+  width: 600px;
+
+  margin: 0 0 0 -15px;
+  padding-left: 100px;
+}
+
+.header__nav-link {
+  display: block;
+  text-align: center;
+
+  color: $color-dark-blue;
+
+  margin-right: 15px;
+  padding: 37px 5px 35px 5px;
+
+  &:hover,
+  &:focus {
+    color: $color-blue;
+  }
+}
+
+.header__login {
+  display: block;
+  position: relative;
+
+  width: 310px;
+
+  text-align: center;
+  color: $color-dark-blue;
+
+  margin-left: auto;
+  padding: 37px 92px 35px 32px;
+
+  &::before {
+    position: absolute;
+    content: "";
+    display: block;
+
+    top: 34px;
+    left: 9px;
+
+    width: 20px;
+    height: 22px;
+
+    background-image: url("../img/icon-login.svg");
+    background-repeat: no-repeat;
+  }
+}
+
+@media (max-width: $tablet-width-max) {
+  .header__wrapper {
+    @include block-centered($tablet-width-min);
+
+    min-height: 69px;
+
+    padding-right: 35px;
+    padding-left: 35px;
+  }
+
+  .header__logo {
+    width: 110px;
+
+    font-weight: bold;
+
+    font-size: 18px;
+    line-height: 69px;
+
+    color: $color-dark-blue;
+
+    letter-spacing: 1.3px;
+
+    padding-left: 78px;
+
+    &::before {
+      @include background-image("../img/logo-tablet.svg", 26px, 24px);
+
+      top: 22px;
+      left: 44px;
+    }
+  }
+
+  .header__nav-list {
+    width: 500px;
+
+    padding-left: 30px;
+  }
+
+  .header__nav-link {
+    font-size: 14px;
+    line-height: 16px;
+
+    margin-right: 15px;
+    padding: 26px 5px 24px 5px;
+  }
+
+  .header__login {
+    width: 100px;
+
+    padding: 12px 12px 12px 0;
+
+    &::before {
+      top: 34px;
+      left: 71px;
+    }
+  }
+
+  .header__login-title {
+    @include visually-hidden;
+  }
+}
