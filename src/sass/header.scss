@@ -74,7 +74,7 @@
 
   &:hover,
   &:focus {
-    color: $color-blue;
+    color: $color-bright-blue;
   }
 }
 
@@ -237,12 +237,91 @@
     }
   }
 
+  .header__close-button {
+    &--opened {
+      position: absolute;
+      display: block;
+
+      top: 10px;
+      right: 19px;
+
+      width: 13px;
+      height: 13px;
+
+      background-color: transparent;
+
+      cursor: pointer;
+      border: none;
+      outline: none;
+
+      &::before,
+      &::after {
+        content: "";
+
+        position: absolute;
+        top: 11px;
+        left: 1px;
+
+        width: 19px;
+        height: 2px;
+
+        background-color: $color-blue;
+      }
+
+      &::before {
+        transform: rotate(45deg);
+        box-shadow: none;
+      }
+
+      &::after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
   .header__nav-wrapper {
     flex-direction: column;
+
+    width: 290px;
   }
 
   .header__nav {
     display: none;
+
+    &--opened {
+      display: block;
+
+      margin-top: 44px;
+    }
+  }
+
+  .header__nav-list {
+    display: flex;
+    flex-direction: column;
+    align-content: baseline;
+
+    width: 290px;
+
+    margin: 0;
+  }
+
+  .header__nav-link {
+    display: block;
+
+    text-align: start;
+
+    font-size: 16px;
+    line-height: 19px;
+
+    width: 260px;
+
+    margin-bottom: -1px;
+    padding-top: 21px;
+    padding-right: 15px;
+    padding-bottom: 19px;
+    padding-left: 15px;
+
+    @include bordered;
   }
 
   .header__login {
