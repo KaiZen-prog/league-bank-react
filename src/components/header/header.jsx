@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import withHeader from "../../hocs/with-header";
+import withHeader from "../../hocs/with-header/with-header";
 
 const Header = (props) => {
   const {
