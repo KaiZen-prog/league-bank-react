@@ -168,7 +168,7 @@
   }
 
   .header__login-title {
-    @include visually-hidden;
+    display: none;
   }
 }
 
@@ -220,13 +220,14 @@
   }
 
   .header__logo {
-    width: 250px;
+    width: 150px;
 
     font-size: 16px;
     line-height: 19px;
 
     margin-left: 25px;
     padding-top: 16px;
+    padding-right: 16px;
     padding-left: 31px;
 
     &::before {
@@ -280,6 +281,8 @@
   }
 
   .header__nav-wrapper {
+    position: relative;
+
     flex-direction: column;
 
     width: 290px;
@@ -315,16 +318,68 @@
 
     width: 260px;
 
+    margin-right: 0;
     margin-bottom: -1px;
-    padding-top: 21px;
-    padding-right: 15px;
-    padding-bottom: 19px;
-    padding-left: 15px;
+    padding: 21px 15px 19px;
 
     @include bordered;
   }
 
   .header__login {
+    position: absolute;
+
+    top:-27px;
+    right: 0;
+
+    width: 14px;
+    height: 16px;
+
+    margin: 0;
+    padding: 0;
+
+    &::before {
+      top: 1px;
+      right: 37px;
+
+      width: 14px;
+      height: 16px;
+
+      background-image: url("../img/icon-login-mobile.svg");
+    }
+
+    &--opened {
+      position: relative;
+      display: block;
+
+      top: 0;
+
+      text-align: start;
+
+      width: 230px;
+
+      margin-bottom: 305px;
+      margin-left: 0;
+      padding: 21px 15px 22px 45px;
+
+      @include bordered;
+
+      &::before {
+        top: 18px;
+        left: 15px;
+
+        width: 20px;
+        height: 22px;
+
+        background-image: url("../img/icon-login.svg");
+      }
+    }
+  }
+
+  .header__login-title {
     display: none;
+
+    &--opened {
+      display: block;
+    }
   }
 }

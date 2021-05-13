@@ -49,8 +49,8 @@ const Header = (props) => {
             </ul>
           </nav>
 
-          <a className={`header__login ${isNavOpened ? `header__login-opened` : ``}`} href="#">
-            <span className="header__login-title">Войти в Интернет-банк</span>
+          <a className={`header__login ${isNavOpened ? `header__login--opened` : ``}`} href="#">
+            <span className={`header__login-title ${isNavOpened ? `header__login-title--opened` : ``}`}>Войти в Интернет-банк</span>
           </a>
         </div>
       </div>
