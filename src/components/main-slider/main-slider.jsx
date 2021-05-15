@@ -12,15 +12,17 @@ const MainSlider = (props) => {
 
   return (
     <section className="main-slider">
-      <div className={`main-slider__slide main-slider__slide--${currentSlide.name}`}>
-        <h1 className={`main-slider__header main-slider__header--${currentSlide.name}`}>{currentSlide.title}</h1>
-        <p className={`main-slider__slogan main-slider__slogan--${currentSlide.name}`}>{currentSlide.slogan}</p>
-        {currentSlide.link && <a
-            className={`main-slider__link main-slider__link--${currentSlide.name}`}
-            href="#"
-        >
-          {currentSlide.link}
-        </a>}
+      <div className={`main-slider__wrapper main-slider__wrapper--${currentSlide.name}`}>
+        <div className={`main-slider__slide main-slider__slide--${currentSlide.name}`}>
+          <h1 className={`main-slider__header main-slider__header--${currentSlide.name}`}>{currentSlide.title}</h1>
+          <p className={`main-slider__slogan main-slider__slogan--${currentSlide.name}`}>{currentSlide.slogan}</p>
+          {currentSlide.link && <a
+              className={`main-slider__link main-slider__link--${currentSlide.name}`}
+              href="#"
+          >
+            {currentSlide.link}
+          </a>}
+        </div>
       </div>
 
       <ul className="main-slider__dots">

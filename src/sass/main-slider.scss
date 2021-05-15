@@ -1,9 +1,6 @@
 .main-slider {
   position: relative;
 
-  width: 320px;
-  height: 226px;
-
   @include block-centered($mobile-width-min);
 }
 
@@ -19,17 +16,22 @@
       top: 29px;
       right: 0;
 
-      @include background-image("../img/black-card-mobile.png", 105px, 152px);
+      @include background-image("../img/card-black-mobile.png", 105px, 152px);
+
       filter: drop-shadow(0px 4px 23px rgba(25, 26, 31, 0.2));
     }
   }
 
   &--promo {
-    @include background-image("../img/promo-slide.jpg", 320px, 226px);
+    padding-bottom: 72px;
+
+    background-image: url("../img/promo-slide.jpg");
+    background-repeat: no-repeat;
   }
 
   &--offices {
-    @include background-image("../img/offices-slide.jpg", 320px, 226px);
+    background-image: url("../img/offices-slide.jpg");
+    background-repeat: no-repeat;
   }
 }
 
@@ -121,4 +123,119 @@
 
 .main-slider__dot--offices.main-slider__dot--current {
   background-color: $color-white-grey;
+}
+
+@media (min-width: $tablet-width-min) {
+  .main-slider {
+    @include block-centered($tablet-width-min);
+  }
+
+  .main-slider__wrapper {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+
+      bottom: 0;
+      right: 133px;
+
+      width: 179px;
+      height: 199px;
+
+      background: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 27.26%, #3841FF 97.14%);
+
+      z-index: 1;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+
+      bottom: 0;
+      right: 0;
+
+      width: 133px;
+      height: 300px;
+
+      background: linear-gradient(180.24deg, rgba(32, 39, 179, 0) 32.89%, #2027B3 99.79%);
+
+      z-index: 1;
+    }
+  }
+
+  .main-slider__slide {
+    padding: 65px 10px 76px 86px;
+
+    &--credit {
+      &::before {
+        top: 38px;
+        right: 65px;
+
+        @include background-image("../img/card-white-tablet.png", 270px, 180px);
+        filter: drop-shadow(0px 4px 23px rgba(25, 26, 31, 0.2));
+
+        z-index: 2;
+      }
+
+      &::after {
+        top: 82px;
+        right: 150px;
+
+        @include background-image("../img/card-black-tablet.png", 270px, 180px);
+
+        z-index: 3;
+      }
+    }
+
+    &--promo {
+      padding-bottom: 72px;
+
+      background-image: url("../img/promo-slide.jpg");
+      background-repeat: no-repeat;
+    }
+
+    &--offices {
+      background-image: url("../img/offices-slide.jpg");
+      background-repeat: no-repeat;
+    }
+  }
+
+  .main-slider__header {
+    font-size: 46px;
+    line-height: 54px;
+
+    width: 250px;
+  }
+
+  .main-slider__slogan {
+    font-size: 18px;
+    line-height: 21px;
+
+    margin-bottom: 30px;
+
+    width: 260px;
+  }
+
+  .main-slider__link {
+    font-size: 16px;
+    line-height: 19px;
+
+    width: 206px;
+
+    padding-top: 14px;
+    padding-bottom: 15px;
+  }
+
+  .main-slider__dots {
+    bottom: 15px;
+    left: 338px;
+  }
+
+  .main-slider__dot {
+    width: 8px;
+    height: 8px;
+
+    margin-right: 8px;
+  }
 }
