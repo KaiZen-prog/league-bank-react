@@ -11,7 +11,7 @@ const MainSlider = (props) => {
   } = props;
 
   return (
-    <section className="main-slider">
+    <section className={`main-slider main-slider--${currentSlide.name}`}>
       <div className={`main-slider__wrapper main-slider__wrapper--${currentSlide.name}`}>
         <div className={`main-slider__slide main-slider__slide--${currentSlide.name}`}>
           <h1 className={`main-slider__header main-slider__header--${currentSlide.name}`}>{currentSlide.title}</h1>

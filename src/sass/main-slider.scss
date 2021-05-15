@@ -25,12 +25,12 @@
   &--promo {
     padding-bottom: 72px;
 
-    background-image: url("../img/promo-slide.jpg");
+    background-image: url("../img/slide-promo-mobile.jpg");
     background-repeat: no-repeat;
   }
 
   &--offices {
-    background-image: url("../img/offices-slide.jpg");
+    background-image: url("../img/slide-offices-mobile.jpg");
     background-repeat: no-repeat;
   }
 }
@@ -133,34 +133,36 @@
   .main-slider__wrapper {
     position: relative;
 
-    &::before {
-      content: "";
-      position: absolute;
+    &--credit {
+      &::before {
+        content: "";
+        position: absolute;
 
-      bottom: 0;
-      right: 133px;
+        bottom: 0;
+        right: 133px;
 
-      width: 179px;
-      height: 199px;
+        width: 179px;
+        height: 199px;
 
-      background: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 27.26%, #3841FF 97.14%);
+        background: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 27.26%, #3841FF 97.14%);
 
-      z-index: 1;
-    }
+        z-index: 1;
+      }
 
-    &::after {
-      content: "";
-      position: absolute;
+      &::after {
+        content: "";
+        position: absolute;
 
-      bottom: 0;
-      right: 0;
+        bottom: 0;
+        right: 0;
 
-      width: 133px;
-      height: 300px;
+        width: 133px;
+        height: 300px;
 
-      background: linear-gradient(180.24deg, rgba(32, 39, 179, 0) 32.89%, #2027B3 99.79%);
+        background: linear-gradient(180.24deg, rgba(32, 39, 179, 0) 32.89%, #2027B3 99.79%);
 
-      z-index: 1;
+        z-index: 1;
+      }
     }
   }
 
@@ -189,14 +191,14 @@
     }
 
     &--promo {
-      padding-bottom: 72px;
+      padding-bottom: 124px;
 
-      background-image: url("../img/promo-slide.jpg");
+      background-image: url("../img/slide-promo-tablet.jpg");
       background-repeat: no-repeat;
     }
 
     &--offices {
-      background-image: url("../img/offices-slide.jpg");
+      background-image: url("../img/slide-offices-tablet.jpg");
       background-repeat: no-repeat;
     }
   }
@@ -215,6 +217,10 @@
     margin-bottom: 30px;
 
     width: 260px;
+
+    &--promo {
+      width: 330px;
+    }
   }
 
   .main-slider__link {
@@ -237,5 +243,140 @@
     height: 8px;
 
     margin-right: 8px;
+  }
+}
+
+@media (min-width: $desktop-width-min) {
+  .main-slider {
+    position: relative;
+    @include block-centered($desktop-width-max);
+
+    &--credit {
+      &::before {
+        content: "";
+        position: absolute;
+
+        bottom: 0;
+        left: 0;
+
+        width: 150px;
+        height: 400px;
+
+        background: linear-gradient(180.24deg, rgba(32, 39, 179, 0) 36.31%, #2027B3 99.79%);
+
+        z-index: 1;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+
+        bottom: 0;
+        right: 1px;
+
+        width: 298px;
+        height: 400px;
+
+        background: linear-gradient(180.24deg, rgba(32, 39, 179, 0) 32.89%, #2027B3 99.79%);
+      }
+    }
+  }
+
+  .main-slider__wrapper {
+    position: relative;
+
+    &--credit {
+      &::before {
+        bottom: 0;
+        left: 150px;
+
+        width: 150px;
+        height: 269px;
+
+        background: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 66.3%, #3841FF 97.14%);
+      }
+
+      &::after {
+        bottom: 0;
+        right: 299px;
+
+        width: 270px;
+        height: 269px;
+
+        background: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 27.26%, #3841FF 97.14%);
+      }
+    }
+  }
+
+  .main-slider__slide {
+    padding-top: 102px;
+    padding-right: 660px;
+    padding-left: 268px;
+    padding-bottom: 114px;
+
+    &--credit {
+      &::before {
+        top: 61px;
+        right: 225px;
+
+        @include background-image("../img/card-white-desktop.png", 334px, 220px);
+      }
+
+      &::after {
+        top: 119px;
+        right: 334px;
+
+        @include background-image("../img/card-black-desktop.png", 334px, 220px);
+      }
+    }
+
+    &--promo {
+      padding-bottom: 124px;
+
+      background-image: url("../img/slide-promo-tablet.jpg");
+      background-repeat: no-repeat;
+    }
+
+    &--offices {
+      background-image: url("../img/slide-offices-tablet.jpg");
+      background-repeat: no-repeat;
+    }
+  }
+
+  .main-slider__header {
+    font-size: 54px;
+    line-height: 63px;
+
+    width: 370px;
+
+    margin-bottom: 9px;
+  }
+
+  .main-slider__slogan {
+    font-size: 22px;
+    line-height: 26px;
+
+    margin-bottom: 33px;
+
+    width: 370px;
+
+    &--promo {
+      width: 330px;
+    }
+  }
+
+  .main-slider__link {
+    font-size: 18px;
+    line-height: 21px;
+
+    width: 234px;
+
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .main-slider__dots {
+    bottom: 40px;
+    left: 637px;
   }
 }

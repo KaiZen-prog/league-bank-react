@@ -32,16 +32,15 @@ export const promoSlides = [
   },
 
   {
-    name: `credit`,
+    name: `promo`,
     title: `Лига Банк`,
-    slogan: `Кредиты на любой случай`,
-    link: `Рассчитать кредит`
+    slogan: `Ваша уверенность в завтрашнем дне`
   },
 
   {
-    name: `credit`,
+    name: `offices`,
     title: `Лига Банк`,
-    slogan: `Кредиты на любой случай`,
-    link: `Рассчитать кредит`
+    slogan: `Всегда рядом`,
+    link: `Найти отделение`
   },
 ];
