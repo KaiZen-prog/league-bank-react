@@ -17,7 +17,7 @@ const withMainSlider = (Component) => {
     }
 
     componentDidMount() {
-      //this.CarouselHandler();
+      this.CarouselHandler();
     }
 
     CarouselHandler() {
@@ -32,7 +32,7 @@ const withMainSlider = (Component) => {
           currentSlide: newSlide,
           currentSlideNumber: promoSlides.indexOf(newSlide)
         })
-      }, 2000);
+      }, 3000);
     }
 
 

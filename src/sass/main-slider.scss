@@ -331,14 +331,14 @@
     }
 
     &--promo {
-      padding-bottom: 124px;
+      padding-bottom: 167px;
 
-      background-image: url("../img/slide-promo-tablet.jpg");
+      background-image: url("../img/slide-promo-desktop.jpg");
       background-repeat: no-repeat;
     }
 
     &--offices {
-      background-image: url("../img/slide-offices-tablet.jpg");
+      background-image: url("../img/slide-offices-desktop.jpg");
       background-repeat: no-repeat;
     }
   }
@@ -361,7 +361,7 @@
     width: 370px;
 
     &--promo {
-      width: 330px;
+      width: 400px;
     }
   }
 
@@ -373,6 +373,10 @@
 
     padding-top: 16px;
     padding-bottom: 16px;
+
+    &--offices {
+      width: 243px;
+    }
   }
 
   .main-slider__dots {
