@@ -1,12 +1,14 @@
 .main-slider {
+  position: relative;
+
+  width: 320px;
+  height: 226px;
+
   @include block-centered($mobile-width-min);
 }
 
 .main-slider__slide {
-  padding-top: 39px;
-  padding-right: 10px;
-  padding-bottom: 10px;
-  padding-left: 15px;
+  padding: 39px 10px 48px 15px;
 
   &--credit {
     position: relative;
@@ -21,14 +23,26 @@
       filter: drop-shadow(0px 4px 23px rgba(25, 26, 31, 0.2));
     }
   }
+
+  &--promo {
+    @include background-image("../img/promo-slide.jpg", 320px, 226px);
+  }
+
+  &--offices {
+    @include background-image("../img/offices-slide.jpg", 320px, 226px);
+  }
 }
 
 .main-slider__header {
   font-size: 38px;
   line-height: 45px;
 
+  width: 185px;
+
   margin-top: 0;
   margin-bottom: 6px;
+
+  color: $color-dark-blue;
 
   &--credit {
     color: $color-white;
@@ -37,9 +51,74 @@
 
 .main-slider__slogan {
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 26px;
+
+  width: 150px;
+
+  color: $color-blue-gray;
 
   &--credit {
+    width: 205px;
+
     color: $color-white;
   }
+}
+
+.main-slider__link {
+  @include button($color-white, $color-bright-blue);
+
+  font-weight: 500;
+
+  font-size: 14px;
+  line-height: 16px;
+
+  width: 188px;
+
+  padding: 14px 10px 13px;
+
+  &--credit {
+    @include button($color-dark-blue, $color-white);
+  }
+
+  &--offices {
+    padding-top: 15px;
+    padding-bottom: 12px;
+  }
+}
+
+.main-slider__dots {
+  position: absolute;
+
+  list-style: none;
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  bottom: 10px;
+  left: 113px;
+
+  width: 100px;
+
+  margin: 0;
+  padding: 0;
+}
+
+.main-slider__dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  margin-right: 6px;
+
+  background-color: $color-midnight-blue;
+
+  &--current {
+    background-color: $color-white;
+  }
+}
+
+.main-slider__dot--offices.main-slider__dot--current {
+  background-color: $color-white-grey;
 }

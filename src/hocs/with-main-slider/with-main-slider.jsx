@@ -9,6 +9,8 @@ const withMainSlider = (Component) => {
 
       this.state = {
         currentSlide: promoSlides[0],
+        currentSlideNumber: 0,
+        slidesQuantity: promoSlides.length
       };
 
       this.CarouselHandler = this.CarouselHandler.bind(this);
@@ -20,9 +22,16 @@ const withMainSlider = (Component) => {
 
     CarouselHandler() {
       this.carouselInterval = setInterval(() => {
-        this.setState({currentSlide: this.state.currentSlide === promoSlides[promoSlides.length - 1]
-          ? promoSlides[0]
-          : getNextElement(promoSlides, this.state.currentSlide)})
+        let newSlide;
+
+        this.state.currentSlide === promoSlides[promoSlides.length - 1]
+            ? newSlide = promoSlides[0]
+            : newSlide = getNextElement(promoSlides, this.state.currentSlide),
+
+        this.setState({
+          currentSlide: newSlide,
+          currentSlideNumber: promoSlides.indexOf(newSlide)
+        })
       }, 2000);
     }
 
@@ -31,6 +40,8 @@ const withMainSlider = (Component) => {
       return (
         <Component
           currentSlide={this.state.currentSlide}
+          currentSlideNumber={this.state.currentSlideNumber}
+          slidesQuantity={this.state.slidesQuantity}
         />
       );
     }

@@ -1,3 +1,4 @@
+/*
 export const promoSlides = [
   {
     name: `credit`,
@@ -18,4 +19,29 @@ export const promoSlides = [
     slogan: `Всегда рядом`,
     link: `Найти отделение`
   }
+];
+*/
+
+
+export const promoSlides = [
+  {
+    name: `credit`,
+    title: `Лига Банк`,
+    slogan: `Кредиты на любой случай`,
+    link: `Рассчитать кредит`
+  },
+
+  {
+    name: `credit`,
+    title: `Лига Банк`,
+    slogan: `Кредиты на любой случай`,
+    link: `Рассчитать кредит`
+  },
+
+  {
+    name: `credit`,
+    title: `Лига Банк`,
+    slogan: `Кредиты на любой случай`,
+    link: `Рассчитать кредит`
+  },
 ];
