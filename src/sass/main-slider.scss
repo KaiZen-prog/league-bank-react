@@ -1,3 +1,45 @@
 .main-slider {
   @include block-centered($mobile-width-min);
 }
+
+.main-slider__slide {
+  padding-top: 39px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+
+  &--credit {
+    position: relative;
+    background-color: $color-bright-blue;
+
+    &::before {
+
+      top: 29px;
+      right: 0;
+
+      @include background-image("../img/black-card-mobile.png", 105px, 152px);
+      filter: drop-shadow(0px 4px 23px rgba(25, 26, 31, 0.2));
+    }
+  }
+}
+
+.main-slider__header {
+  font-size: 38px;
+  line-height: 45px;
+
+  margin-top: 0;
+  margin-bottom: 6px;
+
+  &--credit {
+    color: $color-white;
+  }
+}
+
+.main-slider__slogan {
+  margin-top: 0;
+  margin-bottom: 10px;
+
+  &--credit {
+    color: $color-white;
+  }
+}
