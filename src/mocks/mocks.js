@@ -1,4 +1,4 @@
-export const promoSlides = [
+export const mainSlides = [
   {
     name: `credit`,
     title: `Лига Банк`,

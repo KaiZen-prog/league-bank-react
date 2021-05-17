@@ -1,11 +1,22 @@
 .main-slider {
   position: relative;
+  overflow: hidden;
 
   @include block-centered($mobile-width-min);
 }
 
+.main-slider__slides-container {
+  display: flex;
+  position: relative;
+  transition: left 1.5s ease 0s;
+
+  cursor: grabbing;
+}
+
 .main-slider__slide {
   padding: 39px 10px 48px 15px;
+
+  min-width: 320px;
 
   &--credit {
     position: relative;
@@ -169,6 +180,8 @@
   .main-slider__slide {
     padding: 65px 10px 76px 86px;
 
+    min-width: 768px;
+
     &--credit {
       &::before {
         top: 38px;
@@ -248,8 +261,15 @@
 
 @media (min-width: $desktop-width-min) {
   .main-slider {
-    position: relative;
     @include block-centered($desktop-width-max);
+  }
+
+  .main-slider__slides-container {
+    cursor: default;
+  }
+
+  .main-slider__container {
+    position: relative;
 
     &--credit {
       &::before {
@@ -309,10 +329,9 @@
   }
 
   .main-slider__slide {
-    padding-top: 102px;
-    padding-right: 660px;
-    padding-left: 268px;
-    padding-bottom: 114px;
+    padding: 102px 660px 114px 268px;
+
+    min-width: 1366px;
 
     &--credit {
       &::before {
