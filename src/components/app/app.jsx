@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../header/header";
 import MainSlider from "../main-slider/main-slider";
+import ServicesSlider from "../services-slider/services-slider";
 
 const App = () => {
   return (
@@ -8,6 +9,7 @@ const App = () => {
       <Header/>
       <main>
         <MainSlider/>
+        <ServicesSlider/>
       </main>
     </>
   );
