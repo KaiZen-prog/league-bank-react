@@ -26,8 +26,8 @@ const withServicesSlider = (Component) => {
       let newSlide;
 
       if (isGettingNextSlide) {
-        if (this.state.currentSlide === mainSlides[servicesSlides.length - 1]) {
-          newSlide = mainSlides[0];
+        if (this.state.currentSlide === servicesSlides[servicesSlides.length - 1]) {
+          newSlide = servicesSlides[0];
         } else {
           newSlide = getNextElement(servicesSlides, this.state.currentSlide);
         }
@@ -100,21 +100,20 @@ const withServicesSlider = (Component) => {
 
         this.setState({
           currentSlide: newSlide,
-          currentSlideNumber: mainSlides.indexOf(newSlide)
+          currentSlideNumber: servicesSlides.indexOf(newSlide)
         })
       } else if (this.posX * -1 / this.width < -0.5) {
         let newSlide = this.getNewSlide(false);
 
         this.setState({
           currentSlide: newSlide,
-          currentSlideNumber: mainSlides.indexOf(newSlide)
+          currentSlideNumber: servicesSlides.indexOf(newSlide)
         })
       } else {
         this.slider.style.left = this.startCoords;
       }
 
       this.posX = 0;
-      this.carouselHandler();
     }
 
     render() {

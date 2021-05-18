@@ -1,7 +1,7 @@
 import React from "react";
 import withServicesSlider from "../../hocs/with-services-slider/with-services-slider";
 import {Repeat} from "../../utils/common";
-import MainSlide from "../main-slide/main-slide";
+import ServicesSlide from "../services-slide/services-slide";
 import {servicesSlides} from '../../mocks/mocks';
 import PropTypes from "prop-types";
 
@@ -17,6 +17,18 @@ const ServicesSlider = (props) => {
 
   return (
       <section className="services-slider">
+        <div
+            className="services-slider__slides-container"
+            style={{left: currentSlideNumber === 0 ? `0` : `-` + (currentSlideNumber) + `00%`}}
+            onMouseDown={onSwipeStart}
+            onTouchStart={onSwipeStart}
+        >
+          <Repeat numTimes={slidesQuantity}>
+            {(i) => (
+                <ServicesSlide key={i} currentSlide={servicesSlides[i]}/>
+            )}
+          </Repeat>
+        </div>
 
         <ul className="services-slider__dots">
           <Repeat numTimes={slidesQuantity}>

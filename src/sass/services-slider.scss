@@ -1,0 +1,55 @@
+.services-slider {
+  position: relative;
+  overflow: hidden;
+
+  background-color: $color-white;
+
+  @include block-centered($mobile-width-min);
+}
+
+.services-slider__slides-container {
+  display: flex;
+  position: relative;
+  transition: left 1.5s ease 0s;
+
+  cursor: grabbing;
+}
+
+.services-slider__slide {
+  padding: 10px 10px 10px 10px;
+
+  min-width: 320px;
+}
+
+.services-slider__dots {
+  position: absolute;
+
+  list-style: none;
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  bottom: 10px;
+  left: 113px;
+
+  width: 100px;
+
+  margin: 0;
+  padding: 0;
+}
+
+.services-slider__dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  margin-right: 6px;
+
+  background-color: $color-midnight-blue;
+
+  &--current {
+    background-color: $color-white-grey;
+  }
+}

@@ -30,12 +30,7 @@ MainSlide.propTypes = {
     title: PropTypes.string.isRequired,
     slogan: PropTypes.string.isRequired,
     link: PropTypes.string
-  }).isRequired,
-
-  currentSlideNumber: PropTypes.number.isRequired,
-  slidesQuantity: PropTypes.number.isRequired,
-
-  onSwipeStart: PropTypes.func.isRequired
+  }).isRequired
 };
 
 MainSlide.displayName = `MainSlide`;
