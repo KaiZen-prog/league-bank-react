@@ -121,7 +121,7 @@
     top: 4px;
     left: -2px;
 
-    @include background-image("../img/icon-feature.svg", 10px, 8px);
+    @include background-image("../img/icon-feature-mobile.svg", 10px, 8px);
   }
 
   &--online {
@@ -199,5 +199,150 @@
 
   &--current {
     background-color: $color-white-grey;
+  }
+}
+
+@media (min-width: $tablet-width-min) {
+  .services-slider {
+    @include block-centered($tablet-width-min);
+  }
+
+  .services-slider__slide {
+    padding-left: 45px;
+
+    height: 380px;
+    min-width: 768px;
+
+    &--deposit {
+      &::before {
+        top: 60px;
+        right: 45px;
+
+        @include background-image("../img/slide-services-deposit-tablet.jpg", 289px, 260px);
+      }
+    }
+
+    &--credit {
+      &::before {
+        top: 98px;
+        right: 0;
+
+        @include background-image("../img/slide-services-credit-tablet.jpg", 289px, 260px);
+      }
+    }
+
+    &--insurance {
+      &::before {
+        top: 98px;
+        right: 0;
+
+        @include background-image("../img/slide-services-insurance-tablet.jpg", 289px, 260px);
+      }
+    }
+
+    &--online {
+      &::before {
+        top: 98px;
+        right: 0;
+
+        @include background-image("../img/slide-services-online-tablet.jpg", 289px, 260px);
+      }
+    }
+  }
+
+  .services-slider__slogan {
+    font-size: 18px;
+    line-height: 25px;
+    margin-bottom: 23px;
+
+    &--deposit {
+      width: 320px;
+    }
+
+    &--credit {
+      width: 300px;
+    }
+
+    &--insurance {
+      padding-right: 35px;
+    }
+
+    &--online {
+      margin-bottom: 20px;
+      padding-right: 45px;
+    }
+  }
+
+  .services-slider__features {
+    margin-bottom: 30px;
+    padding-left: 7px;
+
+    &--credit {
+      margin-bottom: 22px;
+    }
+
+    &--insurance {
+      margin-bottom: 25px;
+    }
+
+    &--online {
+      padding-right: 45px;
+    }
+  }
+
+  .services-slider__feature {
+    font-size: 16px;
+    line-height: 21px;
+
+    margin-bottom: 15px;
+
+    &::before {
+      top: 6px;
+      left: -8px;
+
+      @include background-image("../img/icon-feature-tablet.svg", 13px, 10px);
+    }
+
+    &--deposit {
+      &:last-child {
+        width: 360px;
+      }
+    }
+  }
+
+  .services-slider__link {
+    font-size: 16px;
+    line-height: 19px;
+
+    width: 198px;
+
+    padding: 14px 6px 15px 6px;
+
+    &--insurance {
+      padding-top: 15px;
+      padding-bottom: 12px;
+    }
+
+    &--online {
+      padding-top: 15px;
+      padding-bottom: 12px;
+    }
+  }
+
+  .services-slider__dots {
+    bottom: 15px;
+    left: 338px;
+
+    width: 100px;
+
+    margin: 0;
+    padding: 0;
+  }
+
+  .services-slider__dot {
+    width: 8px;
+    height: 8px;
+
+    margin-right: 8px;
   }
 }
