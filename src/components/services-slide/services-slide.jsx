@@ -12,7 +12,7 @@ const ServicesSlide = (props) => {
 
         <ul className={`services-slider__features services-slider__features--${currentSlide.name}`}>
           {currentSlide.features.map((feature) => (
-              <li key={feature} className="services-slider__feature">{feature}</li>
+              <li key={feature} className={`services-slider__feature services-slider__feature--${currentSlide.name}`}>{feature}</li>
           ))}
         </ul>
 

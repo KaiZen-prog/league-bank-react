@@ -20,6 +20,7 @@
 
   padding: 55px 10px 47px 15px;
 
+  height: 362px;
   min-width: 320px;
 
   &--deposit {
@@ -32,13 +33,29 @@
   }
 
   &--credit {
-    padding-bottom: 82px;
-
     &::before {
       top: 98px;
       right: 0;
 
       @include background-image("../img/slide-services-credit.jpg", 87px, 113px);
+    }
+  }
+
+  &--insurance {
+    &::before {
+      top: 98px;
+      right: 0;
+
+      @include background-image("../img/slide-services-insurance.jpg", 87px, 113px);
+    }
+  }
+
+  &--online {
+    &::before {
+      top: 98px;
+      right: 0;
+
+      @include background-image("../img/slide-services-online.jpg", 87px, 113px);
     }
   }
 }
@@ -55,6 +72,15 @@
   &--credit {
     padding-right: 60px;
   }
+
+  &--insurance {
+    padding-right: 35px;
+  }
+
+  &--online {
+    margin-bottom: 20px;
+    padding-right: 45px;
+  }
 }
 
 .services-slider__features {
@@ -69,6 +95,14 @@
 
   &--credit {
     margin-bottom: 22px;
+  }
+
+  &--insurance {
+    margin-bottom: 25px;
+  }
+
+  &--online {
+    padding-right: 45px;
   }
 }
 
@@ -88,6 +122,14 @@
     left: -2px;
 
     @include background-image("../img/icon-feature.svg", 10px, 8px);
+  }
+
+  &--online {
+    padding-right: 30px;
+
+    &:first-child {
+      padding-right: 60px;
+    }
   }
 }
 
@@ -115,6 +157,16 @@
   width: 290px;
 
   padding: 14px 11px 13px 6px;
+
+  &--insurance {
+    padding-top: 15px;
+    padding-bottom: 12px;
+  }
+
+  &--online {
+    padding-top: 15px;
+    padding-bottom: 12px;
+  }
 }
 
 .services-slider__dots {
