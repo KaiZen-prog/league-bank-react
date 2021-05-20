@@ -42,7 +42,8 @@ const withServicesSlider = (Component) => {
       return newSlide;
     }
 
-    onTabClick() {
+    onTabClick(slide, number) {
+      this.setState({currentSlide: slide, currentSlideNumber: number,});
     }
 
     onSwipeStart(evt) {

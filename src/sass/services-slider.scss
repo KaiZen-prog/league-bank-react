@@ -2,9 +2,11 @@
   position: relative;
   overflow: hidden;
 
-  background-color: $color-white;
-
   @include block-centered($mobile-width-min);
+}
+
+.services-slider__tabs {
+  display: none;
 }
 
 .services-slider__slides-container {
@@ -22,6 +24,8 @@
 
   height: 362px;
   min-width: 320px;
+
+  background-color: $color-white;
 
   &--deposit {
     &::before {
@@ -340,7 +344,7 @@
 
     width: 198px;
 
-    padding: 14px 6px 15px 6px;
+    padding: 13px 6px 13px 6px;
 
     &--insurance {
       padding-top: 13px;
@@ -368,5 +372,230 @@
     height: 8px;
 
     margin-right: 8px;
+  }
+}
+
+@media (min-width: $desktop-width-min) {
+  .services-slider {
+    @include block-centered($desktop-container-width);
+
+    padding-top: 60px;
+  }
+
+  .services-slider__tabs {
+    display: flex;
+    list-style: none;
+
+    margin: 0;
+    padding: 0;
+
+    cursor: pointer;
+  }
+
+  .services-slider__tab {
+    position: relative;
+
+    font-size: 18px;
+    line-height: 21px;
+
+    width: 293px;
+    height: 93px;
+
+    padding: 37px 15px 5px 136px;
+
+    cursor: pointer;
+
+    &--deposit {
+      &::before {
+        top: 30px;
+        left: 91px;
+
+        @include background-image("../img/icon-deposit.svg", 34px, 33px);
+      }
+    }
+
+    &--credit {
+      padding-left: 131px;
+
+      &::before {
+        top: 31px;
+        left: 87px;
+
+        @include background-image("../img/icon-credit.svg", 34px, 30px);
+      }
+    }
+
+    &--insurance {
+      padding-left: 111px;
+
+      &::before {
+        top: 29px;
+        left: 73px;
+
+        @include background-image("../img/icon-insurance.svg", 28px, 34px);
+      }
+    }
+
+    &--online {
+      padding-left: 90px;
+
+      &::before {
+        top: 29px;
+        left: 60px;
+
+        @include background-image("../img/icon-online.svg", 20px, 34px);
+      }
+    }
+
+    &--current {
+      background-color: $color-white;
+      border-radius: 4px 4px 0 0;
+    }
+  }
+
+  .services-slider__tab-label {
+    color: $color-dark-blue;
+  }
+
+  .services-slider__slides-container {
+    cursor: default;
+  }
+
+  .services-slider__slide {
+    padding-top: 53px;
+    padding-left: 70px;
+
+    height: 410px;
+    min-width: 1170px;
+
+    &--deposit {
+      &::before {
+        right: 135px;
+
+        @include background-image("../img/slide-services-deposit-desktop.jpg", 440px, 290px);
+      }
+    }
+
+    &--credit {
+      &::before {
+        right: 135px;
+
+        @include background-image("../img/slide-services-credit-desktop.jpg", 440px, 290px);
+      }
+    }
+
+    &--insurance {
+      &::before {
+        right: 135px;
+
+        @include background-image("../img/slide-services-insurance-desktop.jpg", 440px, 290px);
+      }
+    }
+
+    &--online {
+      &::before {
+        right: 135px;
+
+        @include background-image("../img/slide-services-online-desktop.jpg", 440px, 290px);
+      }
+    }
+  }
+
+  .services-slider__slogan {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 31px;
+
+    margin-bottom: 28px;
+
+    &--deposit {
+      width: 420px;
+    }
+
+    &--credit {
+      width: 300px;
+    }
+
+    &--insurance {
+      width: 320px;
+
+      margin-bottom: 22px;
+    }
+
+    &--online {
+      width: 400px;
+
+      margin-bottom: 22px;
+    }
+  }
+
+  .services-slider__features {
+    margin-bottom: 34px;
+
+    &--credit {
+      margin-bottom: 31px;
+    }
+
+    &--insurance {
+      margin-bottom: 31px;
+    }
+
+    &--online {
+      padding-right: 45px;
+    }
+
+    &--online {
+      margin-bottom: 31px;
+    }
+  }
+
+  .services-slider__feature {
+    font-size: 18px;
+    line-height: 23px;
+
+    margin-bottom: 15px;
+
+    width: 420px;
+
+    &::before {
+      top: 5px;
+    }
+
+    &--deposit {
+      &:last-child {
+        width: 420px;
+      }
+    }
+
+    &--online {
+      &:first-child {
+        width: 274px;
+      }
+
+      &:last-child {
+        width: 360px;
+      }
+    }
+  }
+
+  .services-slider__link {
+    line-height: 19px;
+
+    padding-top: 16px;
+    padding-bottom: 16px;
+
+    &--insurance {
+      padding-top: 13px;
+      padding-bottom: 13px;
+    }
+
+    &--online {
+      padding-top: 13px;
+      padding-bottom: 13px;
+    }
+  }
+
+  .services-slider__dots {
+    display: none;
   }
 }
