@@ -224,8 +224,8 @@
 
     &--credit {
       &::before {
-        top: 98px;
-        right: 0;
+        top: 60px;
+        right: 45px;
 
         @include background-image("../img/slide-services-credit-tablet.jpg", 289px, 260px);
       }
@@ -233,8 +233,8 @@
 
     &--insurance {
       &::before {
-        top: 98px;
-        right: 0;
+        top: 60px;
+        right: 45px;
 
         @include background-image("../img/slide-services-insurance-tablet.jpg", 289px, 260px);
       }
@@ -242,8 +242,8 @@
 
     &--online {
       &::before {
-        top: 98px;
-        right: 0;
+        top: 60px;
+        right: 45px;
 
         @include background-image("../img/slide-services-online-tablet.jpg", 289px, 260px);
       }
@@ -264,12 +264,15 @@
     }
 
     &--insurance {
-      padding-right: 35px;
+      width: 320px;
+
+      margin-bottom: 22px;
     }
 
     &--online {
-      margin-bottom: 20px;
-      padding-right: 45px;
+      width: 400px;
+
+      margin-bottom: 22px;
     }
   }
 
@@ -278,15 +281,19 @@
     padding-left: 7px;
 
     &--credit {
-      margin-bottom: 22px;
+      margin-bottom: 31px;
     }
 
     &--insurance {
-      margin-bottom: 25px;
+      margin-bottom: 31px;
     }
 
     &--online {
       padding-right: 45px;
+    }
+
+    &--online {
+      margin-bottom: 31px;
     }
   }
 
@@ -308,24 +315,41 @@
         width: 360px;
       }
     }
+
+    &--online {
+      &:first-child {
+        width: 274px;
+      }
+
+      &:last-child {
+        width: 360px;
+      }
+    }
+  }
+
+  .services-slider__text {
+    font-size: 16px;
+    line-height: 21px;
+
+    width: 310px;
   }
 
   .services-slider__link {
     font-size: 16px;
-    line-height: 19px;
+    line-height: 22px;
 
     width: 198px;
 
     padding: 14px 6px 15px 6px;
 
     &--insurance {
-      padding-top: 15px;
-      padding-bottom: 12px;
+      padding-top: 13px;
+      padding-bottom: 13px;
     }
 
     &--online {
-      padding-top: 15px;
-      padding-bottom: 12px;
+      padding-top: 13px;
+      padding-bottom: 13px;
     }
   }
 
