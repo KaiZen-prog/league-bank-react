@@ -168,3 +168,16 @@
     background-image: url("../img/icon-youtube-mobile.svg");
   }
 }
+
+@media (min-width: $tablet-width-min) {
+  .footer {
+    width: 100%;
+  }
+
+  .footer__wrapper {
+    flex-direction: row;
+    padding: 34px 10px 44px;
+
+    @include block-centered($tablet-width-min);
+  }
+}
