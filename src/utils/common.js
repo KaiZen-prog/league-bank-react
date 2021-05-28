@@ -17,3 +17,31 @@ export const Repeat = (props) => {
   }
   return items;
 };
+
+export const shakeEffect = (element) => {
+  element.style.animation = `shake ${600 / 1000}s`;
+  setTimeout(() => {
+    element.style.animation = ``;
+  }, 600);
+}
+
+export const divideNumberToSpace = (num) => {
+  const str = String(num);
+
+  if (str.length <= 3) return str;
+
+  let space = 0;
+  let result = ``;
+
+  for (let i = str.length - 1; i >= 0; i--) {
+    if (space === 3) {
+      result = ` ` + result;
+      space = 0;
+    }
+
+    result = str.charAt(i) + result;
+    space++;
+  }
+
+  return result;
+}
