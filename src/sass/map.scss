@@ -1,0 +1,165 @@
+.map {
+  @include block-centered($mobile-width-min);
+
+  margin-bottom: 60px;
+}
+
+.map__header {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 31px;
+
+  margin: 0;
+  padding: 43px 15px 27px;
+
+  color: $color-dark-blue;
+}
+
+.map__container {
+  width: 320px;
+  height: 381px;
+
+  background-image: url("../img/map-mobile.jpg");
+}
+
+.map__pin-list {
+  position: relative;
+  list-style: none;
+
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+}
+
+.map__pin {
+  position: absolute;
+
+  width: 31px;
+  height: 35px;
+
+  background-image: url("../img/map-pin-mobile.svg");
+
+  &--1 {
+    top: 61px;
+    left: 81px;
+  }
+
+  &--2 {
+    bottom: 103px;
+    left: 81px;
+  }
+
+  &--3 {
+    bottom: 103px;
+    right: 61px;
+  }
+
+  &--4 {
+    display: none;
+  }
+
+  &--5 {
+    display: none;
+  }
+}
+
+@media (min-width: $tablet-width-min) {
+  .map {
+    padding: 5px 5px 5px 45px;
+
+    @include block-centered($tablet-width-min);
+  }
+
+  .map__header {
+    font-size: 32px;
+    line-height: 45px;
+
+    padding: 24px 0 33px;
+  }
+
+  .map__container {
+    width: 678px;
+    height: 462px;
+
+    background-image: url("../img/map-tablet.jpg");
+  }
+
+  .map__pin {
+    width: 37px;
+    height: 40px;
+
+    background-image: url("../img/map-pin-tablet.svg");
+
+    &--1 {
+      top: 76px;
+      left: 389px;
+    }
+
+    &--2 {
+      bottom: 228px;
+      left: 72px;
+    }
+
+    &--3 {
+      bottom: 127px;
+      right: 252px;
+    }
+  }
+
+}
+
+@media (min-width: $desktop-width-min) {
+  .map {
+    padding: 32px 5px 5px 0;
+
+    @include block-centered($desktop-container-width);
+  }
+
+  .map__header {
+    font-size: 41px;
+    line-height: 57px;
+
+    padding-bottom: 56px;
+  }
+
+  .map__container {
+    width: 1170px;
+    height: 462px;
+
+    background-image: url("../img/map-desktop.jpg");
+  }
+
+  .map__pin {
+    &--1 {
+      top: 247px;
+      left: 69px;
+    }
+
+    &--2 {
+      bottom: 175px;
+      left: 315px;
+    }
+
+    &--3 {
+      bottom: 227px;
+      right: 465px;
+    }
+
+    &--4 {
+      display: block;
+
+      bottom: 146px;
+      right: 297px;
+    }
+
+    &--5 {
+      display: block;
+
+      bottom: 21px;
+      left: 249px;
+    }
+  }
+}
