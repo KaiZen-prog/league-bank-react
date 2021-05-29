@@ -68,7 +68,7 @@
 
 @media (min-width: $tablet-width-min) {
   .map {
-    padding: 5px 5px 5px 45px;
+    padding: 5px 5px 80px 45px;
 
     @include block-centered($tablet-width-min);
   }

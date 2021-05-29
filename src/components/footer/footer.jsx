@@ -27,6 +27,10 @@ const Footer = () => {
                 </li>
               </ul>
             </nav>
+
+            <p className="footer__address">
+              150015, г. Москва, ул. Московская, д. 32 Генеральная лицензия Банка России №1050 Ⓒ Лига Банк, 2019
+            </p>
           </div>
 
           <div className="footer__container">
