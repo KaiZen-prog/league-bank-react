@@ -159,7 +159,7 @@ const withCalculator = (Component) => {
 
     onCostChangeSign(evt) {
       let cost = this.state.cost === `Некорректное значение` ? this.state.paramsCredit.minCost : this.state.cost;
-      evt.target.offsetParent.querySelector(`.credit-calculator__input--show`).style.color = `#1F1E25`;
+      evt.target.offsetParent.querySelector(`.calculator__input--show`).style.color = `#1F1E25`;
 
       evt.target.id === `plus` ? cost += this.state.paramsCredit.step : cost -= this.state.paramsCredit.step;
       if (cost < this.state.paramsCredit.minCost) {

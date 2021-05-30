@@ -78,15 +78,15 @@ const Calculator = (props) => {
                 </div>
               </fieldset>
               {step >= 2 && (
-                  <fieldset className="credit-calculator__params">
-                    <h3 className="credit-calculator__step credit-calculator__step--params">Шаг 2. Введите параметры кредита</h3>
-                    <label className="credit-calculator__label credit-calculator__label--cost">
-                      <h4 className="credit-calculator__field-title">Стоимость {paramsCredit.type === `mortgage` ? `недвижимости` : `автомобиля`}</h4>
+                  <fieldset className="calculator__params">
+                    <h3 className="calculator__step calculator__step--params">Шаг 2. Введите параметры кредита</h3>
+                    <label className="calculator__label calculator__label--cost">
+                      <h4 className="calculator__field-title">Стоимость {paramsCredit.type === `mortgage` ? `недвижимости` : `автомобиля`}</h4>
 
-                      <span className="credit-calculator__minus-icon" id="minus" onClick={onCostChangeSign}></span>
+                      <span className="calculator__icon calculator__icon--minus" id="minus" onClick={onCostChangeSign}></span>
                       <input
                           type="number"
-                          className="credit-calculator__input"
+                          className="calculator__input"
                           name="cost"
                           min={paramsCredit.minCost}
                           max={paramsCredit.maxCost}
@@ -94,18 +94,23 @@ const Calculator = (props) => {
                           onBlur={onCostChange}
                           onChange={onInputChange}
                       />
-                      <div className="credit-calculator__input credit-calculator__input--show" tabIndex="0" onFocus={onInputFocus}>{typeof cost === `string` ? cost : divideNumberToSpace(cost) + ` рублей`}</div>
-                      <span className="credit-calculator__plus-icon" id="plus" onClick={onCostChangeSign}></span>
+                      <div
+                          className="calculator__input calculator__input--show"
+                          tabIndex="0"
+                      >
+                        {typeof cost === `string` ? cost : divideNumberToSpace(cost) + ` рублей`}
+                      </div>
+                      <span className="calculator__icon calculator__icon--plus" id="plus" onClick={onCostChangeSign}></span>
 
-                      <p className="credit-calculator__help-text">От {divideNumberToSpace(paramsCredit.minCost)} &nbsp;до {divideNumberToSpace(paramsCredit.maxCost)} рублей</p>
+                      <p className="calculator__help-text">От {divideNumberToSpace(paramsCredit.minCost)} &nbsp;до {divideNumberToSpace(paramsCredit.maxCost)} рублей</p>
                     </label>
 
-                    <label className="credit-calculator__label credit-calculator__label--initial-fee">
-                      <h4 className="credit-calculator__field-title">Первоначальный взнос</h4>
+                    <label className="calculator__label credit-calculator__label--initial-fee">
+                      <h4 className="calculator__field-title">Первоначальный взнос</h4>
 
                       <input
                           type="number"
-                          className="credit-calculator__input credit-calculator__input--initial-fee"
+                          className="calculator__input credit-calculator__input--initial-fee"
                           name="initialFee"
                           min={paramsCredit.minCost * paramsCredit.minInitialFee / 100}
                           max={paramsCredit.maxCost}
@@ -113,11 +118,11 @@ const Calculator = (props) => {
                           onBlur={onInitialFeeChange}
                           onChange={onInputChange}
                       />
-                      <div className="credit-calculator__input credit-calculator__input--show credit-calculator__input--initial-fee" tabIndex="0" onFocus={onInputFocus}>{divideNumberToSpace(initialFee)} рублей</div>
+                      <div className="calculator__input credit-calculator__input--show credit-calculator__input--initial-fee" tabIndex="0" onFocus={onInputFocus}>{divideNumberToSpace(initialFee)} рублей</div>
 
                       <input
                           type="range"
-                          className="credit-calculator__input-range"
+                          className="calculator__input-range"
                           name="initialFee"
                           min={paramsCredit.minInitialFee}
                           max="100"
@@ -126,7 +131,7 @@ const Calculator = (props) => {
                           onChange={onInputRangeChange}
                       />
                       <span
-                          className="credit-calculator__range-value"
+                          className="calculator__range-value"
                           style={{
                             marginLeft: getRangeValuePosition() + `%`,
                             transform: `translateX(-${getRangeValuePosition() / 2}%)`
@@ -134,12 +139,12 @@ const Calculator = (props) => {
                       >{isNaN(Math.floor(initialFee * 100 / cost)) ? 0 : Math.floor(initialFee * 100 / cost)}%</span>
                     </label>
 
-                    <label className="credit-calculator__label credit-calculator__label--term">
-                      <h4 className="credit-calculator__field-title">Срок кредитования</h4>
+                    <label className="calculator__label credit-calculator__label--term">
+                      <h4 className="calculator__field-title">Срок кредитования</h4>
 
                       <input
                           type="number"
-                          className="credit-calculator__input credit-calculator__input--term"
+                          className="calculator__input credit-calculator__input--term"
                           name="term"
                           min={paramsCredit.minTerm}
                           max={paramsCredit.maxTerm}
@@ -147,11 +152,11 @@ const Calculator = (props) => {
                           onBlur={onTermChange}
                           onChange={onInputChange}
                       />
-                      <div className="credit-calculator__input credit-calculator__input--show credit-calculator__input--term" tabIndex="0" onFocus={onInputFocus}>{term} лет</div>
+                      <div className="calculator__input credit-calculator__input--show credit-calculator__input--term" tabIndex="0" onFocus={onInputFocus}>{term} лет</div>
 
                       <input
                           type="range"
-                          className="credit-calculator__input-range credit-calculator__input-range--term"
+                          className="calculator__input-range credit-calculator__input-range--term"
                           name="term"
                           min={paramsCredit.minTerm}
                           max={paramsCredit.maxTerm}
@@ -159,29 +164,44 @@ const Calculator = (props) => {
                           value={term}
                           onChange={onInputRangeChange}
                       />
-                      <div className="credit-calculator__term-container">
-                        <span className="credit-calculator__range-value">{paramsCredit.minTerm} {paramsCredit.minTerm === 1 ? `год` : `лет`}</span>
-                        <span className="credit-calculator__range-value">{paramsCredit.maxTerm} лет</span>
+                      <div className="calculator__term-container">
+                        <span className="calculator__range-value">{paramsCredit.minTerm} {paramsCredit.minTerm === 1 ? `год` : `лет`}</span>
+                        <span className="calculator__range-value">{paramsCredit.maxTerm} лет</span>
                       </div>
                     </label>
 
                     {paramsCredit.maternalCapitalValue && (
-                        <label className="credit-calculator__additional">
-                          <input type="checkbox" name="maternalCapital" className="credit-calculator__input-checkbox visually-hidden" onChange={onAdditionalChange}/>
-                          <span className="credit-calculator__checkbox-icon"></span>
+                        <label className="calculator__additional">
+                          <input
+                              type="checkbox"
+                              name="maternalCapital"
+                              className="calculator__input-checkbox visually-hidden"
+                              onChange={onAdditionalChange}
+                          />
+                          <span className="calculator__checkbox-icon"></span>
                           Использовать материнский капитал
                         </label>
                     )}
                     {paramsCredit.additionalToCar && (
                         <>
-                          <label className="credit-calculator__additional">
-                            <input type="checkbox" name="casco" className="credit-calculator__input-checkbox visually-hidden" onChange={onAdditionalChange}/>
-                            <span className="credit-calculator__checkbox-icon"></span>
+                          <label className="calculator__additional">
+                            <input
+                                type="checkbox"
+                                name="casco"
+                                className="calculator__input-checkbox visually-hidden"
+                                onChange={onAdditionalChange}
+                            />
+                            <span className="calculator__checkbox-icon"></span>
                             Оформить КАСКО в нашем банке
                           </label>
-                          <label className="credit-calculator__additional">
-                            <input type="checkbox" name="lifeInsurance" className="credit-calculator__input-checkbox visually-hidden" onChange={onAdditionalChange}/>
-                            <span className="credit-calculator__checkbox-icon"></span>
+                          <label className="alculator__additional">
+                            <input
+                                type="checkbox"
+                                name="lifeInsurance"
+                                className="calculator__input-checkbox visually-hidden"
+                                onChange={onAdditionalChange}
+                            />
+                            <span className="calculator__checkbox-icon"></span>
                             Оформить Страхование жизни в нашем банке
                           </label>
                         </>
