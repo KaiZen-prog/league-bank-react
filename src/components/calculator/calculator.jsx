@@ -93,6 +93,7 @@ const Calculator = (props) => {
                           value={cost}
                           onBlur={onCostChange}
                           onChange={onInputChange}
+                          onFocus={onInputFocus}
                       />
                       <div
                           className="calculator__input calculator__input--show"
@@ -105,12 +106,12 @@ const Calculator = (props) => {
                       <p className="calculator__help-text">От {divideNumberToSpace(paramsCredit.minCost)} &nbsp;до {divideNumberToSpace(paramsCredit.maxCost)} рублей</p>
                     </label>
 
-                    <label className="calculator__label credit-calculator__label--initial-fee">
-                      <h4 className="calculator__field-title">Первоначальный взнос</h4>
+                    <label className="calculator__label calculator__label--initial-fee">
+                      <h4 className="calculator__field-title calculator__field-title--initial-fee">Первоначальный взнос</h4>
 
                       <input
                           type="number"
-                          className="calculator__input credit-calculator__input--initial-fee"
+                          className="calculator__input"
                           name="initialFee"
                           min={paramsCredit.minCost * paramsCredit.minInitialFee / 100}
                           max={paramsCredit.maxCost}
@@ -118,7 +119,13 @@ const Calculator = (props) => {
                           onBlur={onInitialFeeChange}
                           onChange={onInputChange}
                       />
-                      <div className="calculator__input credit-calculator__input--show credit-calculator__input--initial-fee" tabIndex="0" onFocus={onInputFocus}>{divideNumberToSpace(initialFee)} рублей</div>
+                      <div
+                          className="calculator__input calculator__input--show calculator__input--initial-fee"
+                          tabIndex="0"
+                          onFocus={onInputFocus}
+                      >
+                        {divideNumberToSpace(initialFee)} рублей
+                      </div>
 
                       <input
                           type="range"
@@ -136,15 +143,17 @@ const Calculator = (props) => {
                             marginLeft: getRangeValuePosition() + `%`,
                             transform: `translateX(-${getRangeValuePosition() / 2}%)`
                           }}
-                      >{isNaN(Math.floor(initialFee * 100 / cost)) ? 0 : Math.floor(initialFee * 100 / cost)}%</span>
+                      >
+                        {isNaN(Math.floor(initialFee * 100 / cost)) ? 0 : Math.floor(initialFee * 100 / cost)}%
+                      </span>
                     </label>
 
-                    <label className="calculator__label credit-calculator__label--term">
+                    <label className="calculator__label">
                       <h4 className="calculator__field-title">Срок кредитования</h4>
 
                       <input
                           type="number"
-                          className="calculator__input credit-calculator__input--term"
+                          className="calculator__input"
                           name="term"
                           min={paramsCredit.minTerm}
                           max={paramsCredit.maxTerm}
@@ -152,11 +161,17 @@ const Calculator = (props) => {
                           onBlur={onTermChange}
                           onChange={onInputChange}
                       />
-                      <div className="calculator__input credit-calculator__input--show credit-calculator__input--term" tabIndex="0" onFocus={onInputFocus}>{term} лет</div>
+                      <div
+                          className="calculator__input calculator__input--show calculator__input--term"
+                          tabIndex="0"
+                          onFocus={onInputFocus}
+                      >
+                        {term} лет
+                      </div>
 
                       <input
                           type="range"
-                          className="calculator__input-range credit-calculator__input-range--term"
+                          className="calculator__input-range"
                           name="term"
                           min={paramsCredit.minTerm}
                           max={paramsCredit.maxTerm}
@@ -212,33 +227,33 @@ const Calculator = (props) => {
             {step >= 2 && (
                 <>
                   {creditAmount >= paramsCredit.minCreditAmount && (
-                      <div className="credit-calculator__offer">
-                        <h3 className="credit-calculator__offer-title">Наше предложение</h3>
-                        <ul className="credit-calculator__offer-list">
-                          <li className="credit-calculator__offer-item">
-                            <p className="credit-calculator__offer-value">{divideNumberToSpace(creditAmount)} рублей</p>
-                            <p className="credit-calculator__offer-name">Сумма ипотеки</p>
+                      <div className="calculator__offer">
+                        <h3 className="calculator__offer-title">Наше предложение</h3>
+                        <ul className="calculator__offer-list">
+                          <li className="calculator__offer-item">
+                            <p className="calculator__offer-value">{divideNumberToSpace(creditAmount)} рублей</p>
+                            <p className="calculator__offer-name">Сумма ипотеки</p>
                           </li>
-                          <li className="credit-calculator__offer-item credit-calculator__offer-item--monthly-payment">
-                            <p className="credit-calculator__offer-value">{divideNumberToSpace(monthlyPayment)} рублей</p>
-                            <p className="credit-calculator__offer-name">Ежемесячный платеж</p>
+                          <li className="calculator__offer-item">
+                            <p className="calculator__offer-value">{percent}%</p>
+                            <p className="calculator__offer-name">Процентная ставка</p>
                           </li>
-                          <li className="credit-calculator__offer-item credit-calculator__offer-item--interest-rate">
-                            <p className="credit-calculator__offer-value">{percent}%</p>
-                            <p className="credit-calculator__offer-name">Процентная ставка</p>
+                          <li className="calculator__offer-item">
+                            <p className="calculator__offer-value">{divideNumberToSpace(monthlyPayment)} рублей</p>
+                            <p className="calculator__offer-name">Ежемесячный платеж</p>
                           </li>
-                          <li className="credit-calculator__offer-item credit-calculator__offer-item--income">
-                            <p className="credit-calculator__offer-value">{divideNumberToSpace(requiredIncome)} рублей</p>
-                            <p className="credit-calculator__offer-name">Необходимый доход</p>
+                          <li className="calculator__offer-item">
+                            <p className="calculator__offer-value">{divideNumberToSpace(requiredIncome)} рублей</p>
+                            <p className="calculator__offer-name">Необходимый доход</p>
                           </li>
                         </ul>
-                        <button type="submit" className="credit-calculator__submit-btn">Оформить заявку</button>
+                        <button type="submit" className="calculator__submit-button">Оформить заявку</button>
                       </div>
                   )}
                   {creditAmount < paramsCredit.minCreditAmount && (
-                      <div className="credit-calculator__offer credit-calculator__offer--refusal">
-                        <h3 className="credit-calculator__offer-title credit-calculator__offer-title--refusal">Наш банк не выдаёт ипотечные кредиты меньше {divideNumberToSpace(paramsCredit.minCreditAmount)} рублей.</h3>
-                        <p className="credit-calculator__offer-name credit-calculator__offer-name--refusal">Попробуйте использовать другие параметры для расчёта.</p>
+                      <div className="calculator__offer calculator__offer--refusal">
+                        <h3 className="calculator__offer-title calculator__offer-title--refusal">Наш банк не выдаёт ипотечные кредиты меньше {divideNumberToSpace(paramsCredit.minCreditAmount)} рублей.</h3>
+                        <p className="calculator__offer-name calculator__offer-name--refusal">Попробуйте использовать другие параметры для расчёта.</p>
                       </div>
                   )}
                 </>
@@ -246,37 +261,37 @@ const Calculator = (props) => {
           </div>
         </form>
         {step >= 3 && (
-            <form action="#" className="credit-calculator__reg-application reg-application" onSubmit={onSubmit}>
-              <h3 className="reg-application__title">Шаг 3. Оформление заявки</h3>
-              <table className="reg-application__table">
+            <form action="#" className="calculator__reg-application" onSubmit={onSubmit}>
+              <h3 className="calculator__step calculator__step--request">Шаг 3. Оформление заявки</h3>
+              <table className="calculator__request-table">
                 <tbody>
-                <tr className="reg-application__param-field">
-                  <td className="reg-application__field-name">Номер заявки</td>
-                  <td className="reg-application__field-value">№ {(`0000` + requestNumber).slice(-4)}</td>
+                <tr className="calculator__request-field">
+                  <td className="calculator__request-value">№ {(`0000` + requestNumber).slice(-4)}</td>
+                  <td className="calculator__request-name">Номер заявки</td>
                 </tr>
-                <tr className="reg-application__param-field">
-                  <td className="reg-application__field-name">Цель кредита</td>
-                  <td className="reg-application__field-value">{purpose === `mortgage` ? `Ипотека` : `Автокредит`}</td>
+                <tr className="calculator__request-field">
+                  <td className="calculator__request-value">{purpose === `mortgage` ? `Ипотека` : `Автокредит`}</td>
+                  <td className="calculator__request-name">Цель кредита</td>
                 </tr>
-                <tr className="reg-application__param-field">
-                  <td className="reg-application__field-name">Стоимость {purpose === `mortgage` ? `недвижимости` : `автомобиля`}</td>
-                  <td className="reg-application__field-value">{divideNumberToSpace(cost)} рублей</td>
+                <tr className="calculator__request-field">
+                  <td className="calculator__request-value">{divideNumberToSpace(cost)} рублей</td>
+                  <td className="calculator__request-name">Стоимость {purpose === `mortgage` ? `недвижимости` : `автомобиля`}</td>
                 </tr>
-                <tr className="reg-application__param-field">
-                  <td className="reg-application__field-name">Первоначальный взнос</td>
-                  <td className="reg-application__field-value">{divideNumberToSpace(initialFee)} рублей</td>
+                <tr className="calculator__request-field">
+                  <td className="calculator__request-value">{divideNumberToSpace(initialFee)} рублей</td>
+                  <td className="calculator__request-name">Первоначальный взнос</td>
                 </tr>
-                <tr className="reg-application__param-field">
-                  <td className="reg-application__field-name">Срок кредитования</td>
-                  <td className="reg-application__field-value">{term} лет</td>
+                <tr className="calculator__request-field">
+                  <td className="calculator__request-value">{term} лет</td>
+                  <td className="calculator__request-name">Срок кредитования</td>
                 </tr>
                 </tbody>
               </table>
-              <div className="reg-application__input-container">
+              <div className="calculator__input-container">
                 <input
                     type="text"
                     name="fullname"
-                    className="reg-application__input reg-application__input--full-name"
+                    className="calculator__input calculator__input--full-name"
                     placeholder="ФИО"
                     onChange={onRegApplicationChange}
                     onInvalid={(evt) => {
@@ -291,7 +306,7 @@ const Calculator = (props) => {
                     type="tel"
                     name="tel"
                     minLength={17}
-                    className="reg-application__input reg-application__input--phone"
+                    className="calculator__input calculator__input--phone"
                     placeholder="Телефон"
                     onChange={onChangePhone}
                     onInvalid={(evt) => {
@@ -303,7 +318,7 @@ const Calculator = (props) => {
                 <input
                     type="email"
                     name="email"
-                    className="reg-application__input"
+                    className="calculator__input calculator__input--email"
                     placeholder="E-mail"
                     onChange={onRegApplicationChange}
                     onInvalid={(evt) => {
@@ -312,7 +327,7 @@ const Calculator = (props) => {
                     value={localStorage.getItem(`email`) !== null ? localStorage.getItem(`email`) : ``}
                     required/>
               </div>
-              <button type="submit" className="reg-application__submit-btn">Отправить</button>
+              <button type="submit" className="calculator__submit-button calculator__submit-button--request">Отправить</button>
             </form>
         )}
         {step >= 4 && (
