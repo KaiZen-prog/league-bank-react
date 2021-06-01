@@ -234,8 +234,8 @@ const withCalculator = (Component) => {
     onSubmit(evt) {
       evt.preventDefault();
 
-      if(evt.currentTarget.querySelector(`.reg-application__input--phone`).value.length < 17) {
-        shakeEffect(evt.currentTarget.querySelector(`.reg-application__input--phone`));
+      if(evt.currentTarget.querySelector(`.calculator__input--phone`).value.length < 17) {
+        shakeEffect(evt.currentTarget.querySelector(`.calculator__input--phone`));
         return;
       }
 
