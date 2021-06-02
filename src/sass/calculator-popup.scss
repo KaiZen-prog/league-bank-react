@@ -1,0 +1,28 @@
+
+.calculator__popup-close {
+  position: absolute;
+  display: block;
+  width: 18px;
+  height: 18px;
+  top: 25px;
+  right: 25px;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+
+  @media (min-width: $tablet-width) and (max-width: $desktop-width - 1) {
+    top: 30px;
+    right: 30px;
+  }
+
+  @media (max-width: $tablet-width - 1) {
+    width: 15px;
+    height: 15px;
+    top: 14px;
+    right: 14px;
+  }
+}
+
+
