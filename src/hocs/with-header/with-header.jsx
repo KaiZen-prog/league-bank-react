@@ -1,4 +1,5 @@
 import React from 'react';
+import {KeyCode} from '../../const';
 
 const withHeader = (Component) => {
   class WithHeader extends React.PureComponent {
@@ -7,10 +8,21 @@ const withHeader = (Component) => {
 
       this.state = {
         isNavOpened: false,
+        isLoginInOpened: false,
+
+        login:  ``,
+        password: ``
       };
 
       this.onNavOpen = this.onNavOpen.bind(this);
       this.onNavClose = this.onNavClose.bind(this);
+
+      this.onLogInOpening = this.onLogInOpening.bind(this);
+      this.onLogInClosure = this.onLogInClosure.bind(this);
+      this.closeLogInKeydown = this.closeLogInKeydown.bind(this);
+      this.onLogInFieldChange = this.onLogInFieldChange.bind(this);
+      this.onPasswordShow = this.onPasswordShow.bind(this);
+      this.onPasswordHide = this.onPasswordHide.bind(this);
     }
 
     onNavOpen() {
@@ -21,12 +33,52 @@ const withHeader = (Component) => {
       this.setState({isNavOpened: false});
     }
 
+    onLogInOpening() {
+      this.setState({isLoginInOpened: true});
+      document.documentElement.style.overflow = `hidden`;
+      document.addEventListener(`keydown`, this.closeLogInKeydown);
+    }
+
+    onLogInClosure() {
+      this.setState({isLoginInOpened: false});
+      document.documentElement.style.overflow = `auto`;
+      document.removeEventListener(`keydown`, this.closeLogInKeydown);
+    }
+
+    closeLogInKeydown(evt) {
+      if (evt.keyCode === KeyCode.ESC) {
+        this.onSignInClosure();
+      }
+    }
+
+    onLogInFieldChange(evt) {
+      const {name, value} = evt.target;
+      this.setState({[name]: value});
+      localStorage.setItem(name, value);
+    }
+
+    onPasswordShow(evt) {
+      evt.target.previousElementSibling.type = `text`;
+    }
+
+    onPasswordHide(evt) {
+      evt.target.previousElementSibling.type = `password`;
+    }
+
+
     render() {
       return (
         <Component
           isNavOpened={this.state.isNavOpened}
           onNavOpen={this.onNavOpen}
           onNavClose={this.onNavClose}
+
+          isLogInOpened={this.state.isLoginInOpened}
+          onLogInOpening={this.onLogInOpening}
+          onLogInClosure={this.onLogInClosure}
+          onLogInFieldChange={this.onLogInFieldChange}
+          onPasswordShow={this.onPasswordShow}
+          onPasswordHide={this.onPasswordHide}
         />
       );
     }

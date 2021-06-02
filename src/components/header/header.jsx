@@ -1,12 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 import withHeader from "../../hocs/with-header/with-header";
+import LogIn from "../login/login";
 
 const Header = (props) => {
   const {
     isNavOpened,
     onNavOpen,
-    onNavClose
+    onNavClose,
+    isLogInOpened,
+    onLogInOpening,
+    onLogInClosure,
+    onLogInFieldChange,
+    onPasswordShow,
+    onPasswordHide
   } = props;
 
   return (
@@ -49,9 +56,16 @@ const Header = (props) => {
             </ul>
           </nav>
 
-          <a className={`header__login ${isNavOpened ? `header__login--opened` : ``}`} href="#">
+          <a className={`header__login ${isNavOpened ? `header__login--opened` : ``}`} href="#" onClick={onLogInOpening}>
             <span className={`header__login-title ${isNavOpened ? `header__login-title--opened` : ``}`}>Войти в Интернет-банк</span>
           </a>
+          <LogIn
+              isLogInOpened={isLogInOpened}
+              onLogInClosure={onLogInClosure}
+              onLogInFieldChange={onLogInFieldChange}
+              onPasswordShow={onPasswordShow}
+              onPasswordHide={onPasswordHide}
+          />
         </div>
       </div>
     </header>
@@ -61,7 +75,15 @@ const Header = (props) => {
 Header.propTypes = {
   isNavOpened: PropTypes.bool.isRequired,
   onNavOpen: PropTypes.func.isRequired,
-  onNavClose: PropTypes.func.isRequired
+  onNavClose: PropTypes.func.isRequired,
+
+  isLogInOpened: PropTypes.bool.isRequired,
+
+  onLogInOpening: PropTypes.func.isRequired,
+  onLogInClosure: PropTypes.func.isRequired,
+  onLogInFieldChange: PropTypes.func.isRequired,
+  onPasswordShow: PropTypes.func.isRequired,
+  onPasswordHide: PropTypes.func.isRequired,
 };
 
 Header.displayName = `Header`;
