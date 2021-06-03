@@ -10,7 +10,7 @@ const withHeader = (Component) => {
         isNavOpened: false,
         isLoginInOpened: false,
 
-        login:  ``,
+        login: ``,
         password: ``
       };
 

@@ -43,7 +43,7 @@ const withServicesSlider = (Component) => {
     }
 
     onTabClick(slide, number) {
-      this.setState({currentSlide: slide, currentSlideNumber: number,});
+      this.setState({currentSlide: slide, currentSlideNumber: number});
     }
 
     onSwipeStart(evt) {
@@ -63,10 +63,10 @@ const withServicesSlider = (Component) => {
 
       this.slider.style.transition = `none`;
 
-      document.addEventListener('mousemove', this.swipeAction);
-      document.addEventListener('touchmove', this.swipeAction);
-      document.addEventListener('mouseup', this.swipeEnd);
-      document.addEventListener('touchend', this.swipeEnd);
+      document.addEventListener(`mousemove`, this.swipeAction);
+      document.addEventListener(`touchmove`, this.swipeAction);
+      document.addEventListener(`mouseup`, this.swipeEnd);
+      document.addEventListener(`touchend`, this.swipeEnd);
     }
 
     swipeAction(evt) {
@@ -80,7 +80,7 @@ const withServicesSlider = (Component) => {
       }
 
       if (this.leftCoord < this.width * -(this.state.slidesQuantity - 1)) {
-        this.leftCoord = this.width * -(this.state.slidesQuantity- 1);
+        this.leftCoord = this.width * -(this.state.slidesQuantity - 1);
       }
 
       this.slider.style.left = this.leftCoord + `px`;
@@ -89,10 +89,10 @@ const withServicesSlider = (Component) => {
     }
 
     swipeEnd() {
-      document.removeEventListener('mousemove', this.swipeAction);
-      document.removeEventListener('touchmove', this.swipeAction);
-      document.removeEventListener('mouseup', this.swipeEnd);
-      document.removeEventListener('touchend', this.swipeEnd);
+      document.removeEventListener(`mousemove`, this.swipeAction);
+      document.removeEventListener(`touchmove`, this.swipeAction);
+      document.removeEventListener(`mouseup`, this.swipeEnd);
+      document.removeEventListener(`touchend`, this.swipeEnd);
 
       this.slider.style.transition = `left 0.5s`;
 
@@ -102,14 +102,14 @@ const withServicesSlider = (Component) => {
         this.setState({
           currentSlide: newSlide,
           currentSlideNumber: servicesSlides.indexOf(newSlide)
-        })
+        });
       } else if (this.posX * -1 / this.width < -0.5) {
         let newSlide = this.getNewSlide(false);
 
         this.setState({
           currentSlide: newSlide,
           currentSlideNumber: servicesSlides.indexOf(newSlide)
-        })
+        });
       } else {
         this.slider.style.left = this.startCoords;
       }
@@ -119,14 +119,14 @@ const withServicesSlider = (Component) => {
 
     render() {
       return (
-          <Component
-              currentSlide={this.state.currentSlide}
-              currentSlideNumber={this.state.currentSlideNumber}
-              slidesQuantity={this.state.slidesQuantity}
+        <Component
+          currentSlide={this.state.currentSlide}
+          currentSlideNumber={this.state.currentSlideNumber}
+          slidesQuantity={this.state.slidesQuantity}
 
-              onTabClick={this.onTabClick}
-              onSwipeStart={this.onSwipeStart}
-          />
+          onTabClick={this.onTabClick}
+          onSwipeStart={this.onSwipeStart}
+        />
       );
     }
   }

@@ -74,10 +74,10 @@ const withMainSlider = (Component) => {
 
       this.slider.style.transition = `none`;
 
-      document.addEventListener('mousemove', this.swipeAction);
-      document.addEventListener('touchmove', this.swipeAction);
-      document.addEventListener('mouseup', this.swipeEnd);
-      document.addEventListener('touchend', this.swipeEnd);
+      document.addEventListener(`mousemove`, this.swipeAction);
+      document.addEventListener(`touchmove`, this.swipeAction);
+      document.addEventListener(`mouseup`, this.swipeEnd);
+      document.addEventListener(`touchend`, this.swipeEnd);
     }
 
     swipeAction(evt) {
@@ -91,7 +91,7 @@ const withMainSlider = (Component) => {
       }
 
       if (this.leftCoord < this.width * -(this.state.slidesQuantity - 1)) {
-        this.leftCoord = this.width * -(this.state.slidesQuantity- 1);
+        this.leftCoord = this.width * -(this.state.slidesQuantity - 1);
       }
 
       this.slider.style.left = this.leftCoord + `px`;
@@ -100,10 +100,10 @@ const withMainSlider = (Component) => {
     }
 
     swipeEnd() {
-      document.removeEventListener('mousemove', this.swipeAction);
-      document.removeEventListener('touchmove', this.swipeAction);
-      document.removeEventListener('mouseup', this.swipeEnd);
-      document.removeEventListener('touchend', this.swipeEnd);
+      document.removeEventListener(`mousemove`, this.swipeAction);
+      document.removeEventListener(`touchmove`, this.swipeAction);
+      document.removeEventListener(`mouseup`, this.swipeEnd);
+      document.removeEventListener(`touchend`, this.swipeEnd);
 
       this.slider.style.transition = `left 0.5s`;
 
@@ -113,14 +113,14 @@ const withMainSlider = (Component) => {
         this.setState({
           currentSlide: newSlide,
           currentSlideNumber: mainSlides.indexOf(newSlide)
-        })
+        });
       } else if (this.posX * -1 / this.width < -0.5) {
         let newSlide = this.getNewSlide(false);
 
         this.setState({
           currentSlide: newSlide,
           currentSlideNumber: mainSlides.indexOf(newSlide)
-        })
+        });
       } else {
         this.slider.style.left = this.startCoords;
       }

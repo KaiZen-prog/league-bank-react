@@ -3,19 +3,23 @@ export const mainSlides = [
     name: `credit`,
     title: `Лига Банк`,
     slogan: `Кредиты на любой случай`,
+    linkHref: `calculator`,
     link: `Рассчитать кредит`
   },
 
   {
     name: `promo`,
     title: `Лига Банк`,
-    slogan: `Ваша уверенность в завтрашнем дне`
+    slogan: `Ваша уверенность в завтрашнем дне`,
+    linkHref: ``,
+    link: ``
   },
 
   {
     name: `offices`,
     title: `Лига Банк`,
     slogan: `Всегда рядом`,
+    linkHref: `map`,
     link: `Найти отделение`
   }
 ];

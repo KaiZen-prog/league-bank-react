@@ -25,7 +25,7 @@ const withCalculator = (Component) => {
         percent: `0`,
         monthlyPayment: 0,
         requiredIncome: 0,
-      }
+      };
 
       this.onSelectOpen = this.onSelectOpen.bind(this);
       this.onSelectClose = this.onSelectClose.bind(this);
@@ -161,7 +161,12 @@ const withCalculator = (Component) => {
       let cost = this.state.cost === `Некорректное значение` ? this.state.paramsCredit.minCost : this.state.cost;
       evt.target.offsetParent.querySelector(`.calculator__input--show`).style.color = `#1F1E25`;
 
-      evt.target.id === `plus` ? cost += this.state.paramsCredit.step : cost -= this.state.paramsCredit.step;
+      if (evt.target.id === `plus`) {
+        cost += this.state.paramsCredit.step;
+      } else {
+        cost -= this.state.paramsCredit.step;
+      }
+
       if (cost < this.state.paramsCredit.minCost) {
         cost = this.state.paramsCredit.minCost;
       }
@@ -170,7 +175,7 @@ const withCalculator = (Component) => {
       }
 
       this.setState({
-        cost: cost,
+        cost,
         initialFee: this.state.cost === `Некорректное значение` ? cost * this.state.paramsCredit.minInitialFee / 100 : cost * this.state.initialFee / this.state.cost,
       });
     }
@@ -181,10 +186,11 @@ const withCalculator = (Component) => {
 
     getInterestRate() {
       if (this.state.purpose === `mortgage`) {
-        this.state.initialFee >= this.state.cost * this.state.paramsCredit.percent.amountForSpecialPercent / 100 ?
-            this.setState({percent: this.state.paramsCredit.percent.specialPercent.toFixed(2)})
-            :
-            this.setState({percent: this.state.paramsCredit.percent.default.toFixed(2)});
+        if (this.state.initialFee >= this.state.cost * this.state.paramsCredit.percent.amountForSpecialPercent / 100) {
+          this.setState({percent: this.state.paramsCredit.percent.specialPercent.toFixed(2)});
+        } else {
+          this.setState({percent: this.state.paramsCredit.percent.default.toFixed(2)});
+        }
       }
 
       if (this.state.purpose === `car`) {
@@ -209,7 +215,9 @@ const withCalculator = (Component) => {
     getMonthlyPayment() {
       const monthlyPercent = (this.state.percent / 100) / QUANTITY_MONTH;
 
-      const result = Math.floor(this.state.creditAmount * monthlyPercent / (1 - (1 / (1 + monthlyPercent)**(this.state.term * QUANTITY_MONTH))));
+      const result = Math.floor(
+          this.state.creditAmount * monthlyPercent / (1 - (1 / Math.pow((1 + monthlyPercent), (this.state.term * QUANTITY_MONTH))))
+      );
 
       this.setState({
         monthlyPayment: result,
@@ -234,7 +242,7 @@ const withCalculator = (Component) => {
     onSubmit(evt) {
       evt.preventDefault();
 
-      if(evt.currentTarget.querySelector(`.calculator__input--phone`).value.length < 17) {
+      if (evt.currentTarget.querySelector(`.calculator__input--phone`).value.length < 17) {
         shakeEffect(evt.currentTarget.querySelector(`.calculator__input--phone`));
         return;
       }
@@ -271,32 +279,31 @@ const withCalculator = (Component) => {
     render() {
 
       return (
-          <Component
-              state={this.state}
-              onSelectOpen={this.onSelectOpen}
-              onSelectClose={this.onSelectClose}
-              onPurposeChange={this.onPurposeChange}
-              onInputFocus={this.onInputFocus}
-              onInputBlur={this.onInputBlur}
-              onInputChange={this.onInputChange}
-              onCostChange={this.onCostChange}
-              onInitialFeeChange={this.onInitialFeeChange}
-              onTermChange={this.onTermChange}
-              onInputRangeChange={this.onInputRangeChange}
-              onAdditionalChange={this.onAdditionalChange}
-              onCostChangeSign={this.onCostChangeSign}
-              onMakeRequest={this.onMakeRequest}
-              onSubmit={this.onSubmit}
-              onPopupClose={this.onPopupClose}
-              onRegApplicationChange={this.onRegApplicationChange}
-              onChangePhone={this.onChangePhone}
-              requestNumber={this.requestNumber}
-          />
+        <Component
+          state={this.state}
+          onSelectOpen={this.onSelectOpen}
+          onSelectClose={this.onSelectClose}
+          onPurposeChange={this.onPurposeChange}
+          onInputFocus={this.onInputFocus}
+          onInputChange={this.onInputChange}
+          onCostChange={this.onCostChange}
+          onInitialFeeChange={this.onInitialFeeChange}
+          onTermChange={this.onTermChange}
+          onInputRangeChange={this.onInputRangeChange}
+          onAdditionalChange={this.onAdditionalChange}
+          onCostChangeSign={this.onCostChangeSign}
+          onMakeRequest={this.onMakeRequest}
+          onSubmit={this.onSubmit}
+          onPopupClose={this.onPopupClose}
+          onRegApplicationChange={this.onRegApplicationChange}
+          onChangePhone={this.onChangePhone}
+          requestNumber={this.requestNumber}
+        />
       );
     }
   }
 
   return WithCalculator;
-}
+};
 
 export default withCalculator;

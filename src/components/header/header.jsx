@@ -60,11 +60,11 @@ const Header = (props) => {
             <span className={`header__login-title ${isNavOpened ? `header__login-title--opened` : ``}`}>Войти в Интернет-банк</span>
           </a>
           <LogIn
-              isLogInOpened={isLogInOpened}
-              onLogInClosure={onLogInClosure}
-              onLogInFieldChange={onLogInFieldChange}
-              onPasswordShow={onPasswordShow}
-              onPasswordHide={onPasswordHide}
+            isLogInOpened={isLogInOpened}
+            onLogInClosure={onLogInClosure}
+            onLogInFieldChange={onLogInFieldChange}
+            onPasswordShow={onPasswordShow}
+            onPasswordHide={onPasswordHide}
           />
         </div>
       </div>

@@ -12,7 +12,7 @@ const withLogin = (Component) => {
           [`login`]: ``,
           [`password`]: ``,
         },
-      }
+      };
 
       this.onMenuOpening = this.onMenuOpening.bind(this);
       this.onMenuClosure = this.onMenuClosure.bind(this);
@@ -54,10 +54,10 @@ const withLogin = (Component) => {
       const {name, value} = evt.target;
 
       this.setState({signInValue: Object.assign(
-            {},
-            this.state.signInValue,
-            {name: value}
-        )});
+          {},
+          this.state.signInValue,
+          {name: value}
+      )});
       localStorage.setItem(name, value);
     }
 
@@ -71,17 +71,17 @@ const withLogin = (Component) => {
 
     render() {
       return (
-          <Component
-              state={this.state}
-              onMenuOpening={this.onMenuOpening}
-              onMenuClosure={this.onMenuClosure}
-              onSignInOpening={this.onSignInOpening}
-              onSignInClosure={this.onSignInClosure}
-              onSignInFieldChange={this.onSignInFieldChange}
-              onPasswordShow={this.onPasswordShow}
-              onPasswordHide={this.onPasswordHide}
-          />
-      )
+        <Component
+          state={this.state}
+          onMenuOpening={this.onMenuOpening}
+          onMenuClosure={this.onMenuClosure}
+          onSignInOpening={this.onSignInOpening}
+          onSignInClosure={this.onSignInClosure}
+          onSignInFieldChange={this.onSignInFieldChange}
+          onPasswordShow={this.onPasswordShow}
+          onPasswordHide={this.onPasswordHide}
+        />
+      );
     }
   }
 

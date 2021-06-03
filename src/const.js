@@ -2,7 +2,7 @@ export const CreditPurpose = {
   none: `Выберите цель кредита`,
   mortgage: `Ипотечное кредитование`,
   car: `Автомобильное кредитование`,
-}
+};
 
 export const MortgageParams = {
   type: `mortgage`,

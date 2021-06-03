@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "eslint": "eslint --ext .jsx --ext .js src/",
+    "eslint": "eslint --fix --ext .jsx --ext .js src/",
     "test": "npm run eslint",
     "start": "webpack serve --open",
     "build": "webpack --mode production"

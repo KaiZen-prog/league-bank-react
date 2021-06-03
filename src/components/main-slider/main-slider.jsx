@@ -23,7 +23,7 @@ const MainSlider = (props) => {
       >
         <Repeat numTimes={slidesQuantity}>
           {(i) => (
-              <MainSlide key={i} currentSlide={mainSlides[i]}/>
+            <MainSlide key={i} currentSlide={mainSlides[i]}/>
           )}
         </Repeat>
       </div>
