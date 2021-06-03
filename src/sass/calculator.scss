@@ -120,11 +120,29 @@
   padding: 25px 1px 29px 1px;
 }
 
-.calculator__label {
+.calculator__input-container {
   position: relative;
+
+  margin-bottom: 11px;
+
+  &--initialFee {
+    margin-bottom: 0;
+  }
+
+  &--term {
+    margin-bottom: 3px;
+  }
+
+  &--userInfo {
+    margin-bottom: 30px;
+    padding-right: 3px;
+    padding-left: 3px;
+  }
 }
 
-.calculator__field-title {
+.calculator__label {
+  display: block;
+
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -163,7 +181,7 @@
 
   &--plus {
     top: 44px;
-    right: -283px;
+    right: 7px;
     background-image: url("../img/icon-plus.svg");
   }
 }
@@ -246,7 +264,7 @@
   line-height: 140%;
 
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 0;
 
   color: $color-grey;
 }
@@ -411,7 +429,7 @@
   font-size: 14px;
   line-height: 20px;
 
-  padding: 16px 74px 15px 71px;
+  padding: 16px 73px 15px 71px;
 
   @include button($color-white, $color-bright-blue);
 
@@ -462,12 +480,6 @@
   line-height: 22px;
 
   color: #394959;
-}
-
-.calculator__input-container {
-  margin-bottom: 30px;
-  padding-right: 3px;
-  padding-left: 3px;
 }
 
 .calculator__popup {
@@ -592,10 +604,38 @@
     }
   }
 
+  .calculator__input-container {
+    margin-bottom: 1px;
+
+    &--initialFee {
+      margin-bottom: 0;
+    }
+
+    &--term {
+      margin-bottom: 3px;
+    }
+
+    &--userInfo {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      margin-bottom: 20px;
+    }
+  }
+
+  .calculator__label {
+    margin-bottom: 8px;
+
+    &--initialFee {
+      margin-bottom: 9px;
+    }
+  }
+
   .calculator__icon {
 
     &--plus {
-      right: -662px;
+      right: 16px;
     }
   }
 
@@ -708,14 +748,6 @@
 
   .calculator__request-name {
     padding-top: 5px;
-  }
-
-  .calculator__input-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-
-    margin-bottom: 20px;
   }
 
   .calculator__input {
@@ -840,6 +872,13 @@
     padding: 33px 1px 29px 0;
   }
 
+  .calculator__input-container {
+    &--userInfo {
+      padding-right: 70px;
+      padding-left: 70px;
+    }
+  }
+
   .calculator__input {
     font-size: 18px;
     line-height: 25px;
@@ -871,7 +910,7 @@
 
   .calculator__icon {
     &--plus {
-      right: -584px;
+      right: 16px;
     }
   }
 
@@ -924,12 +963,6 @@
 
   .calculator__request-table {
     padding: 4px 67px 1px 67px;
-  }
-
-  .calculator__input-container {
-    margin-bottom: 20px;
-    padding-right: 70px;
-    padding-left: 70px;
   }
 
   .calculator__popup-container {

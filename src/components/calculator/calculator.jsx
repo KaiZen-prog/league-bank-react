@@ -12,6 +12,7 @@ const Calculator = (props) => {
     onSelectOpen,
     onSelectClose,
     onPurposeChange,
+    onLabelClick,
     onInputFocus,
     onInputChange,
     onCostChange,
@@ -79,39 +80,45 @@ const Calculator = (props) => {
             {step >= 2 && (
               <fieldset className="calculator__params">
                 <h3 className="calculator__step calculator__step--params">Шаг 2. Введите параметры кредита</h3>
-                <label className="calculator__label calculator__label--cost">
-                  <h4 className="calculator__field-title">Стоимость {paramsCredit.type === `mortgage` ? `недвижимости` : `автомобиля`}</h4>
 
+                <div className="calculator__input-container">
+                  <label className="calculator__label" htmlFor="cost" onClick={onLabelClick}>
+                    Стоимость {paramsCredit.type === `mortgage` ? `недвижимости` : `автомобиля`}
+                  </label>
                   <span className="calculator__icon calculator__icon--minus" id="minus" onClick={onCostChangeSign}></span>
                   <input
                     type="number"
                     className="calculator__input"
                     name="cost"
+                    id="cost"
                     min={paramsCredit.minCost}
                     max={paramsCredit.maxCost}
                     value={cost}
                     onBlur={onCostChange}
                     onChange={onInputChange}
-                    onFocus={onInputFocus}
                   />
                   <div
                     className="calculator__input calculator__input--show"
                     tabIndex="0"
+                    onFocus={onInputFocus}
                   >
                     {typeof cost === `string` ? cost : divideNumberToSpace(cost) + ` рублей`}
                   </div>
                   <span className="calculator__icon calculator__icon--plus" id="plus" onClick={onCostChangeSign}></span>
 
                   <p className="calculator__help-text">От {divideNumberToSpace(paramsCredit.minCost)} &nbsp;до {divideNumberToSpace(paramsCredit.maxCost)} рублей</p>
-                </label>
+                </div>
 
-                <label className="calculator__label calculator__label--initial-fee">
-                  <h4 className="calculator__field-title calculator__field-title--initial-fee">Первоначальный взнос</h4>
+                <div className="calculator__input-container calculator__input-container--initialFee">
+                  <label className="calculator__label calculator__label--initialFee" htmlFor="initialFee" onClick={onLabelClick}>
+                    Первоначальный взнос
+                  </label>
 
                   <input
                     type="number"
                     className="calculator__input"
                     name="initialFee"
+                    id="initialFee"
                     min={paramsCredit.minCost * paramsCredit.minInitialFee / 100}
                     max={paramsCredit.maxCost}
                     value={initialFee}
@@ -145,15 +152,18 @@ const Calculator = (props) => {
                   >
                     {isNaN(Math.floor(initialFee * 100 / cost)) ? 0 : Math.floor(initialFee * 100 / cost)}%
                   </span>
-                </label>
+                </div>
 
-                <label className="calculator__label">
-                  <h4 className="calculator__field-title">Срок кредитования</h4>
+                <div className="calculator__input-container calculator__input-container--term">
+                  <label className="calculator__label" htmlFor="term" onClick={onLabelClick}>
+                    Срок кредитования
+                  </label>
 
                   <input
                     type="number"
                     className="calculator__input"
                     name="term"
+                    id="term"
                     min={paramsCredit.minTerm}
                     max={paramsCredit.maxTerm}
                     value={term}
@@ -182,7 +192,7 @@ const Calculator = (props) => {
                     <span className="calculator__range-value">{paramsCredit.minTerm} {paramsCredit.minTerm === 1 ? `год` : `лет`}</span>
                     <span className="calculator__range-value">{paramsCredit.maxTerm} лет</span>
                   </div>
-                </label>
+                </div>
 
                 {paramsCredit.maternalCapitalValue && (
                   <label className="calculator__additional">
@@ -286,7 +296,7 @@ const Calculator = (props) => {
               </tr>
             </tbody>
           </table>
-          <div className="calculator__input-container">
+          <div className="calculator__input-container calculator__input-container--userInfo">
             <input
               type="text"
               name="fullname"
@@ -408,6 +418,7 @@ Calculator.propTypes = {
     requiredIncome: PropTypes.number.isRequired,
   }).isRequired,
 
+  onLabelClick: PropTypes.func.isRequired,
   onInputFocus: PropTypes.func.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onCostChange: PropTypes.func.isRequired,

@@ -86,6 +86,11 @@ const withCalculator = (Component) => {
       this.onSelectClose();
     }
 
+    onLabelClick(evt) {
+      evt.target.parentElement.querySelector(`.calculator__input--show`).style.display = `none`;
+      evt.target.parentElement.querySelector(`#` + evt.target.htmlFor).style.display = `block`;
+    }
+
     onInputFocus(evt) {
       evt.target.style.display = `none`;
       evt.target.previousElementSibling.style.display = `block`;
@@ -284,6 +289,7 @@ const withCalculator = (Component) => {
           onSelectOpen={this.onSelectOpen}
           onSelectClose={this.onSelectClose}
           onPurposeChange={this.onPurposeChange}
+          onLabelClick={this.onLabelClick}
           onInputFocus={this.onInputFocus}
           onInputChange={this.onInputChange}
           onCostChange={this.onCostChange}
