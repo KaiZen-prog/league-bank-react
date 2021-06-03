@@ -155,11 +155,12 @@
     width: 678px;
     min-height: 493px;
 
-    padding: 56px 84px;
+    padding: 55px 84px;
   }
 
   .log-in__logo {
-    margin-bottom: 34px;
+    margin-bottom: 35px;
+    margin-left: -1px;
   }
 
   .log-in__close {
@@ -170,17 +171,94 @@
     height: 20px;
   }
 
+  .log-in__label {
+    &--login {
+      margin-bottom: 23px;
+    }
+
+    &--password {
+      margin-bottom: 49px;
+    }
+  }
+
   .log-in__input {
     width: 502px;
     height: 60px;
 
 
     &--password {
-      padding-right: 60px;
+      padding-right: 50px;
     }
 
     &--password {
       padding-right: 50px;
     }
+  }
+
+  .log-in__show-password {
+    right: 24px;
+  }
+
+  .log-in__submit {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+
+    padding: 20px 227px 19px 225px;
+  }
+
+  .log-in__restore-password {
+    font-size: 12px;
+    line-height: 17px;
+
+    bottom: 141px;
+    right: 130px;
+  }
+}
+
+@media (min-width: $desktop-width-min) {
+  .log-in__form {
+    width: 544px;
+
+    padding: 56px
+  }
+
+  .log-in__logo {
+    margin-top: -1px;
+    margin-bottom: 35px;
+  }
+
+  .log-in__close {
+    top: 53px;
+    right: 54px;
+
+    width: 20px;
+    height: 20px;
+  }
+
+  .log-in__label {
+    &--login {
+      margin-bottom: 23px;
+    }
+
+    &--password {
+      margin-bottom: 49px;
+    }
+  }
+
+  .log-in__input {
+    width: 424px;
+  }
+
+  .log-in__show-password {
+    right: 24px;
+  }
+
+  .log-in__submit {
+    padding: 20px 188px 19px 186px;
+  }
+
+  .log-in__restore-password {
+    right: 103px;
   }
 }

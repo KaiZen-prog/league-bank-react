@@ -47,7 +47,7 @@ const withHeader = (Component) => {
 
     closeLogInKeydown(evt) {
       if (evt.keyCode === KeyCode.ESC) {
-        this.onSignInClosure();
+        this.onLogInClosure();
       }
     }
 
