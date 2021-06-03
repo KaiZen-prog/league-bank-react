@@ -57,12 +57,12 @@ const withHeader = (Component) => {
       localStorage.setItem(name, value);
     }
 
-    onPasswordShow(evt) {
-      evt.target.previousElementSibling.type = `text`;
+    onPasswordShow() {
+      document.querySelector(`.log-in__input--password`).type = `text`;
     }
 
-    onPasswordHide(evt) {
-      evt.target.previousElementSibling.type = `password`;
+    onPasswordHide() {
+      document.querySelector(`.log-in__input--password`).type = `password`;
     }
 
 

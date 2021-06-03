@@ -34,8 +34,8 @@ const LogIn = ({isLogInOpened, onLogInClosure, onLogInFieldChange, onPasswordSho
                 value={localStorage.getItem(`password`) !== null ? localStorage.getItem(`password`) : ``}
                 required
             />
-            <div className="log-in__show-password" onMouseDown={onPasswordShow} onMouseUp={onPasswordHide}></div>
           </label>
+          <button className="log-in__show-password" onMouseDown={onPasswordShow} onMouseUp={onPasswordHide}></button>
           <button type="submit" className="log-in__submit">Войти</button>
           <a href="#top" className="log-in__restore-password">Забыли пароль?</a>
         </form>

@@ -17,6 +17,7 @@ const ServicesSlider = (props) => {
 
   return (
       <section className="services-slider">
+        <h2 className="services-slider__header visually-hidden">Наши сервисы</h2>
         <ul className="services-slider__tabs">
           <Repeat numTimes={servicesSlides.length}>
             {(i) => (

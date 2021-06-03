@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import withHeader from "../../hocs/with-header/with-header";
-import LogIn from "../login/login";
+import LogIn from "../log-in/log-in";
 
 const Header = (props) => {
   const {

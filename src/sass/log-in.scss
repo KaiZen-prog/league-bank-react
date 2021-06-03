@@ -114,15 +114,19 @@
 
 .log-in__show-password {
   position: absolute;
+  display: block;
 
   width: 22px;
   height: 12px;
 
-  top: 51px;
-  right: 15px;
+  bottom: 176px;
+  right: 31px;
 
+  background-color: $color-white;
   background-image: url("../img/icon-password.svg");
   background-repeat: no-repeat;
+
+  border: none;
   cursor: pointer;
 }
 
@@ -196,7 +200,8 @@
   }
 
   .log-in__show-password {
-    right: 24px;
+    right: 108px;
+    bottom: 189px;
   }
 
   .log-in__submit {
@@ -251,7 +256,7 @@
   }
 
   .log-in__show-password {
-    right: 24px;
+    right: 80px;
   }
 
   .log-in__submit {
