@@ -77,7 +77,7 @@ const Calculator = (props) => {
                 className={`calculator__purpose-select${isPurposeSelectOpened ? ` calculator__purpose-select--opened` : ``}`}
                 onClick={isPurposeSelectOpened ? onSelectClose : onSelectOpen}
               >
-                <span className="calculator__select-title">{CreditPurpose[purpose]}</span>
+                <span className="calculator__select-title">{CreditPurpose[purpose].name}</span>
                 <ul className={`calculator__purpose-list${isPurposeSelectOpened ? `` : ` calculator__purpose-list--hidden`}`}>
                   <li className="calculator__purpose-item" id="mortgage" onClick={onPurposeChange}>Ипотечное кредитование</li>
                   <li className="calculator__purpose-item" id="car" onClick={onPurposeChange}>Автомобильное кредитование</li>
@@ -109,6 +109,7 @@ const Calculator = (props) => {
                     className="calculator__input calculator__input--show"
                     tabIndex="0"
                     ref={costDivRef}
+                    onClick={onLabelClick}
                     onFocus={onInputFocus}
                   >
                     {typeof cost === `string` ? cost : divideNumberToSpace(cost) + ` рублей`}
@@ -139,6 +140,7 @@ const Calculator = (props) => {
                     className="calculator__input calculator__input--show calculator__input--initial-fee"
                     tabIndex="0"
                     ref={initialFeeDivRef}
+                    onClick={onLabelClick}
                     onFocus={onInputFocus}
                   >
                     {divideNumberToSpace(initialFee)} рублей
@@ -186,6 +188,7 @@ const Calculator = (props) => {
                     className="calculator__input calculator__input--show calculator__input--term"
                     tabIndex="0"
                     ref={termDivRef}
+                    onClick={onLabelClick}
                     onFocus={onInputFocus}
                   >
                     {term} лет
@@ -221,7 +224,7 @@ const Calculator = (props) => {
                 )}
                 {paramsCredit.additionalToCar && (
                   <>
-                    <label className="calculator__additional">
+                    <label className="calculator__additional calculator__additional--car">
                       <input
                         type="checkbox"
                         name="casco"
@@ -231,7 +234,7 @@ const Calculator = (props) => {
                       <span className="calculator__checkbox-icon"></span>
                             Оформить КАСКО в нашем банке
                     </label>
-                    <label className="alculator__additional">
+                    <label className="calculator__additional calculator__additional--car">
                       <input
                         type="checkbox"
                         name="lifeInsurance"
@@ -274,7 +277,9 @@ const Calculator = (props) => {
               )}
               {creditAmount < paramsCredit.minCreditAmount && (
                 <div className="calculator__offer calculator__offer--refusal">
-                  <h3 className="calculator__offer-title calculator__offer-title--refusal">Наш банк не выдаёт ипотечные кредиты меньше {divideNumberToSpace(paramsCredit.minCreditAmount)} рублей.</h3>
+                  <h3 className="calculator__offer-title calculator__offer-title--refusal">
+                    Наш банк не выдаёт {purpose === CreditPurpose.mortgage.type ? `ипотечные кредиты` : `автокредиты`} меньше {divideNumberToSpace(paramsCredit.minCreditAmount)} рублей.
+                  </h3>
                   <p className="calculator__offer-name calculator__offer-name--refusal">Попробуйте использовать другие параметры для расчёта.</p>
                 </div>
               )}

@@ -1,7 +1,5 @@
 .footer {
   background-color: $color-white;
-
-  @include block-centered($mobile-width-min);
 }
 
 .footer__wrapper {
@@ -9,6 +7,8 @@
   flex-direction: column;
 
   padding: 34px 10px 33px;
+
+  @include block-centered($mobile-width-min);
 }
 
 .footer__logo {

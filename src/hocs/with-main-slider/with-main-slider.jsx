@@ -30,17 +30,13 @@ const withMainSlider = (Component) => {
       let newSlide;
 
       if (isGettingNextSlide) {
-        if (this.state.currentSlide === mainSlides[mainSlides.length - 1]) {
-          newSlide = mainSlides[0];
-        } else {
-          newSlide = getNextElement(mainSlides, this.state.currentSlide);
-        }
+        this.state.currentSlide === mainSlides[mainSlides.length - 1]
+          ? newSlide = mainSlides[0]
+          : newSlide = getNextElement(mainSlides, this.state.currentSlide)
       } else {
-        if (this.state.currentSlide === mainSlides[0]) {
-          newSlide = mainSlides[mainSlides.length - 1];
-        } else {
-          newSlide = getPreviousElement(mainSlides, this.state.currentSlide);
-        }
+        this.state.currentSlide === mainSlides[0]
+          ? newSlide = mainSlides[mainSlides.length - 1]
+          : newSlide = getPreviousElement(mainSlides, this.state.currentSlide)
       }
 
       return newSlide;

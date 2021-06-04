@@ -26,17 +26,14 @@ const withServicesSlider = (Component) => {
       let newSlide;
 
       if (isGettingNextSlide) {
-        if (this.state.currentSlide === servicesSlides[servicesSlides.length - 1]) {
-          newSlide = servicesSlides[0];
-        } else {
-          newSlide = getNextElement(servicesSlides, this.state.currentSlide);
-        }
+        this.state.currentSlide === servicesSlides[servicesSlides.length - 1]
+          ? newSlide = servicesSlides[0]
+          : newSlide = getNextElement(servicesSlides, this.state.currentSlide);
       } else {
-        if (this.state.currentSlide === servicesSlides[0]) {
-          newSlide = servicesSlides[servicesSlides.length - 1];
-        } else {
-          newSlide = getPreviousElement(servicesSlides, this.state.currentSlide);
-        }
+        this.state.currentSlide === servicesSlides[0]
+          ? newSlide = servicesSlides[servicesSlides.length - 1]
+          : newSlide = getPreviousElement(servicesSlides, this.state.currentSlide);
+
       }
 
       return newSlide;

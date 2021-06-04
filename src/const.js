@@ -1,7 +1,16 @@
 export const CreditPurpose = {
-  none: `Выберите цель кредита`,
-  mortgage: `Ипотечное кредитование`,
-  car: `Автомобильное кредитование`,
+  none: {
+    name: `Выберите цель кредита`,
+    type: ``
+  },
+  mortgage: {
+    name: `Ипотечное кредитование`,
+    type: `mortgage`
+  },
+  car: {
+    name: `Автомобильное кредитование`,
+    type: `car`
+  }
 };
 
 export const InputFields = {
@@ -55,5 +64,6 @@ export const KeyCode = {
 
 export const REQUIRED_INCOME = 45;
 export const QUANTITY_MONTH = 12;
-
 export const DESKTOP_MIN_WIDTH = 1024;
+export const DIGIT_SPACE = 3;
+export const PHONE_LENGTH = 17;

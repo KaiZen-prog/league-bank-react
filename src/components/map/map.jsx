@@ -4,15 +4,7 @@ const Map = () => {
   return (
     <section className="map" id="map">
       <h2 className="map__header">Отделения Лига Банка</h2>
-      <div className="map__container">
-        <ul className="map__pin-list">
-          <li className="map__pin map__pin--1"></li>
-          <li className="map__pin map__pin--2"></li>
-          <li className="map__pin map__pin--3"></li>
-          <li className="map__pin map__pin--4"></li>
-          <li className="map__pin map__pin--5"></li>
-        </ul>
-      </div>
+      <iframe title="map" className="map__iframe" src="https://yandex.ru/map-widget/v1/?um=constructor%3A903677e276cd647a44c0897e60edad9ae34a0ebe73fde4d37f4ca90b4001c09f&amp;source=constructor" width="100%" height="381" style={{border: 0}}></iframe>
     </section>
   );
 };

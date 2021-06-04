@@ -173,10 +173,6 @@
 }
 
 @media (max-width: $mobile-width-max) {
-  .header {
-    background-color: #FFFFFF;
-  }
-
   .header__wrapper {
     @include block-centered($mobile-width-min);
     position: relative;
@@ -187,8 +183,6 @@
 
     padding-right: 15px;
     padding-left: 15px;
-
-    background-color: $color-white;
   }
 
   .header__burger-button  {

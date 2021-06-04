@@ -1,5 +1,5 @@
 import React, {createRef, PureComponent} from 'react';
-import {InputFields, MortgageParams, CarParams, KeyCode, REQUIRED_INCOME, QUANTITY_MONTH} from '../../const';
+import {InputFields, MortgageParams, CarParams, KeyCode, REQUIRED_INCOME, QUANTITY_MONTH, PHONE_LENGTH} from '../../const';
 import {shakeEffect} from '../../utils/common';
 
 const withCalculator = (Component) => {
@@ -125,6 +125,7 @@ const withCalculator = (Component) => {
     onInputFocus(evt) {
       evt.target.style.display = `none`;
       evt.target.previousElementSibling.style.display = `block`;
+      evt.target.previousElementSibling.focus();
     }
 
     onInputBlur(evt, name, value) {
@@ -182,11 +183,9 @@ const withCalculator = (Component) => {
     onInputRangeChange(evt) {
       const {name, value} = evt.target;
 
-      if (name === `initialFee`) {
-        this.setState({[name]: this.state.cost * value / 100});
-      } else {
-        this.setState({[name]: value});
-      }
+      name === `initialFee`
+          ? this.setState({[name]: this.state.cost * value / 100})
+          : this.setState({[name]: value});
     }
 
     onAdditionalChange(evt) {
@@ -196,22 +195,21 @@ const withCalculator = (Component) => {
     onCostChangeSign(evt) {
       let cost = this.state.cost === `Некорректное значение` ? this.state.paramsCredit.minCost : this.state.cost;
 
-      if (evt.target.id === `plus`) {
-        cost += this.state.paramsCredit.step;
-      } else {
-        cost -= this.state.paramsCredit.step;
-      }
+      evt.target.id === `plus`
+        ? cost += this.state.paramsCredit.step
+        : cost -= this.state.paramsCredit.step;
 
       if (cost < this.state.paramsCredit.minCost) {
         cost = this.state.paramsCredit.minCost;
       }
+
       if (cost > this.state.paramsCredit.maxCost) {
         cost = this.state.paramsCredit.maxCost;
       }
 
       this.setState({
         cost,
-        initialFee: this.state.cost === `Некорректное значение` ? cost * this.state.paramsCredit.minInitialFee / 100 : cost * this.state.initialFee / this.state.cost,
+        initialFee: this.state.cost === `Некорректное значение` ? Math.round(cost * this.state.paramsCredit.minInitialFee / 100) : Math.round(cost * this.state.initialFee / this.state.cost),
       });
     }
 
@@ -221,11 +219,10 @@ const withCalculator = (Component) => {
 
     getInterestRate() {
       if (this.state.purpose === `mortgage`) {
-        if (this.state.initialFee >= this.state.cost * this.state.paramsCredit.percent.amountForSpecialPercent / 100) {
-          this.setState({percent: this.state.paramsCredit.percent.specialPercent.toFixed(2)});
-        } else {
-          this.setState({percent: this.state.paramsCredit.percent.default.toFixed(2)});
-        }
+
+        this.state.initialFee >= this.state.cost * this.state.paramsCredit.percent.amountForSpecialPercent / 100
+          ? this.setState({percent: this.state.paramsCredit.percent.specialPercent.toFixed(2)})
+          : this.setState({percent: this.state.paramsCredit.percent.default.toFixed(2)});
       }
 
       if (this.state.purpose === `car`) {
@@ -276,7 +273,7 @@ const withCalculator = (Component) => {
 
     onSubmit(evt) {
       evt.preventDefault();
-      if ((this.telRef.current !== null) && (this.telRef.current.value.length < 17)) {
+      if ((this.telRef.current !== null) && (this.telRef.current.value.length < PHONE_LENGTH)) {
         shakeEffect(this.telRef.current.getInputDOMNode());
         return;
       }

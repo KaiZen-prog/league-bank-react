@@ -1,3 +1,5 @@
+import {DIGIT_SPACE} from "../const";
+
 export const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
@@ -28,7 +30,7 @@ export const shakeEffect = (element) => {
 export const divideNumberToSpace = (num) => {
   const str = String(num);
 
-  if (str.length <= 3) {
+  if (str.length <= DIGIT_SPACE) {
     return str;
   }
 
