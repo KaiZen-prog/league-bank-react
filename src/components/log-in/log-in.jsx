@@ -1,7 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const LogIn = ({isLogInOpened, onLogInClosure, onLogInFieldChange, onPasswordShow, onPasswordHide}) => {
+const LogIn = (props) => {
+
+  const {
+    passwordInputRef,
+    isLogInOpened,
+    onLogInClosure,
+    onLogInFieldChange,
+    onPasswordShow,
+    onPasswordHide
+  } = props;
 
   return (
     <div className={`log-in ${isLogInOpened ? `log-in--opened` : ``}`} onClick={onLogInClosure}>
@@ -29,6 +38,7 @@ const LogIn = ({isLogInOpened, onLogInClosure, onLogInFieldChange, onPasswordSho
             id="password"
             type="password"
             name="password"
+            ref={passwordInputRef}
             className="log-in__input log-in__input--password"
             onChange={onLogInFieldChange}
             value={localStorage.getItem(`password`) !== null ? localStorage.getItem(`password`) : ``}
@@ -44,6 +54,7 @@ const LogIn = ({isLogInOpened, onLogInClosure, onLogInFieldChange, onPasswordSho
 };
 
 LogIn.propTypes = {
+  passwordInputRef: PropTypes.shape({}).isRequired,
   isLogInOpened: PropTypes.bool.isRequired,
   onLogInClosure: PropTypes.func.isRequired,
   onLogInFieldChange: PropTypes.func.isRequired,

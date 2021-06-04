@@ -5,6 +5,7 @@ import LogIn from "../log-in/log-in";
 
 const Header = (props) => {
   const {
+    passwordInputRef,
     isNavOpened,
     onNavOpen,
     onNavClose,
@@ -60,6 +61,7 @@ const Header = (props) => {
             <span className={`header__login-title ${isNavOpened ? `header__login-title--opened` : ``}`}>Войти в Интернет-банк</span>
           </a>
           <LogIn
+            passwordInputRef={passwordInputRef}
             isLogInOpened={isLogInOpened}
             onLogInClosure={onLogInClosure}
             onLogInFieldChange={onLogInFieldChange}
@@ -73,6 +75,8 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
+  passwordInputRef: PropTypes.shape({}).isRequired,
+
   isNavOpened: PropTypes.bool.isRequired,
   onNavOpen: PropTypes.func.isRequired,
   onNavClose: PropTypes.func.isRequired,

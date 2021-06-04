@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {createRef, PureComponent} from 'react';
 import {KeyCode} from '../../const';
 
 const withHeader = (Component) => {
-  class WithHeader extends React.PureComponent {
+  class WithHeader extends PureComponent {
     constructor(props) {
       super(props);
+
+      this.passwordInputRef = createRef();
 
       this.state = {
         isNavOpened: false,
@@ -58,17 +60,18 @@ const withHeader = (Component) => {
     }
 
     onPasswordShow() {
-      document.querySelector(`.log-in__input--password`).type = `text`;
+      this.passwordInputRef.current.type = `text`;
     }
 
     onPasswordHide() {
-      document.querySelector(`.log-in__input--password`).type = `password`;
+      this.passwordInputRef.current.type = `password`;
     }
 
 
     render() {
       return (
         <Component
+          passwordInputRef={this.passwordInputRef}
           isNavOpened={this.state.isNavOpened}
           onNavOpen={this.onNavOpen}
           onNavClose={this.onNavClose}
