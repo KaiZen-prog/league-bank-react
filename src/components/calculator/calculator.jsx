@@ -8,6 +8,13 @@ import PropTypes from "prop-types";
 
 const Calculator = (props) => {
   const {
+    costInputRef,
+    costDivRef,
+    initialFeeInputRef,
+    initialFeeDivRef,
+    termInputRef,
+    termDivRef,
+    telRef,
     state,
     onSelectOpen,
     onSelectClose,
@@ -91,6 +98,7 @@ const Calculator = (props) => {
                     className="calculator__input"
                     name="cost"
                     id="cost"
+                    ref={costInputRef}
                     min={paramsCredit.minCost}
                     max={paramsCredit.maxCost}
                     value={cost}
@@ -100,6 +108,7 @@ const Calculator = (props) => {
                   <div
                     className="calculator__input calculator__input--show"
                     tabIndex="0"
+                    ref={costDivRef}
                     onFocus={onInputFocus}
                   >
                     {typeof cost === `string` ? cost : divideNumberToSpace(cost) + ` рублей`}
@@ -119,6 +128,7 @@ const Calculator = (props) => {
                     className="calculator__input"
                     name="initialFee"
                     id="initialFee"
+                    ref={initialFeeInputRef}
                     min={paramsCredit.minCost * paramsCredit.minInitialFee / 100}
                     max={paramsCredit.maxCost}
                     value={initialFee}
@@ -128,6 +138,7 @@ const Calculator = (props) => {
                   <div
                     className="calculator__input calculator__input--show calculator__input--initial-fee"
                     tabIndex="0"
+                    ref={initialFeeDivRef}
                     onFocus={onInputFocus}
                   >
                     {divideNumberToSpace(initialFee)} рублей
@@ -164,6 +175,7 @@ const Calculator = (props) => {
                     className="calculator__input"
                     name="term"
                     id="term"
+                    ref={termInputRef}
                     min={paramsCredit.minTerm}
                     max={paramsCredit.maxTerm}
                     value={term}
@@ -173,6 +185,7 @@ const Calculator = (props) => {
                   <div
                     className="calculator__input calculator__input--show calculator__input--term"
                     tabIndex="0"
+                    ref={termDivRef}
                     onFocus={onInputFocus}
                   >
                     {term} лет
@@ -314,6 +327,7 @@ const Calculator = (props) => {
               maskChar=""
               type="tel"
               name="tel"
+              ref={telRef}
               minLength={17}
               className="calculator__input calculator__input--phone"
               placeholder="Телефон"
@@ -353,6 +367,14 @@ const Calculator = (props) => {
 };
 
 Calculator.propTypes = {
+  costInputRef: PropTypes.shape({}).isRequired,
+  costDivRef: PropTypes.shape({}).isRequired,
+  initialFeeInputRef: PropTypes.shape({}).isRequired,
+  initialFeeDivRef: PropTypes.shape({}).isRequired,
+  termInputRef: PropTypes.shape({}).isRequired,
+  termDivRef: PropTypes.shape({}).isRequired,
+  telRef: PropTypes.shape({}).isRequired,
+
   state: PropTypes.shape({
     step: PropTypes.number.isRequired,
     purpose: PropTypes.string.isRequired,

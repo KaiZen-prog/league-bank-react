@@ -4,6 +4,12 @@ export const CreditPurpose = {
   car: `Автомобильное кредитование`,
 };
 
+export const InputFields = {
+  cost: `cost`,
+  initialFee: `initialFee`,
+  term: `term`
+}
+
 export const MortgageParams = {
   type: `mortgage`,
   minCost: 1200000,

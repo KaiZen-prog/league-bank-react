@@ -1,11 +1,22 @@
-import React from 'react';
-import {MortgageParams, CarParams, KeyCode, REQUIRED_INCOME, QUANTITY_MONTH} from '../../const';
+import React, {createRef, PureComponent} from 'react';
+import {InputFields, MortgageParams, CarParams, KeyCode, REQUIRED_INCOME, QUANTITY_MONTH} from '../../const';
 import {shakeEffect} from '../../utils/common';
 
 const withCalculator = (Component) => {
-  class WithCalculator extends React.PureComponent {
+  class WithCalculator extends PureComponent {
     constructor(props) {
       super(props);
+
+      this.costInputRef = createRef();
+      this.costDivRef = createRef();
+
+      this.initialFeeInputRef = createRef();
+      this.initialFeeDivRef = createRef();
+
+      this.termInputRef = createRef();
+      this.termDivRef = createRef();
+
+      this.telRef = createRef();
 
       this.state = {
         step: 1,
@@ -25,12 +36,16 @@ const withCalculator = (Component) => {
         percent: `0`,
         monthlyPayment: 0,
         requiredIncome: 0,
+
+        isLabelClicked: false,
+        isFormValid: true
       };
 
       this.onSelectOpen = this.onSelectOpen.bind(this);
       this.onSelectClose = this.onSelectClose.bind(this);
       this.onPurposeChange = this.onPurposeChange.bind(this);
 
+      this.onLabelClick = this.onLabelClick.bind(this);
       this.onInputBlur = this.onInputBlur.bind(this);
       this.onInputChange = this.onInputChange.bind(this);
       this.onCostChange = this.onCostChange.bind(this);
@@ -87,8 +102,24 @@ const withCalculator = (Component) => {
     }
 
     onLabelClick(evt) {
-      evt.target.parentElement.querySelector(`.calculator__input--show`).style.display = `none`;
-      evt.target.parentElement.querySelector(`#` + evt.target.htmlFor).style.display = `block`;
+      this.setState({isLabelClicked: true});
+
+      switch (evt.target.htmlFor) {
+        case InputFields.cost:
+          this.costInputRef.current.style.display  = `block`;
+          this.costDivRef.current.style.display  = `none`;
+          break;
+
+        case InputFields.initialFee:
+          this.initialFeeInputRef.current.style.display  = `block`;
+          this.initialFeeDivRef.current.style.display  = `none`;
+          break;
+
+        case InputFields.term:
+          this.termInputRef.current.style.display  = `block`;
+          this.termDivRef.current.style.display  = `none`;
+          break;
+      }
     }
 
     onInputFocus(evt) {
@@ -99,7 +130,7 @@ const withCalculator = (Component) => {
     onInputBlur(evt, name, value) {
       evt.target.style.display = `none`;
       evt.target.nextElementSibling.style.display = `block`;
-      this.setState({[name]: value});
+      this.setState({[name]: value, isLabelClicked: false});
     }
 
     onInputChange(evt) {
@@ -164,7 +195,6 @@ const withCalculator = (Component) => {
 
     onCostChangeSign(evt) {
       let cost = this.state.cost === `Некорректное значение` ? this.state.paramsCredit.minCost : this.state.cost;
-      evt.target.offsetParent.querySelector(`.calculator__input--show`).style.color = `#1F1E25`;
 
       if (evt.target.id === `plus`) {
         cost += this.state.paramsCredit.step;
@@ -246,9 +276,8 @@ const withCalculator = (Component) => {
 
     onSubmit(evt) {
       evt.preventDefault();
-
-      if (evt.currentTarget.querySelector(`.calculator__input--phone`).value.length < 17) {
-        shakeEffect(evt.currentTarget.querySelector(`.calculator__input--phone`));
+      if ((this.telRef.current !== null) && (this.telRef.current.value.length < 17)) {
+        shakeEffect(this.telRef.current.getInputDOMNode());
         return;
       }
 
@@ -285,6 +314,13 @@ const withCalculator = (Component) => {
 
       return (
         <Component
+          costInputRef={this.costInputRef}
+          costDivRef={this.costDivRef}
+          initialFeeInputRef={this.initialFeeInputRef}
+          initialFeeDivRef={this.initialFeeDivRef}
+          termInputRef={this.termInputRef}
+          termDivRef={this.termDivRef}
+          telRef={this.telRef}
           state={this.state}
           onSelectOpen={this.onSelectOpen}
           onSelectClose={this.onSelectClose}
