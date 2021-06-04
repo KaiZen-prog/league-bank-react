@@ -13,6 +13,11 @@ export const CreditPurpose = {
   }
 };
 
+export const Sliders = {
+  main: `main-slider`,
+  services: `services-slider`,
+}
+
 export const InputFields = {
   cost: `cost`,
   initialFee: `initialFee`,

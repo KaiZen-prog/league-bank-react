@@ -1,5 +1,5 @@
 import React from "react";
-import withServicesSlider from "../../hocs/with-services-slider/with-services-slider";
+import withSlider from "../../hocs/with-slider/with-slider";
 import {Repeat} from "../../utils/common";
 import ServicesSlide from "../services-slide/services-slide";
 import {servicesSlides} from '../../mocks/mocks';
@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 
 const ServicesSlider = (props) => {
   const {
+    sliderRef,
     currentSlide,
     currentSlideNumber,
     slidesQuantity,
@@ -16,7 +17,7 @@ const ServicesSlider = (props) => {
   } = props;
 
   return (
-    <section className="services-slider">
+    <section className="services-slider" ref={sliderRef}>
       <h2 className="services-slider__header visually-hidden">Наши сервисы</h2>
       <ul className="services-slider__tabs">
         <Repeat numTimes={servicesSlides.length}>
@@ -68,6 +69,7 @@ const ServicesSlider = (props) => {
 };
 
 ServicesSlider.propTypes = {
+  sliderRef: PropTypes.shape({}).isRequired,
   currentSlide: PropTypes.shape({
     name: PropTypes.string.isRequired,
     tabName: PropTypes.string.isRequired,
@@ -86,4 +88,4 @@ ServicesSlider.propTypes = {
 
 ServicesSlider.displayName = `ServicesSlider`;
 
-export default withServicesSlider(ServicesSlider);
+export default withSlider(ServicesSlider);

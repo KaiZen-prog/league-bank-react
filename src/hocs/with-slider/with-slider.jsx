@@ -1,24 +1,52 @@
-import React from 'react';
-import {DESKTOP_MIN_WIDTH} from '../../const';
+import React, {createRef} from 'react';
+import {DESKTOP_MIN_WIDTH, Sliders} from '../../const';
 import {getNextElement, getPreviousElement} from '../../utils/common';
-import {servicesSlides} from '../../mocks/mocks';
+import {mainSlides, servicesSlides} from '../../mocks/mocks';
 
-const withServicesSlider = (Component) => {
+const withSlider = (Component) => {
   class WithSlider extends React.PureComponent {
     constructor(props) {
       super(props);
 
+      this.sliderRef = createRef();
+
       this.state = {
-        currentSlide: servicesSlides[0],
+        slides: [],
+        currentSlide: mainSlides[0],
         currentSlideNumber: 0,
-        slidesQuantity: servicesSlides.length
+        slidesQuantity: mainSlides.length
       };
 
-      this.onTabClick = this.onTabClick.bind(this);
+      this.carouselHandler = this.carouselHandler.bind(this);
 
       this.onSwipeStart = this.onSwipeStart.bind(this);
       this.swipeAction = this.swipeAction.bind(this);
       this.swipeEnd = this.swipeEnd.bind(this);
+
+      this.onTabClick = this.onTabClick.bind(this)
+    }
+
+    componentDidMount() {
+      switch (this.sliderRef.current.className) {
+        case Sliders.main:
+          this.setState({
+            slides: mainSlides,
+            currentSlide: mainSlides[0],
+            currentSlideNumber: 0,
+            slidesQuantity: mainSlides.length
+          });
+          this.carouselHandler();
+          break;
+
+        case Sliders.services:
+          this.setState({
+            slides: servicesSlides,
+            currentSlide: servicesSlides[0],
+            currentSlideNumber: 0,
+            slidesQuantity: servicesSlides.length
+          });
+          break;
+      }
     }
 
     // Получаем следующий или предыдущий слайд из массива promoSlides
@@ -26,21 +54,27 @@ const withServicesSlider = (Component) => {
       let newSlide;
 
       if (isGettingNextSlide) {
-        this.state.currentSlide === servicesSlides[servicesSlides.length - 1]
-          ? newSlide = servicesSlides[0]
-          : newSlide = getNextElement(servicesSlides, this.state.currentSlide);
+        this.state.currentSlide === this.state.slides[this.state.slides.length - 1]
+            ? newSlide = this.state.slides[0]
+            : newSlide = getNextElement(this.state.slides, this.state.currentSlide)
       } else {
-        this.state.currentSlide === servicesSlides[0]
-          ? newSlide = servicesSlides[servicesSlides.length - 1]
-          : newSlide = getPreviousElement(servicesSlides, this.state.currentSlide);
-
+        this.state.currentSlide === this.state.slides[0]
+            ? newSlide = this.state.slides[this.state.slides.length - 1]
+            : newSlide = getPreviousElement(this.state.slides, this.state.currentSlide)
       }
 
       return newSlide;
     }
 
-    onTabClick(slide, number) {
-      this.setState({currentSlide: slide, currentSlideNumber: number});
+    carouselHandler() {
+      this.carouselInterval = setInterval(() => {
+        let nextSlide = this.getNewSlide(true);
+
+        this.setState({
+          currentSlide: nextSlide,
+          currentSlideNumber: this.state.slides.indexOf(nextSlide)
+        });
+      }, 4000);
     }
 
     onSwipeStart(evt) {
@@ -98,32 +132,37 @@ const withServicesSlider = (Component) => {
 
         this.setState({
           currentSlide: newSlide,
-          currentSlideNumber: servicesSlides.indexOf(newSlide)
+          currentSlideNumber: this.state.slides.indexOf(newSlide)
         });
       } else if (this.posX * -1 / this.width < -0.5) {
         let newSlide = this.getNewSlide(false);
 
         this.setState({
           currentSlide: newSlide,
-          currentSlideNumber: servicesSlides.indexOf(newSlide)
+          currentSlideNumber: this.state.slides.indexOf(newSlide)
         });
       } else {
         this.slider.style.left = this.startCoords;
       }
 
       this.posX = 0;
+      this.carouselHandler();
+    }
+
+    onTabClick(slide, number) {
+      this.setState({currentSlide: slide, currentSlideNumber: number});
     }
 
     render() {
       return (
-        <Component
-          currentSlide={this.state.currentSlide}
-          currentSlideNumber={this.state.currentSlideNumber}
-          slidesQuantity={this.state.slidesQuantity}
-
-          onTabClick={this.onTabClick}
-          onSwipeStart={this.onSwipeStart}
-        />
+          <Component
+              sliderRef={this.sliderRef}
+              currentSlide={this.state.currentSlide}
+              currentSlideNumber={this.state.currentSlideNumber}
+              slidesQuantity={this.state.slidesQuantity}
+              onSwipeStart={this.onSwipeStart}
+              onTabClick={this.onTabClick}
+          />
       );
     }
   }
@@ -131,4 +170,4 @@ const withServicesSlider = (Component) => {
   return WithSlider;
 };
 
-export default withServicesSlider;
+export default withSlider;

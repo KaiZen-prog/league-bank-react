@@ -1,5 +1,5 @@
 import React from "react";
-import withMainSlider from "../../hocs/with-main-slider/with-main-slider";
+import withSlider from "../../hocs/with-slider/with-slider";
 import {Repeat} from "../../utils/common";
 import MainSlide from "../main-slide/main-slide";
 import {mainSlides} from '../../mocks/mocks';
@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 
 const MainSlider = (props) => {
   const {
+    sliderRef,
     currentSlide,
     currentSlideNumber,
     slidesQuantity,
@@ -14,7 +15,7 @@ const MainSlider = (props) => {
   } = props;
 
   return (
-    <section className="main-slider">
+    <section className="main-slider" ref={sliderRef}>
       <div
         className="main-slider__slides-container"
         style={{left: currentSlideNumber === 0 ? `0` : `-` + (currentSlideNumber) + `00%`}}
@@ -50,6 +51,7 @@ const MainSlider = (props) => {
 };
 
 MainSlider.propTypes = {
+  sliderRef: PropTypes.shape({}).isRequired,
   currentSlide: PropTypes.shape({
     name: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -60,9 +62,10 @@ MainSlider.propTypes = {
   currentSlideNumber: PropTypes.number.isRequired,
   slidesQuantity: PropTypes.number.isRequired,
 
-  onSwipeStart: PropTypes.func.isRequired
+  onSwipeStart: PropTypes.func.isRequired,
+  onTabClick: PropTypes.func
 };
 
 MainSlider.displayName = `MainSlider`;
 
-export default withMainSlider(MainSlider);
+export default withSlider(MainSlider);
