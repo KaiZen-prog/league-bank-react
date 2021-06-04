@@ -3,6 +3,7 @@ import {DESKTOP_MIN_WIDTH, Sliders} from '../../const';
 import {getNextElement, getPreviousElement} from '../../utils/common';
 import {mainSlides, servicesSlides} from '../../mocks/mocks';
 
+/* eslint no-unused-expressions: ["error", { "allowTernary": true }]*/
 const withSlider = (Component) => {
   class WithSlider extends React.PureComponent {
     constructor(props) {
@@ -23,7 +24,7 @@ const withSlider = (Component) => {
       this.swipeAction = this.swipeAction.bind(this);
       this.swipeEnd = this.swipeEnd.bind(this);
 
-      this.onTabClick = this.onTabClick.bind(this)
+      this.onTabClick = this.onTabClick.bind(this);
     }
 
     componentDidMount() {
@@ -55,12 +56,12 @@ const withSlider = (Component) => {
 
       if (isGettingNextSlide) {
         this.state.currentSlide === this.state.slides[this.state.slides.length - 1]
-            ? newSlide = this.state.slides[0]
-            : newSlide = getNextElement(this.state.slides, this.state.currentSlide)
+          ? newSlide = this.state.slides[0]
+          : newSlide = getNextElement(this.state.slides, this.state.currentSlide);
       } else {
         this.state.currentSlide === this.state.slides[0]
-            ? newSlide = this.state.slides[this.state.slides.length - 1]
-            : newSlide = getPreviousElement(this.state.slides, this.state.currentSlide)
+          ? newSlide = this.state.slides[this.state.slides.length - 1]
+          : newSlide = getPreviousElement(this.state.slides, this.state.currentSlide);
       }
 
       return newSlide;
@@ -155,14 +156,14 @@ const withSlider = (Component) => {
 
     render() {
       return (
-          <Component
-              sliderRef={this.sliderRef}
-              currentSlide={this.state.currentSlide}
-              currentSlideNumber={this.state.currentSlideNumber}
-              slidesQuantity={this.state.slidesQuantity}
-              onSwipeStart={this.onSwipeStart}
-              onTabClick={this.onTabClick}
-          />
+        <Component
+          sliderRef={this.sliderRef}
+          currentSlide={this.state.currentSlide}
+          currentSlideNumber={this.state.currentSlideNumber}
+          slidesQuantity={this.state.slidesQuantity}
+          onSwipeStart={this.onSwipeStart}
+          onTabClick={this.onTabClick}
+        />
       );
     }
   }

@@ -2,6 +2,7 @@ import React, {createRef, PureComponent} from 'react';
 import {InputFields, MortgageParams, CarParams, KeyCode, REQUIRED_INCOME, QUANTITY_MONTH, PHONE_LENGTH} from '../../const';
 import {shakeEffect} from '../../utils/common';
 
+/* eslint no-unused-expressions: ["error", { "allowTernary": true }]*/
 const withCalculator = (Component) => {
   class WithCalculator extends PureComponent {
     constructor(props) {
@@ -106,18 +107,18 @@ const withCalculator = (Component) => {
 
       switch (evt.target.htmlFor) {
         case InputFields.cost:
-          this.costInputRef.current.style.display  = `block`;
-          this.costDivRef.current.style.display  = `none`;
+          this.costInputRef.current.style.display = `block`;
+          this.costDivRef.current.style.display = `none`;
           break;
 
         case InputFields.initialFee:
-          this.initialFeeInputRef.current.style.display  = `block`;
-          this.initialFeeDivRef.current.style.display  = `none`;
+          this.initialFeeInputRef.current.style.display = `block`;
+          this.initialFeeDivRef.current.style.display = `none`;
           break;
 
         case InputFields.term:
-          this.termInputRef.current.style.display  = `block`;
-          this.termDivRef.current.style.display  = `none`;
+          this.termInputRef.current.style.display = `block`;
+          this.termDivRef.current.style.display = `none`;
           break;
       }
     }
@@ -184,8 +185,8 @@ const withCalculator = (Component) => {
       const {name, value} = evt.target;
 
       name === `initialFee`
-          ? this.setState({[name]: this.state.cost * value / 100})
-          : this.setState({[name]: value});
+        ? this.setState({[name]: this.state.cost * value / 100})
+        : this.setState({[name]: value});
     }
 
     onAdditionalChange(evt) {
