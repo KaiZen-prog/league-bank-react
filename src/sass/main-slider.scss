@@ -46,17 +46,19 @@
     background-position: right;
     overflow: hidden;
   }
+
+  &--offices {
+    background-color: #E6F1FE;
+    background-image: url("../img/slide-offices-mobile.jpg");
+    background-repeat: no-repeat;
+    background-position: right;
+  }
 }
 
 .main-slider__slide {
   padding: 39px 10px 48px 15px;
 
   @include block-centered(320px);
-
-  &--offices {
-    background-image: url("../img/slide-offices-mobile.jpg");
-    background-repeat: no-repeat;
-  }
 }
 
 .main-slider__header {
@@ -152,49 +154,24 @@
 }
 
 @media (min-width: $tablet-width-min) {
-
   .main-slider__container {
     height: 300px;
   }
 
   .main-slider__wrapper {
-    position: relative;
-
     &--credit {
       &::before {
-        content: "";
-        position: absolute;
-
-        top: 101px;
-        right: 250px;
-
-        width: 179px;
-        height: 199px;
-
-        background: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 27.26%, #3841FF 97.14%);
-
-        z-index: 1;
-      }
-
-      &::after {
-        content: "";
-        position: absolute;
-
-        top: 20px;
-        right: 117px;
-
-        width: 133px;
-        height: 300px;
-
-        background: linear-gradient(180.24deg, rgba(32, 39, 179, 0) 32.89%, #2027B3 99.79%);
-
-        z-index: 1;
+        display: none;
       }
     }
 
     &--promo {
     background-image: url("../img/slide-promo-tablet.jpg"),
     linear-gradient(to right, #dde2ec 0%, #dde2ec 50%, #F6FCFF 75%, #F6FCFF 100%);
+    }
+
+    &--offices {
+      background-image: url("../img/slide-offices-tablet.jpg");;
     }
   }
 
@@ -228,12 +205,42 @@
 
     &--promo {
       padding-bottom: 124px;
-      background-repeat: no-repeat;
     }
+  }
 
-    &--offices {
-      background-image: url("../img/slide-offices-tablet.jpg");
-      background-repeat: no-repeat;
+  .main-slider__gradient-container {
+    position: relative;
+
+    &--credit {
+      &::before {
+        content: "";
+        position: absolute;
+
+        top: 36px;
+        right: 123px;
+
+        width: 179px;
+        height: 199px;
+
+        background: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 27.26%, #3841FF 97.14%);
+
+        z-index: 1;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+
+        top: -65px;
+        right: -10px;
+
+        width: 133px;
+        height: 300px;
+
+        background: linear-gradient(180.24deg, rgba(32, 39, 179, 0) 32.89%, #2027B3 99.79%);
+
+        z-index: 1;
+      }
     }
   }
 
@@ -322,32 +329,6 @@
     }
   }
 
-  .main-slider__wrapper {
-    position: relative;
-
-    &--credit {
-      &::before {
-        top:131px;
-        left: 150px;
-
-        width: 150px;
-        height: 269px;
-
-        background: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 66.3%, #3841FF 97.14%);
-      }
-
-      &::after {
-        top:131px;
-        right: 299px;
-
-        width: 270px;
-        height: 269px;
-
-        background: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 27.26%, #3841FF 97.14%);
-      }
-    }
-  }
-
   .main-slider__slide {
     padding: 102px 660px 114px 268px;
 
@@ -379,6 +360,30 @@
     &--offices {
       background-image: url("../img/slide-offices-desktop.jpg");
       background-repeat: no-repeat;
+    }
+  }
+
+  .main-slider__gradient-container {
+    &--credit {
+      &::before {
+        top: 29px;
+        left: -118px;
+
+        width: 150px;
+        height: 269px;
+
+        background: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 66.3%, #3841FF 97.14%);
+      }
+
+      &::after {
+        top: 29px;
+        right: -361px;
+
+        width: 270px;
+        height: 269px;
+
+        background: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 27.26%, #3841FF 97.14%);
+      }
     }
   }
 

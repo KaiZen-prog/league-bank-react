@@ -75,7 +75,7 @@ const withSlider = (Component) => {
           currentSlide: nextSlide,
           currentSlideNumber: this.state.slides.indexOf(nextSlide)
         });
-      }, 40000000);
+      }, 4000);
     }
 
     onSwipeStart(evt) {
