@@ -13,9 +13,9 @@ const withSlider = (Component) => {
 
       this.state = {
         slides: [],
-        currentSlide: mainSlides[0],
+        currentSlide: {},
         currentSlideNumber: 0,
-        slidesQuantity: mainSlides.length
+        slidesQuantity: 0
       };
 
       this.carouselHandler = this.carouselHandler.bind(this);
@@ -75,7 +75,7 @@ const withSlider = (Component) => {
           currentSlide: nextSlide,
           currentSlideNumber: this.state.slides.indexOf(nextSlide)
         });
-      }, 4000);
+      }, 40000000);
     }
 
     onSwipeStart(evt) {
