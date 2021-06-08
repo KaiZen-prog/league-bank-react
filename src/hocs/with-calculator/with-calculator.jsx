@@ -275,7 +275,7 @@ const withCalculator = (Component) => {
     onSubmit(evt) {
       evt.preventDefault();
       if ((this.telRef.current !== null) && (this.telRef.current.value.length < PHONE_LENGTH)) {
-        shakeEffect(this.telRef.current.getInputDOMNode());
+        this.telRef.current.getInputDOMNode().style.borderColor = (`red`);
         return;
       }
 
@@ -303,6 +303,8 @@ const withCalculator = (Component) => {
 
     onChangePhone(evt) {
       const {name, value} = evt.target;
+
+      this.telRef.current.getInputDOMNode().style.borderColor = (`#1F1E25`);
 
       this.setState({name, value});
       localStorage.setItem(name, value);
