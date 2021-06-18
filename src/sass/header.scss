@@ -4,15 +4,12 @@
 
 .header__wrapper {
   display: flex;
-
-  width: $desktop-width-max;
   min-height: 91px;
 
   font-weight: 400;
 
-  margin: auto;
-  padding-right: 35px;
-  padding-left: 96px;
+  margin-right: 74px;
+  margin-left: 95px;
 }
 
 .header__burger-button {
@@ -22,7 +19,7 @@
 .header__logo {
   position: relative;
 
-  width: 170px;
+  min-width: 170px;
 
   font-weight: bold;
   font-size: 20px;
@@ -33,13 +30,14 @@
 
   letter-spacing: 1.3px;
 
-  padding-left: 38px;
+  margin-left: auto;
+  padding-left: 35px;
 
   &::before {
     @include background-image("../img/logo-desktop.svg", 30px, 27px);
 
     top: 26px;
-    left: 1px;
+    left: -3px;
   }
 }
 
@@ -49,6 +47,11 @@
 
 .header__nav-wrapper {
   display: flex;
+  justify-content: space-between;
+
+  width: 1017px;
+
+  margin-left: auto;
 }
 
 .header__nav-list {
@@ -57,9 +60,9 @@
 
   list-style: none;
 
-  width: 600px;
+  width: 500px;
 
-  margin: 0 0 0 86px;
+  margin: 0;
   padding: 0;
 }
 
@@ -87,8 +90,8 @@
   text-align: center;
   color: $color-dark-blue;
 
-  margin-left: 70px;
-  padding: 37px 22px 35px 32px;
+  margin-left: auto;
+  padding: 37px 96px 35px 32px;
 
   &::before {
     position: absolute;
@@ -96,7 +99,7 @@
     display: block;
 
     top: 34px;
-    left: 44px;
+    left: 7px;
 
     width: 20px;
     height: 22px;

@@ -6,48 +6,58 @@
 .main-slider__slides-container {
   display: flex;
   position: relative;
-
   transition: left 1.5s ease 0s;
 
   cursor: grabbing;
 }
 
-.main-slider__container {
-  height: 226px;
+.main-slider__slide {
+  position: relative;
+  min-height: 226px;
   min-width: 100%;
-}
-
-.main-slider__wrapper {
-  height: 100%;
+  overflow: hidden;
 
   &--credit {
-    position: relative;
     background-color: $color-bright-blue;
+  }
+}
 
-    &::before {
+.main-slider__gradient-container {
+  position: absolute;
+  min-height: 100%;
+  max-width: 1170px;
+  width: 100%;
 
-      top: 29px;
-      right: 0;
+  &--promo,
+  &--offices {
+    max-width: 100%;
+  }
+}
 
-      @include background-image("../img/card-black-mobile.png", 105px, 152px);
+.main-slider__background-container {
+  min-height: 100%;
+  position: absolute;
 
-      filter: drop-shadow(0px 4px 23px rgba(25, 26, 31, 0.2));
-    }
+  &--credit {
+    width: 78.3%;
+    margin-left: -45.5%;
+    top: 0;
+    left: 50%;
+    background-color: $color-bright-blue;
   }
 
   &--promo {
     width: 100%;
-
-    padding-bottom: 72px;
-
-    background-image: url("../img/slide-promo-mobile.jpg"),
-    linear-gradient(to right, #dde2ec 0%, #dde2ec 50%, #F6FCFF 75%, #F6FCFF 100%);
+    background-color: #dde2ec;
+    background-image: url("../img/slide-promo-mobile.jpg");
     background-repeat: no-repeat;
     background-position: right;
     overflow: hidden;
+    z-index: -1;
   }
 
   &--offices {
+    width: 100%;
     background-color: #E6F1FE;
     background-image: url("../img/slide-offices-mobile.jpg");
     background-repeat: no-repeat;
@@ -55,22 +65,35 @@
   }
 }
 
-.main-slider__slide {
-  padding: 39px 10px 48px 15px;
+.main-slider__container {
+  position: relative;
+  max-width: 1170px;
+  min-height: 226px;
+  margin: 0 auto;
+  padding: 40px 4.68% 0 4.68%;
+  box-sizing: border-box;
 
-  @include block-centered(320px);
+
+  &--credit {
+    &::before {
+      content: "";
+      position: absolute;
+      display: block;
+      top: 29px;
+      right: 0;
+      width: 105px;
+      height: 179px;
+      background-image: url("../img/card-black-mobile.png");
+      background-repeat: no-repeat;
+      z-index: 3;
+    }
+  }
 }
 
-.main-slider__header {
+.main-slider__title {
+  margin: 0;
   font-size: 38px;
   line-height: 45px;
-
-  width: 185px;
-
-  margin-top: 0;
-  margin-bottom: 6px;
-
-  color: $color-dark-blue;
 
   &--credit {
     color: $color-white;
@@ -78,37 +101,47 @@
 }
 
 .main-slider__slogan {
-  margin-top: 0;
-  margin-bottom: 26px;
-
-  width: 150px;
-
-  color: $color-blue-gray;
+  margin-top: 5px;
+  font-size: 16px;
+  line-height: 19px;
 
   &--credit {
-    width: 205px;
+    color: $color-bright-grey;
+  }
 
-    color: $color-white;
+  &--promo {
+    margin-right: 140px;
   }
 }
 
 .main-slider__link {
-  @include button($color-white, $color-bright-blue);
-
-  font-size: 14px;
-  line-height: 16px;
-
+  display: block;
   width: 188px;
-
-  padding: 14px 10px 13px;
+  height: 43px;
+  margin-top: 26px;
+  font-size: 14px;
+  line-height: 43px;
+  font-weight: 500;
+  text-align: center;
+  border-radius: 4px;
 
   &--credit {
-    @include button($color-dark-blue, $color-white);
+    color: $color-dark-blue;
+    background-color: $color-white;
   }
 
   &--offices {
-    padding-top: 15px;
-    padding-bottom: 12px;
+    width: 243px;
+    color: $color-white;
+    background-color: $color-bright-blue;
+  }
+
+  @media (min-width: $tablet-width-min) and (max-width: $desktop-width-min - 1) {
+    width: 206px;
+    height: 48px;
+    margin-top: 30px;
+    font-size: 16px;
+    line-height: 48px;
   }
 }
 
@@ -154,124 +187,100 @@
 }
 
 @media (min-width: $tablet-width-min) {
-  .main-slider__container {
-    height: 300px;
-  }
-
-  .main-slider__wrapper {
-    &--credit {
-      &::before {
-        display: none;
-      }
-    }
-
-    &--promo {
-    background-image: url("../img/slide-promo-tablet.jpg"),
-    linear-gradient(to right, #dde2ec 0%, #dde2ec 50%, #F6FCFF 75%, #F6FCFF 100%);
-    }
-
-    &--offices {
-      background-image: url("../img/slide-offices-tablet.jpg");;
-    }
-  }
-
   .main-slider__slide {
-    position: relative;
-
-    padding: 65px 10px 48px 86px;
-
-    min-width: 768px;
+    min-height: 300px;
 
     &--credit {
-      &::before {
-        top: 38px;
-        right: 65px;
-
-        @include background-image("../img/card-white-tablet.png", 270px, 180px);
-        filter: drop-shadow(0px 4px 23px rgba(25, 26, 31, 0.2));
-
-        z-index: 2;
-      }
-
-      &::after {
-        top: 82px;
-        right: 150px;
-
-        @include background-image("../img/card-black-tablet.png", 270px, 180px);
-
-        z-index: 3;
-      }
-    }
-
-    &--promo {
-      padding-bottom: 124px;
+      background-image: linear-gradient(180.24deg, rgba(32, 39, 179, 0) 36.31%, #2027B3 99.79%);
     }
   }
 
   .main-slider__gradient-container {
-    position: relative;
+    &--credit {
+      &::after {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 179px;
+        height: 199px;
+        margin-right: -32.8%;
+        right: 50%;
+        bottom: 0;
+        background-image: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 27.26%, #3841FF 97.14%);
+        z-index: 1;
+      }
+    }
+
+    &--promo,
+    &--offices {
+      max-width: 100%;
+    }
+  }
+
+  .main-slider__background-container {
+    &--credit {
+      width: 82.7%;
+      margin-left: 0;
+      left: 0;
+    }
+
+    &--promo {
+      background-image: url("../img/slide-promo-tablet.jpg"),
+      linear-gradient(to right, #dde2ec 0%, #dde2ec 50%, #F6FCFF 50%, #F6FCFF 100%);
+    }
+
+    &--offices {
+      background-image: url("../img/slide-offices-tablet.jpg");
+      overflow: hidden;
+    }
+  }
+
+  .main-slider__container {
+    min-height: 300px;
+    padding: 65px 86px 0 86px;
+
 
     &--credit {
       &::before {
-        content: "";
-        position: absolute;
-
-        top: 36px;
-        right: 123px;
-
-        width: 179px;
-        height: 199px;
-
-        background: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 27.26%, #3841FF 97.14%);
-
-        z-index: 1;
+        width: 272px;
+        height: 188px;
+        top: 82px;
+        right: 148px;
+        background-image: url("../img/card-black-tablet.png");
       }
 
       &::after {
         content: "";
         position: absolute;
-
-        top: -65px;
-        right: -10px;
-
-        width: 133px;
-        height: 300px;
-
-        background: linear-gradient(180.24deg, rgba(32, 39, 179, 0) 32.89%, #2027B3 99.79%);
-
-        z-index: 1;
+        display: block;
+        width: 272px;
+        height: 188px;
+        top: 38px;
+        right: 63px;
+        background-image: url("../img/card-white-tablet.png");
+        background-position: left, top;
+        z-index: 2;
       }
     }
   }
 
-  .main-slider__header {
+  .main-slider__title {
     font-size: 46px;
     line-height: 54px;
-
-    width: 250px;
   }
 
   .main-slider__slogan {
+    margin-top: 6px;
     font-size: 18px;
     line-height: 21px;
-
-    margin-bottom: 30px;
-
-    width: 260px;
-
-    &--promo {
-      width: 330px;
-    }
   }
 
   .main-slider__link {
-    font-size: 16px;
-    line-height: 19px;
-
     width: 206px;
-
-    padding-top: 14px;
-    padding-bottom: 15px;
+    height: 48px;
+    margin-top: 30px;
+    font-size: 16px;
+    line-height: 48px;
   }
 
   .main-slider__dots {
@@ -287,140 +296,113 @@
 }
 
 @media (min-width: $desktop-width-min) {
-  .main-slider {
-    @include block-centered($desktop-width-max);
-  }
-
   .main-slider__slides-container {
     cursor: default;
   }
 
-  .main-slider__container {
-    height: 400px;
+  .main-slider__gradient-container {
+    left: 50%;
+    transform: translateX(-50%);
 
     &--credit {
       &::before {
         content: "";
         position: absolute;
-
-        bottom: 0;
-        left: 0;
-
+        display: block;
         width: 150px;
-        height: 400px;
-
-        background: linear-gradient(180.24deg, rgba(32, 39, 179, 0) 36.31%, #2027B3 99.79%);
-
+        height: 269px;
+        margin-left: -45.5%;
+        left: 50%;
+        bottom: 0;
+        background-image: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 66.3%, #3841FF 97.14%);
         z-index: 1;
       }
 
       &::after {
-        content: "";
-        position: absolute;
-
-        bottom: 0;
-        right: 1px;
-
-        width: 298px;
-        height: 400px;
-
-        background: linear-gradient(180.24deg, rgba(32, 39, 179, 0) 32.89%, #2027B3 99.79%);
+        width: 270px;
+        height: 269px;
+        margin-right: -32.8%;
       }
     }
   }
 
   .main-slider__slide {
-    padding: 102px 660px 114px 268px;
+    min-height: 226px;
+  }
 
-    min-width: 1366px;
-
+  .main-slider__background-container {
     &--credit {
-      &::before {
-        top: 61px;
-        right: 225px;
-
-        @include background-image("../img/card-white-desktop.png", 334px, 220px);
-      }
-
-      &::after {
-        top: 119px;
-        right: 334px;
-
-        @include background-image("../img/card-black-desktop.png", 334px, 220px);
-      }
+      width: 78.3%;
+      margin-left: -45.5%;
+      top: 0;
+      left: 50%;
+      background-color: $color-bright-blue;
     }
 
     &--promo {
-      padding-bottom: 167px;
+      background-image: url("../img/slide-promo-desktop.jpg"),
+      linear-gradient(to right, #dde2ec 0%, #dde2ec 50%, #F6FCFF 50%, #F6FCFF 100%);
+      background-position: center;
 
-      background-image: url("../img/slide-promo-desktop.jpg");
-      background-repeat: no-repeat;
+      &::after {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: calc(50% + 683px);
+        background-image: linear-gradient(to top, #f6fcff 0%, #f0f6ff 100%);
+      }
     }
 
     &--offices {
       background-image: url("../img/slide-offices-desktop.jpg");
-      background-repeat: no-repeat;
+      background-position: center;
     }
   }
 
-  .main-slider__gradient-container {
+  .main-slider__container {
+    min-height: 400px;
+    padding: 102px 149px 0 170px;
+
+
     &--credit {
       &::before {
-        top: 29px;
-        left: -118px;
-
-        width: 150px;
-        height: 269px;
-
-        background: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 66.3%, #3841FF 97.14%);
+        width: 335px;
+        height: 228px;
+        top: 119px;
+        right: 235px;
+        background-image: url("../img/card-black-desktop.png");
       }
 
       &::after {
-        top: 29px;
-        right: -361px;
-
-        width: 270px;
-        height: 269px;
-
-        background: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 27.26%, #3841FF 97.14%);
+        width: 335px;
+        height: 228px;
+        top: 61px;
+        right: 126px;
+        background-image: url("../img/card-white-desktop.png");
       }
     }
   }
 
-  .main-slider__header {
+  .main-slider__title {
     font-size: 54px;
     line-height: 63px;
-
-    width: 370px;
-
-    margin-bottom: 9px;
   }
 
   .main-slider__slogan {
+    margin-top: 8px;
     font-size: 22px;
     line-height: 26px;
-
-    margin-bottom: 33px;
-
-    width: 370px;
-
-    &--promo {
-      width: 400px;
-    }
   }
 
   .main-slider__link {
-    font-size: 18px;
-    line-height: 21px;
-
     width: 234px;
-
-    padding-top: 16px;
-    padding-bottom: 16px;
-
-    &--offices {
-      width: 243px;
-    }
+    height: 53px;
+    margin-top: 34px;
+    font-size: 18px;
+    line-height: 53px;
   }
 
   .main-slider__dots {
