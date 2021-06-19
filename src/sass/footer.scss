@@ -1,380 +1,249 @@
 .footer {
-  background-color: $color-white;
+  background-color: #F6F7FF;
 }
 
-.footer__wrapper {
+.footer__container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1170px;
+  padding: 56px 20px 40px 20px;
+  margin: 0 auto;
+
+  @media (min-width: $tablet-width-min) and (max-width: $desktop-width-min - 1) {
+    padding: 56px 45px 60px 45px;
+  }
+
+  @media (max-width: $tablet-width-min - 1) {
+    flex-wrap: wrap;
+    padding: 30px 15px 50px 15px;
+  }
+}
+
+.footer__address {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  min-width: 500px;
+  max-height: 200px;
+  margin-right: 57px;
 
-  padding: 34px 10px 33px;
+  @media (min-width: $tablet-width-min) and (max-width: $desktop-width-min - 1) {
+    flex-wrap: nowrap;
+    min-width: 260px;
+    margin-right: 94px;
+  }
 
-  @include block-centered($mobile-width-min);
+  @media (max-width: $tablet-width-min - 1) {
+    min-width: auto;
+    margin-bottom: 10px;
+  }
 }
 
 .footer__logo {
-  position: relative;
-  display: block;
+  margin-top: -8px;
+  margin-bottom: 16px;
 
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 19px;
+  @media (min-width: $tablet-width-min) and (max-width: $desktop-width-min - 1) {
+    width: 133px;
+    margin-top: -6px;
+    margin-bottom: 30px;
+  }
 
-  width: 130px;
+  @media (max-width: $tablet-width-min - 1) {
+    width: 114px;
+    margin: -5px 0 16px -1px;
+  }
+}
 
-  color: $color-dark-blue;
+.footer__info {
+  margin-top: -4px;
+  padding-left: 1px;
+  font-size: 12px;
+  line-height: 17px;
+  color: #707C87;
 
-  letter-spacing: 1px;
+  p {
+    margin: 0;
+  }
 
-  margin-bottom: 20px;
-  padding-left: 29px;
+  @media (min-width: $tablet-width-min) and (max-width: $desktop-width-min - 1) {
+    margin-top: 0;
+    order: 3;
+  }
 
-  &::before {
-    @include background-image("../img/logo-footer-mobile.svg", 20px, 18px);
-
-    top: -3px;
-    left: 4px;
+  @media (max-width: $tablet-width-min - 1) {
+    display: none;
   }
 }
 
 .footer__nav {
-  margin-bottom: 21px;
-}
+  padding-left: 56px;
 
-.footer__nav-list {
-  list-style: none;
+  @media (min-width: $tablet-width-min) and (max-width: $desktop-width-min - 1) {
+    padding: 0;
+    margin-bottom: 16px;
+    margin-top: -6px;
+  }
 
-  margin-top: 0;
-  padding-left: 5px;
-}
-
-.footer__nav-link {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-
-  color: $color-dark-blue;
-}
-
-.footer__nav-item {
-  margin-bottom: 8px;
-}
-
-.footer__address {
-  display: none;
-}
-
-.footer__phone-list {
-  list-style: none;
-
-  margin-top: 0;
-  margin-bottom: 19px;
-  padding-left: 34px;
-}
-
-.footer__phone-item {
-  margin-bottom: 16px;
-
-  &:last-child {
-    padding-left: 4px;
+  @media (max-width: $tablet-width-min - 1) {
+    padding: 0;
   }
 }
 
-.footer__phone-link {
-  position: relative;
-  display: inline-block;
+.footer-nav__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
-  font-style: normal;
+.footer-nav__item {
+  margin-bottom: 11px;
+
+  @media (max-width: $tablet-width-min - 1) {
+    margin-bottom: 8px;
+  }
+}
+
+.footer-nav__link {
+  font-size: 16px;
+  line-height: 20px;
   font-weight: 500;
+  color: #1F1E25;
+
+  @media (max-width: $tablet-width-min - 1) {
+    font-size: 14px;
+  }
+}
+
+.footer__contacts {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+
+  @media (max-width: $desktop-width-min - 1) {
+    flex-wrap: wrap;
+  }
+}
+
+.footer__contacts-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  margin: 0;
+  padding: 0;
+  padding-top: 2px;
+  list-style: none;
+}
+
+.footer__contacts-item {
+  padding-left: 29px;
+
+  @media (max-width: $desktop-width-min - 1) {
+    margin-bottom: 11px;
+
+    &--main-phone {
+      margin-left: 4px;
+    }
+  }
+
+  @media (max-width: $tablet-width-min - 1) {
+    margin-bottom: 3px;
+  }
+}
+
+.footer__tel {
+  position: relative;
+  display: block;
   font-size: 16px;
   line-height: 22px;
+  font-weight: 500;
+  color: #1F1E25;
 
-  color: $color-dark-blue;
-
-  margin-bottom: -1px;
-
-  &--mobile {
-    &::before {
-      top: 1px;
-      left: -29px;
-
-      @include background-image("../img/icon-mobile.svg", 10px, 16px)
-    }
+  &::before {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 16px;
+    background-repeat: no-repeat;
   }
 
-  &--phone {
-    &::before {
-      top: 2px;
-      left: -33px;
+  &--mobile::before {
+    width: 10px;
+    top: 2px;
+    left: -29px;
+    background-image: url("../img/icon-mobile-tablet.svg");
+  }
 
-      @include background-image("../img/icon-phone.svg", 16px, 17px)
-    }
+  &--main::before {
+    width: 16px;
+    top: 2px;
+    left: -34px;
+    background-image: url("../img/icon-phone-tablet.svg");
   }
 }
 
-.footer__phone-description {
-  font-style: normal;
-  font-weight: normal;
+.footer__phone-info {
+  width: 170px;
+  margin-top: 1px;
   font-size: 12px;
   line-height: 17px;
+  color: #707C87;
 
-  color: $color-grey;
-
-  margin: 0;
-  padding-right: 95px;
+  @media (min-width: $tablet-width-min) and (max-width: $desktop-width-min - 1) {
+    margin-bottom: 0;
+  }
 }
 
-.footer__social-list {
-  list-style: none;
+.footer__social {
+  margin-left: 17px;
+  margin-right: -1px;
+
+  @media (max-width: $desktop-width-min - 1) {
+    margin-left: -15px;
+  }
+}
+
+.social__list {
   display: flex;
-
-  margin-top: 0;
-  padding-left: 5px;
+  margin: 0;
+  margin-top: 4px;
+  padding: 0;
+  list-style: none;
 }
 
-.footer__social-item {
-  margin-right: 20px;
+.social__item {
+  @media (max-width: $desktop-width-min - 1) {
+    margin-right: 5px;
+  }
 }
 
-.footer__social-link {
+.social__link {
+  position: relative;
   display: block;
+  width: 16px;
+  height: 16px;
+  margin-left: 15px;
+  background-repeat: no-repeat;
 
-  &--facebook {
+  &--fb {
     width: 9px;
-    height: 16px;
-
     background-image: url("../img/icon-facebook-mobile.svg");
   }
 
-  &--instagram {
-    width: 16px;
-    height: 16px;
-
+  &--inst {
     background-image: url("../img/icon-instagram-mobile.svg");
   }
 
   &--twitter {
-    width: 16px;
-    height: 13px;
-
     margin-top: 2px;
-
+    height: 13px;
     background-image: url("../img/icon-twitter-mobile.svg");
   }
 
   &--youtube {
-    width: 16px;
-    height: 13px;
-
     margin-top: 2px;
-
+    height: 13px;
     background-image: url("../img/icon-youtube-mobile.svg");
-  }
-}
-
-@media (min-width: $tablet-width-min) {
-  .footer {
-    width: 100%;
-  }
-
-  .footer__wrapper {
-    justify-content: space-between;
-
-    flex-direction: row;
-    padding: 57px 40px 55px;
-
-    @include block-centered($tablet-width-min);
-  }
-
-  .footer__container {
-    width: 335px;
-  }
-
-  .footer__logo {
-    display: block;
-
-    font-size: 18px;
-    line-height: 21px;
-
-    letter-spacing: 1px;
-
-    width: 145px;
-
-    margin-bottom: 26px;
-    padding-left: 37px;
-
-    &::before {
-      @include background-image("../img/logo-footer-tablet.svg", 26px, 24px);
-
-      top: -7px;
-      left: 4px;
-    }
-  }
-
-  .footer__nav-item {
-    margin-bottom: 9px;
-  }
-
-  .footer__nav {
-    margin-bottom: 25px;
-  }
-
-  .footer__nav-link {
-    font-size: 16px;
-    line-height: 22px;
-  }
-
-  .footer__address {
-    display: block;
-
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 17px;
-
-    color: $color-grey;
-
-    width: 265px;
-
-    margin: 0;
-    padding-left: 5px;
-  }
-
-  .footer__phone-list {
-    margin-bottom: 26px;
-    padding-top: 2px;
-    padding-left: 35px;
-  }
-
-  .footer__phone-item {
-    margin-bottom: 22px;
-  }
-
-  .footer__phone-link {
-    margin-bottom: 0;
-
-    &--mobile {
-      &::before {
-        @include background-image("../img/icon-mobile-tablet.svg", 10px, 16px)
-      }
-    }
-
-    &--phone {
-      &::before {
-        top: 3px;
-        @include background-image("../img/icon-phone-tablet.svg", 16px, 16px)
-      }
-    }
-  }
-
-  .footer__phone-description {
-    padding-right: 126px;
-  }
-
-  .footer__social-list {
-    padding-left: 6px;
-  }
-}
-
-
-@media (min-width: $desktop-width-min) {
-  .footer__wrapper {
-    justify-content: start;
-
-    height: 224px;
-
-    padding: 56px 90px 55px;
-
-    @include block-centered($desktop-width-max);
-  }
-
-  .footer__container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: start;
-
-    min-width: 559px;
-  }
-
-  .footer__logo {
-    font-size: 20px;
-    line-height: 23px;
-
-    letter-spacing: 1px;
-
-    width: 170px;
-    height: 25px;
-
-    margin-right: 166px;
-    margin-bottom: 10px;
-    padding-left: 45px;
-
-    &::before {
-      @include background-image("../img/logo-footer-desktop.svg", 30px, 27px);
-
-      top: -8px;
-      left: 7px;
-    }
-  }
-
-  .footer__nav {
-    width: 165px;
-
-    margin-bottom: 5px;
-
-    order: 3;
-  }
-
-  .footer__nav-item {
-    margin-bottom: 9px;
-  }
-
-  .footer__address {
-    width: 285px;
-
-    padding-right: 20px;
-    padding-left: 8px;
-  }
-
-  .footer__phone-list {
-    display: flex;
-    justify-content: space-between;
-
-    width: 511px;
-  }
-
-  .footer__phone-item {
-    width: 200px;
-  }
-
-  .footer__phone-link {
-    margin-bottom: 1px;
-
-    &--mobile {
-      &::before {
-        top: 2px;
-      }
-    }
-
-    &--phone {
-      &::before {
-        top: 2px;
-      }
-    }
-  }
-
-  .footer__phone-description {
-    padding-right: 26px;
-  }
-
-  .footer__social-list {
-    padding-top: 4px;
-    padding-left: 6px;
-  }
-
-  .footer__social-item {
-    margin-right: 15px;
   }
 }

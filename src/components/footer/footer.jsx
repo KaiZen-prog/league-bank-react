@@ -1,70 +1,78 @@
 import React from "react";
+import logo from '../../img/logo.svg';
+import logoMobile from '../../img/logo-footer-mobile.svg';
 
 const Footer = () => {
   return (
-    <footer className="footer">
-      <div className="footer__wrapper">
+      <footer className="footer app__footer">
         <div className="footer__container">
-          <a className="footer__logo" href="#">ЛИГА Банк</a>
-
-          <nav className="footer__nav">
-            <ul className="footer__nav-list">
-              <li className="footer__nav-item">
-                <a className="footer__nav-link" href="#">Услуги</a>
+          <section className="footer__address">
+            <a href="#top">
+              <picture>
+                <source media="(max-width: 767px)" srcSet={logoMobile}/>
+                <img className="footer__logo" src={logo} alt="logo" width="150" height="27"/>
+              </picture>
+            </a>
+            <div className="footer__info">
+              <p>150015, г. Москва, ул. Московская, д. 32</p>
+              <p>Генеральная лицензия Банка России №1050</p>
+              <p>Ⓒ Лига Банк, 2019</p>
+            </div>
+            <nav className="footer__nav footer-nav">
+              <ul className="footer-nav__list">
+                <li className="footer-nav__item">
+                  <a href="#top" className="footer-nav__link">Услуги</a>
+                </li>
+                <li className="footer-nav__item">
+                  <a href="#top" className="footer-nav__link">Рассчитать кредит</a>
+                </li>
+                <li className="footer-nav__item">
+                  <a href="#top" className="footer-nav__link">Контакты</a>
+                </li>
+                <li className="footer-nav__item">
+                  <a href="#top" className="footer-nav__link">Задать вопрос</a>
+                </li>
+              </ul>
+            </nav>
+          </section>
+          <section className="footer__contacts">
+            <ul className="footer__contacts-list">
+              <li className="footer__contacts-item">
+                <a href="tel: *0904" className="footer__tel footer__tel--mobile">*0904</a>
+                <p className="page-footer__phone-info">Бесплатно для абонентов МТС, Билайн, Мегафон, Теле2</p>
               </li>
-
-              <li className="footer__nav-item">
-                <a className="footer__nav-link" href="#">Рассчитать кредит</a>
-              </li>
-
-              <li className="footer__nav-item">
-                <a className="footer__nav-link" href="#">Контакты</a>
-              </li>
-
-              <li className="footer__nav-item">
-                <a className="footer__nav-link" href="#">Задать вопрос</a>
+              <li className="footer__contacts-item footer__contacts-item--main-phone">
+                <a href="tel: +78001112233" className="footer__tel footer__tel--main">8 800 111 22 33</a>
+                <p className="footer__phone-info">Бесплатный для всех городов России</p>
               </li>
             </ul>
-          </nav>
-
-          <p className="footer__address">
-              150015, г. Москва, ул. Московская, д. 32 Генеральная лицензия Банка России №1050 Ⓒ Лига Банк, 2019
-          </p>
+            <section className="footer__social social">
+              <ul className="social__list">
+                <li className="social__item">
+                  <a href="#top" className="social__link social__link--fb">
+                    <span className="visually-hidden">Мы в фейсбуке</span>
+                  </a>
+                </li>
+                <li className="social__item">
+                  <a href="#top" className="social__link social__link--inst">
+                    <span className="visually-hidden">Мы в инстаграме</span>
+                  </a>
+                </li>
+                <li className="social__item">
+                  <a href="#top" className="social__link social__link--twitter">
+                    <span className="visually-hidden">Мы в твиттере</span>
+                  </a>
+                </li>
+                <li className="social__item">
+                  <a href="#top" className="social__link social__link--youtube">
+                    <span className="visually-hidden">Наш канал на ютубе</span>
+                  </a>
+                </li>
+              </ul>
+            </section>
+          </section>
         </div>
-
-        <div className="footer__container">
-          <ul className="footer__phone-list">
-            <li className="footer__phone-item">
-              <a className="footer__phone-link footer__phone-link--mobile" href="tel:*0904">*0904</a>
-              <p className="footer__phone-description">Бесплатно для абонентов МТС, Билайн, Мегафон, Теле2</p>
-            </li>
-
-            <li className="footer__phone-item">
-              <a className="footer__phone-link footer__phone-link--phone" href="tel:88001112233">8 800 111 22 33</a>
-              <p className="footer__phone-description">Бесплатный для всех городов России</p>
-            </li>
-          </ul>
-
-          <ul className="footer__social-list">
-            <li className="footer__social-item">
-              <a className="footer__social-link footer__social-link--facebook" href="#howhere" aria-label="Наш Фейсбук"></a>
-            </li>
-
-            <li className="footer__social-item">
-              <a className="footer__social-link footer__social-link--instagram" href="#howhere" aria-label="Наш Инстаграм"></a>
-            </li>
-
-            <li className="footer__social-item">
-              <a className="footer__social-link footer__social-link--twitter" href="#howhere" aria-label="Наш Твиттер"></a>
-            </li>
-
-            <li className="footer__social-item">
-              <a className="footer__social-link footer__social-link--youtube" href="#howhere" aria-label="Мы на Ютьюб"></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </footer>
+      </footer>
   );
 };
 
