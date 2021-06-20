@@ -194,6 +194,9 @@ const withCalculator = (Component) => {
     }
 
     onCostChangeSign(evt) {
+      this.costInputRef.current.style.color = `#1F1E25`;
+      this.costDivRef.current.style.color = `#1F1E25`;
+
       let cost = this.state.cost === `Некорректное значение` ? this.state.paramsCredit.minCost : this.state.cost;
 
       evt.target.id === `plus`

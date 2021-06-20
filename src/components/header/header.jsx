@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import withHeader from "../../hocs/with-header/with-header";
 import LogIn from "../log-in/log-in";
+import logo from '../../img/logo.svg';
 
 const Header = (props) => {
   const {
@@ -18,59 +19,53 @@ const Header = (props) => {
   } = props;
 
   return (
-    <header className="header">
+  <header className={`header ${isNavOpened ? `header--opened` : ``} app__header`}>
+    <div className="container header__container">
       <div className="header__wrapper">
-        <button
-          className="header__burger-button"
-          onClick={onNavOpen}
+        <button className="header__burger-button" onClick={onNavOpen}><span className="visually-hidden">Открыть меню</span></button>
+        <a href="#" className="header__logo">
+          <img className="header__img" src={logo} alt="logo" width="150" height="27"/>
+        </a>
+        <button className={`header__close-menu ${isNavOpened ? `header__close-menu--opened` : ``}`} onClick={onNavClose}><span className="visually-hidden">Закрыть меню</span></button>
+      </div>
+      <nav className={`header__nav ${isNavOpened ? `header__nav--opened` : ``}`}>
+        <ul className="header__nav-list">
+          <li className="header__nav-item">
+            <a href="#" className="header__nav-link">Услуги</a>
+          </li>
+          <li className="header__nav-item">
+            <a href="#" className="header__nav-link">Рассчитать кредит</a>
+          </li>
+          <li className="header__nav-item">
+            <a href="#" className="header__nav-link">Конвертер валют</a>
+          </li>
+          <li className="header__nav-item">
+            <a href="#" className="header__nav-link">Контакты</a>
+          </li>
+        </ul>
+      </nav>
+      <div className={`header__user-block ${isNavOpened ? `header__user-block--opened` : ``}`}>
+        <a
+            href="#"
+            className={`header__user-link ${isNavOpened ? `header__user-link--opened` : ``}`}
+            onClick={onLogInOpening}
         >
-          <span className="visually-hidden">Открыть навигацию</span>
-        </button>
-
-        <a className="header__logo" href="#">ЛИГА Банк</a>
-
-        <button
-          className={`header__close-button ${isNavOpened ? `header__close-button--opened` : ``}`}
-          onClick={onNavClose}
-        >
-          <span className="visually-hidden">Закрыть навигацию</span>
-        </button>
-
-        <div className="header__nav-wrapper">
-          <nav className={`header__nav ${isNavOpened ? `header__nav--opened` : ``}`}>
-            <ul className="header__nav-list">
-              <li className="header__nav-item">
-                <a className="header__nav-link" href="#">Услуги</a>
-              </li>
-
-              <li className="header__nav-item">
-                <a className="header__nav-link" href="#">Рассчитать кредит</a>
-              </li>
-
-              <li className="header__nav-item">
-                <a className="header__nav-link" href="#">Конвертер валют</a>
-              </li>
-
-              <li className="header__nav-item">
-                <a className="header__nav-link" href="#">Контакты</a>
-              </li>
-            </ul>
-          </nav>
-
-          <a className={`header__login ${isNavOpened ? `header__login--opened` : ``}`} href="#" onClick={onLogInOpening}>
-            <span className={`header__login-title ${isNavOpened ? `header__login-title--opened` : ``}`}>Войти в Интернет-банк</span>
-          </a>
-          <LogIn
+          <span className={`header__user-link-value ${isNavOpened ? `header__user-link-value--opened` : ``}`}>
+            Войти в Интернет-банк
+          </span>
+        </a>
+        <LogIn
             passwordInputRef={passwordInputRef}
             isLogInOpened={isLogInOpened}
             onLogInClosure={onLogInClosure}
             onLogInFieldChange={onLogInFieldChange}
             onPasswordShow={onPasswordShow}
             onPasswordHide={onPasswordHide}
-          />
-        </div>
+        />
       </div>
-    </header>
+    </div>
+  </header>
+
   );
 };
 
