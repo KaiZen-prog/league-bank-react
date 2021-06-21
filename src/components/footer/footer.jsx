@@ -1,17 +1,12 @@
 import React from "react";
-import logo from '../../img/logo.svg';
-import logoMobile from '../../img/logo-footer-mobile.svg';
 
 const Footer = () => {
   return (
       <footer className="footer app__footer">
         <div className="footer__container">
           <section className="footer__address">
-            <a href="#top">
-              <picture>
-                <source media="(max-width: 767px)" srcSet={logoMobile}/>
-                <img className="footer__logo" src={logo} alt="logo" width="150" height="27"/>
-              </picture>
+            <a className="footer__logo" href="#">
+              ЛИГА Банк
             </a>
             <div className="footer__info">
               <p>150015, г. Москва, ул. Московская, д. 32</p>
@@ -21,16 +16,16 @@ const Footer = () => {
             <nav className="footer__nav footer-nav">
               <ul className="footer-nav__list">
                 <li className="footer-nav__item">
-                  <a href="#top" className="footer-nav__link">Услуги</a>
+                  <a href="#" className="footer-nav__link">Услуги</a>
                 </li>
                 <li className="footer-nav__item">
-                  <a href="#top" className="footer-nav__link">Рассчитать кредит</a>
+                  <a href="#" className="footer-nav__link">Рассчитать кредит</a>
                 </li>
                 <li className="footer-nav__item">
-                  <a href="#top" className="footer-nav__link">Контакты</a>
+                  <a href="#" className="footer-nav__link">Контакты</a>
                 </li>
                 <li className="footer-nav__item">
-                  <a href="#top" className="footer-nav__link">Задать вопрос</a>
+                  <a href="#" className="footer-nav__link">Задать вопрос</a>
                 </li>
               </ul>
             </nav>
@@ -39,7 +34,7 @@ const Footer = () => {
             <ul className="footer__contacts-list">
               <li className="footer__contacts-item">
                 <a href="tel: *0904" className="footer__tel footer__tel--mobile">*0904</a>
-                <p className="page-footer__phone-info">Бесплатно для абонентов МТС, Билайн, Мегафон, Теле2</p>
+                <p className="footer__phone-info">Бесплатно для абонентов МТС, Билайн, Мегафон, Теле2</p>
               </li>
               <li className="footer__contacts-item footer__contacts-item--main-phone">
                 <a href="tel: +78001112233" className="footer__tel footer__tel--main">8 800 111 22 33</a>
@@ -49,22 +44,22 @@ const Footer = () => {
             <section className="footer__social social">
               <ul className="social__list">
                 <li className="social__item">
-                  <a href="#top" className="social__link social__link--fb">
+                  <a href="#" className="social__link social__link--fb">
                     <span className="visually-hidden">Мы в фейсбуке</span>
                   </a>
                 </li>
                 <li className="social__item">
-                  <a href="#top" className="social__link social__link--inst">
+                  <a href="#" className="social__link social__link--inst">
                     <span className="visually-hidden">Мы в инстаграме</span>
                   </a>
                 </li>
                 <li className="social__item">
-                  <a href="#top" className="social__link social__link--twitter">
+                  <a href="#" className="social__link social__link--twitter">
                     <span className="visually-hidden">Мы в твиттере</span>
                   </a>
                 </li>
                 <li className="social__item">
-                  <a href="#top" className="social__link social__link--youtube">
+                  <a href="#" className="social__link social__link--youtube">
                     <span className="visually-hidden">Наш канал на ютубе</span>
                   </a>
                 </li>

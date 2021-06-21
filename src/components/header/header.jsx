@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import withHeader from "../../hocs/with-header/with-header";
 import LogIn from "../log-in/log-in";
-import logo from '../../img/logo.svg';
 
 const Header = (props) => {
   const {
@@ -24,7 +23,7 @@ const Header = (props) => {
       <div className="header__wrapper">
         <button className="header__burger-button" onClick={onNavOpen}><span className="visually-hidden">Открыть меню</span></button>
         <a href="#" className="header__logo">
-          <img className="header__img" src={logo} alt="logo" width="150" height="27"/>
+          ЛИГА Банк
         </a>
         <button className={`header__close-menu ${isNavOpened ? `header__close-menu--opened` : ``}`} onClick={onNavClose}><span className="visually-hidden">Закрыть меню</span></button>
       </div>

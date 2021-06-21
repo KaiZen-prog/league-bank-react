@@ -1,5 +1,5 @@
 .calculator {
-  padding: 53px 12px 10px;
+  padding: 53px 20px 10px;
 
   margin: auto;
 }
@@ -376,9 +376,11 @@
 }
 
 .calculator__offer {
+  position: relative;
+
   margin-right: 3px;
   margin-left: 3px;
-  padding: 35px 5px 40px 15px;
+  padding: 35px 5px 91px 15px;
 
   background-color: $color-white;
 
@@ -441,7 +443,16 @@
 
   @include button($color-white, $color-bright-blue);
 
+  &--preorder {
+    position: absolute;
+
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   &--request {
+    width: 100%;
+
     margin-right: 3px;
     margin-left: 3px;
     padding: 16px 112px 15px 109px;
@@ -665,7 +676,7 @@
   .calculator__offer {
     margin-right: 3px;
     margin-left: 3px;
-    padding: 53px 5px 60px 60px;
+    padding: 53px 5px 111px 60px;
 
     &--refusal {
       padding-top: 54px;
@@ -722,6 +733,7 @@
     padding: 15px 214px 14px 212px;
 
     &--request {
+      width: calc(100% - 6px);
       line-height: 19px;
 
       padding: 17px 296px 15px 303px;

@@ -10,12 +10,12 @@
   margin: 0 auto;
 
   @media (min-width: $tablet-width-min) and (max-width: $desktop-width-min - 1) {
-    padding: 56px 45px 60px 45px;
+    padding: 56px 45px 55px 45px;
   }
 
   @media (max-width: $tablet-width-min - 1) {
     flex-wrap: wrap;
-    padding: 30px 15px 50px 15px;
+    padding: 30px 15px 62px 15px;
   }
 }
 
@@ -29,7 +29,7 @@
   @media (min-width: $tablet-width-min) and (max-width: $desktop-width-min - 1) {
     flex-wrap: nowrap;
     min-width: 260px;
-    margin-right: 94px;
+    margin-right: 74px;
   }
 
   @media (max-width: $tablet-width-min - 1) {
@@ -39,18 +39,64 @@
 }
 
 .footer__logo {
-  margin-top: -8px;
+  position: relative;
+
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+
+  width: 130px;
+
   margin-bottom: 16px;
+  padding-top: 9px;
+  padding-left: 33px;
+
+  letter-spacing: 1.1px;
+
+  color: #1F1E25;
 
   @media (min-width: $tablet-width-min) and (max-width: $desktop-width-min - 1) {
-    width: 133px;
+    font-size: 18px;
+    line-height: 21px;
+
+    width: 150px;
+
     margin-top: -6px;
-    margin-bottom: 30px;
+    margin-bottom: 32px;
+    padding-top: 7px;
+    padding-left: 32px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      display: block;
+
+      width: 26px;
+      height: 24px;
+
+      top: 0;
+      left: -1px;
+
+      background-image: url("../img/logo-footer-tablet.svg");
+    }
   }
 
   @media (max-width: $tablet-width-min - 1) {
-    width: 114px;
     margin: -5px 0 16px -1px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      display: block;
+
+      width: 20px;
+      height: 19px;
+
+      top: 5px;
+      left: 8px;
+
+      background-image: url("../img/logo-mobile.svg");
+    }
   }
 }
 
@@ -81,13 +127,16 @@
   margin-top: -100px;
 
   @media (min-width: $tablet-width-min) and (max-width: $desktop-width-min - 1) {
+    align-self: flex-start;
+
     padding: 0;
     margin-bottom: 16px;
     margin-top: -6px;
   }
 
   @media (max-width: $tablet-width-min - 1) {
-    padding: 0;
+    padding-top: 3px;
+    padding-left: 8px;
     margin-top: 0;
   }
 }
@@ -125,6 +174,10 @@
   @media (max-width: $desktop-width-min - 1) {
     flex-wrap: wrap;
   }
+
+  @media (min-width: $tablet-width-min) and (max-width: $desktop-width-min - 1) {
+    padding-bottom: 59px;
+  }
 }
 
 .footer__contacts-list {
@@ -133,16 +186,29 @@
   flex-wrap: wrap;
   flex-grow: 1;
   margin: 0;
-  padding: 0;
-  padding-top: 2px;
+  padding-top: 3px;
+  padding-left: 8px;
   list-style: none;
+
+  @media (min-width: $tablet-width-min) and (max-width: $desktop-width-min - 1) {
+    align-content: flex-start;
+
+    padding-top: 0;
+  }
+
+  @media (max-width: $tablet-width-min - 1) {
+    padding-top: 1px;
+    padding-left: 37px;
+  }
 }
 
 .footer__contacts-item {
   padding-left: 29px;
 
   @media (max-width: $desktop-width-min - 1) {
-    margin-bottom: 11px;
+    margin-bottom: -6px;
+    padding-top: 2px;
+    padding-left: 0;
 
     &--main-phone {
       margin-left: 4px;
@@ -150,7 +216,13 @@
   }
 
   @media (max-width: $tablet-width-min - 1) {
-    margin-bottom: 3px;
+    margin-right: 40px;
+    margin-bottom: 1px;
+  }
+
+  @media (min-width: $tablet-width-min) and (max-width: $desktop-width-min - 1) {
+    padding-left: 41px;
+    margin-bottom: 20px;
   }
 }
 
@@ -200,9 +272,19 @@
 .footer__social {
   margin-left: 17px;
   margin-right: -1px;
+  padding-left: 10px;
 
   @media (max-width: $desktop-width-min - 1) {
     margin-left: -15px;
+  }
+
+  @media (min-width: $tablet-width-min) and (max-width: $desktop-width-min - 1) {
+    padding-left: 0;
+    margin-left: 5px;
+  }
+
+  @media (max-width: $tablet-width-min - 1) {
+    margin-left: -17px;
   }
 }
 
@@ -217,6 +299,11 @@
 .social__item {
   @media (max-width: $desktop-width-min - 1) {
     margin-right: 5px;
+  }
+
+  @media (max-width: $tablet-width-min - 1) {
+    margin-top: 0;
+    margin-left: -2px;
   }
 }
 
@@ -247,5 +334,9 @@
     margin-top: 2px;
     height: 13px;
     background-image: url("../img/icon-youtube-mobile.svg");
+  }
+
+  @media (max-width: $tablet-width-min - 1) {
+    margin-left: 17px;
   }
 }

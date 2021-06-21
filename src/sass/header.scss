@@ -5,6 +5,9 @@
 .header__container {
   display: flex;
 
+  padding-right: 20px;
+  padding-left: 9px;
+
   @media (max-width: $tablet-width-min - 1) {
     display: block;
     position: relative;
@@ -15,7 +18,8 @@
 .header__wrapper {
   @media (max-width: $tablet-width-min - 1) {
     display: flex;
-    padding-top: 17px;
+    padding-top: 16px;
+    padding-left: 14px;
   }
 }
 
@@ -35,27 +39,63 @@
 }
 
 .header__logo {
+  position: relative;
   margin-right: 96px;
+
+  font-style: normal;
+  font-weight: bold;
   line-height: 91px;
   transform: translateY(2px);
 
-  @media (min-width: $tablet-width-min) and (max-width: $desktop-width-min - 1) {
-    margin-right: 56px;
-    line-height: 69px;
+  color: #1F1E25;
 
-    img {
-      width: 134px;
-      transform: translateY(5px);
+  letter-spacing: 1.1px;
+
+  @media (min-width: $tablet-width-min) and (max-width: $desktop-width-min - 1) {
+    display: block;
+
+    margin-right: 56px;
+    font-size: 18px;
+    line-height: 21px;
+
+    padding-top: 27px;
+    padding-left: 68px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      display: block;
+
+      width: 26px;
+      height: 24px;
+
+      top: 20px;
+      left: 35px;
+
+      background-image: url("../img/logo-tablet.svg");
     }
   }
 
   @media (max-width: $tablet-width-min - 1) {
     margin-top: -12px;
-    line-height: 33px;
+    padding-top: 9px;
+    padding-left: 40px;
 
-    img {
-      width: 118px;
-      margin-left: 11px;
+    font-size: 16px;
+    line-height: 19px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      display: block;
+
+      width: 20px;
+      height: 19px;
+
+      top: 8px;
+      left: 13px;
+
+      background-image: url("../img/logo-mobile.svg");
     }
   }
 }
@@ -192,9 +232,10 @@
 
     &::before {
       width: 14px;
-      height: 15px;
+      height: 16px;
       top: 1px;
       left: 1px;
+      background-image: url("../img/icon-login-mobile.svg");
       background-size: cover;
     }
 

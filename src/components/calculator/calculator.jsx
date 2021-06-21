@@ -64,6 +64,29 @@ const Calculator = (props) => {
     return position;
   };
 
+  const setTermLine = (term) => {
+    if (term > 10 && term < 20) {
+      return term + ` лет`;
+    }
+
+    switch (term.toString().substr(-1)) {
+      case `1`:
+        return term + ` год`;
+
+      case `2`:
+        return term + ` года`;
+
+      case `3`:
+        return term + ` года`;
+
+      case `4`:
+        return term + ` года`;
+
+      default:
+        return term + ` лет`;
+    }
+  };
+
   return (
     <section className="calculator">
       <a name="calculator"></a>
@@ -191,7 +214,7 @@ const Calculator = (props) => {
                     onClick={onLabelClick}
                     onFocus={onInputFocus}
                   >
-                    {term} лет
+                    {setTermLine(term)}
                   </div>
 
                   <input
@@ -272,7 +295,7 @@ const Calculator = (props) => {
                       <p className="calculator__offer-name">Необходимый доход</p>
                     </li>
                   </ul>
-                  <button type="submit" className="calculator__submit-button">Оформить заявку</button>
+                  <button type="submit" className="calculator__submit-button calculator__submit-button--preorder">Оформить заявку</button>
                 </div>
               )}
               {creditAmount < paramsCredit.minCreditAmount && (

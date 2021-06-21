@@ -1,6 +1,5 @@
 import React, {createRef, PureComponent} from 'react';
 import {InputFields, MortgageParams, CarParams, KeyCode, REQUIRED_INCOME, QUANTITY_MONTH, PHONE_LENGTH} from '../../const';
-import {shakeEffect} from '../../utils/common';
 
 /* eslint no-unused-expressions: ["error", { "allowTernary": true }]*/
 const withCalculator = (Component) => {
