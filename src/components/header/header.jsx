@@ -30,16 +30,16 @@ const Header = (props) => {
       <nav className={`header__nav ${isNavOpened ? `header__nav--opened` : ``}`}>
         <ul className="header__nav-list">
           <li className="header__nav-item">
-            <a href="#" className="header__nav-link">Услуги</a>
+            <a href="#" className={`header__nav-link ${isNavOpened ? `header__nav-link--opened` : ``}`}>Услуги</a>
           </li>
           <li className="header__nav-item">
-            <a href="#" className="header__nav-link">Рассчитать кредит</a>
+            <a href="#" className={`header__nav-link ${isNavOpened ? `header__nav-link--opened` : ``}`}>Рассчитать кредит</a>
           </li>
           <li className="header__nav-item">
-            <a href="#" className="header__nav-link">Конвертер валют</a>
+            <a href="#" className={`header__nav-link ${isNavOpened ? `header__nav-link--opened` : ``}`}>Конвертер валют</a>
           </li>
           <li className="header__nav-item">
-            <a href="#" className="header__nav-link">Контакты</a>
+            <a href="#" className={`header__nav-link ${isNavOpened ? `header__nav-link--opened` : ``}`}>Контакты</a>
           </li>
         </ul>
       </nav>

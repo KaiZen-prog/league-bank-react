@@ -948,7 +948,7 @@
 
     margin-top: 7px;
     margin-right: 0;
-    padding: 53px 5px 60px 58px;
+    padding: 53px 5px 111px 58px;
 
     &--refusal {
       padding: 54px 5px 55px 59px;
@@ -962,6 +962,8 @@
 
     &--request {
       display: block;
+
+      width: 198px;
 
       margin-left: 286px;
       padding: 15px 60px 14px 59px;

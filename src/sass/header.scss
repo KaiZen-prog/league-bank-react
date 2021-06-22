@@ -6,12 +6,18 @@
   display: flex;
 
   padding-right: 20px;
-  padding-left: 9px;
+  padding-left: 90px;
+
+  @media (min-width: $tablet-width-min) and (max-width: $desktop-width-min - 1) {
+    padding-left: 9px;
+  }
 
   @media (max-width: $tablet-width-min - 1) {
     display: block;
     position: relative;
     min-height: 48px;
+
+    padding-left: 9px;
   }
 }
 
@@ -40,19 +46,43 @@
 
 .header__logo {
   position: relative;
-  margin-right: 96px;
+
+  display: block;
+
+  width: 160px;
+
+  margin-right: 93px;
 
   font-style: normal;
   font-weight: bold;
-  line-height: 91px;
+  font-size: 20px;
+  line-height: 23px;
+
   transform: translateY(2px);
+
+  padding-top: 32px;
+  padding-left: 44px;
 
   color: #1F1E25;
 
   letter-spacing: 1.1px;
 
-  @media (min-width: $tablet-width-min) and (max-width: $desktop-width-min - 1) {
+  &::before {
+    content: "";
+    position: absolute;
     display: block;
+
+    width: 28px;
+    height: 26px;
+
+    top: 24px;
+    left: 6px;
+
+    background-image: url("../img/logo-desktop.svg");
+  }
+
+  @media (min-width: $tablet-width-min) and (max-width: $desktop-width-min - 1) {
+    width: 170px;
 
     margin-right: 56px;
     font-size: 18px;
@@ -60,6 +90,7 @@
 
     padding-top: 27px;
     padding-left: 68px;
+    padding-bottom: 21px;
 
     &::before {
       content: "";
@@ -125,6 +156,10 @@
 
     &--opened {
       display: block;
+
+      margin-top: 47px;
+      padding-left: 14px;
+      padding-right: 14px;
     }
   }
 }
@@ -133,15 +168,16 @@
   display: flex;
   flex-wrap: wrap;
   margin: 0;
-  padding: 0;
+  padding: 20px 0 0;
   list-style: none;
 
   @media (min-width: $tablet-width-min) and (max-width: $desktop-width-min - 1) {
-    padding-top: 2px;
+    padding-top: 15px;
   }
 
   @media (max-width: $tablet-width-min - 1) {
     display: block;
+    padding-top: 0;
   }
 }
 
@@ -157,9 +193,9 @@
 
 .header__nav-link {
   display: inline-block;
-  padding: 0 12.5px;
+  padding: 16px 12.5px;
   font-size: 16px;
-  line-height: 91px;
+  line-height: 19px;
   color: #1F1E25;
 
   &:hover,
@@ -167,16 +203,21 @@
     color: #2C36F2;
   }
 
+  &--opened {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
   @media (min-width: $tablet-width-min) and (max-width: $desktop-width-min - 1) {
-    padding: 0 10px;
+    padding: 14px 10px;
     margin-bottom: -2px;
     font-size: 14px;
-    line-height: 69px;
+    line-height: 16px;
   }
 
   @media (max-width: $tablet-width-min - 1) {
     padding-left: 15px;
-    line-height: 59px;
+    line-height: 19px;
   }
 }
 
@@ -230,6 +271,10 @@
     padding-left: 30px;
     line-height: 59px;
 
+    &--opened {
+      padding-left: 44px;
+    }
+
     &::before {
       width: 14px;
       height: 16px;
@@ -243,7 +288,7 @@
       width: 20px;
       height: 22px;
       top: 18px;
-      left: 0;
+      left: 14px;
     }
   }
 }
