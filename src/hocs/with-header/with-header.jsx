@@ -29,10 +29,12 @@ const withHeader = (Component) => {
 
     onNavOpen() {
       this.setState({isNavOpened: true});
+      document.documentElement.style.overflow = `hidden`;
     }
 
     onNavClose() {
       this.setState({isNavOpened: false});
+      document.documentElement.style.overflow = `auto`;
     }
 
     onLogInOpening() {

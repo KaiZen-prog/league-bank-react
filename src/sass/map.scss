@@ -23,10 +23,10 @@
 
 @media (min-width: $tablet-width-min) {
   .map {
-    margin-bottom: 20px;
-    padding: 5px 46px 80px 45px;
+    max-width: $tablet-width-min;
 
-    @include block-centered($tablet-width-min);
+    margin: 0 auto;
+    padding: 5px 46px 80px 45px;
   }
 
   .map__header {
@@ -43,7 +43,7 @@
 
 @media (min-width: $desktop-width-min) {
   .map {
-    width: 1210px;
+    max-width: 1210px;
 
     margin: auto;
     padding: 32px 20px 110px 20px;
