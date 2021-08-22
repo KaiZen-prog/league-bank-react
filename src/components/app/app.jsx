@@ -1,23 +1,24 @@
 import React from "react";
+import {Redirect, Switch, Route, HashRouter} from 'react-router-dom';
+import {AppRoute} from '../../const';
 import Header from "../header/header";
-import MainSlider from "../main-slider/main-slider";
-import ServicesSlider from "../services-slider/services-slider";
-import Calculator from "../calculator/calculator";
-import Map from "../map/map";
 import Footer from "../footer/footer";
+import MainScreen from "../main-screen/main-screen";
+import ConverterScreen from "../converter-screen/converter-screen";
 
 const App = () => {
   return (
-    <>
+    <HashRouter>
       <Header/>
       <main>
-        <MainSlider/>
-        <ServicesSlider/>
-        <Calculator/>
-        <Map/>
+        <Switch>
+          <Route exact path={AppRoute.ROOT} component={MainScreen}/>
+          <Route exact path={AppRoute.CONVERTER} component={ConverterScreen}/>
+          <Redirect to={AppRoute.ROOT}/>
+        </Switch>
       </main>
       <Footer/>
-    </>
+    </HashRouter>
   );
 };
 
