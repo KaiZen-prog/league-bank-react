@@ -1,6 +1,6 @@
 import React from "react";
-import {Redirect, Switch, Route, HashRouter} from 'react-router-dom';
-import {AppRoute} from '../../const';
+import {Redirect, Switch, Route, HashRouter} from "react-router-dom";
+import {AppRoute} from "../../const";
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import MainScreen from "../main-screen/main-screen";
