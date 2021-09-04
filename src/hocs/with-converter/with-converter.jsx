@@ -18,11 +18,11 @@ export const withConverter = (Component) => {
         exchangeRate: props.exchangeRate,
         currencyInput: {
           type: Currencies.RUB,
-          amount: ``,
+          amount: 0,
         },
         currencyOutput: {
           type: Currencies.USD,
-          amount: ``,
+          amount: 0,
         },
       };
 
@@ -124,7 +124,7 @@ export const withConverter = (Component) => {
       this.setState({[name]: Object.assign(
             {},
             this.state[name],
-            {amount: Math.floor(value * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT}
+            {amount: value === `` ? `` : Math.floor(value * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT}
         )});
 
       this.valueConversion(name, value);

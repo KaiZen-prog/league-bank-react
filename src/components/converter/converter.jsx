@@ -10,66 +10,74 @@ const Converter = (props) => {
       <section className="converter">
         <h2 className="converter__header">Конвертер валют</h2>
         <form method="post" action="#" className="converter__form" onSubmit={submitHandler}>
-          <div className="converter__field">
-            <label htmlFor="currency-input">
-              <h3 className="converter__field-title">У меня есть</h3>
-            </label>
-            <input
-                id="currency-input"
-                className="converter__input"
-                name="currencyInput"
-                type="number"
-                placeholder="0"
-                value={currencyInput.amount}
-                onChange={valueChangeHandler}
-            />
+          <div className="converter__field-wrapper">
+            <div className="converter__field">
+              <label htmlFor="currency-input">
+                <h3 className="converter__field-title">У меня есть</h3>
+              </label>
+              <div className="converter__input-wrapper">
+                <input
+                    id="currency-input"
+                    className="converter__input"
+                    name="currencyInput"
+                    type="number"
+                    min="0"
+                    step="any"
+                    value={currencyInput.amount}
+                    onChange={valueChangeHandler}
+                />
 
-            <label>
-              <select
-                  name="currencyInput"
-                  className="converter__select"
-                  value={currencyInput.type}
-                  onChange={typeChangeHandler}
-              >
-                <option value="RUB">RUB</option>
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <option value="GBP">GBP</option>
-                <option value="CNY">CNY</option>
-              </select>
-              <span className="visually-hidden">валюта</span>
-            </label>
-          </div>
+                <label>
+                  <select
+                      name="currencyInput"
+                      className="converter__select"
+                      value={currencyInput.type}
+                      onChange={typeChangeHandler}
+                  >
+                    <option value="RUB">RUB</option>
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                    <option value="CNY">CNY</option>
+                  </select>
+                  <span className="visually-hidden">валюта</span>
+                </label>
+              </div>
+            </div>
 
-          <div className="converter__field">
-            <label htmlFor="currency-input">
-              <h3 className="converter__field-title">Хочу приобрести</h3>
-            </label>
-            <input
-                id="currency-output"
-                className="converter__input"
-                name="currencyOutput"
-                type="number"
-                placeholder="0"
-                value={currencyOutput.amount}
-                onChange={valueChangeHandler}
-            />
+            <div className="converter__field">
+              <label htmlFor="currency-input">
+                <h3 className="converter__field-title">Хочу приобрести</h3>
+              </label>
+              <div className="converter__input-wrapper">
+                <input
+                    id="currency-output"
+                    className="converter__input"
+                    name="currencyOutput"
+                    type="number"
+                    min="0"
+                    step="any"
+                    value={currencyOutput.amount}
+                    onChange={valueChangeHandler}
+                />
 
-            <label>
-              <select
-                  name="currencyOutput"
-                  className="converter__select"
-                  value={currencyOutput.type}
-                  onChange={typeChangeHandler}
-              >
-                <option value="RUB">RUB</option>
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <option value="GBP">GBP</option>
-                <option value="CNY">CNY</option>
-              </select>
-              <span className="visually-hidden">валюта</span>
-            </label>
+                <label>
+                  <select
+                      name="currencyOutput"
+                      className="converter__select"
+                      value={currencyOutput.type}
+                      onChange={typeChangeHandler}
+                  >
+                    <option value="RUB">RUB</option>
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                    <option value="CNY">CNY</option>
+                  </select>
+                  <span className="visually-hidden">валюта</span>
+                </label>
+              </div>
+            </div>
           </div>
 
           <div id="calendar">
