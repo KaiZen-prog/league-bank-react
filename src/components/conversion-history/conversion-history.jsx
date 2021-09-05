@@ -7,20 +7,22 @@ import PropTypes from "prop-types";
 const ConversionHistory = ({history, clear}) => {
   return (
       <section className="conversion-history">
-        <h2 className="conversion-history__header">История конвертации</h2>
-        <ul className="conversion-history__list">
-          {history.map((elem, i) => (
-              <ConversionHistoryItem
-                  key = {i}
-                  date = {elem.date}
-                  inputAmount = {elem.currencyInput.amount}
-                  inputCurrency = {elem.currencyInput.type}
-                  outputAmount = {elem.currencyOutput.amount}
-                  outputCurrency = {elem.currencyOutput.type}
-              />
-          ))}
-        </ul>
-        <button className="conversion-history__button" onClick={clear}>Очистить историю</button>
+        <div className="conversion-history__wrapper">
+          <h2 className="conversion-history__header">История конвертации</h2>
+          <ul className="conversion-history__list">
+            {history.map((elem, i) => (
+                <ConversionHistoryItem
+                    key = {i}
+                    date = {elem.date}
+                    inputAmount = {elem.currencyInput.amount}
+                    inputCurrency = {elem.currencyInput.type}
+                    outputAmount = {elem.currencyOutput.amount}
+                    outputCurrency = {elem.currencyOutput.type}
+                />
+            ))}
+          </ul>
+          <button className="conversion-history__button" onClick={clear}>Очистить историю</button>
+        </div>
       </section>
   );
 };

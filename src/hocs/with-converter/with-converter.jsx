@@ -155,6 +155,7 @@ export const withConverter = (Component) => {
               typeChangeHandler={this.typeChangeHandler}
               valueChangeHandler={this.valueChangeHandler}>
             <DatePicker
+                className="calendar__container"
                 selected={new Date(this.props.date)}
                 minDate={new Date(moment().utc().subtract(1, `week`))}
                 maxDate={new Date(moment().utc().format(`YYYY-MM-DD`))}

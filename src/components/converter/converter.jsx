@@ -22,6 +22,7 @@ const Converter = (props) => {
                     name="currencyInput"
                     type="number"
                     min="0"
+                    max="10000000"
                     step="any"
                     value={currencyInput.amount}
                     onChange={valueChangeHandler}
