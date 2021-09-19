@@ -1,19 +1,14 @@
 import React from "react";
-import {Redirect, Switch, Route, Router} from "react-router-dom";
+import {Redirect, Switch, Route} from "react-router-dom";
 import {AppRoute} from "../../const";
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import MainScreen from "../main-screen/main-screen";
 import ConverterScreen from "../converter-screen/converter-screen";
 
-import {createMemoryHistory} from 'history';
-const history = createMemoryHistory({
-  initialEntries: [`/`]
-});
-
 const App = () => {
   return (
-    <Router history={history}>
+    <>
       <Header/>
       <main>
         <Switch>
@@ -23,7 +18,7 @@ const App = () => {
         </Switch>
       </main>
       <Footer/>
-    </Router>
+    </>
   );
 };
 
