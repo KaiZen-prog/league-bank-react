@@ -69,12 +69,12 @@ const ServicesSlider = (props) => {
 };
 
 ServicesSlider.propTypes = {
-  sliderRef: PropTypes.shape({}).isRequired,
+  sliderRef: PropTypes.shape({}),
   currentSlide: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    tabName: PropTypes.string.isRequired,
-    slogan: PropTypes.string.isRequired,
-    features: PropTypes.arrayOf(PropTypes.string).isRequired,
+    name: PropTypes.string,
+    tabName: PropTypes.string,
+    slogan: PropTypes.string,
+    features: PropTypes.arrayOf(PropTypes.string),
     text: PropTypes.string,
     link: PropTypes.string
   }).isRequired,

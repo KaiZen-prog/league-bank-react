@@ -6,12 +6,12 @@ import Map from "../map/map";
 
 const MainScreen = () => {
   return (
-      <>
-        <MainSlider/>
-        <ServicesSlider/>
-        <Calculator/>
-        <Map/>
-      </>
+    <>
+      <MainSlider/>
+      <ServicesSlider/>
+      <Calculator/>
+      <Map/>
+    </>
   );
 };
 

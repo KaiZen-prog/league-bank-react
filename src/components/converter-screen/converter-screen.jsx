@@ -4,10 +4,10 @@ import ConversionHistory from "../conversion-history/conversion-history";
 
 const ConverterScreen = () => {
   return (
-      <>
-        <Converter/>
-        <ConversionHistory/>
-      </>
+    <>
+      <Converter/>
+      <ConversionHistory/>
+    </>
   );
 };
 

@@ -64,26 +64,26 @@ const Calculator = (props) => {
     return position;
   };
 
-  const setTermLine = (term) => {
-    if (term > 10 && term < 20) {
-      return term + ` лет`;
+  const setTermLine = (str) => {
+    if (str > 10 && str < 20) {
+      return str + ` лет`;
     }
 
-    switch (term.toString().substr(-1)) {
+    switch (str.toString().substr(-1)) {
       case `1`:
-        return term + ` год`;
+        return str + ` год`;
 
       case `2`:
-        return term + ` года`;
+        return str + ` года`;
 
       case `3`:
-        return term + ` года`;
+        return str + ` года`;
 
       case `4`:
-        return term + ` года`;
+        return str + ` года`;
 
       default:
-        return term + ` лет`;
+        return str + ` лет`;
     }
   };
 

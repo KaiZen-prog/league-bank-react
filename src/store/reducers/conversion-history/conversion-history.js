@@ -3,19 +3,19 @@ import {ActionType} from "../../actions";
 import {MAX_HISTORY_LENGTH} from "../../../const";
 
 const initialState = {
-  history: [],
+  conversionHistory: [],
 };
 
 const conversionHistory = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.ADD_TRANSACTION:
       return extend(state, {
-        history: [action.payload, ...state.history].slice(0, MAX_HISTORY_LENGTH),
+        conversionHistory: [action.payload, ...state.conversionHistory].slice(0, MAX_HISTORY_LENGTH),
       });
 
     case ActionType.CLEAR_HISTORY:
       return extend(state, {
-        history: [],
+        conversionHistory: [],
       });
   }
 

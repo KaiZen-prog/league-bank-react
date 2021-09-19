@@ -1,0 +1,524 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App render correctly 1`] = `
+Array [
+  <header
+    className="header  app__header"
+  >
+    <div
+      className="container header__container"
+    >
+      <div
+        className="header__wrapper"
+      >
+        <button
+          className="header__burger-button"
+          onClick={[Function]}
+        >
+          <span
+            className="visually-hidden"
+          >
+            Открыть меню
+          </span>
+        </button>
+        <a
+          className="header__logo"
+          href="/"
+          onClick={[Function]}
+        >
+          ЛИГА Банк
+        </a>
+        <button
+          className="header__close-menu "
+          onClick={[Function]}
+        >
+          <span
+            className="visually-hidden"
+          >
+            Закрыть меню
+          </span>
+        </button>
+      </div>
+      <nav
+        className="header__nav "
+      >
+        <ul
+          className="header__nav-list"
+        >
+          <li
+            className="header__nav-item"
+          >
+            <a
+              className="header__nav-link "
+              href="#"
+            >
+              Услуги
+            </a>
+          </li>
+          <li
+            className="header__nav-item"
+          >
+            <a
+              className="header__nav-link "
+              href="#"
+            >
+              Рассчитать кредит
+            </a>
+          </li>
+          <li
+            className="header__nav-item"
+          >
+            <a
+              className="header__nav-link "
+              href="/converter"
+              onClick={[Function]}
+            >
+              Конвертер валют
+            </a>
+          </li>
+          <li
+            className="header__nav-item"
+          >
+            <a
+              className="header__nav-link "
+              href="#"
+            >
+              Контакты
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div
+        className="header__user-block "
+      >
+        <a
+          className="header__user-link "
+          href="#"
+          onClick={[Function]}
+        >
+          <span
+            className="header__user-link-value "
+          >
+            Войти в Интернет-банк
+          </span>
+        </a>
+        <div
+          className="log-in "
+          onClick={[Function]}
+        >
+          <form
+            action="#"
+            className="log-in__form"
+            onClick={[Function]}
+          >
+            <div
+              className="log-in__logo"
+            />
+            <button
+              className="log-in__close"
+              onClick={[Function]}
+              type="button"
+            >
+              <span
+                className="visually-hidden"
+              >
+                Закрыть окно
+              </span>
+            </button>
+            <label
+              className="log-in__label log-in__label--login"
+            >
+              Логин
+              <input
+                autoFocus={true}
+                className="log-in__input log-in__input--login"
+                id="login"
+                name="login"
+                onChange={[Function]}
+                required={true}
+                type="text"
+                value=""
+              />
+            </label>
+            <label
+              className="log-in__label log-in__label--password"
+            >
+              Пароль
+              <input
+                className="log-in__input log-in__input--password"
+                id="password"
+                name="password"
+                onChange={[Function]}
+                required={true}
+                type="password"
+                value=""
+              />
+            </label>
+            <button
+              className="log-in__show-password"
+              onMouseDown={[Function]}
+              onMouseUp={[Function]}
+            />
+            <button
+              className="log-in__submit"
+              type="submit"
+            >
+              Войти
+            </button>
+            <a
+              className="log-in__restore-password"
+              href="#top"
+            >
+              Забыли пароль?
+            </a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </header>,
+  <main>
+    <section
+      className="main-slider"
+    >
+      <div
+        className="main-slider__slides-container"
+        onMouseDown={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "left": "0",
+          }
+        }
+      />
+      <ul
+        className="main-slider__dots"
+      />
+    </section>
+    <section
+      className="services-slider"
+    >
+      <h2
+        className="services-slider__header visually-hidden"
+      >
+        Наши сервисы
+      </h2>
+      <ul
+        className="services-slider__tabs"
+      >
+        <li
+          className="services-slider__tab services-slider__tab--deposit "
+          onClick={[Function]}
+        >
+          <span
+            className="services-slider__tab-label services-slider__tab-label--deposit"
+          >
+            Вклады
+          </span>
+        </li>
+        <li
+          className="services-slider__tab services-slider__tab--credit "
+          onClick={[Function]}
+        >
+          <span
+            className="services-slider__tab-label services-slider__tab-label--credit"
+          >
+            Кредиты
+          </span>
+        </li>
+        <li
+          className="services-slider__tab services-slider__tab--insurance "
+          onClick={[Function]}
+        >
+          <span
+            className="services-slider__tab-label services-slider__tab-label--insurance"
+          >
+            Страхование
+          </span>
+        </li>
+        <li
+          className="services-slider__tab services-slider__tab--online "
+          onClick={[Function]}
+        >
+          <span
+            className="services-slider__tab-label services-slider__tab-label--online"
+          >
+            Онлайн-сервисы
+          </span>
+        </li>
+      </ul>
+      <div
+        className="services-slider__slides-container"
+        onMouseDown={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "left": "0",
+          }
+        }
+      />
+      <ul
+        className="services-slider__dots"
+      />
+    </section>
+    <section
+      className="calculator"
+    >
+      <a
+        name="calculator"
+      />
+      <form
+        action="#"
+        className="calculator__form"
+        onSubmit={[Function]}
+      >
+        <h2
+          className="calculator__title"
+        >
+          Кредитный калькулятор
+        </h2>
+        <div
+          className="calculator__flex-container"
+        >
+          <div
+            className="calculator__container"
+          >
+            <fieldset
+              className="calculator__purpose"
+            >
+              <h3
+                className="calculator__step"
+              >
+                Шаг 1. Цель кредита
+              </h3>
+              <div
+                className="calculator__purpose-select"
+                onClick={[Function]}
+              >
+                <span
+                  className="calculator__select-title"
+                >
+                  Выберите цель кредита
+                </span>
+                <ul
+                  className="calculator__purpose-list calculator__purpose-list--hidden"
+                >
+                  <li
+                    className="calculator__purpose-item"
+                    id="mortgage"
+                    onClick={[Function]}
+                  >
+                    Ипотечное кредитование
+                  </li>
+                  <li
+                    className="calculator__purpose-item"
+                    id="car"
+                    onClick={[Function]}
+                  >
+                    Автомобильное кредитование
+                  </li>
+                </ul>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </form>
+    </section>
+    <section
+      className="map"
+      id="map"
+    >
+      <h2
+        className="map__header"
+      >
+        Отделения Лига Банка
+      </h2>
+      <iframe
+        className="map__iframe"
+        src="https://yandex.ru/map-widget/v1/?um=constructor%3A903677e276cd647a44c0897e60edad9ae34a0ebe73fde4d37f4ca90b4001c09f&source=constructor"
+        title="map"
+      />
+    </section>
+  </main>,
+  <footer
+    className="footer app__footer"
+  >
+    <div
+      className="footer__container"
+    >
+      <section
+        className="footer__address"
+      >
+        <a
+          className="footer__logo"
+          href="#"
+        >
+          ЛИГА Банк
+        </a>
+        <div
+          className="footer__info"
+        >
+          <p>
+            150015, г. Москва, ул. Московская, д. 32
+          </p>
+          <p>
+            Генеральная лицензия Банка России №1050
+          </p>
+          <p>
+            Ⓒ Лига Банк, 2019
+          </p>
+        </div>
+        <nav
+          className="footer__nav footer-nav"
+        >
+          <ul
+            className="footer-nav__list"
+          >
+            <li
+              className="footer-nav__item"
+            >
+              <a
+                className="footer-nav__link"
+                href="#"
+              >
+                Услуги
+              </a>
+            </li>
+            <li
+              className="footer-nav__item"
+            >
+              <a
+                className="footer-nav__link"
+                href="#"
+              >
+                Рассчитать кредит
+              </a>
+            </li>
+            <li
+              className="footer-nav__item"
+            >
+              <a
+                className="footer-nav__link"
+                href="#"
+              >
+                Контакты
+              </a>
+            </li>
+            <li
+              className="footer-nav__item"
+            >
+              <a
+                className="footer-nav__link"
+                href="#"
+              >
+                Задать вопрос
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </section>
+      <section
+        className="footer__contacts"
+      >
+        <ul
+          className="footer__contacts-list"
+        >
+          <li
+            className="footer__contacts-item"
+          >
+            <a
+              className="footer__tel footer__tel--mobile"
+              href="tel: *0904"
+            >
+              *0904
+            </a>
+            <p
+              className="footer__phone-info"
+            >
+              Бесплатно для абонентов МТС, Билайн, Мегафон, Теле2
+            </p>
+          </li>
+          <li
+            className="footer__contacts-item footer__contacts-item--main-phone"
+          >
+            <a
+              className="footer__tel footer__tel--main"
+              href="tel: +78001112233"
+            >
+              8 800 111 22 33
+            </a>
+            <p
+              className="footer__phone-info"
+            >
+              Бесплатный для всех городов России
+            </p>
+          </li>
+        </ul>
+        <section
+          className="footer__social social"
+        >
+          <ul
+            className="social__list"
+          >
+            <li
+              className="social__item"
+            >
+              <a
+                className="social__link social__link--fb"
+                href="#"
+              >
+                <span
+                  className="visually-hidden"
+                >
+                  Мы в фейсбуке
+                </span>
+              </a>
+            </li>
+            <li
+              className="social__item"
+            >
+              <a
+                className="social__link social__link--inst"
+                href="#"
+              >
+                <span
+                  className="visually-hidden"
+                >
+                  Мы в инстаграме
+                </span>
+              </a>
+            </li>
+            <li
+              className="social__item"
+            >
+              <a
+                className="social__link social__link--twitter"
+                href="#"
+              >
+                <span
+                  className="visually-hidden"
+                >
+                  Мы в твиттере
+                </span>
+              </a>
+            </li>
+            <li
+              className="social__item"
+            >
+              <a
+                className="social__link social__link--youtube"
+                href="#"
+              >
+                <span
+                  className="visually-hidden"
+                >
+                  Наш канал на ютубе
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
+      </section>
+    </div>
+  </footer>,
+]
+`;

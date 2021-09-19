@@ -51,11 +51,11 @@ const MainSlider = (props) => {
 };
 
 MainSlider.propTypes = {
-  sliderRef: PropTypes.shape({}).isRequired,
+  sliderRef: PropTypes.shape({}),
   currentSlide: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    slogan: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    title: PropTypes.string,
+    slogan: PropTypes.string,
     link: PropTypes.string
   }).isRequired,
 

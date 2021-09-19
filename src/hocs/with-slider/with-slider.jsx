@@ -28,25 +28,27 @@ const withSlider = (Component) => {
     }
 
     componentDidMount() {
-      switch (this.sliderRef.current.className) {
-        case Sliders.main:
-          this.setState({
-            slides: mainSlides,
-            currentSlide: mainSlides[0],
-            currentSlideNumber: 0,
-            slidesQuantity: mainSlides.length
-          });
-          this.carouselHandler();
-          break;
+      if (this.sliderRef.current !== null) {
+        switch (this.sliderRef.current.className) {
+          case Sliders.main:
+            this.setState({
+              slides: mainSlides,
+              currentSlide: mainSlides[0],
+              currentSlideNumber: 0,
+              slidesQuantity: mainSlides.length
+            });
+            this.carouselHandler();
+            break;
 
-        case Sliders.services:
-          this.setState({
-            slides: servicesSlides,
-            currentSlide: servicesSlides[0],
-            currentSlideNumber: 0,
-            slidesQuantity: servicesSlides.length
-          });
-          break;
+          case Sliders.services:
+            this.setState({
+              slides: servicesSlides,
+              currentSlide: servicesSlides[0],
+              currentSlideNumber: 0,
+              slidesQuantity: servicesSlides.length
+            });
+            break;
+        }
       }
     }
 

@@ -79,15 +79,15 @@ export const withConverter = (Component) => {
       }
 
       this.setState({
-            [name]: Object.assign(
-                {},
-                this.state[name],
-                {type: value}
-            )
-          },
-          () => {
-            this.valueConversion(FormFields.INPUT, this.state.currencyInput.amount);
-          }
+        [name]: Object.assign(
+            {},
+            this.state[name],
+            {type: value}
+        )
+      },
+      () => {
+        this.valueConversion(FormFields.INPUT, this.state.currencyInput.amount);
+      }
       );
     }
 
@@ -112,20 +112,20 @@ export const withConverter = (Component) => {
       const result = this.conversionFromUSD(this.outputField, convertedToUSD);
 
       this.setState({[this.outputField]: Object.assign(
-            {},
-            this.state[this.outputField],
-            {amount: result}
-        )});
+          {},
+          this.state[this.outputField],
+          {amount: result}
+      )});
     }
 
     valueChangeHandler(evt) {
       const {name, value} = evt.target;
 
       this.setState({[name]: Object.assign(
-            {},
-            this.state[name],
-            {amount: value === `` ? `` : Math.floor(value * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT}
-        )});
+          {},
+          this.state[name],
+          {amount: value === `` ? `` : Math.floor(value * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT}
+      )});
 
       this.valueConversion(name, value);
     }
@@ -148,22 +148,22 @@ export const withConverter = (Component) => {
       const state = this.state;
 
       return (
-          <Component
-              {...this.props}
-              state={state}
-              submitHandler={this.submitHandler}
-              typeChangeHandler={this.typeChangeHandler}
-              valueChangeHandler={this.valueChangeHandler}>
-            <DatePicker
-                className="calendar__container"
-                selected={new Date(this.props.date)}
-                minDate={new Date(moment().utc().subtract(1, `week`))}
-                maxDate={new Date(moment().utc().format(`YYYY-MM-DD`))}
-                onChange={(date) => this.dateChangeHandler(date)}
-                dateFormat={`d.MM.yyyy`}
-                customInput={<Calendar/>}
-            />
-          </Component>
+        <Component
+          {...this.props}
+          state={state}
+          submitHandler={this.submitHandler}
+          typeChangeHandler={this.typeChangeHandler}
+          valueChangeHandler={this.valueChangeHandler}>
+          <DatePicker
+            className="calendar__container"
+            selected={new Date(this.props.date)}
+            minDate={new Date(moment().utc().subtract(1, `week`))}
+            maxDate={new Date(moment().utc().format(`YYYY-MM-DD`))}
+            onChange={(date) => this.dateChangeHandler(date)}
+            dateFormat={`d.MM.yyyy`}
+            customInput={<Calendar/>}
+          />
+        </Component>
       );
     }
   }

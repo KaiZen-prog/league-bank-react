@@ -1,6 +1,6 @@
 export const AppRoute = {
-  ROOT: '/',
-  CONVERTER: '/converter'
+  ROOT: `/`,
+  CONVERTER: `/converter`
 };
 
 export const FormFields = {

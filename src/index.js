@@ -4,7 +4,7 @@ import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import {createAPI} from "./services/api";
 import {createStore, applyMiddleware} from "redux";
-import rootReducer from "./store/reducers/root-reducer"
+import rootReducer from "./store/reducers/root-reducer";
 import {composeWithDevTools} from "redux-devtools-extension";
 import {loadExchangeRate} from "./store/api-actions";
 import App from "./components/app/app";

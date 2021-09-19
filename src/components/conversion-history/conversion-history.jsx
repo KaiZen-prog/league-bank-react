@@ -4,31 +4,31 @@ import ConversionHistoryItem from "../conversion-history-item/conversion-history
 import {clearHistory} from "../../store/actions";
 import PropTypes from "prop-types";
 
-const ConversionHistory = ({history, clear}) => {
+const ConversionHistory = ({conversionHistory, clear}) => {
   return (
-      <section className="conversion-history">
-        <div className="conversion-history__wrapper">
-          <h2 className="conversion-history__header">История конвертации</h2>
-          <ul className="conversion-history__list">
-            {history.map((elem, i) => (
-                <ConversionHistoryItem
-                    key = {i}
-                    date = {elem.date}
-                    inputAmount = {elem.currencyInput.amount}
-                    inputCurrency = {elem.currencyInput.type}
-                    outputAmount = {elem.currencyOutput.amount}
-                    outputCurrency = {elem.currencyOutput.type}
-                />
-            ))}
-          </ul>
-          <button className="conversion-history__button" onClick={clear}>Очистить историю</button>
-        </div>
-      </section>
+    <section className="conversion-history">
+      <div className="conversion-history__wrapper">
+        <h2 className="conversion-history__header">История конвертации</h2>
+        <ul className="conversion-history__list">
+          {conversionHistory.map((elem, i) => (
+            <ConversionHistoryItem
+              key = {i}
+              date = {elem.date}
+              inputAmount = {elem.currencyInput.amount}
+              inputCurrency = {elem.currencyInput.type}
+              outputAmount = {elem.currencyOutput.amount}
+              outputCurrency = {elem.currencyOutput.type}
+            />
+          ))}
+        </ul>
+        <button className="conversion-history__button" onClick={clear}>Очистить историю</button>
+      </div>
+    </section>
   );
 };
 
 ConversionHistory.propTypes = {
-  history: PropTypes.arrayOf(PropTypes.shape({
+  conversionHistory: PropTypes.arrayOf(PropTypes.shape({
     currencyInput: PropTypes.shape({
       amount: PropTypes.number.isRequired,
       type: PropTypes.string.isRequired
@@ -44,7 +44,7 @@ ConversionHistory.propTypes = {
 ConversionHistory.displayName = `ConversionHistory`;
 
 const mapStateToProps = (state) => ({
-  history: state.CONVERSION_HISTORY.history,
+  conversionHistory: state.CONVERSION_HISTORY.conversionHistory,
 });
 
 const mapDispatchToProps = (dispatch) => ({
