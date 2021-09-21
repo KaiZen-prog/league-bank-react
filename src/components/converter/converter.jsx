@@ -1,10 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {withConverter} from "../../hocs/with-converter/with-converter";
+import moment from "moment";
+import Calendar from "../calendar/calendar";
+import DatePicker from "react-datepicker";
 
 const Converter = (props) => {
-  const {children, submitHandler, typeChangeHandler, valueChangeHandler} = props;
-  const {currencyInput, currencyOutput} = props.state;
+  const {
+    state,
+    date,
+    onChange,
+    submitHandler,
+    typeChangeHandler,
+    valueChangeHandler
+  } = props;
+
+  const {currencyInput, currencyOutput} = state;
 
   return (
     <section className="converter">
@@ -82,7 +93,15 @@ const Converter = (props) => {
         </div>
 
         <div id="calendar">
-          {children}
+          <DatePicker
+            className="calendar__container"
+            selected={new Date(date)}
+            minDate={new Date(moment().utc().subtract(1, `week`).format(`YYYY-MM-DD`))}
+            maxDate={new Date(moment().utc().format(`YYYY-MM-DD`))}
+            onChange={onChange}
+            dateFormat={`d.MM.yyyy`}
+            customInput={<Calendar/>}
+          />
         </div>
 
         <button type="submit" className="converter__button">Сохранить результат</button>
@@ -102,7 +121,8 @@ Converter.propTypes = {
       type: PropTypes.string.isRequired
     }),
   }).isRequired,
-  children: PropTypes.element.isRequired,
+  date: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   submitHandler: PropTypes.func.isRequired,
   typeChangeHandler: PropTypes.func.isRequired,
   valueChangeHandler: PropTypes.func.isRequired

@@ -20,7 +20,7 @@ const ConversionHistoryItem = ({date, inputAmount, inputCurrency, outputAmount, 
 };
 
 ConversionHistoryItem.propTypes = {
-  date: PropTypes.date,
+  date: PropTypes.string.isRequired,
   inputAmount: PropTypes.number.isRequired,
   inputCurrency: PropTypes.string.isRequired,
   outputAmount: PropTypes.number.isRequired,

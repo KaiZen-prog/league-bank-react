@@ -1,19 +1,23 @@
-import React from "react";
+import React from 'react';
 import PropTypes from "prop-types";
 
-const Calendar = ({onClick, value}) => {
-  return (
-    <>
-      <button className="converter__calendar" type="button" onClick={onClick}>
-        {value}
-      </button>
-    </>
-  );
-};
+class Calendar extends React.Component {
+  render() {
+    const {onClick, value} = this.props;
+
+    return (
+      <>
+        <button className="converter__calendar" type="button" onClick={onClick}>
+          {value}
+        </button>
+      </>
+    );
+  }
+}
 
 Calendar.propTypes = {
-  value: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired
+  value: PropTypes.string,
+  onClick: PropTypes.func
 };
 
 Calendar.displayName = `Calendar`;

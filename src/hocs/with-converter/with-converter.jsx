@@ -2,11 +2,9 @@ import {connect} from "react-redux";
 import {addConversion, changeDate} from "../../store/actions";
 import moment from "moment";
 import React from "react";
-import DatePicker from "react-datepicker";
 import "../../../node_modules/react-datepicker/dist/react-datepicker.css";
 import {loadExchangeRate} from "../../store/api-actions";
 import {FormFields, Currencies, FLOAT_COEFFICIENT} from "../../const";
-import Calendar from "../../components/calendar/calendar";
 import PropTypes from "prop-types";
 
 export const withConverter = (Component) => {
@@ -149,33 +147,25 @@ export const withConverter = (Component) => {
 
       return (
         <Component
-          {...this.props}
           state={state}
+          date={this.props.date}
+          onChange={(date) => this.dateChangeHandler(date)}
           submitHandler={this.submitHandler}
           typeChangeHandler={this.typeChangeHandler}
           valueChangeHandler={this.valueChangeHandler}>
-          <DatePicker
-            className="calendar__container"
-            selected={new Date(this.props.date)}
-            minDate={new Date(moment().utc().subtract(1, `week`))}
-            maxDate={new Date(moment().utc().format(`YYYY-MM-DD`))}
-            onChange={(date) => this.dateChangeHandler(date)}
-            dateFormat={`d.MM.yyyy`}
-            customInput={<Calendar/>}
-          />
         </Component>
       );
     }
   }
 
   WithCurrencyConverter.propTypes = {
-    date: PropTypes.date,
+    date: PropTypes.string,
     exchangeRate: PropTypes.shape({
-      USD: PropTypes.string.isRequired,
-      RUB: PropTypes.string.isRequired,
-      EUR: PropTypes.string.isRequired,
-      GBP: PropTypes.string.isRequired,
-      CNY: PropTypes.string.isRequired
+      USD: PropTypes.number.isRequired,
+      RUB: PropTypes.number.isRequired,
+      EUR: PropTypes.number.isRequired,
+      GBP: PropTypes.number.isRequired,
+      CNY: PropTypes.number.isRequired
     }).isRequired,
     addTransaction: PropTypes.func.isRequired,
     changeDate: PropTypes.func.isRequired,

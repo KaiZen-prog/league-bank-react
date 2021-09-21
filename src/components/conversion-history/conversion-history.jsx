@@ -29,15 +29,16 @@ const ConversionHistory = ({conversionHistory, clear}) => {
 
 ConversionHistory.propTypes = {
   conversionHistory: PropTypes.arrayOf(PropTypes.shape({
+    date: PropTypes.string,
     currencyInput: PropTypes.shape({
-      amount: PropTypes.number.isRequired,
-      type: PropTypes.string.isRequired
+      amount: PropTypes.number,
+      type: PropTypes.string
     }),
     currencyOutput: PropTypes.shape({
-      amount: PropTypes.number.isRequired,
-      type: PropTypes.string.isRequired
+      amount: PropTypes.number,
+      type: PropTypes.string
     }),
-  })).isRequired,
+  })),
   clear: PropTypes.func.isRequired
 };
 

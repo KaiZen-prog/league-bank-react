@@ -1,26 +1,27 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+/**
+ * @jest-environment jsdom
+ */
+import React from "react";
+import renderer from "react-test-renderer";
 import {Provider} from 'react-redux';
 import {Router} from "react-router-dom";
 import {createMemoryHistory} from "history";
 import configureStore from 'redux-mock-store';
-import {InitialState} from '../../mocks/test-mocks';
-import App from "./app";
+import ConverterScreen from "./converter-screen";
+import {InitialState} from "../../mocks/test-mocks";
 
 const mockStore = configureStore();
 const history = createMemoryHistory({initialEntries: [`/`]});
 
-test(`App render correctly`, () => {
+test(`ConverterScreen render correctly`, () => {
   const store = mockStore(InitialState);
-
   const tree = renderer
       .create(
           <Provider store={store}>
             <Router history={history}>
-              <App/>
+              <ConverterScreen/>
             </Router>
           </Provider>
-      )
-      .toJSON();
+      ).toJSON();
   expect(tree).toMatchSnapshot();
 });
