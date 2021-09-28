@@ -491,4 +491,5 @@ Calculator.propTypes = {
 
 Calculator.displayName = `Calculator`;
 
+export {Calculator};
 export default withCalculator(Calculator);

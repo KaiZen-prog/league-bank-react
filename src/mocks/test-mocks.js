@@ -1,7 +1,4 @@
 import moment from "moment";
-import {createRef} from 'react';
-
-const noop = () => {};
 
 export const InitialState = {
   CONVERSION_HISTORY: {
@@ -85,32 +82,4 @@ export const InitialState = {
       CNY: 6.4662
     }
   }
-};
-
-export const CalculatorProps = {
-  costInputRef: createRef(),
-  costDivRef: createRef(),
-  initialFeeInputRef: createRef(),
-  initialFeeDivRef: createRef(),
-  termInputRef: createRef(),
-  termDivRef: createRef(),
-  telRef: createRef(),
-  onSelectOpen: {noop},
-  onSelectClose: {noop},
-  onPurposeChange: {noop},
-  onLabelClick: {noop},
-  onInputFocus: {noop},
-  onInputChange: {noop},
-  onCostChange: {noop},
-  onInitialFeeChange: {noop},
-  onTermChange: {noop},
-  onInputRangeChange: {noop},
-  onAdditionalChange: {noop},
-  onCostChangeSign: {noop},
-  onMakeRequest: {noop},
-  onSubmit: {noop},
-  onPopupClose: {noop},
-  onRegApplicationChange: {noop},
-  onChangePhone: {noop},
-  requestNumber: 1,
 };

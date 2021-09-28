@@ -129,4 +129,6 @@ Converter.propTypes = {
 };
 
 Converter.displayName = `Converter`;
+
+export {Converter};
 export default withConverter(Converter);

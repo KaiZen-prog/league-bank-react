@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConversionHistory render correctly 1`] = `
+<button
+  className="converter__calendar"
+  onClick={[Function]}
+  type="button"
+>
+  2021-09-28
+</button>
+`;

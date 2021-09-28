@@ -40,7 +40,6 @@ const ServicesSlide = (props) => {
 ServicesSlide.propTypes = {
   currentSlide: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
     slogan: PropTypes.string.isRequired,
     features: PropTypes.arrayOf(PropTypes.string).isRequired,
     text: PropTypes.shape({

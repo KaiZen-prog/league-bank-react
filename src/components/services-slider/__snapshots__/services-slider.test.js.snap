@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Calculator render correctly 1`] = `
+<section
+  className="services-slider"
+>
+  <h2
+    className="services-slider__header visually-hidden"
+  >
+    Наши сервисы
+  </h2>
+  <ul
+    className="services-slider__tabs"
+  >
+    <li
+      className="services-slider__tab services-slider__tab--deposit "
+      onClick={[Function]}
+    >
+      <span
+        className="services-slider__tab-label services-slider__tab-label--deposit"
+      >
+        Вклады
+      </span>
+    </li>
+    <li
+      className="services-slider__tab services-slider__tab--credit "
+      onClick={[Function]}
+    >
+      <span
+        className="services-slider__tab-label services-slider__tab-label--credit"
+      >
+        Кредиты
+      </span>
+    </li>
+    <li
+      className="services-slider__tab services-slider__tab--insurance "
+      onClick={[Function]}
+    >
+      <span
+        className="services-slider__tab-label services-slider__tab-label--insurance"
+      >
+        Страхование
+      </span>
+    </li>
+    <li
+      className="services-slider__tab services-slider__tab--online "
+      onClick={[Function]}
+    >
+      <span
+        className="services-slider__tab-label services-slider__tab-label--online"
+      >
+        Онлайн-сервисы
+      </span>
+    </li>
+  </ul>
+  <div
+    className="services-slider__slides-container"
+    onMouseDown={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "left": "0",
+      }
+    }
+  />
+  <ul
+    className="services-slider__dots"
+  />
+</section>
+`;

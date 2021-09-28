@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Calculator render correctly 1`] = `
+<div
+  className="main-slider__slide main-slider__slide--credit"
+>
+  <div
+    className="main-slider__gradient-container main-slider__gradient-container--credit"
+  >
+    <div
+      className="main-slider__background-container main-slider__background-container--credit"
+    />
+  </div>
+  <div
+    className="main-slider__container main-slider__container--credit"
+  >
+    <h1
+      className="main-slider__title main-slider__title--credit"
+    >
+      Лига Банк
+    </h1>
+    <p
+      className="main-slider__slogan main-slider__slogan--credit"
+    >
+      Кредиты на любой случай
+    </p>
+    <a
+      className="main-slider__link main-slider__link--credit"
+      href="#calculator"
+    >
+      Рассчитать кредит
+    </a>
+  </div>
+</div>
+`;

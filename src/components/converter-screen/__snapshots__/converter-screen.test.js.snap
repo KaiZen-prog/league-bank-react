@@ -155,7 +155,23 @@ Array [
       </div>
       <div
         id="calendar"
-      />
+      >
+        <div
+          className="react-datepicker-wrapper"
+        >
+          <div
+            className="react-datepicker__input-container"
+          >
+            <button
+              className="converter__calendar"
+              onClick={[Function]}
+              type="button"
+            >
+              28.09.2021
+            </button>
+          </div>
+        </div>
+      </div>
       <button
         className="converter__button"
         type="submit"
