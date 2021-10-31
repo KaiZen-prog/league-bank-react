@@ -8,7 +8,7 @@ const initialState = {
 
 const conversionHistory = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.ADD_TRANSACTION:
+    case ActionType.ADD_CONVERSION:
       return extend(state, {
         conversionHistory: [action.payload, ...state.conversionHistory].slice(0, MAX_HISTORY_LENGTH),
       });

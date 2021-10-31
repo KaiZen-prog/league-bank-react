@@ -1,7 +1,5 @@
 import axios from "axios";
-
-const BASE_URL = `https://openexchangerates.org/api/`;
-const REQUEST_TIMEOUT = 5000;
+import {BASE_URL, REQUEST_TIMEOUT} from "../const";
 
 export const createAPI = () => {
   return axios.create({

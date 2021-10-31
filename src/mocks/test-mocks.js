@@ -83,3 +83,23 @@ export const InitialState = {
     }
   }
 };
+
+export const mockDate = moment().subtract(1, `days`).startOf(`day`);
+
+export const mockExchangeRate = {
+  USD: 1,
+  RUB: 74,
+  EUR: 0.8,
+  GBP: 13,
+  CNY: 6
+};
+
+export const mockExchangeRateFromServer = {
+  rates: {
+    USD: 1,
+    RUB: 2,
+    EUR: 3,
+    GBP: 4,
+    CNY: 5,
+  }
+};

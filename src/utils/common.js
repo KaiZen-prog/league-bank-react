@@ -1,4 +1,4 @@
-import {DIGIT_SPACE} from "../const";
+import {APIValues, DIGIT_SPACE} from "../const";
 
 export const extend = (a, b) => {
   return Object.assign({}, a, b);
@@ -48,4 +48,14 @@ export const divideNumberToSpace = (num) => {
   }
 
   return result;
+};
+
+export const adaptExchangeRatesToApp = (data) => {
+  return {
+    USD: APIValues.BASE_RATE,
+    RUB: data.rates.RUB,
+    EUR: data.rates.EUR,
+    GBP: data.rates.GBP,
+    CNY: data.rates.CNY
+  };
 };

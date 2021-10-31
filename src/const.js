@@ -20,6 +20,15 @@ export const APIValues = {
   BASE_RATE: 1
 };
 
+export const APIRoutes = {
+  HISTORICAL: `historical/`,
+  ID_PREFIX: `.json?app_id=`
+};
+
+export const BASE_URL = `https://openexchangerates.org/api/`;
+
+export const REQUEST_TIMEOUT = 5000;
+
 export const MAX_HISTORY_LENGTH = 10;
 
 export const CreditPurpose = {
