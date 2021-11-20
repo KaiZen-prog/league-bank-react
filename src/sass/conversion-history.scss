@@ -84,6 +84,10 @@
 
     padding: 0;
   }
+
+  @media (max-width: $converter-history-list-mobile-width) {
+    max-height: 650px;
+  }
 }
 
 .conversion-history__item {
@@ -102,6 +106,21 @@
 
   @media (max-width: $converter-history-list-width) {
     padding-right: 0;
+  }
+
+  @media (max-width: $converter-history-list-mobile-width) {
+    flex-flow: column;
+    margin-bottom: 20px;
+
+    border-bottom: 1px solid #C1C2CA;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    p {
+      margin-bottom: 5px;
+    }
   }
 }
 
