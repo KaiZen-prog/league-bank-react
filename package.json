@@ -19,8 +19,8 @@
     "eslint": "eslint --fix --ext .jsx --ext .js src/",
     "test": "npm run eslint && npm run test.jest",
     "test.jest": "jest",
-    "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider webpack serve --open",
-    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider webpack --mode production"
+    "start": "webpack serve --open",
+    "build": "webpack --mode production"
   },
   "browserslist": {
     "production": [
