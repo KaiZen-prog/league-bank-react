@@ -16,7 +16,7 @@ const withHeader = (Component) => {
         password: ``
       };
 
-      this.onNavOpen = this.onNavOpen.bind(this);
+      this.onBurgerClick = this.onBurgerClick.bind(this);
       this.onNavClose = this.onNavClose.bind(this);
 
       this.onLogInOpening = this.onLogInOpening.bind(this);
@@ -27,9 +27,13 @@ const withHeader = (Component) => {
       this.onPasswordHide = this.onPasswordHide.bind(this);
     }
 
-    onNavOpen() {
-      this.setState({isNavOpened: true});
-      document.documentElement.style.overflow = `hidden`;
+    onBurgerClick() {
+      if (this.state.isNavOpened === false) {
+        this.setState({isNavOpened: true});
+        document.documentElement.style.overflow = `hidden`;
+      } else {
+        this.onNavClose();
+      }
     }
 
     onNavClose() {
@@ -75,7 +79,7 @@ const withHeader = (Component) => {
         <Component
           passwordInputRef={this.passwordInputRef}
           isNavOpened={this.state.isNavOpened}
-          onNavOpen={this.onNavOpen}
+          onBurgerClick={this.onBurgerClick}
           onNavClose={this.onNavClose}
 
           isLogInOpened={this.state.isLoginInOpened}

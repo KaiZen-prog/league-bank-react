@@ -9,7 +9,7 @@ const Header = (props) => {
   const {
     passwordInputRef,
     isNavOpened,
-    onNavOpen,
+    onBurgerClick,
     onNavClose,
     isLogInOpened,
     onLogInOpening,
@@ -23,7 +23,7 @@ const Header = (props) => {
     <header className={`header ${isNavOpened ? `header--opened` : ``} app__header`}>
       <div className="container header__container">
         <div className="header__wrapper">
-          <button className="header__burger-button" onClick={onNavOpen}><span className="visually-hidden">Открыть меню</span></button>
+          <button className="header__burger-button" onClick={onBurgerClick}><span className="visually-hidden">Открыть меню</span></button>
           <Link to={AppRoute.ROOT} className="header__logo">
           ЛИГА Банк
           </Link>
@@ -74,7 +74,7 @@ Header.propTypes = {
   passwordInputRef: PropTypes.shape({}).isRequired,
 
   isNavOpened: PropTypes.bool.isRequired,
-  onNavOpen: PropTypes.func.isRequired,
+  onBurgerClick: PropTypes.func.isRequired,
   onNavClose: PropTypes.func.isRequired,
 
   isLogInOpened: PropTypes.bool.isRequired,
