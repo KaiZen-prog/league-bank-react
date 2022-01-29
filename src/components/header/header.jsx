@@ -1,8 +1,8 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import {AppRoute} from "../../const";
 import withHeader from "../../hocs/with-header/with-header";
+import PageLink from "../page-link/page-link";
 import LogIn from "../log-in/log-in";
 
 const Header = (props) => {
@@ -24,9 +24,11 @@ const Header = (props) => {
       <div className="container header__container">
         <div className="header__wrapper">
           <button className="header__burger-button" onClick={onBurgerClick}><span className="visually-hidden">Открыть меню</span></button>
-          <Link to={AppRoute.ROOT} className="header__logo">
-          ЛИГА Банк
-          </Link>
+          <PageLink
+            link={AppRoute.ROOT}
+            htmlClass={`header__logo`}
+            description={`ЛИГА Банк`}
+          />
           <button className={`header__close-menu ${isNavOpened ? `header__close-menu--opened` : ``}`} onClick={onNavClose}><span className="visually-hidden">Закрыть меню</span></button>
         </div>
         <nav className={`header__nav ${isNavOpened ? `header__nav--opened` : ``}`}>
@@ -38,7 +40,11 @@ const Header = (props) => {
               <a href="#" className={`header__nav-link ${isNavOpened ? `header__nav-link--opened` : ``}`}>Рассчитать кредит</a>
             </li>
             <li className="header__nav-item">
-              <Link to="/converter" className={`header__nav-link ${isNavOpened ? `header__nav-link--opened` : ``}`}>Конвертер валют</Link>
+              <PageLink
+                link={AppRoute.CONVERTER}
+                htmlClass={`header__nav-link ${isNavOpened ? `header__nav-link--opened` : ``}`}
+                description={`Конвертер валют`}
+              />
             </li>
             <li className="header__nav-item">
               <a href="#" className={`header__nav-link ${isNavOpened ? `header__nav-link--opened` : ``}`}>Контакты</a>

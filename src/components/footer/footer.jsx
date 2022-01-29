@@ -1,13 +1,17 @@
 import React from "react";
+import {AppRoute} from "../../const";
+import PageLink from "../page-link/page-link";
 
 const Footer = () => {
   return (
     <footer className="footer app__footer">
       <div className="footer__container">
         <section className="footer__address">
-          <a className="footer__logo" href="#">
-              ЛИГА Банк
-          </a>
+          <PageLink
+              link={AppRoute.ROOT}
+              htmlClass={`footer__logo`}
+              description={`ЛИГА Банк`}
+          />
           <div className="footer__info">
             <p>150015, г. Москва, ул. Московская, д. 32</p>
             <p>Генеральная лицензия Банка России №1050</p>
