@@ -31,7 +31,10 @@ export const withConverter = (Component) => {
       this.conversionToUSD = this.conversionToUSD.bind(this);
       this.valueChangeHandler = this.valueChangeHandler.bind(this);
       this.dateChangeHandler = this.dateChangeHandler.bind(this);
-      this.exchangeRateUpdate = this.exchangeRateUpdate.bind(this);
+    }
+
+    componentDidMount() {
+      this.exchangeRateUpdate(this.props.date);
     }
 
     submitHandler(evt) {
@@ -128,18 +131,18 @@ export const withConverter = (Component) => {
       this.valueConversion(name, value);
     }
 
-    exchangeRateUpdate() {
-      this.setState({exchangeRate: this.props.exchangeRate}, () => {
-        this.valueConversion(FormFields.INPUT, this.state[FormFields.INPUT].amount);
+    exchangeRateUpdate(date) {
+      this.props.loadExchangeRate(date, () => {
+        this.setState({exchangeRate: this.props.exchangeRate}, () => {
+          this.valueConversion(FormFields.INPUT, this.state[FormFields.INPUT].amount);
+        });
       });
     }
 
     dateChangeHandler(date) {
       const formatDate = moment(date).format(`YYYY-MM-DD`);
       this.props.changeDate(formatDate);
-      this.props.loadExchangeRate(formatDate, () => {
-        this.exchangeRateUpdate();
-      });
+      this.exchangeRateUpdate(formatDate);
     }
 
     render() {

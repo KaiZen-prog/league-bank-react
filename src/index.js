@@ -7,7 +7,6 @@ import {createAPI} from "./services/api";
 import {createStore, applyMiddleware} from "redux";
 import rootReducer from "./store/reducers/root-reducer";
 import {composeWithDevTools} from "redux-devtools-extension";
-import {loadExchangeRate} from "./store/api-actions";
 import App from "./components/app/app";
 import "./sass/style.scss";
 
@@ -20,16 +19,11 @@ const store = createStore(
     )
 );
 
-Promise.all([
-  store.dispatch(loadExchangeRate(store.getState().CONVERTER.date)),
-])
-    .then(() => {
-      ReactDOM.render(
-          <Provider store={store}>
-            <HashRouter>
-              <App />
-            </HashRouter>
-          </Provider>,
-          document.getElementById(`root`)
-      );
-    });
+ReactDOM.render(
+    <Provider store={store}>
+        <HashRouter>
+            <App />
+        </HashRouter>
+    </Provider>,
+    document.getElementById(`root`)
+);
