@@ -1,6 +1,6 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
+import Block from './page-link.styled';
 
 const PageLink = (props) => {
   const {
@@ -10,9 +10,9 @@ const PageLink = (props) => {
   } = props;
 
   return (
-    <Link to={link} className={htmlClass}>
+    <Block to={link} className={htmlClass}>
       {description}
-    </Link>
+    </Block>
   );
 };
 

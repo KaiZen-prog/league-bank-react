@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import {AppRoute} from "../../const";
 import withHeader from "../../hocs/with-header/with-header";
-import PageLink from "../page-link/page-link";
 import LogIn from "../log-in/log-in";
+import Block from './header.styled';
 
 const Header = (props) => {
   const {
@@ -20,47 +20,43 @@ const Header = (props) => {
   } = props;
 
   return (
-    <header className={`header ${isNavOpened ? `header--opened` : ``} app__header`}>
-      <div className="container header__container">
-        <div className="header__wrapper">
-          <button className="header__burger-button" onClick={onBurgerClick}><span className="visually-hidden">Открыть меню</span></button>
-          <PageLink
-            link={AppRoute.ROOT}
-            htmlClass={`header__logo`}
-            description={`ЛИГА Банк`}
-          />
-          <button className={`header__close-menu ${isNavOpened ? `header__close-menu--opened` : ``}`} onClick={onNavClose}><span className="visually-hidden">Закрыть меню</span></button>
-        </div>
-        <nav className={`header__nav ${isNavOpened ? `header__nav--opened` : ``}`}>
-          <ul className="header__nav-list">
-            <li className="header__nav-item">
-              <a href="#" className={`header__nav-link ${isNavOpened ? `header__nav-link--opened` : ``}`}>Услуги</a>
-            </li>
-            <li className="header__nav-item">
-              <a href="#" className={`header__nav-link ${isNavOpened ? `header__nav-link--opened` : ``}`}>Рассчитать кредит</a>
-            </li>
-            <li className="header__nav-item">
-              <PageLink
-                link={AppRoute.CONVERTER}
-                htmlClass={`header__nav-link ${isNavOpened ? `header__nav-link--opened` : ``}`}
-                description={`Конвертер валют`}
-              />
-            </li>
-            <li className="header__nav-item">
-              <a href="#" className={`header__nav-link ${isNavOpened ? `header__nav-link--opened` : ``}`}>Контакты</a>
-            </li>
-          </ul>
-        </nav>
-        <div className={`header__user-block ${isNavOpened ? `header__user-block--opened` : ``}`}>
-          <a
-            href="#"
-            className={`header__user-link ${isNavOpened ? `header__user-link--opened` : ``}`}
-            onClick={onLogInOpening}
-          >
-            <span className={`header__user-link-value ${isNavOpened ? `header__user-link-value--opened` : ``}`}>
+    <Block $isNavOpened={isNavOpened} className={`header ${isNavOpened ? `header--opened` : ``}`}>
+      <Block.Container>
+        <Block.Wrapper>
+          <Block.BurgerButton type="button" onClick={onBurgerClick}>
+            <span className="visually-hidden">Открыть меню</span>
+          </Block.BurgerButton>
+          <Block.LogoLink to={AppRoute.ROOT}>
+            ЛИГА Банк
+          </Block.LogoLink>
+          <Block.CloseNavButton type="button" $isNavOpened={isNavOpened} onClick={onNavClose}>
+            <span className="visually-hidden">Закрыть меню</span>
+          </Block.CloseNavButton>
+        </Block.Wrapper>
+
+        <Block.Nav $isNavOpened={isNavOpened}>
+          <Block.NavList>
+            <Block.NavItem>
+              <Block.NavLink to="#" $isNavOpened={isNavOpened}>Услуги</Block.NavLink>
+            </Block.NavItem>
+            <Block.NavItem>
+              <Block.NavLink href="#" $isNavOpened={isNavOpened}>Рассчитать кредит</Block.NavLink>
+            </Block.NavItem>
+            <Block.NavItem>
+              <Block.NavLink to={AppRoute.CONVERTER} $isNavOpened={isNavOpened}>Конвертер валют</Block.NavLink>
+            </Block.NavItem>
+            <Block.NavItem>
+              <Block.NavLink href="#" $isNavOpened={isNavOpened}>Контакты</Block.NavLink>
+            </Block.NavItem>
+          </Block.NavList>
+        </Block.Nav>
+
+        <Block.UserBlock $isNavOpened={isNavOpened}>
+          <Block.UserLink href="#" $isNavOpened={isNavOpened} onClick={onLogInOpening}>
+            <Block.UserLinkValue $isNavOpened={isNavOpened}>
             Войти в Интернет-банк
-            </span>
-          </a>
+            </Block.UserLinkValue>
+          </Block.UserLink>
           <LogIn
             passwordInputRef={passwordInputRef}
             isLogInOpened={isLogInOpened}
@@ -69,9 +65,9 @@ const Header = (props) => {
             onPasswordShow={onPasswordShow}
             onPasswordHide={onPasswordHide}
           />
-        </div>
-      </div>
-    </header>
+        </Block.UserBlock>
+      </Block.Container>
+    </Block>
 
   );
 };

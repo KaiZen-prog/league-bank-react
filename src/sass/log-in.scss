@@ -1,23 +1,4 @@
-.log-in {
-  position: fixed;
 
-  display: none;
-  justify-content: center;
-  align-items: center;
-
-  width: 100vw;
-  height: 100vh;
-
-  top: 0;
-  left: 0;
-  background-color: rgba(88, 87, 87, 0.6);
-
-  z-index: 99;
-
-  &--opened {
-    display: flex;
-  }
-}
 
 .log-in__form {
   position: fixed;

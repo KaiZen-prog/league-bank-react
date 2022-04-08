@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Block from './log-in.styled';
 
 const LogIn = (props) => {
 
@@ -13,7 +14,7 @@ const LogIn = (props) => {
   } = props;
 
   return (
-    <div className={`log-in ${isLogInOpened ? `log-in--opened` : ``}`} onClick={onLogInClosure}>
+    <Block $isLogInOpened={isLogInOpened} onClick={onLogInClosure}>
       <form action="#" className="log-in__form" onClick={(evt) => evt.stopPropagation()}>
         <div className="log-in__logo"/>
         <button type="button" className="log-in__close" onClick={onLogInClosure}>
@@ -49,7 +50,7 @@ const LogIn = (props) => {
         <button type="submit" className="log-in__submit">Войти</button>
         <a href="#top" className="log-in__restore-password">Забыли пароль?</a>
       </form>
-    </div>
+    </Block>
   );
 };
 

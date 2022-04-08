@@ -8,7 +8,6 @@ import {createStore, applyMiddleware} from "redux";
 import rootReducer from "./store/reducers/root-reducer";
 import {composeWithDevTools} from "redux-devtools-extension";
 import App from "./components/app/app";
-import "./sass/style.scss";
 
 const api = createAPI();
 
@@ -22,7 +21,7 @@ const store = createStore(
 ReactDOM.render(
     <Provider store={store}>
         <HashRouter>
-            <App />
+            <App/>
         </HashRouter>
     </Provider>,
     document.getElementById(`root`)

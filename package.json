@@ -80,6 +80,8 @@
     "react-test-renderer": "17.0.2",
     "redux": "4.0.5",
     "redux-devtools-extension": "2.13.9",
-    "redux-thunk": "2.3.0"
+    "redux-thunk": "2.3.0",
+    "styled-components": "5.3.5",
+    "styled-normalize": "8.0.7"
   }
 }
