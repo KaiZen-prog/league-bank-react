@@ -3,6 +3,15 @@ import {css} from 'styled-components';
 import {Link} from 'react-router-dom';
 import theme from '../../theme/theme'
 
+import iconBurger from '../../img/icon-burger.svg';
+import iconClose from '../../img/icon-close.svg';
+import iconLogin from '../../img/icon-login.svg';
+import iconLoginMobile from '../../img/icon-login-mobile.svg';
+
+import logoDesktop from '../../img/logo-desktop.svg';
+import logoTablet from '../../img/logo-tablet.svg';
+import logoMobile from '../../img/logo-mobile.svg';
+
 const Header = styled.header`
   background-color: ${theme.color.ghostWhite};
   
@@ -73,7 +82,7 @@ display: none;
     width: 16px;
     height: 12px;
     margin-top: 2px;
-    background: url("../../img/icon-burger.svg") no-repeat;
+    background: url(${iconBurger}) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -113,7 +122,7 @@ position: relative;
     top: 24px;
     left: 6px;
 
-    background-image: url("../../img/logo-desktop.svg");
+    background-image: url(${logoDesktop});
   }
 
   @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
@@ -138,7 +147,7 @@ position: relative;
       top: 20px;
       left: 35px;
 
-      background-image: url("../../img/logo-tablet.svg");
+      background-image: url(${logoTablet});
     }
   }
 
@@ -161,7 +170,7 @@ position: relative;
       top: 8px;
       left: 13px;
 
-      background-image: url("../../img/logo-mobile.svg");
+      background-image: url(${logoMobile});
     }
   }
 `;
@@ -173,7 +182,7 @@ display: none;
     width: 15px;
     height: 15px;
     margin-left: auto;
-    background: url("../../img/icon-close.svg") no-repeat;
+    background: url(${iconClose}) no-repeat;
     border: none;
     cursor: pointer;
     
@@ -303,7 +312,7 @@ Header.UserLink = styled.a`
     height: 22px;
     top: calc(50% - 11px);
     left: 0;
-    background-image: url("../../img/icon-login.svg");
+    background-image: url(${iconLogin});
     background-repeat: no-repeat;
   }
 
@@ -327,7 +336,7 @@ Header.UserLink = styled.a`
       height: 16px;
       top: 1px;
       left: 1px;
-      background-image: url("../../img/icon-login-mobile.svg");
+      background-image: url(${iconLoginMobile});
       background-size: cover;
     }
     

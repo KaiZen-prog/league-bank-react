@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header render correctly Header Login opened 1`] = `
+exports[`Index render correctly Index Login opened 1`] = `
 <header
   className="header  app__header"
 >
@@ -177,7 +177,7 @@ exports[`Header render correctly Header Login opened 1`] = `
 </header>
 `;
 
-exports[`Header render correctly HeaderNav closed 1`] = `
+exports[`Index render correctly HeaderNav closed 1`] = `
 <header
   className="header  app__header"
 >
@@ -354,7 +354,7 @@ exports[`Header render correctly HeaderNav closed 1`] = `
 </header>
 `;
 
-exports[`Header render correctly HeaderNav opened 1`] = `
+exports[`Index render correctly HeaderNav opened 1`] = `
 <header
   className="header  app__header"
 >

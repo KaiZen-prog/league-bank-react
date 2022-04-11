@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {AppRoute} from "../../const";
 import withHeader from "../../hocs/with-header/with-header";
-import LogIn from "../log-in/log-in";
+import Login from "../log-in";
 import Block from './header.styled';
 
 const Header = (props) => {
@@ -20,7 +20,7 @@ const Header = (props) => {
   } = props;
 
   return (
-    <Block $isNavOpened={isNavOpened} className={`header ${isNavOpened ? `header--opened` : ``}`}>
+    <Block $isNavOpened={isNavOpened}>
       <Block.Container>
         <Block.Wrapper>
           <Block.BurgerButton type="button" onClick={onBurgerClick}>
@@ -57,7 +57,7 @@ const Header = (props) => {
             Войти в Интернет-банк
             </Block.UserLinkValue>
           </Block.UserLink>
-          <LogIn
+          <Login
             passwordInputRef={passwordInputRef}
             isLogInOpened={isLogInOpened}
             onLogInClosure={onLogInClosure}

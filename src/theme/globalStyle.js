@@ -10,8 +10,8 @@ const GlobalStyle = createGlobalStyle`
   font-style: normal;
   font-display: swap;
 
-  src: url("../fonts/roboto-v20-latin_cyrillic-regular.woff2") format("woff2"),
-  url("../fonts/roboto-v20-latin_cyrillic-regular.woff") format("woff");
+  src: url("../assets/fonts/roboto-v20-latin_cyrillic-regular.woff2") format("woff2"),
+  url("../assets/fonts/roboto-v20-latin_cyrillic-regular.woff") format("woff");
 }
 
 @font-face {
@@ -20,8 +20,8 @@ const GlobalStyle = createGlobalStyle`
   font-style: normal;
   font-display: swap;
 
-  src: url("../fonts/roboto-v20-latin_cyrillic-500.woff2") format("woff2"),
-  url("../fonts/roboto-v20-latin_cyrillic-500.woff") format("woff");
+  src: url("../assets/fonts/roboto-v20-latin_cyrillic-500.woff2") format("woff2"),
+  url("../assets/fonts/roboto-v20-latin_cyrillic-500.woff") format("woff");
 }
 
 @font-face {
@@ -30,8 +30,8 @@ const GlobalStyle = createGlobalStyle`
   font-style: normal;
   font-display: swap;
 
-  src: url("../fonts/roboto-v20-latin_cyrillic-700.woff2") format("woff2"),
-  url("../fonts/roboto-v20-latin_cyrillic-700.woff") format("woff");
+  src: url("../assets/fonts/roboto-v20-latin_cyrillic-700.woff2") format("woff2"),
+  url("../assets/fonts/roboto-v20-latin_cyrillic-700.woff") format("woff");
 }
 
 html {

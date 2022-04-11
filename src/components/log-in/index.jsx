@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Block from './log-in.styled';
 
-const LogIn = (props) => {
+const Login = (props) => {
 
   const {
     passwordInputRef,
@@ -15,46 +15,44 @@ const LogIn = (props) => {
 
   return (
     <Block $isLogInOpened={isLogInOpened} onClick={onLogInClosure}>
-      <form action="#" className="log-in__form" onClick={(evt) => evt.stopPropagation()}>
-        <div className="log-in__logo"/>
-        <button type="button" className="log-in__close" onClick={onLogInClosure}>
+      <Block.Form action="#" onClick={(evt) => evt.stopPropagation()}>
+        <Block.Logo/>
+        <Block.Close type="button" onClick={onLogInClosure}>
           <span className="visually-hidden">Закрыть окно</span>
-        </button>
-        <label className="log-in__label log-in__label--login">
+        </Block.Close>
+        <Block.LoginLabel>
             Логин
-          <input
+          <Block.LoginInput
             id="login"
             type="text"
             name="login"
-            className="log-in__input log-in__input--login"
             onChange={onLogInFieldChange}
             value={localStorage.getItem(`login`) !== null ? localStorage.getItem(`login`) : ``}
             autoFocus
             required
           />
-        </label>
-        <label className="log-in__label log-in__label--password">
+        </Block.LoginLabel>
+        <Block.PasswordLabel>
             Пароль
-          <input
+          <Block.PasswordInput
             id="password"
             type="password"
             name="password"
             ref={passwordInputRef}
-            className="log-in__input log-in__input--password"
             onChange={onLogInFieldChange}
             value={localStorage.getItem(`password`) !== null ? localStorage.getItem(`password`) : ``}
             required
           />
-        </label>
-        <button className="log-in__show-password" onMouseDown={onPasswordShow} onMouseUp={onPasswordHide}></button>
-        <button type="submit" className="log-in__submit">Войти</button>
-        <a href="#top" className="log-in__restore-password">Забыли пароль?</a>
-      </form>
+        </Block.PasswordLabel>
+        <Block.ShowPassword type="button" onMouseDown={onPasswordShow} onMouseUp={onPasswordHide}/>
+        <Block.Submit type="submit">Войти</Block.Submit>
+        <Block.RestorePasswordLink href="#top">Забыли пароль?</Block.RestorePasswordLink>
+      </Block.Form>
     </Block>
   );
 };
 
-LogIn.propTypes = {
+Login.propTypes = {
   passwordInputRef: PropTypes.shape({}).isRequired,
   isLogInOpened: PropTypes.bool.isRequired,
   onLogInClosure: PropTypes.func.isRequired,
@@ -63,4 +61,4 @@ LogIn.propTypes = {
   onPasswordHide: PropTypes.func.isRequired
 };
 
-export default LogIn;
+export default Login;
