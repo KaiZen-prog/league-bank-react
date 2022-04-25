@@ -1,21 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import {withConverter} from "../../hocs/with-converter/with-converter";
-import moment from "moment";
-import Calendar from "../calendar/calendar";
-import DatePicker from "react-datepicker";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withConverter } from '../../hocs/with-converter/with-converter';
+import moment from 'moment';
+import Calendar from '../calendar/calendar';
+import DatePicker from 'react-datepicker';
 
-const Converter = (props) => {
-  const {
-    state,
-    date,
-    onChange,
-    submitHandler,
-    typeChangeHandler,
-    valueChangeHandler
-  } = props;
+function Converter(props) {
+  const { state, date, onChange, submitHandler, typeChangeHandler, valueChangeHandler } = props;
 
-  const {currencyInput, currencyOutput} = state;
+  const { currencyInput, currencyOutput } = state;
 
   return (
     <section className="converter">
@@ -96,39 +89,41 @@ const Converter = (props) => {
           <DatePicker
             className="calendar__container"
             selected={new Date(date)}
-            minDate={new Date(moment().utc().subtract(1, `week`).format(`YYYY-MM-DD`))}
-            maxDate={new Date(moment().utc().format(`YYYY-MM-DD`))}
+            minDate={new Date(moment().utc().subtract(1, 'week').format('YYYY-MM-DD'))}
+            maxDate={new Date(moment().utc().format('YYYY-MM-DD'))}
             onChange={onChange}
-            dateFormat={`d.MM.yyyy`}
-            customInput={<Calendar/>}
+            dateFormat={'d.MM.yyyy'}
+            customInput={<Calendar />}
           />
         </div>
 
-        <button type="submit" className="converter__button">Сохранить результат</button>
+        <button type="submit" className="converter__button">
+          Сохранить результат
+        </button>
       </form>
     </section>
   );
-};
+}
 
 Converter.propTypes = {
   state: PropTypes.shape({
     currencyInput: PropTypes.shape({
       amount: PropTypes.number.isRequired,
-      type: PropTypes.string.isRequired
+      type: PropTypes.string.isRequired,
     }),
     currencyOutput: PropTypes.shape({
       amount: PropTypes.number.isRequired,
-      type: PropTypes.string.isRequired
+      type: PropTypes.string.isRequired,
     }),
   }).isRequired,
   date: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   submitHandler: PropTypes.func.isRequired,
   typeChangeHandler: PropTypes.func.isRequired,
-  valueChangeHandler: PropTypes.func.isRequired
+  valueChangeHandler: PropTypes.func.isRequired,
 };
 
-Converter.displayName = `Converter`;
+Converter.displayName = 'Converter';
 
-export {Converter};
+export { Converter };
 export default withConverter(Converter);

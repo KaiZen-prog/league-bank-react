@@ -1,5 +1,5 @@
-import React, {createRef, PureComponent} from 'react';
-import {KeyCode} from '../../const';
+import React, { createRef, PureComponent } from 'react';
+import { KeyCode } from '../../const';
 
 const withHeader = (Component) => {
   class WithHeader extends PureComponent {
@@ -12,8 +12,8 @@ const withHeader = (Component) => {
         isNavOpened: false,
         isLoginInOpened: false,
 
-        login: ``,
-        password: ``
+        login: '',
+        password: '',
       };
 
       this.onBurgerClick = this.onBurgerClick.bind(this);
@@ -29,28 +29,28 @@ const withHeader = (Component) => {
 
     onBurgerClick() {
       if (this.state.isNavOpened === false) {
-        this.setState({isNavOpened: true});
-        document.documentElement.style.overflow = `hidden`;
+        this.setState({ isNavOpened: true });
+        document.documentElement.style.overflow = 'hidden';
       } else {
         this.onNavClose();
       }
     }
 
     onNavClose() {
-      this.setState({isNavOpened: false});
-      document.documentElement.style.overflow = `auto`;
+      this.setState({ isNavOpened: false });
+      document.documentElement.style.overflow = 'auto';
     }
 
     onLogInOpening() {
-      this.setState({isLoginInOpened: true});
-      document.documentElement.style.overflow = `hidden`;
-      document.addEventListener(`keydown`, this.closeLogInKeydown);
+      this.setState({ isLoginInOpened: true });
+      document.documentElement.style.overflow = 'hidden';
+      document.addEventListener('keydown', this.closeLogInKeydown);
     }
 
     onLogInClosure() {
-      this.setState({isLoginInOpened: false});
-      document.documentElement.style.overflow = `auto`;
-      document.removeEventListener(`keydown`, this.closeLogInKeydown);
+      this.setState({ isLoginInOpened: false });
+      document.documentElement.style.overflow = 'auto';
+      document.removeEventListener('keydown', this.closeLogInKeydown);
     }
 
     closeLogInKeydown(evt) {
@@ -60,19 +60,18 @@ const withHeader = (Component) => {
     }
 
     onLogInFieldChange(evt) {
-      const {name, value} = evt.target;
-      this.setState({[name]: value});
+      const { name, value } = evt.target;
+      this.setState({ [name]: value });
       localStorage.setItem(name, value);
     }
 
     onPasswordShow() {
-      this.passwordInputRef.current.type = `text`;
+      this.passwordInputRef.current.type = 'text';
     }
 
     onPasswordHide() {
-      this.passwordInputRef.current.type = `password`;
+      this.passwordInputRef.current.type = 'password';
     }
-
 
     render() {
       return (
@@ -81,7 +80,6 @@ const withHeader = (Component) => {
           isNavOpened={this.state.isNavOpened}
           onBurgerClick={this.onBurgerClick}
           onNavClose={this.onNavClose}
-
           isLogInOpened={this.state.isLoginInOpened}
           onLogInOpening={this.onLogInOpening}
           onLogInClosure={this.onLogInClosure}

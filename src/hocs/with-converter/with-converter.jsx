@@ -1,11 +1,11 @@
-import {connect} from "react-redux";
-import {addConversion, changeDate} from "../../store/actions";
-import moment from "moment";
-import React from "react";
-import "../../../node_modules/react-datepicker/dist/react-datepicker.css";
-import {loadExchangeRate} from "../../store/api-actions";
-import {FormFields, Currencies, FLOAT_COEFFICIENT} from "../../const";
-import PropTypes from "prop-types";
+import { connect } from 'react-redux';
+import { addConversion, changeDate } from '../../store/actions';
+import moment from 'moment';
+import React from 'react';
+import '../../../node_modules/react-datepicker/dist/react-datepicker.css';
+import { loadExchangeRate } from '../../store/api-actions';
+import { FormFields, Currencies, FLOAT_COEFFICIENT } from '../../const';
+import PropTypes from 'prop-types';
 
 export const withConverter = (Component) => {
   class WithCurrencyConverter extends React.PureComponent {
@@ -40,28 +40,27 @@ export const withConverter = (Component) => {
     submitHandler(evt) {
       evt.preventDefault();
       this.props.addTransaction({
-        date: moment(this.props.date).format(`DD.MM.YYYY`),
+        date: moment(this.props.date).format('DD.MM.YYYY'),
         currencyInput: this.state.currencyInput,
         currencyOutput: this.state.currencyOutput,
       });
     }
 
     typeChangeHandler(evt) {
-      const {name, value} = evt.target;
+      const { name, value } = evt.target;
+      const inputAmount = this.state.currencyInput.amount;
 
       if (value === this.state.currencyInput.type || value === this.state.currencyOutput.type) {
-        let inputAmount = this.state.currencyInput.amount;
-
         switch (name) {
           case FormFields.INPUT: {
             this.setState({
               currencyInput: {
                 type: value,
-                amount: inputAmount
+                amount: inputAmount,
               },
               currencyOutput: {
                 type: value,
-                amount: inputAmount
+                amount: inputAmount,
               },
             });
             return;
@@ -71,7 +70,7 @@ export const withConverter = (Component) => {
             this.setState({
               currencyOutput: {
                 type: value,
-                amount: this.state.currencyInput.amount
+                amount: inputAmount,
               },
             });
             return;
@@ -79,25 +78,28 @@ export const withConverter = (Component) => {
         }
       }
 
-      this.setState({
-        [name]: Object.assign(
-            {},
-            this.state[name],
-            {type: value}
-        )
-      },
-      () => {
-        this.valueConversion(FormFields.INPUT, this.state.currencyInput.amount);
-      }
+      this.setState(
+        (prevState) => ({
+          [name]: Object.assign({}, prevState[name], { type: value }),
+        }),
+        () => {
+          this.valueConversion(FormFields.INPUT, inputAmount);
+        },
       );
     }
 
     conversionToUSD(name, value) {
-      return Math.floor((value / this.state.exchangeRate[this.state[name].type]) * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
+      return (
+        Math.floor((value / this.state.exchangeRate[this.state[name].type]) * FLOAT_COEFFICIENT) /
+        FLOAT_COEFFICIENT
+      );
     }
 
     conversionFromUSD(name, value) {
-      return Math.floor((value * this.state.exchangeRate[this.state[name].type]) * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
+      return (
+        Math.floor(value * this.state.exchangeRate[this.state[name].type] * FLOAT_COEFFICIENT) /
+        FLOAT_COEFFICIENT
+      );
     }
 
     valueConversion(name, value) {
@@ -112,35 +114,32 @@ export const withConverter = (Component) => {
       const convertedToUSD = this.conversionToUSD(this.entryField, value);
       const result = this.conversionFromUSD(this.outputField, convertedToUSD);
 
-      this.setState({[this.outputField]: Object.assign(
-          {},
-          this.state[this.outputField],
-          {amount: result}
-      )});
+      this.setState((prevState) => ({
+        [this.outputField]: Object.assign({}, prevState[this.outputField], { amount: result }),
+      }));
     }
 
     valueChangeHandler(evt) {
-      const {name, value} = evt.target;
-
-      this.setState({[name]: Object.assign(
-          {},
-          this.state[name],
-          {amount: value === `` ? `` : Math.floor(value * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT}
-      )});
+      const { name, value } = evt.target;
+      this.setState((prevState) => ({
+        [name]: Object.assign({}, prevState[name], {
+          amount: value === '' ? '' : Math.floor(value * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT,
+        }),
+      }));
 
       this.valueConversion(name, value);
     }
 
     exchangeRateUpdate(date) {
       this.props.loadExchangeRate(date, () => {
-        this.setState({exchangeRate: this.props.exchangeRate}, () => {
+        this.setState({ exchangeRate: this.props.exchangeRate }, () => {
           this.valueConversion(FormFields.INPUT, this.state[FormFields.INPUT].amount);
         });
       });
     }
 
     dateChangeHandler(date) {
-      const formatDate = moment(date).format(`YYYY-MM-DD`);
+      const formatDate = moment(date).format('YYYY-MM-DD');
       this.props.changeDate(formatDate);
       this.exchangeRateUpdate(formatDate);
     }
@@ -155,7 +154,8 @@ export const withConverter = (Component) => {
           onChange={(date) => this.dateChangeHandler(date)}
           submitHandler={this.submitHandler}
           typeChangeHandler={this.typeChangeHandler}
-          valueChangeHandler={this.valueChangeHandler}>
+          valueChangeHandler={this.valueChangeHandler}
+        >
         </Component>
       );
     }
@@ -168,11 +168,11 @@ export const withConverter = (Component) => {
       RUB: PropTypes.number.isRequired,
       EUR: PropTypes.number.isRequired,
       GBP: PropTypes.number.isRequired,
-      CNY: PropTypes.number.isRequired
+      CNY: PropTypes.number.isRequired,
     }).isRequired,
     addTransaction: PropTypes.func.isRequired,
     changeDate: PropTypes.func.isRequired,
-    loadExchangeRate: PropTypes.func.isRequired
+    loadExchangeRate: PropTypes.func.isRequired,
   };
 
   const mapStateToProps = (state) => ({
@@ -191,7 +191,7 @@ export const withConverter = (Component) => {
 
     loadExchangeRate(date, callback) {
       dispatch(loadExchangeRate(date, callback));
-    }
+    },
   });
 
   return connect(mapStateToProps, mapDispatchToProps)(WithCurrencyConverter);

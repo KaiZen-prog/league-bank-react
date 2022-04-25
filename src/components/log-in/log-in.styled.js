@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import {css} from 'styled-components';
-import {button} from '../../theme/mixins'
-import theme from '../../theme/theme'
+import { css } from 'styled-components';
+import { button } from '../../theme/mixins';
+import theme from '../../theme/theme';
 
 import iconClose from '../../img/icon-close.svg';
 import iconLogin from '../../img/logo-log-in.svg';
@@ -22,15 +22,14 @@ const Login = styled.div`
   background-color: ${theme.color.matterhorn};
 
   z-index: 99;
-  
+
   ${(props) => {
     if (props.$isLogInOpened) {
-        return css`
-          display: flex;
-        `;
+      return css`
+        display: flex;
+      `;
     }
-}
-}
+  }}
 `;
 
 Login.Form = styled.form`
@@ -50,13 +49,13 @@ Login.Form = styled.form`
 
   border: 4px solid ${theme.color.neonBlue};
   box-sizing: border-box;
-  
+
   @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     width: 678px;
     min-height: 493px;
     padding: 55px 84px;
   }
-  
+
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
     width: 290px;
     padding: 45px 16px 71px 16px;
@@ -73,12 +72,12 @@ Login.Logo = styled.div`
 
   background-image: url(${iconLogin});
   background-repeat: no-repeat;
-  
+
   @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     margin-bottom: 35px;
     margin-left: -1px;
   }
-  
+
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
     margin-bottom: 25px;
   }
@@ -100,7 +99,7 @@ Login.Close = styled.button`
 
   border: none;
   cursor: pointer;
-  
+
   @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     top: 55px;
     right: 81px;
@@ -108,7 +107,7 @@ Login.Close = styled.button`
     width: 20px;
     height: 20px;
   }
-  
+
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
     width: 16px;
     height: 16px;
@@ -132,7 +131,7 @@ Login.Label = styled.label`
 
 Login.LoginLabel = styled(Login.Label)`
   margin-bottom: 23px;
-  
+
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
     margin-bottom: 18px;
   }
@@ -140,7 +139,7 @@ Login.LoginLabel = styled(Login.Label)`
 
 Login.PasswordLabel = styled(Login.Label)`
   margin-bottom: 49px;
-  
+
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
     margin-bottom: 30px;
   }
@@ -161,12 +160,12 @@ Login.Input = styled.input`
   border-radius: 4px;
 
   box-sizing: border-box;
-  
+
   @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     width: 502px;
     height: 60px;
   }
-  
+
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
     width: 250px;
   }
@@ -174,7 +173,7 @@ Login.Input = styled.input`
 
 Login.LoginInput = styled(Login.Input)`
   padding-right: 60px;
-  
+
   @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     padding-right: 50px;
   }
@@ -200,11 +199,11 @@ Login.ShowPassword = styled.button`
 
   border: none;
   cursor: pointer;
-  
+
   @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     right: 108px;
   }
-  
+
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
     right: 31px;
     bottom: 176px;
@@ -217,9 +216,9 @@ Login.Submit = styled.button`
   line-height: 21px;
 
   padding: 20px 188px 19px 186px;
-  
+
   ${button(theme.color.ghostWhite, theme.color.neonBlue)};
-  
+
   @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     font-weight: 500;
     font-size: 18px;
@@ -227,31 +226,31 @@ Login.Submit = styled.button`
 
     padding: 20px 227px 19px 225px;
   }
-  
+
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
     padding: 16px 107px 14px 104px;
   }
 `;
 
 Login.RestorePasswordLink = styled.a`
-position: absolute;
+  position: absolute;
 
   font-size: 14px;
   line-height: 20px;
-  
+
   bottom: 141px;
   right: 54px;
 
   color: ${theme.color.slateGrey};
   text-align: right;
-  
+
   @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     font-size: 12px;
     line-height: 17px;
-    
+
     right: 84px;
   }
-  
+
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
     bottom: 41px;
     right: 50%;

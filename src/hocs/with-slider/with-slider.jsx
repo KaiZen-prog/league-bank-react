@@ -1,7 +1,7 @@
-import React, {createRef} from 'react';
-import {DESKTOP_MIN_WIDTH, Sliders} from '../../const';
-import {getNextElement, getPreviousElement} from '../../utils/common';
-import {mainSlides, servicesSlides} from '../../mocks/mocks';
+import React, { createRef } from 'react';
+import { DESKTOP_MIN_WIDTH, Sliders } from '../../const';
+import { getNextElement, getPreviousElement } from '../../utils/common';
+import { mainSlides, servicesSlides } from '../../mocks/mocks';
 
 /* eslint no-unused-expressions: ["error", { "allowTernary": true }]*/
 const withSlider = (Component) => {
@@ -15,7 +15,7 @@ const withSlider = (Component) => {
         slides: [],
         currentSlide: {},
         currentSlideNumber: 0,
-        slidesQuantity: 0
+        slidesQuantity: 0,
       };
 
       this.carouselHandler = this.carouselHandler.bind(this);
@@ -35,7 +35,7 @@ const withSlider = (Component) => {
               slides: mainSlides,
               currentSlide: mainSlides[0],
               currentSlideNumber: 0,
-              slidesQuantity: mainSlides.length
+              slidesQuantity: mainSlides.length,
             });
             this.carouselHandler();
             break;
@@ -45,11 +45,15 @@ const withSlider = (Component) => {
               slides: servicesSlides,
               currentSlide: servicesSlides[0],
               currentSlideNumber: 0,
-              slidesQuantity: servicesSlides.length
+              slidesQuantity: servicesSlides.length,
             });
             break;
         }
       }
+    }
+
+    componentWillUnmount() {
+      clearInterval(this.carouselInterval);
     }
 
     // Получаем следующий или предыдущий слайд из массива promoSlides
@@ -58,12 +62,12 @@ const withSlider = (Component) => {
 
       if (isGettingNextSlide) {
         this.state.currentSlide === this.state.slides[this.state.slides.length - 1]
-          ? newSlide = this.state.slides[0]
-          : newSlide = getNextElement(this.state.slides, this.state.currentSlide);
+          ? (newSlide = this.state.slides[0])
+          : (newSlide = getNextElement(this.state.slides, this.state.currentSlide));
       } else {
         this.state.currentSlide === this.state.slides[0]
-          ? newSlide = this.state.slides[this.state.slides.length - 1]
-          : newSlide = getPreviousElement(this.state.slides, this.state.currentSlide);
+          ? (newSlide = this.state.slides[this.state.slides.length - 1])
+          : (newSlide = getPreviousElement(this.state.slides, this.state.currentSlide));
       }
 
       return newSlide;
@@ -71,12 +75,12 @@ const withSlider = (Component) => {
 
     carouselHandler() {
       this.carouselInterval = setInterval(() => {
-        let nextSlide = this.getNewSlide(true);
+        const nextSlide = this.getNewSlide(true);
 
-        this.setState({
+        this.setState((prevState) => ({
           currentSlide: nextSlide,
-          currentSlideNumber: this.state.slides.indexOf(nextSlide)
-        });
+          currentSlideNumber: prevState.slides.indexOf(nextSlide),
+        }));
       }, 5000);
     }
 
@@ -87,7 +91,7 @@ const withSlider = (Component) => {
 
       clearInterval(this.carouselInterval);
 
-      this.evt = evt.type === `touchstart` ? evt.touches[0] : evt;
+      this.evt = evt.type === 'touchstart' ? evt.touches[0] : evt;
 
       this.initPosX = this.evt.clientX;
 
@@ -95,19 +99,19 @@ const withSlider = (Component) => {
       this.width = this.slider.clientWidth;
       this.startCoords = this.slider.style.left;
 
-      this.slider.style.transition = `none`;
+      this.slider.style.transition = 'none';
 
-      document.addEventListener(`mousemove`, this.swipeAction);
-      document.addEventListener(`touchmove`, this.swipeAction);
-      document.addEventListener(`mouseup`, this.swipeEnd);
-      document.addEventListener(`touchend`, this.swipeEnd);
+      document.addEventListener('mousemove', this.swipeAction);
+      document.addEventListener('touchmove', this.swipeAction);
+      document.addEventListener('mouseup', this.swipeEnd);
+      document.addEventListener('touchend', this.swipeEnd);
     }
 
     swipeAction(evt) {
       this.currentPosX = this.evt.clientX;
 
       this.posX = this.initPosX - this.currentPosX;
-      this.leftCoord = this.posX - this.width * (this.state.currentSlideNumber);
+      this.leftCoord = this.posX - this.width * this.state.currentSlideNumber;
 
       if (this.leftCoord > 0) {
         this.leftCoord = 0;
@@ -117,33 +121,35 @@ const withSlider = (Component) => {
         this.leftCoord = this.width * -(this.state.slidesQuantity - 1);
       }
 
-      this.slider.style.left = this.leftCoord + `px`;
+      this.slider.style.left = `${this.leftCoord}px`;
 
-      this.initPosX = evt.type === `touchmove` ? evt.touches[0].clientX : evt.clientX;
+      this.initPosX = evt.type === 'touchmove' ? evt.touches[0].clientX : evt.clientX;
+    }
+
+    swipeEndHandler(newSlide, newSlideIndex) {
+      this.setState({
+        currentSlide: newSlide,
+        currentSlideNumber: newSlideIndex,
+      });
     }
 
     swipeEnd() {
-      document.removeEventListener(`mousemove`, this.swipeAction);
-      document.removeEventListener(`touchmove`, this.swipeAction);
-      document.removeEventListener(`mouseup`, this.swipeEnd);
-      document.removeEventListener(`touchend`, this.swipeEnd);
+      document.removeEventListener('mousemove', this.swipeAction);
+      document.removeEventListener('touchmove', this.swipeAction);
+      document.removeEventListener('mouseup', this.swipeEnd);
+      document.removeEventListener('touchend', this.swipeEnd);
 
-      this.slider.style.transition = `left 0.5s`;
+      this.slider.style.transition = 'left 0.5s';
 
-      if (this.posX * -1 / this.width > 0.5) {
-        let newSlide = this.getNewSlide(true);
+      if ((this.posX * -1) / this.width > 0.5) {
+        const newSlide = this.getNewSlide(true);
+        const newSlideIndex = this.state.slides.indexOf(newSlide);
+        this.swipeEndHandler(newSlide, newSlideIndex);
+      } else if ((this.posX * -1) / this.width < -0.5) {
+        const newSlide = this.getNewSlide(false);
+        const newSlideIndex = this.state.slides.indexOf(newSlide);
 
-        this.setState({
-          currentSlide: newSlide,
-          currentSlideNumber: this.state.slides.indexOf(newSlide)
-        });
-      } else if (this.posX * -1 / this.width < -0.5) {
-        let newSlide = this.getNewSlide(false);
-
-        this.setState({
-          currentSlide: newSlide,
-          currentSlideNumber: this.state.slides.indexOf(newSlide)
-        });
+        this.swipeEndHandler(newSlide, newSlideIndex);
       } else {
         this.slider.style.left = this.startCoords;
       }
@@ -153,7 +159,7 @@ const withSlider = (Component) => {
     }
 
     onTabClick(slide, number) {
-      this.setState({currentSlide: slide, currentSlideNumber: number});
+      this.setState({ currentSlide: slide, currentSlideNumber: number });
     }
 
     render() {

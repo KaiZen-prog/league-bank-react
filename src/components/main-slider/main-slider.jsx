@@ -1,31 +1,23 @@
-import React from "react";
-import withSlider from "../../hocs/with-slider/with-slider";
-import {Repeat} from "../../utils/common";
-import MainSlide from "../main-slide/main-slide";
-import {mainSlides} from '../../mocks/mocks';
-import PropTypes from "prop-types";
+import React from 'react';
+import withSlider from '../../hocs/with-slider/with-slider';
+import { Repeat } from '../../utils/common';
+import MainSlide from '../main-slide/main-slide';
+import { mainSlides } from '../../mocks/mocks';
+import PropTypes from 'prop-types';
 
-const MainSlider = (props) => {
-  const {
-    sliderRef,
-    currentSlide,
-    currentSlideNumber,
-    slidesQuantity,
-    onSwipeStart
-  } = props;
+function MainSlider(props) {
+  const { sliderRef, currentSlide, currentSlideNumber, slidesQuantity, onSwipeStart } = props;
 
   return (
     <section className="main-slider" ref={sliderRef}>
       <div
         className="main-slider__slides-container"
-        style={{left: currentSlideNumber === 0 ? `0` : `-` + (currentSlideNumber) + `00%`}}
+        style={{ left: currentSlideNumber === 0 ? '0' : `-${currentSlideNumber}00%` }}
         onMouseDown={onSwipeStart}
         onTouchStart={onSwipeStart}
       >
         <Repeat numTimes={slidesQuantity}>
-          {(i) => (
-            <MainSlide key={i} currentSlide={mainSlides[i]}/>
-          )}
+          {(i) => <MainSlide key={i} currentSlide={mainSlides[i]} />}
         </Repeat>
       </div>
 
@@ -34,13 +26,9 @@ const MainSlider = (props) => {
           {(i) => (
             <li
               key={i}
-              className={
-                `main-slider__dot main-slider__dot--${currentSlide.name} ${
-                  i === currentSlideNumber
-                    ? `main-slider__dot--current`
-                    : ``
-                }`
-              }
+              className={`main-slider__dot main-slider__dot--${currentSlide.name} ${
+                i === currentSlideNumber ? 'main-slider__dot--current' : ''
+              }`}
             >
             </li>
           )}
@@ -48,7 +36,7 @@ const MainSlider = (props) => {
       </ul>
     </section>
   );
-};
+}
 
 MainSlider.propTypes = {
   sliderRef: PropTypes.shape({}),
@@ -56,16 +44,15 @@ MainSlider.propTypes = {
     name: PropTypes.string,
     title: PropTypes.string,
     slogan: PropTypes.string,
-    link: PropTypes.string
+    link: PropTypes.string,
   }).isRequired,
 
   currentSlideNumber: PropTypes.number.isRequired,
   slidesQuantity: PropTypes.number.isRequired,
 
   onSwipeStart: PropTypes.func.isRequired,
-  onTabClick: PropTypes.func
 };
 
-MainSlider.displayName = `MainSlider`;
+MainSlider.displayName = 'MainSlider';
 
 export default withSlider(MainSlider);

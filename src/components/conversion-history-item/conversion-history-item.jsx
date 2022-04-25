@@ -1,23 +1,21 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const ConversionHistoryItem = ({date, inputAmount, inputCurrency, outputAmount, outputCurrency}) => {
+function ConversionHistoryItem({ date, inputAmount, inputCurrency, outputAmount, outputCurrency }) {
   return (
-    <>
-      <li className="conversion-history__item">
-        <p className="conversion-history__date">{date}</p>
-        <div className="conversion-history__container">
-          <p className="conversion-history__before">
-            {inputAmount.toString().replace(`.`, `,`)} {inputCurrency}
-          </p>
-          <p className="conversion-history__after">
-            {outputAmount.toString().replace(`.`, `,`)} {outputCurrency}
-          </p>
-        </div>
-      </li>
-    </>
+    <li className="conversion-history__item">
+      <p className="conversion-history__date">{date}</p>
+      <div className="conversion-history__container">
+        <p className="conversion-history__before">
+          {inputAmount.toString().replace('.', ',')} {inputCurrency}
+        </p>
+        <p className="conversion-history__after">
+          {outputAmount.toString().replace('.', ',')} {outputCurrency}
+        </p>
+      </div>
+    </li>
   );
-};
+}
 
 ConversionHistoryItem.propTypes = {
   date: PropTypes.string.isRequired,
@@ -27,5 +25,5 @@ ConversionHistoryItem.propTypes = {
   outputCurrency: PropTypes.string.isRequired,
 };
 
-ConversionHistoryItem.displayName = `ConversionHistoryItem`;
+ConversionHistoryItem.displayName = 'ConversionHistoryItem';
 export default ConversionHistoryItem;

@@ -1,19 +1,15 @@
-import {APIValues, DIGIT_SPACE} from "../const";
+import { APIValues, DIGIT_SPACE } from '../const';
 
-export const extend = (a, b) => {
-  return Object.assign({}, a, b);
-};
+export const extend = (a, b) => Object.assign({}, a, b);
 
-export const getPreviousElement = (array, element) => {
-  return array[(array.indexOf(element) + array.length - 1) % array.length];
-};
+export const getPreviousElement = (array, element) =>
+  array[(array.indexOf(element) + array.length - 1) % array.length];
 
-export const getNextElement = (array, element) => {
-  return array[(array.indexOf(element) + 1) % array.length];
-};
+export const getNextElement = (array, element) =>
+  array[(array.indexOf(element) + 1) % array.length];
 
 export const Repeat = (props) => {
-  let items = [];
+  const items = [];
   for (let i = 0; i < props.numTimes; i++) {
     items.push(props.children(i));
   }
@@ -23,7 +19,7 @@ export const Repeat = (props) => {
 export const shakeEffect = (element) => {
   element.style.animation = `shake ${600 / 1000}s`;
   setTimeout(() => {
-    element.style.animation = ``;
+    element.style.animation = '';
   }, 600);
 };
 
@@ -35,11 +31,11 @@ export const divideNumberToSpace = (num) => {
   }
 
   let space = 0;
-  let result = ``;
+  let result = '';
 
   for (let i = str.length - 1; i >= 0; i--) {
     if (space === 3) {
-      result = ` ` + result;
+      result = ` ${result}`;
       space = 0;
     }
 
@@ -50,12 +46,10 @@ export const divideNumberToSpace = (num) => {
   return result;
 };
 
-export const adaptExchangeRatesToApp = (data) => {
-  return {
-    USD: APIValues.BASE_RATE,
-    RUB: data.rates.RUB,
-    EUR: data.rates.EUR,
-    GBP: data.rates.GBP,
-    CNY: data.rates.CNY
-  };
-};
+export const adaptExchangeRatesToApp = (data) => ({
+  USD: APIValues.BASE_RATE,
+  RUB: data.rates.RUB,
+  EUR: data.rates.EUR,
+  GBP: data.rates.GBP,
+  CNY: data.rates.CNY,
+});

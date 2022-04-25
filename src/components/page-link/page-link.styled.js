@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
-import theme from '../../theme/theme'
+import { Link } from 'react-router-dom';
+import theme from '../../theme/theme';
 
 const PageLink = styled(Link)`
-position: relative;
+  position: relative;
 
   display: block;
 
@@ -21,12 +21,12 @@ position: relative;
   padding-top: 32px;
   padding-left: 44px;
 
-  color: #1F1E25;
+  color: #1f1e25;
 
   letter-spacing: 1.1px;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     display: block;
 
@@ -36,7 +36,7 @@ position: relative;
     top: 24px;
     left: 6px;
 
-    background-image: url("../../img/logo-desktop.svg");
+    background-image: url('../../img/logo-desktop.svg');
   }
 
   @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
@@ -51,7 +51,7 @@ position: relative;
     padding-bottom: 21px;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       display: block;
 
@@ -61,7 +61,7 @@ position: relative;
       top: 20px;
       left: 35px;
 
-      background-image: url("../../img/logo-tablet.svg");
+      background-image: url('../../img/logo-tablet.svg');
     }
   }
 
@@ -74,7 +74,7 @@ position: relative;
     line-height: 19px;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       display: block;
 
@@ -84,7 +84,7 @@ position: relative;
       top: 8px;
       left: 13px;
 
-      background-image: url("../../img/logo-mobile.svg");
+      background-image: url('../../img/logo-mobile.svg');
     }
   }
 `;

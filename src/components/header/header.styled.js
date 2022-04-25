@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import {css} from 'styled-components';
-import {Link} from 'react-router-dom';
-import theme from '../../theme/theme'
+import { css } from 'styled-components';
+import { Link } from 'react-router-dom';
+import theme from '../../theme/theme';
 
 import iconBurger from '../../img/icon-burger.svg';
 import iconClose from '../../img/icon-close.svg';
@@ -14,29 +14,28 @@ import logoMobile from '../../img/logo-mobile.svg';
 
 const Header = styled.header`
   background-color: ${theme.color.ghostWhite};
-  
+
   ${(props) => {
     if (props.$isNavOpened) {
-        return css`
-                position: fixed;
-                overflow-y: auto;
-                
-                top: 0;
-                left: 0;
-                
-                width: 100%;
-                height: 100vh;
-                
-                z-index: 99;
-                
-                @media (min-width: ${theme.tabletWidthMin}) {
-                    position: relative;
-                    height: auto;
-                }
-            `;
+      return css`
+        position: fixed;
+        overflow-y: auto;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100vh;
+
+        z-index: 99;
+
+        @media (min-width: ${theme.tabletWidthMin}) {
+          position: relative;
+          height: auto;
+        }
+      `;
     }
-  }
-}
+  }}
 `;
 
 Header.Container = styled.div`
@@ -63,7 +62,7 @@ Header.Wrapper = styled.div`
     display: flex;
     padding-top: 16px;
     padding-left: 14px;
-}
+  }
 `;
 
 Header.Wrapper = styled.div`
@@ -71,13 +70,13 @@ Header.Wrapper = styled.div`
     display: flex;
     padding-top: 16px;
     padding-left: 14px;
-}
+  }
 `;
 
 Header.BurgerButton = styled.button`
-display: none;
+  display: none;
 
-@media (max-width: ${theme.tabletWidthMinThreshold}) {
+  @media (max-width: ${theme.tabletWidthMinThreshold}) {
     display: block;
     width: 16px;
     height: 12px;
@@ -85,11 +84,11 @@ display: none;
     background: url(${iconBurger}) no-repeat;
     border: none;
     cursor: pointer;
-}
+  }
 `;
 
 Header.LogoLink = styled(Link)`
-position: relative;
+  position: relative;
 
   display: block;
 
@@ -107,12 +106,12 @@ position: relative;
   padding-top: 32px;
   padding-left: 44px;
 
-  color: #1F1E25;
+  color: #1f1e25;
 
   letter-spacing: 1.1px;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     display: block;
 
@@ -137,7 +136,7 @@ position: relative;
     padding-bottom: 21px;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       display: block;
 
@@ -160,7 +159,7 @@ position: relative;
     line-height: 19px;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       display: block;
 
@@ -176,7 +175,7 @@ position: relative;
 `;
 
 Header.CloseNavButton = styled.button`
-display: none;
+  display: none;
 
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
     width: 15px;
@@ -185,25 +184,25 @@ display: none;
     background: url(${iconClose}) no-repeat;
     border: none;
     cursor: pointer;
-    
+
     ${(props) => {
     if (props.$isNavOpened) {
-        return css`
+      return css`
           display: block;
         `;
     }
-}
-}
+  }}
+  }
 `;
 
 Header.Nav = styled.nav`
-@media (max-width: ${theme.tabletWidthMinThreshold}) {
+  @media (max-width: ${theme.tabletWidthMinThreshold}) {
     display: none;
     margin-top: 36px;
-    
+
     ${(props) => {
     if (props.$isNavOpened) {
-        return css`
+      return css`
           display: block;
 
           margin-top: 47px;
@@ -211,12 +210,12 @@ Header.Nav = styled.nav`
           padding-right: 3px;
         `;
     }
-}
-}
-`
+  }}
+  }
+`;
 
 Header.NavList = styled.ul`
-display: flex;
+  display: flex;
   flex-wrap: wrap;
   margin: 0;
   padding: 20px 0 0;
@@ -233,7 +232,7 @@ display: flex;
 `;
 
 Header.NavItem = styled.li`
-@media (max-width: ${theme.tabletWidthMinThreshold}) {
+  @media (max-width: ${theme.tabletWidthMinThreshold}) {
     border-top: 1px solid ${theme.color.ghost};
 
     &:last-child {
@@ -243,7 +242,7 @@ Header.NavItem = styled.li`
 `;
 
 Header.NavLink = styled(Link)`
-display: inline-block;
+  display: inline-block;
   padding: 16px 12.5px;
   font-size: 16px;
   line-height: 19px;
@@ -265,16 +264,15 @@ display: inline-block;
     padding-left: 15px;
     line-height: 19px;
   }
-  
+
   ${(props) => {
     if (props.$isNavOpened) {
-        return css`
-          padding-top: 20px;
-          padding-bottom: 20px;
-        `;
+      return css`
+        padding-top: 20px;
+        padding-bottom: 20px;
+      `;
     }
-}
-}
+  }}
 `;
 
 Header.UserBlock = styled.div`
@@ -285,15 +283,14 @@ Header.UserBlock = styled.div`
     position: absolute;
     top: 0;
     right: 0;
-    
+
     ${(props) => {
     if (props.$isNavOpened) {
-        return css`
+      return css`
           position: static;
         `;
     }
-}
-}
+  }}
 `;
 
 Header.UserLink = styled.a`
@@ -305,7 +302,7 @@ Header.UserLink = styled.a`
   color: ${theme.color.jaguar};
 
   &::before {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     width: 20px;
@@ -339,12 +336,12 @@ Header.UserLink = styled.a`
       background-image: url(${iconLoginMobile});
       background-size: cover;
     }
-    
+
     ${(props) => {
     if (props.$isNavOpened) {
-        return css`
+      return css`
           padding-left: 44px;
-          
+
           &::before {
             width: 20px;
             height: 22px;
@@ -353,8 +350,7 @@ Header.UserLink = styled.a`
           }
         `;
     }
-}
-}
+  }}
   }
 `;
 
@@ -363,15 +359,14 @@ Header.UserLinkValue = styled.span`
     display: none;
   }
 
-  @media (max-width: ${theme.tabletWidthMinThreshold}) {    
+  @media (max-width: ${theme.tabletWidthMinThreshold}) {
     ${(props) => {
-      if (props.$isNavOpened) {
-        return css`
+    if (props.$isNavOpened) {
+      return css`
           display: block;
         `;
-      }
-}
-}
+    }
+  }}
   }
 `;
 

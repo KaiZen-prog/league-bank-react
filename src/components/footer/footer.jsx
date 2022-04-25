@@ -1,17 +1,13 @@
-import React from "react";
-import {AppRoute} from "../../const";
-import PageLink from "../page-link/page-link";
+import React from 'react';
+import { AppRoute } from '../../const';
+import PageLink from '../page-link/page-link';
 
-const Footer = () => {
+function Footer() {
   return (
     <footer className="footer app__footer">
       <div className="footer__container">
         <section className="footer__address">
-          <PageLink
-              link={AppRoute.ROOT}
-              htmlClass={`footer__logo`}
-              description={`ЛИГА Банк`}
-          />
+          <PageLink link={AppRoute.MAIN} htmlClass={'footer__logo'} description={'ЛИГА Банк'} />
           <div className="footer__info">
             <p>150015, г. Москва, ул. Московская, д. 32</p>
             <p>Генеральная лицензия Банка России №1050</p>
@@ -20,16 +16,24 @@ const Footer = () => {
           <nav className="footer__nav footer-nav">
             <ul className="footer-nav__list">
               <li className="footer-nav__item">
-                <a href="#" className="footer-nav__link">Услуги</a>
+                <a href="#" className="footer-nav__link">
+                  Услуги
+                </a>
               </li>
               <li className="footer-nav__item">
-                <a href="#" className="footer-nav__link">Рассчитать кредит</a>
+                <a href="#" className="footer-nav__link">
+                  Рассчитать кредит
+                </a>
               </li>
               <li className="footer-nav__item">
-                <a href="#" className="footer-nav__link">Контакты</a>
+                <a href="#" className="footer-nav__link">
+                  Контакты
+                </a>
               </li>
               <li className="footer-nav__item">
-                <a href="#" className="footer-nav__link">Задать вопрос</a>
+                <a href="#" className="footer-nav__link">
+                  Задать вопрос
+                </a>
               </li>
             </ul>
           </nav>
@@ -37,11 +41,17 @@ const Footer = () => {
         <section className="footer__contacts">
           <ul className="footer__contacts-list">
             <li className="footer__contacts-item">
-              <a href="tel: *0904" className="footer__tel footer__tel--mobile">*0904</a>
-              <p className="footer__phone-info">Бесплатно для абонентов МТС, Билайн, Мегафон, Теле2</p>
+              <a href="tel: *0904" className="footer__tel footer__tel--mobile">
+                *0904
+              </a>
+              <p className="footer__phone-info">
+                Бесплатно для абонентов МТС, Билайн, Мегафон, Теле2
+              </p>
             </li>
             <li className="footer__contacts-item footer__contacts-item--main-phone">
-              <a href="tel: +78001112233" className="footer__tel footer__tel--main">8 800 111 22 33</a>
+              <a href="tel: +78001112233" className="footer__tel footer__tel--main">
+                8 800 111 22 33
+              </a>
               <p className="footer__phone-info">Бесплатный для всех городов России</p>
             </li>
           </ul>
@@ -73,8 +83,8 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
+}
 
-Footer.displayName = `Footer`;
+Footer.displayName = 'Footer';
 
 export default Footer;

@@ -1,10 +1,10 @@
-import React from "react";
-import {connect} from "react-redux";
-import ConversionHistoryItem from "../conversion-history-item/conversion-history-item";
-import {clearHistory} from "../../store/actions";
-import PropTypes from "prop-types";
+import React from 'react';
+import { connect } from 'react-redux';
+import ConversionHistoryItem from '../conversion-history-item/conversion-history-item';
+import { clearHistory } from '../../store/actions';
+import PropTypes from 'prop-types';
 
-const ConversionHistory = ({conversionHistory, clear}) => {
+function ConversionHistory({ conversionHistory, clear }) {
   return (
     <section className="conversion-history">
       <div className="conversion-history__wrapper">
@@ -12,37 +12,41 @@ const ConversionHistory = ({conversionHistory, clear}) => {
         <ul className="conversion-history__list">
           {conversionHistory.map((elem, i) => (
             <ConversionHistoryItem
-              key = {i}
-              date = {elem.date}
-              inputAmount = {elem.currencyInput.amount}
-              inputCurrency = {elem.currencyInput.type}
-              outputAmount = {elem.currencyOutput.amount}
-              outputCurrency = {elem.currencyOutput.type}
+              key={i}
+              date={elem.date}
+              inputAmount={elem.currencyInput.amount}
+              inputCurrency={elem.currencyInput.type}
+              outputAmount={elem.currencyOutput.amount}
+              outputCurrency={elem.currencyOutput.type}
             />
           ))}
         </ul>
-        <button className="conversion-history__button" onClick={clear}>Очистить историю</button>
+        <button className="conversion-history__button" onClick={clear}>
+          Очистить историю
+        </button>
       </div>
     </section>
   );
-};
+}
 
 ConversionHistory.propTypes = {
-  conversionHistory: PropTypes.arrayOf(PropTypes.shape({
-    date: PropTypes.string,
-    currencyInput: PropTypes.shape({
-      amount: PropTypes.number,
-      type: PropTypes.string
+  conversionHistory: PropTypes.arrayOf(
+    PropTypes.shape({
+      date: PropTypes.string,
+      currencyInput: PropTypes.shape({
+        amount: PropTypes.number,
+        type: PropTypes.string,
+      }),
+      currencyOutput: PropTypes.shape({
+        amount: PropTypes.number,
+        type: PropTypes.string,
+      }),
     }),
-    currencyOutput: PropTypes.shape({
-      amount: PropTypes.number,
-      type: PropTypes.string
-    }),
-  })),
-  clear: PropTypes.func.isRequired
+  ),
+  clear: PropTypes.func.isRequired,
 };
 
-ConversionHistory.displayName = `ConversionHistory`;
+ConversionHistory.displayName = 'ConversionHistory';
 
 const mapStateToProps = (state) => ({
   conversionHistory: state.CONVERSION_HISTORY.conversionHistory,

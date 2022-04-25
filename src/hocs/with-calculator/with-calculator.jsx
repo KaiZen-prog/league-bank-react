@@ -1,5 +1,13 @@
-import React, {createRef, PureComponent} from 'react';
-import {InputFields, MortgageParams, CarParams, KeyCode, REQUIRED_INCOME, QUANTITY_MONTH, PHONE_LENGTH} from '../../const';
+import React, { createRef, PureComponent } from 'react';
+import {
+  InputFields,
+  MortgageParams,
+  CarParams,
+  KeyCode,
+  REQUIRED_INCOME,
+  QUANTITY_MONTH,
+  PHONE_LENGTH
+} from '../../const';
 
 /* eslint no-unused-expressions: ["error", { "allowTernary": true }]*/
 const withCalculator = (Component) => {
@@ -20,7 +28,7 @@ const withCalculator = (Component) => {
 
       this.state = {
         step: 1,
-        purpose: `none`,
+        purpose: 'none',
         isPurposeSelectOpened: false,
         paramsCredit: {},
 
@@ -33,12 +41,12 @@ const withCalculator = (Component) => {
         lifeInsurance: false,
 
         creditAmount: 0,
-        percent: `0`,
+        percent: '0',
         monthlyPayment: 0,
         requiredIncome: 0,
 
         isLabelClicked: false,
-        isFormValid: true
+        isFormValid: true,
       };
 
       this.onSelectOpen = this.onSelectOpen.bind(this);
@@ -80,85 +88,89 @@ const withCalculator = (Component) => {
     }
 
     onSelectOpen() {
-      this.setState({isPurposeSelectOpened: true});
+      this.setState({ isPurposeSelectOpened: true });
     }
 
     onSelectClose() {
-      this.setState({isPurposeSelectOpened: false});
+      this.setState({ isPurposeSelectOpened: false });
     }
 
     onPurposeChange(evt) {
-      const params = evt.currentTarget.id === `mortgage` ? MortgageParams : CarParams;
+      const params = evt.currentTarget.id === 'mortgage' ? MortgageParams : CarParams;
       this.setState({
         step: 2,
         purpose: evt.currentTarget.id,
         paramsCredit: params,
         cost: params.minCost,
-        initialFee: params.minCost * params.minInitialFee / 100,
+        initialFee: (params.minCost * params.minInitialFee) / 100,
         term: params.minTerm,
-        maternalCapital: params.maternalCapital ? true : false,
+        maternalCapital: !!params.maternalCapital,
       });
       this.onSelectClose();
     }
 
     onLabelClick(evt) {
-      this.setState({isLabelClicked: true});
+      this.setState({ isLabelClicked: true });
 
       switch (evt.target.htmlFor) {
         case InputFields.cost:
-          this.costInputRef.current.style.display = `block`;
-          this.costDivRef.current.style.display = `none`;
+          this.costInputRef.current.style.display = 'block';
+          this.costDivRef.current.style.display = 'none';
           break;
 
         case InputFields.initialFee:
-          this.initialFeeInputRef.current.style.display = `block`;
-          this.initialFeeDivRef.current.style.display = `none`;
+          this.initialFeeInputRef.current.style.display = 'block';
+          this.initialFeeDivRef.current.style.display = 'none';
           break;
 
         case InputFields.term:
-          this.termInputRef.current.style.display = `block`;
-          this.termDivRef.current.style.display = `none`;
+          this.termInputRef.current.style.display = 'block';
+          this.termDivRef.current.style.display = 'none';
           break;
       }
     }
 
     onInputFocus(evt) {
-      evt.target.style.display = `none`;
-      evt.target.previousElementSibling.style.display = `block`;
+      evt.target.style.display = 'none';
+      evt.target.previousElementSibling.style.display = 'block';
       evt.target.previousElementSibling.focus();
     }
 
     onInputBlur(evt, name, value) {
-      evt.target.style.display = `none`;
-      evt.target.nextElementSibling.style.display = `block`;
-      this.setState({[name]: value, isLabelClicked: false});
+      evt.target.style.display = 'none';
+      evt.target.nextElementSibling.style.display = 'block';
+      this.setState({ [name]: value, isLabelClicked: false });
     }
 
     onInputChange(evt) {
-      const {name, value} = evt.target;
-      this.setState({[name]: value});
+      const { name, value } = evt.target;
+      this.setState({ [name]: value });
     }
 
     onCostChange(evt) {
-      let {name, value} = evt.target;
+      const name = evt.target.name;
+      let value = evt.target.value;
 
       if (value < this.state.paramsCredit.minCost || value > this.state.paramsCredit.maxCost) {
-        evt.target.nextElementSibling.style.color = `red`;
-        value = `Некорректное значение`;
+        evt.target.nextElementSibling.style.color = 'red';
+        value = 'Некорректное значение';
       } else {
-        evt.target.nextElementSibling.style.color = `#1F1E25`;
+        evt.target.nextElementSibling.style.color = '#1F1E25';
         value = +value;
-        this.setState({initialFee: value * this.state.paramsCredit.minInitialFee / 100});
+        this.setState((prevState) => ({
+          initialFee: (value * prevState.paramsCredit.minInitialFee) / 100,
+        }));
       }
 
       this.onInputBlur(evt, name, value);
     }
 
     onInitialFeeChange(evt) {
-      let {name, value} = evt.target;
+      const name = evt.target.name;
+      let value = evt.target.value;
 
-      if (value < this.state.cost * this.state.paramsCredit.minInitialFee / 100) {
-        value = this.state.cost * this.state.paramsCredit.minInitialFee / 100;
+      if (value < (this.state.cost * this.state.paramsCredit.minInitialFee) / 100) {
+        value = (this.state.cost * this.state.paramsCredit.minInitialFee) / 100;
       }
       if (value > this.state.cost) {
         value = this.state.cost;
@@ -168,7 +180,8 @@ const withCalculator = (Component) => {
     }
 
     onTermChange(evt) {
-      let {name, value} = evt.target;
+      const name = evt.target.name;
+      let value = evt.target.value;
 
       if (value < this.state.paramsCredit.minTerm) {
         value = this.state.paramsCredit.minTerm;
@@ -181,26 +194,29 @@ const withCalculator = (Component) => {
     }
 
     onInputRangeChange(evt) {
-      const {name, value} = evt.target;
+      const { name, value } = evt.target;
 
-      name === `initialFee`
-        ? this.setState({[name]: this.state.cost * value / 100})
-        : this.setState({[name]: value});
+      name === 'initialFee'
+        ? this.setState((prevState) => ({ [name]: (prevState.cost * value) / 100 }))
+        : this.setState({ [name]: value });
     }
 
     onAdditionalChange(evt) {
-      this.setState({[evt.target.name]: !this.state[evt.target.name]});
+      this.setState((prevState) => ({ [evt.target.name]: !prevState[evt.target.name] }));
     }
 
     onCostChangeSign(evt) {
-      this.costInputRef.current.style.color = `#1F1E25`;
-      this.costDivRef.current.style.color = `#1F1E25`;
+      this.costInputRef.current.style.color = '#1F1E25';
+      this.costDivRef.current.style.color = '#1F1E25';
 
-      let cost = this.state.cost === `Некорректное значение` ? this.state.paramsCredit.minCost : this.state.cost;
+      let cost =
+        this.state.cost === 'Некорректное значение'
+          ? this.state.paramsCredit.minCost
+          : this.state.cost;
 
-      evt.target.id === `plus`
-        ? cost += this.state.paramsCredit.step
-        : cost -= this.state.paramsCredit.step;
+      evt.target.id === 'plus'
+        ? (cost += this.state.paramsCredit.step)
+        : (cost -= this.state.paramsCredit.step);
 
       if (cost < this.state.paramsCredit.minCost) {
         cost = this.state.paramsCredit.minCost;
@@ -210,25 +226,41 @@ const withCalculator = (Component) => {
         cost = this.state.paramsCredit.maxCost;
       }
 
-      this.setState({
+      this.setState((prevState) => ({
         cost,
-        initialFee: this.state.cost === `Некорректное значение` ? Math.round(cost * this.state.paramsCredit.minInitialFee / 100) : Math.round(cost * this.state.initialFee / this.state.cost),
-      });
+        initialFee:
+          prevState.cost === 'Некорректное значение'
+            ? Math.round((cost * prevState.paramsCredit.minInitialFee) / 100)
+            : Math.round((cost * prevState.initialFee) / prevState.cost),
+      }));
     }
 
     getCreditAmount() {
-      this.setState({creditAmount: this.state.cost - this.state.initialFee - (this.state.maternalCapital ? this.state.paramsCredit.maternalCapitalValue : 0)});
+      this.setState((prevState) => ({
+        creditAmount:
+          prevState.cost -
+          prevState.initialFee -
+          (prevState.maternalCapital ? prevState.paramsCredit.maternalCapitalValue : 0),
+      }));
+    }
+
+    setInterestRate(percent) {
+      this.setState({ percent: percent.toFixed(2) });
     }
 
     getInterestRate() {
-      if (this.state.purpose === `mortgage`) {
-
-        this.state.initialFee >= this.state.cost * this.state.paramsCredit.percent.amountForSpecialPercent / 100
-          ? this.setState({percent: this.state.paramsCredit.percent.specialPercent.toFixed(2)})
-          : this.setState({percent: this.state.paramsCredit.percent.default.toFixed(2)});
+      if (this.state.purpose === 'mortgage') {
+        this.state.initialFee >=
+        (this.state.cost * this.state.paramsCredit.percent.amountForSpecialPercent) / 100
+          ? this.setState((prevState) => ({
+            percent: prevState.paramsCredit.percent.specialPercent.toFixed(2),
+          }))
+          : this.setState((prevState) => ({
+            percent: prevState.paramsCredit.percent.default.toFixed(2),
+          }));
       }
 
-      if (this.state.purpose === `car`) {
+      if (this.state.purpose === 'car') {
         let percent = this.state.paramsCredit.percent.default;
 
         if (this.state.cost >= this.state.paramsCredit.percent.amountForSpecialPercent) {
@@ -243,58 +275,66 @@ const withCalculator = (Component) => {
           percent = this.state.paramsCredit.percent.allAdditions;
         }
 
-        this.setState({percent: percent.toFixed(2)});
+        this.setInterestRate(percent);
       }
     }
 
-    getMonthlyPayment() {
-      const monthlyPercent = (this.state.percent / 100) / QUANTITY_MONTH;
-
-      const result = Math.floor(
-          this.state.creditAmount * monthlyPercent / (1 - (1 / Math.pow((1 + monthlyPercent), (this.state.term * QUANTITY_MONTH))))
-      );
-
+    setMonthlyPayment(result) {
       this.setState({
         monthlyPayment: result,
-        requiredIncome: Math.floor(result * 100 / REQUIRED_INCOME),
+        requiredIncome: Math.floor((result * 100) / REQUIRED_INCOME),
       });
+    }
+
+    getMonthlyPayment() {
+      const monthlyPercent = this.state.percent / 100 / QUANTITY_MONTH;
+
+      const result = Math.floor(
+        (this.state.creditAmount * monthlyPercent) /
+          (1 - 1 / Math.pow(1 + monthlyPercent, this.state.term * QUANTITY_MONTH)),
+      );
+
+      this.setMonthlyPayment(result);
     }
 
     onMakeRequest(evt) {
       evt.preventDefault();
-      this.requestNumber = localStorage.getItem(`requestNumber`) !== null ? +localStorage.getItem(`requestNumber`) + 1 : 1;
+      this.requestNumber =
+        localStorage.getItem('requestNumber') !== null
+          ? +localStorage.getItem('requestNumber') + 1
+          : 1;
 
-      this.setState({step: 3});
+      this.setState({ step: 3 });
     }
 
     onRegApplicationChange(evt) {
-      const {name, value} = evt.target;
+      const { name, value } = evt.target;
 
-      this.setState({name: value});
+      this.setState({ name: value });
       localStorage.setItem(name, value);
     }
 
     onSubmit(evt) {
       evt.preventDefault();
-      if ((this.telRef.current !== null) && (this.telRef.current.value.length < PHONE_LENGTH)) {
-        this.telRef.current.getInputDOMNode().style.borderColor = (`red`);
+      if (this.telRef.current !== null && this.telRef.current.value.length < PHONE_LENGTH) {
+        this.telRef.current.getInputDOMNode().style.borderColor = 'red';
         return;
       }
 
-      localStorage.setItem(`requestNumber`, this.requestNumber);
-      this.setState({step: 4});
-      document.documentElement.style.overflow = `hidden`;
-      document.addEventListener(`keydown`, this.closePopupKeydown);
+      localStorage.setItem('requestNumber', this.requestNumber);
+      this.setState({ step: 4 });
+      document.documentElement.style.overflow = 'hidden';
+      document.addEventListener('keydown', this.closePopupKeydown);
     }
 
     onPopupClose() {
       this.setState({
         step: 1,
-        purpose: `none`,
+        purpose: 'none',
       });
 
-      document.documentElement.style.overflow = `auto`;
-      document.removeEventListener(`keydown`, this.closePopupKeydown);
+      document.documentElement.style.overflow = 'auto';
+      document.removeEventListener('keydown', this.closePopupKeydown);
     }
 
     closePopupKeydown(evt) {
@@ -304,16 +344,15 @@ const withCalculator = (Component) => {
     }
 
     onChangePhone(evt) {
-      const {name, value} = evt.target;
+      const { name, value } = evt.target;
 
-      this.telRef.current.getInputDOMNode().style.borderColor = (`#1F1E25`);
+      this.telRef.current.getInputDOMNode().style.borderColor = '#1F1E25';
 
-      this.setState({name, value});
+      this.setState({ name, value });
       localStorage.setItem(name, value);
     }
 
     render() {
-
       return (
         <Component
           costInputRef={this.costInputRef}

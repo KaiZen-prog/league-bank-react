@@ -1,31 +1,31 @@
 export const AppRoute = {
-  ROOT: `/`,
-  CONVERTER: `/converter`
+  MAIN: '/',
+  CONVERTER: '/converter',
 };
 
 export const FormFields = {
-  INPUT: `currencyInput`,
-  OUTPUT: `currencyOutput`
+  INPUT: 'currencyInput',
+  OUTPUT: 'currencyOutput',
 };
 
 export const Currencies = {
-  RUB: `RUB`,
-  USD: `USD`
+  RUB: 'RUB',
+  USD: 'USD',
 };
 
 export const FLOAT_COEFFICIENT = 100;
 
 export const APIValues = {
-  ID: `d07b14ca2bfd4e14afe52d782af853ca`,
-  BASE_RATE: 1
+  ID: 'd07b14ca2bfd4e14afe52d782af853ca',
+  BASE_RATE: 1,
 };
 
 export const APIRoutes = {
-  HISTORICAL: `historical/`,
-  ID_PREFIX: `.json?app_id=`
+  HISTORICAL: 'historical/',
+  ID_PREFIX: '.json?app_id=',
 };
 
-export const BASE_URL = `https://openexchangerates.org/api/`;
+export const BASE_URL = 'https://openexchangerates.org/api/';
 
 export const REQUEST_TIMEOUT = 5000;
 
@@ -33,32 +33,32 @@ export const MAX_HISTORY_LENGTH = 10;
 
 export const CreditPurpose = {
   none: {
-    name: `Выберите цель кредита`,
-    type: ``
+    name: 'Выберите цель кредита',
+    type: '',
   },
   mortgage: {
-    name: `Ипотечное кредитование`,
-    type: `mortgage`
+    name: 'Ипотечное кредитование',
+    type: 'mortgage',
   },
   car: {
-    name: `Автомобильное кредитование`,
-    type: `car`
-  }
+    name: 'Автомобильное кредитование',
+    type: 'car',
+  },
 };
 
 export const Sliders = {
-  main: `main-slider`,
-  services: `services-slider`,
+  main: 'main-slider',
+  services: 'services-slider',
 };
 
 export const InputFields = {
-  cost: `cost`,
-  initialFee: `initialFee`,
-  term: `term`
+  cost: 'cost',
+  initialFee: 'initialFee',
+  term: 'term',
 };
 
 export const MortgageParams = {
-  type: `mortgage`,
+  type: 'mortgage',
   minCost: 1200000,
   maxCost: 25000000,
   step: 100000,
@@ -75,7 +75,7 @@ export const MortgageParams = {
 };
 
 export const CarParams = {
-  type: `car`,
+  type: 'car',
   minCost: 500000,
   maxCost: 5000000,
   step: 50000,
@@ -84,8 +84,8 @@ export const CarParams = {
   maxTerm: 5,
   minCreditAmount: 200000,
   additionalToCar: {
-    casco: `casco`,
-    lifeInsurance: `lifeInsurance`,
+    casco: 'casco',
+    lifeInsurance: 'lifeInsurance',
   },
   percent: {
     default: 16,

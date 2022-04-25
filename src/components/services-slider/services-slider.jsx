@@ -1,11 +1,11 @@
-import React from "react";
-import withSlider from "../../hocs/with-slider/with-slider";
-import {Repeat} from "../../utils/common";
-import ServicesSlide from "../services-slide/services-slide";
-import {servicesSlides} from '../../mocks/mocks';
-import PropTypes from "prop-types";
+import React from 'react';
+import withSlider from '../../hocs/with-slider/with-slider';
+import { Repeat } from '../../utils/common';
+import ServicesSlide from '../services-slide/services-slide';
+import { servicesSlides } from '../../mocks/mocks';
+import PropTypes from 'prop-types';
 
-const ServicesSlider = (props) => {
+function ServicesSlider(props) {
   const {
     sliderRef,
     currentSlide,
@@ -13,7 +13,7 @@ const ServicesSlider = (props) => {
     slidesQuantity,
 
     onTabClick,
-    onSwipeStart
+    onSwipeStart,
   } = props;
 
   return (
@@ -24,26 +24,30 @@ const ServicesSlider = (props) => {
           {(i) => (
             <li
               key={i}
-              className={`services-slider__tab services-slider__tab--${servicesSlides[i].name} ${currentSlide === servicesSlides[i] ? `services-slider__tab--current` : ``}`}
+              className={`services-slider__tab services-slider__tab--${servicesSlides[i].name} ${
+                currentSlide === servicesSlides[i] ? 'services-slider__tab--current' : ''
+              }`}
               onClick={() => {
                 onTabClick(servicesSlides[i], i);
               }}
             >
-              <span className={`services-slider__tab-label services-slider__tab-label--${servicesSlides[i].name}`}>{servicesSlides[i].tabName}</span>
+              <span
+                className={`services-slider__tab-label services-slider__tab-label--${servicesSlides[i].name}`}
+              >
+                {servicesSlides[i].tabName}
+              </span>
             </li>
           )}
         </Repeat>
       </ul>
       <div
         className="services-slider__slides-container"
-        style={{left: currentSlideNumber === 0 ? `0` : `-` + (currentSlideNumber) + `00%`}}
+        style={{ left: currentSlideNumber === 0 ? '0' : `-${currentSlideNumber}00%` }}
         onMouseDown={onSwipeStart}
         onTouchStart={onSwipeStart}
       >
         <Repeat numTimes={slidesQuantity}>
-          {(i) => (
-            <ServicesSlide key={i} currentSlide={servicesSlides[i]}/>
-          )}
+          {(i) => <ServicesSlide key={i} currentSlide={servicesSlides[i]} />}
         </Repeat>
       </div>
 
@@ -52,13 +56,9 @@ const ServicesSlider = (props) => {
           {(i) => (
             <li
               key={i}
-              className={
-                `services-slider__dot services-slider__dot--${currentSlide.name} ${
-                  i === currentSlideNumber
-                    ? `services-slider__dot--current`
-                    : ``
-                }`
-              }
+              className={`services-slider__dot services-slider__dot--${currentSlide.name} ${
+                i === currentSlideNumber ? 'services-slider__dot--current' : ''
+              }`}
             >
             </li>
           )}
@@ -66,7 +66,7 @@ const ServicesSlider = (props) => {
       </ul>
     </section>
   );
-};
+}
 
 ServicesSlider.propTypes = {
   sliderRef: PropTypes.shape({}),
@@ -75,17 +75,21 @@ ServicesSlider.propTypes = {
     tabName: PropTypes.string,
     slogan: PropTypes.string,
     features: PropTypes.arrayOf(PropTypes.string),
-    text: PropTypes.string,
-    link: PropTypes.string
+    text: PropTypes.shape({
+      firstLine: PropTypes.string,
+      secondLine: PropTypes.string,
+      link: PropTypes.string,
+    }),
+    link: PropTypes.string,
   }).isRequired,
 
   currentSlideNumber: PropTypes.number.isRequired,
   slidesQuantity: PropTypes.number.isRequired,
 
   onTabClick: PropTypes.func.isRequired,
-  onSwipeStart: PropTypes.func.isRequired
+  onSwipeStart: PropTypes.func.isRequired,
 };
 
-ServicesSlider.displayName = `ServicesSlider`;
+ServicesSlider.displayName = 'ServicesSlider';
 
 export default withSlider(ServicesSlider);

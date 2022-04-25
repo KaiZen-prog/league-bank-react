@@ -1,10 +1,16 @@
-import {extend} from "../../../utils/common";
-import {ActionType} from "../../actions";
-import moment from "moment";
+import { extend } from '../../../utils/common';
+import { ActionType } from '../../actions';
+import moment from 'moment';
 
 const initialState = {
-  date: moment().utc().format(`YYYY-MM-DD`),
-  exchangeRate: ``,
+  date: moment().utc().format('YYYY-MM-DD'),
+  exchangeRate: {
+    USD: 0,
+    RUB: 0,
+    EUR: 0,
+    GBP: 0,
+    CNY: 0,
+  },
 };
 
 const converter = (state = initialState, action) => {
@@ -23,4 +29,4 @@ const converter = (state = initialState, action) => {
   return state;
 };
 
-export {converter};
+export { converter };

@@ -1,12 +1,12 @@
-import React from "react";
-import {CreditPurpose} from "../../const";
-import {shakeEffect} from "../../utils/common";
-import withCalculator from "../../hocs/with-calculator/with-calculator";
-import {divideNumberToSpace} from "../../utils/common";
-import InputMask from "react-input-mask";
-import PropTypes from "prop-types";
+import React from 'react';
+import { CreditPurpose } from '../../const';
+import { shakeEffect } from '../../utils/common';
+import withCalculator from '../../hocs/with-calculator/with-calculator';
+import { divideNumberToSpace } from '../../utils/common';
+import InputMask from 'react-input-mask';
+import PropTypes from 'prop-types';
 
-const Calculator = (props) => {
+function Calculator(props) {
   const {
     costInputRef,
     costDivRef,
@@ -49,11 +49,13 @@ const Calculator = (props) => {
     creditAmount,
     percent,
     monthlyPayment,
-    requiredIncome
+    requiredIncome,
   } = state;
 
   const getRangeValuePosition = () => {
-    let position = ((initialFee * 100 / cost) - paramsCredit.minInitialFee) * 100 / (100 - paramsCredit.minInitialFee);
+    let position =
+      (((initialFee * 100) / cost - paramsCredit.minInitialFee) * 100) /
+      (100 - paramsCredit.minInitialFee);
     if (position < 0) {
       position = 0;
     }
@@ -66,24 +68,24 @@ const Calculator = (props) => {
 
   const setTermLine = (str) => {
     if (str > 10 && str < 20) {
-      return str + ` лет`;
+      return `${str} лет`;
     }
 
     switch (str.toString().substr(-1)) {
-      case `1`:
-        return str + ` год`;
+      case '1':
+        return `${str} год`;
 
-      case `2`:
-        return str + ` года`;
+      case '2':
+        return `${str} года`;
 
-      case `3`:
-        return str + ` года`;
+      case '3':
+        return `${str} года`;
 
-      case `4`:
-        return str + ` года`;
+      case '4':
+        return `${str} года`;
 
       default:
-        return str + ` лет`;
+        return `${str} лет`;
     }
   };
 
@@ -97,25 +99,42 @@ const Calculator = (props) => {
             <fieldset className="calculator__purpose">
               <h3 className="calculator__step">Шаг 1. Цель кредита</h3>
               <div
-                className={`calculator__purpose-select${isPurposeSelectOpened ? ` calculator__purpose-select--opened` : ``}`}
+                className={`calculator__purpose-select${
+                  isPurposeSelectOpened ? ' calculator__purpose-select--opened' : ''
+                }`}
                 onClick={isPurposeSelectOpened ? onSelectClose : onSelectOpen}
               >
                 <span className="calculator__select-title">{CreditPurpose[purpose].name}</span>
-                <ul className={`calculator__purpose-list${isPurposeSelectOpened ? `` : ` calculator__purpose-list--hidden`}`}>
-                  <li className="calculator__purpose-item" id="mortgage" onClick={onPurposeChange}>Ипотечное кредитование</li>
-                  <li className="calculator__purpose-item" id="car" onClick={onPurposeChange}>Автомобильное кредитование</li>
+                <ul
+                  className={`calculator__purpose-list${
+                    isPurposeSelectOpened ? '' : ' calculator__purpose-list--hidden'
+                  }`}
+                >
+                  <li className="calculator__purpose-item" id="mortgage" onClick={onPurposeChange}>
+                    Ипотечное кредитование
+                  </li>
+                  <li className="calculator__purpose-item" id="car" onClick={onPurposeChange}>
+                    Автомобильное кредитование
+                  </li>
                 </ul>
               </div>
             </fieldset>
             {step >= 2 && (
               <fieldset className="calculator__params">
-                <h3 className="calculator__step calculator__step--params">Шаг 2. Введите параметры кредита</h3>
+                <h3 className="calculator__step calculator__step--params">
+                  Шаг 2. Введите параметры кредита
+                </h3>
 
                 <div className="calculator__input-container">
                   <label className="calculator__label" htmlFor="cost" onClick={onLabelClick}>
-                    Стоимость {paramsCredit.type === `mortgage` ? `недвижимости` : `автомобиля`}
+                    Стоимость {paramsCredit.type === 'mortgage' ? 'недвижимости' : 'автомобиля'}
                   </label>
-                  <span className="calculator__icon calculator__icon--minus" id="minus" onClick={onCostChangeSign}></span>
+                  <span
+                    className="calculator__icon calculator__icon--minus"
+                    id="minus"
+                    onClick={onCostChangeSign}
+                  >
+                  </span>
                   <input
                     type="number"
                     className="calculator__input"
@@ -135,15 +154,27 @@ const Calculator = (props) => {
                     onClick={onLabelClick}
                     onFocus={onInputFocus}
                   >
-                    {typeof cost === `string` ? cost : divideNumberToSpace(cost) + ` рублей`}
+                    {typeof cost === 'string' ? cost : `${divideNumberToSpace(cost)} рублей`}
                   </div>
-                  <span className="calculator__icon calculator__icon--plus" id="plus" onClick={onCostChangeSign}></span>
+                  <span
+                    className="calculator__icon calculator__icon--plus"
+                    id="plus"
+                    onClick={onCostChangeSign}
+                  >
+                  </span>
 
-                  <p className="calculator__help-text">От {divideNumberToSpace(paramsCredit.minCost)} &nbsp;до {divideNumberToSpace(paramsCredit.maxCost)} рублей</p>
+                  <p className="calculator__help-text">
+                    От {divideNumberToSpace(paramsCredit.minCost)} &nbsp;до{' '}
+                    {divideNumberToSpace(paramsCredit.maxCost)} рублей
+                  </p>
                 </div>
 
                 <div className="calculator__input-container calculator__input-container--initialFee">
-                  <label className="calculator__label calculator__label--initialFee" htmlFor="initialFee" onClick={onLabelClick}>
+                  <label
+                    className="calculator__label calculator__label--initialFee"
+                    htmlFor="initialFee"
+                    onClick={onLabelClick}
+                  >
                     Первоначальный взнос
                   </label>
 
@@ -153,7 +184,7 @@ const Calculator = (props) => {
                     name="initialFee"
                     id="initialFee"
                     ref={initialFeeInputRef}
-                    min={paramsCredit.minCost * paramsCredit.minInitialFee / 100}
+                    min={(paramsCredit.minCost * paramsCredit.minInitialFee) / 100}
                     max={paramsCredit.maxCost}
                     value={initialFee}
                     onBlur={onInitialFeeChange}
@@ -176,17 +207,20 @@ const Calculator = (props) => {
                     min={paramsCredit.minInitialFee}
                     max="100"
                     step="5"
-                    value={initialFee * 100 / cost}
+                    value={(initialFee * 100) / cost}
                     onChange={onInputRangeChange}
                   />
                   <span
                     className="calculator__range-value"
                     style={{
-                      marginLeft: getRangeValuePosition() + `%`,
-                      transform: `translateX(-${getRangeValuePosition() / 2}%)`
+                      marginLeft: `${getRangeValuePosition()}%`,
+                      transform: `translateX(-${getRangeValuePosition() / 2}%)`,
                     }}
                   >
-                    {isNaN(Math.floor(initialFee * 100 / cost)) ? 0 : Math.floor(initialFee * 100 / cost)}%
+                    {isNaN(Math.floor((initialFee * 100) / cost))
+                      ? 0
+                      : Math.floor((initialFee * 100) / cost)}
+                    %
                   </span>
                 </div>
 
@@ -228,7 +262,9 @@ const Calculator = (props) => {
                     onChange={onInputRangeChange}
                   />
                   <div className="calculator__term-container">
-                    <span className="calculator__range-value">{paramsCredit.minTerm} {paramsCredit.minTerm === 1 ? `год` : `лет`}</span>
+                    <span className="calculator__range-value">
+                      {paramsCredit.minTerm} {paramsCredit.minTerm === 1 ? 'год' : 'лет'}
+                    </span>
                     <span className="calculator__range-value">{paramsCredit.maxTerm} лет</span>
                   </div>
                 </div>
@@ -242,7 +278,7 @@ const Calculator = (props) => {
                       onChange={onAdditionalChange}
                     />
                     <span className="calculator__checkbox-icon"></span>
-                          Использовать материнский капитал
+                    Использовать материнский капитал
                   </label>
                 )}
                 {paramsCredit.additionalToCar && (
@@ -255,7 +291,7 @@ const Calculator = (props) => {
                         onChange={onAdditionalChange}
                       />
                       <span className="calculator__checkbox-icon"></span>
-                            Оформить КАСКО в нашем банке
+                      Оформить КАСКО в нашем банке
                     </label>
                     <label className="calculator__additional calculator__additional--car">
                       <input
@@ -265,7 +301,7 @@ const Calculator = (props) => {
                         onChange={onAdditionalChange}
                       />
                       <span className="calculator__checkbox-icon"></span>
-                            Оформить Страхование жизни в нашем банке
+                      Оформить Страхование жизни в нашем банке
                     </label>
                   </>
                 )}
@@ -279,7 +315,9 @@ const Calculator = (props) => {
                   <h3 className="calculator__offer-title">Наше предложение</h3>
                   <ul className="calculator__offer-list">
                     <li className="calculator__offer-item">
-                      <p className="calculator__offer-value">{divideNumberToSpace(creditAmount)} рублей</p>
+                      <p className="calculator__offer-value">
+                        {divideNumberToSpace(creditAmount)} рублей
+                      </p>
                       <p className="calculator__offer-name">Сумма ипотеки</p>
                     </li>
                     <li className="calculator__offer-item">
@@ -287,23 +325,36 @@ const Calculator = (props) => {
                       <p className="calculator__offer-name">Процентная ставка</p>
                     </li>
                     <li className="calculator__offer-item">
-                      <p className="calculator__offer-value">{divideNumberToSpace(monthlyPayment)} рублей</p>
+                      <p className="calculator__offer-value">
+                        {divideNumberToSpace(monthlyPayment)} рублей
+                      </p>
                       <p className="calculator__offer-name">Ежемесячный платеж</p>
                     </li>
                     <li className="calculator__offer-item">
-                      <p className="calculator__offer-value">{divideNumberToSpace(requiredIncome)} рублей</p>
+                      <p className="calculator__offer-value">
+                        {divideNumberToSpace(requiredIncome)} рублей
+                      </p>
                       <p className="calculator__offer-name">Необходимый доход</p>
                     </li>
                   </ul>
-                  <button type="submit" className="calculator__submit-button calculator__submit-button--preorder">Оформить заявку</button>
+                  <button
+                    type="submit"
+                    className="calculator__submit-button calculator__submit-button--preorder"
+                  >
+                    Оформить заявку
+                  </button>
                 </div>
               )}
               {creditAmount < paramsCredit.minCreditAmount && (
                 <div className="calculator__offer calculator__offer--refusal">
                   <h3 className="calculator__offer-title calculator__offer-title--refusal">
-                    Наш банк не выдаёт {purpose === CreditPurpose.mortgage.type ? `ипотечные кредиты` : `автокредиты`} меньше {divideNumberToSpace(paramsCredit.minCreditAmount)} рублей.
+                    Наш банк не выдаёт{' '}
+                    {purpose === CreditPurpose.mortgage.type ? 'ипотечные кредиты' : 'автокредиты'}{' '}
+                    меньше {divideNumberToSpace(paramsCredit.minCreditAmount)} рублей.
                   </h3>
-                  <p className="calculator__offer-name calculator__offer-name--refusal">Попробуйте использовать другие параметры для расчёта.</p>
+                  <p className="calculator__offer-name calculator__offer-name--refusal">
+                    Попробуйте использовать другие параметры для расчёта.
+                  </p>
                 </div>
               )}
             </>
@@ -316,19 +367,25 @@ const Calculator = (props) => {
           <table className="calculator__request-table">
             <tbody>
               <tr className="calculator__request-field">
-                <td className="calculator__request-value">№ {(`0000` + requestNumber).slice(-4)}</td>
+                <td className="calculator__request-value">№ {`0000${requestNumber}`.slice(-4)}</td>
                 <td className="calculator__request-name">Номер заявки</td>
               </tr>
               <tr className="calculator__request-field">
-                <td className="calculator__request-value">{purpose === `mortgage` ? `Ипотека` : `Автокредит`}</td>
+                <td className="calculator__request-value">
+                  {purpose === 'mortgage' ? 'Ипотека' : 'Автокредит'}
+                </td>
                 <td className="calculator__request-name">Цель кредита</td>
               </tr>
               <tr className="calculator__request-field">
                 <td className="calculator__request-value">{divideNumberToSpace(cost)} рублей</td>
-                <td className="calculator__request-name">Стоимость {purpose === `mortgage` ? `недвижимости` : `автомобиля`}</td>
+                <td className="calculator__request-name">
+                  Стоимость {purpose === 'mortgage' ? 'недвижимости' : 'автомобиля'}
+                </td>
               </tr>
               <tr className="calculator__request-field">
-                <td className="calculator__request-value">{divideNumberToSpace(initialFee)} рублей</td>
+                <td className="calculator__request-value">
+                  {divideNumberToSpace(initialFee)} рублей
+                </td>
                 <td className="calculator__request-name">Первоначальный взнос</td>
               </tr>
               <tr className="calculator__request-field">
@@ -347,9 +404,12 @@ const Calculator = (props) => {
               onInvalid={(evt) => {
                 shakeEffect(evt.target);
               }}
-              value={localStorage.getItem(`fullname`) !== null ? localStorage.getItem(`fullname`) : ``}
+              value={
+                localStorage.getItem('fullname') !== null ? localStorage.getItem('fullname') : ''
+              }
               autoFocus
-              required/>
+              required
+            />
             <InputMask
               mask="+7 (999) 999-9999"
               maskChar=""
@@ -363,7 +423,7 @@ const Calculator = (props) => {
               onInvalid={(evt) => {
                 shakeEffect(evt.target);
               }}
-              value={localStorage.getItem(`tel`) !== null ? localStorage.getItem(`tel`) : ``}
+              value={localStorage.getItem('tel') !== null ? localStorage.getItem('tel') : ''}
               required
             />
             <input
@@ -375,10 +435,16 @@ const Calculator = (props) => {
               onInvalid={(evt) => {
                 shakeEffect(evt.target);
               }}
-              value={localStorage.getItem(`email`) !== null ? localStorage.getItem(`email`) : ``}
-              required/>
+              value={localStorage.getItem('email') !== null ? localStorage.getItem('email') : ''}
+              required
+            />
           </div>
-          <button type="submit" className="calculator__submit-button calculator__submit-button--request">Отправить</button>
+          <button
+            type="submit"
+            className="calculator__submit-button calculator__submit-button--request"
+          >
+            Отправить
+          </button>
         </form>
       )}
       {step >= 4 && (
@@ -386,13 +452,15 @@ const Calculator = (props) => {
           <div className="calculator__popup-container" onClick={(evt) => evt.stopPropagation()}>
             <button className="calculator__popup-close" onClick={onPopupClose}></button>
             <h2 className="calculator__popup-title">Спасибо за обращение в наш банк.</h2>
-            <p className="calculator__popup-content">Наш менеджер скоро свяжется с вами по указанному номеру телефона.</p>
+            <p className="calculator__popup-content">
+              Наш менеджер скоро свяжется с вами по указанному номеру телефона.
+            </p>
           </div>
         </div>
       )}
     </section>
   );
-};
+}
 
 Calculator.propTypes = {
   costInputRef: PropTypes.shape({}).isRequired,
@@ -447,18 +515,9 @@ Calculator.propTypes = {
         }),
       }),
     ]).isRequired,
-    cost: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]).isRequired,
-    initialFee: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]).isRequired,
-    term: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]).isRequired,
+    cost: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    initialFee: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    term: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     maternalCapital: PropTypes.bool.isRequired,
     casco: PropTypes.bool.isRequired,
     lifeInsurance: PropTypes.bool.isRequired,
@@ -489,7 +548,7 @@ Calculator.propTypes = {
   requestNumber: PropTypes.number,
 };
 
-Calculator.displayName = `Calculator`;
+Calculator.displayName = 'Calculator';
 
-export {Calculator};
+export { Calculator };
 export default withCalculator(Calculator);

@@ -1,16 +1,16 @@
-import React from "react";
-import Converter from "../converter/converter";
-import ConversionHistory from "../conversion-history/conversion-history";
+import React from 'react';
+import Converter from '../converter/converter';
+import ConversionHistory from '../conversion-history/conversion-history';
 
-const ConverterScreen = () => {
+function ConverterScreen() {
   return (
     <>
-      <Converter/>
-      <ConversionHistory/>
+      <Converter />
+      <ConversionHistory />
     </>
   );
-};
+}
 
-ConverterScreen.displayName = `ConverterScreen`;
+ConverterScreen.displayName = 'ConverterScreen';
 
 export default ConverterScreen;
