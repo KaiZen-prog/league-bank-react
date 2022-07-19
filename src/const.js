@@ -51,6 +51,10 @@ export const Sliders = {
   services: 'services-slider',
 };
 
+export const CREDIT_SLIDE = 'credit';
+export const PROMO_SLIDE = 'promo';
+export const OFFICES_SLIDE = 'offices';
+
 export const InputFields = {
   cost: 'cost',
   initialFee: 'initialFee',

@@ -29,7 +29,7 @@ const withSlider = (Component) => {
 
     componentDidMount() {
       if (this.sliderRef.current !== null) {
-        switch (this.sliderRef.current.className) {
+        switch (this.sliderRef.current.id) {
           case Sliders.main:
             this.setState({
               slides: mainSlides,

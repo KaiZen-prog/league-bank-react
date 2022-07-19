@@ -29,7 +29,7 @@ const Header = styled.header`
 
         z-index: 99;
 
-        @media (min-width: ${theme.tabletWidthMin}) {
+        @media (min-width: ${theme.tabletWidthMinThreshold}) {
           position: relative;
           height: auto;
         }
@@ -44,7 +44,7 @@ Header.Container = styled.div`
   padding-right: 20px;
   padding-left: 90px;
 
-  @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
+  @media (min-width: ${theme.tabletWidthMinThreshold}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     padding-left: 9px;
   }
 
@@ -54,14 +54,6 @@ Header.Container = styled.div`
     min-height: 48px;
 
     padding-left: 9px;
-  }
-`;
-
-Header.Wrapper = styled.div`
-  @media (max-width: ${theme.tabletWidthMinThreshold}) {
-    display: flex;
-    padding-top: 16px;
-    padding-left: 14px;
   }
 `;
 
@@ -124,14 +116,14 @@ Header.LogoLink = styled(Link)`
     background-image: url(${logoDesktop});
   }
 
-  @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
+  @media (min-width: ${theme.tabletWidthMinThreshold}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     width: 170px;
 
     margin-right: 56px;
     font-size: 18px;
     line-height: 21px;
 
-    padding-top: 27px;
+    padding-top: 20px;
     padding-left: 68px;
     padding-bottom: 21px;
 
@@ -143,7 +135,7 @@ Header.LogoLink = styled(Link)`
       width: 26px;
       height: 24px;
 
-      top: 20px;
+      top: 15px;
       left: 35px;
 
       background-image: url(${logoTablet});
@@ -221,8 +213,9 @@ Header.NavList = styled.ul`
   padding: 20px 0 0;
   list-style: none;
 
-  @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.tabletWidthMinThreshold}) {
-    padding-top: 15px;
+  @media (min-width: ${theme.tabletWidthMinThreshold}) and (max-width: ${theme.desktopWidthMinThreshold}) {
+    padding-top: 8px;
+    padding-bottom: 8px;
   }
 
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
@@ -313,7 +306,7 @@ Header.UserLink = styled.a`
     background-repeat: no-repeat;
   }
 
-  @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
+  @media (min-width: ${theme.tabletWidthMinThreshold}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     font-size: 14px;
     line-height: 69px;
 

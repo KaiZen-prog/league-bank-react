@@ -1,5 +1,5 @@
 import React from 'react';
-import MainSlider from '../main-slider/main-slider';
+import MainSlider from '../main-slider';
 import ServicesSlider from '../services-slider/services-slider';
 import Calculator from '../calculator/calculator';
 import Map from '../map/map';

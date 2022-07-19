@@ -1,17 +1,18 @@
 import React from 'react';
 import withSlider from '../../hocs/with-slider/with-slider';
+import Block from './main-slider.styled';
 import { Repeat } from '../../utils/common';
-import MainSlide from '../main-slide/main-slide';
+import MainSlide from '../main-slide';
 import { mainSlides } from '../../mocks/mocks';
+import {Sliders} from '../../const';
 import PropTypes from 'prop-types';
 
 function MainSlider(props) {
   const { sliderRef, currentSlide, currentSlideNumber, slidesQuantity, onSwipeStart } = props;
 
   return (
-    <section className="main-slider" ref={sliderRef}>
-      <div
-        className="main-slider__slides-container"
+    <Block ref={sliderRef} id={Sliders.main}>
+      <Block.SlidesContainer
         style={{ left: currentSlideNumber === 0 ? '0' : `-${currentSlideNumber}00%` }}
         onMouseDown={onSwipeStart}
         onTouchStart={onSwipeStart}
@@ -19,22 +20,21 @@ function MainSlider(props) {
         <Repeat numTimes={slidesQuantity}>
           {(i) => <MainSlide key={i} currentSlide={mainSlides[i]} />}
         </Repeat>
-      </div>
+      </Block.SlidesContainer>
 
-      <ul className="main-slider__dots">
+      <Block.Dots>
         <Repeat numTimes={slidesQuantity}>
           {(i) => (
-            <li
+            <Block.Dot
               key={i}
-              className={`main-slider__dot main-slider__dot--${currentSlide.name} ${
-                i === currentSlideNumber ? 'main-slider__dot--current' : ''
-              }`}
+              $isCurrent={i === currentSlideNumber}
+              $slideName={currentSlide.name}
             >
-            </li>
+            </Block.Dot>
           )}
         </Repeat>
-      </ul>
-    </section>
+      </Block.Dots>
+    </Block>
   );
 }
 
