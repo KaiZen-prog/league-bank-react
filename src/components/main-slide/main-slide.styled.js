@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { css } from 'styled-components';
 import theme from '../../theme/theme';
-import {CREDIT_SLIDE, PROMO_SLIDE, OFFICES_SLIDE} from '../../const';
+import {Sliders} from '../../const';
 
 import promoSlideBackgroundMobile from '../../img/slide-promo-mobile.jpg';
 import promoSlideBackgroundTablet from '../../img/slide-promo-tablet.jpg';
@@ -32,7 +32,7 @@ const MainSlide = styled.div`
   }
 
   ${(props) => {
-    if (props.$slideName === CREDIT_SLIDE) {
+    if (props.$slideName === Sliders.main.slides.credit) {
       return css`
         background-color: ${theme.color.neonBlue};
 
@@ -53,7 +53,7 @@ MainSlide.GradientContainer = styled.div`
 
   @media (min-width: ${theme.tabletWidthMinThreshold}) {
     ${(props) => {
-    if (props.$slideName === CREDIT_SLIDE) {
+    if (props.$slideName === Sliders.main.slides.credit) {
       return css`
           &::after {
             content: "";
@@ -69,7 +69,7 @@ MainSlide.GradientContainer = styled.div`
           }
         `;
     }
-    if (props.$slideName === PROMO_SLIDE || props.$slideName === OFFICES_SLIDE) {
+    if (props.$slideName === Sliders.main.slides.promo || props.$slideName === Sliders.main.slides.offices) {
       return css`
           max-width: 100%;
         `;
@@ -82,7 +82,7 @@ MainSlide.GradientContainer = styled.div`
     transform: translateX(-50%);
 
     ${(props) => {
-    if (props.$slideName === CREDIT_SLIDE) {
+    if (props.$slideName === Sliders.main.slides.credit) {
       return css`
               &::before {
         content: "";
@@ -108,7 +108,7 @@ MainSlide.GradientContainer = styled.div`
   }
 
   ${(props) => {
-    if (props.$slideName === CREDIT_SLIDE || props.$slideName === PROMO_SLIDE) {
+    if (props.$slideName === Sliders.main.slides.credit || props.$slideName === Sliders.main.slides.promo) {
       return css`
         max-width: 100%;
       `;
@@ -122,7 +122,7 @@ MainSlide.BackgroundContainer = styled.div`
 
   ${(props) => {
     switch (props.$slideName) {
-      case CREDIT_SLIDE:
+      case Sliders.main.slides.credit:
         return css`
           width: 78.3%;
           margin-left: -45.5%;
@@ -145,7 +145,7 @@ MainSlide.BackgroundContainer = styled.div`
           }
         `;
 
-      case PROMO_SLIDE:
+      case Sliders.main.slides.promo:
         return css`
           width: 100%;
           background-color: #dde2ec;
@@ -177,7 +177,7 @@ MainSlide.BackgroundContainer = styled.div`
           }
         `;
 
-      case OFFICES_SLIDE:
+      case Sliders.main.slides.offices:
         return css`
           width: 100%;
           background-color: #E6F1FE;
@@ -221,7 +221,7 @@ MainSlide.TextContainer = styled.div`
   }
 
   ${(props) => {
-    if (props.$slideName === CREDIT_SLIDE) {
+    if (props.$slideName === Sliders.main.slides.credit) {
       return css`
         &::before {
           content: "";
@@ -297,7 +297,7 @@ MainSlide.Title = styled.h1`
   }
 
   ${(props) => {
-    if (props.$slideName === CREDIT_SLIDE) {
+    if (props.$slideName === Sliders.main.slides.credit) {
       return css`
           color: ${theme.color.ghostWhite};
         `;
@@ -324,12 +324,12 @@ MainSlide.Slogan = styled.p`
 
   ${(props) => {
     switch (props.$slideName) {
-      case CREDIT_SLIDE:
+      case Sliders.main.slides.credit:
         return css`
           color: ${theme.color.quartz};
         `;
 
-      case PROMO_SLIDE:
+      case Sliders.main.slides.promo:
         return css`
           margin-right: 140px;
         `;
@@ -370,13 +370,13 @@ MainSlide.Link = styled.a`
 
   ${(props) => {
     switch (props.$slideName) {
-      case CREDIT_SLIDE:
+      case Sliders.main.slides.credit:
         return css`
           color: ${theme.color.jaguar};
           background-color: ${theme.color.ghostWhite};
         `;
 
-      case OFFICES_SLIDE:
+      case Sliders.main.slides.offices:
         return css`
           width: 243px;
           color: ${theme.color.ghostWhite};

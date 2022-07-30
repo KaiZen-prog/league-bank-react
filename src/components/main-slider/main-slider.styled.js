@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { css } from 'styled-components';
 import theme from '../../theme/theme';
-import {OFFICES_SLIDE} from '../../const';
+import {Sliders} from '../../const';
 
 const MainSlider = styled.section`
   position: relative;
@@ -68,7 +68,7 @@ MainSlider.Dot = styled.li`
 
   ${(props) => {
     if (props.$isCurrent) {
-      if (props.$slideName === OFFICES_SLIDE) {
+      if (props.$slideName === Sliders.main.slides.offices) {
         return css`
           background-color: ${theme.color.gainsboro};
         `;

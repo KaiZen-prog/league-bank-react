@@ -1,17 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Block from './services-slide.styled';
 
 function ServicesSlide(props) {
   const { currentSlide } = props;
 
   return (
-    <div className={`services-slider__slide services-slider__slide--${currentSlide.name}`}>
-      <div
-        className={`services-slider__slide-wrapper services-slider__slide-wrapper--${currentSlide.name}`}
-      >
-        <p className={`services-slider__slogan services-slider__slogan--${currentSlide.name}`}>
+    <Block>
+      <Block.SlideWrapper $currentSlideName={currentSlide.name}>
+        <Block.Slogan $currentSlideName={currentSlide.name}>
           {currentSlide.slogan}
-        </p>
+        </Block.Slogan>
 
         <ul className={`services-slider__features services-slider__features--${currentSlide.name}`}>
           {currentSlide.features.map((feature) => (
@@ -43,8 +42,8 @@ function ServicesSlide(props) {
             {currentSlide.link}
           </a>
         )}
-      </div>
-    </div>
+      </Block.SlideWrapper>
+    </Block>
   );
 }
 

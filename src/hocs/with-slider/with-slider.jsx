@@ -30,7 +30,7 @@ const withSlider = (Component) => {
     componentDidMount() {
       if (this.sliderRef.current !== null) {
         switch (this.sliderRef.current.id) {
-          case Sliders.main:
+          case Sliders.main.name:
             this.setState({
               slides: mainSlides,
               currentSlide: mainSlides[0],
@@ -40,7 +40,7 @@ const withSlider = (Component) => {
             this.carouselHandler();
             break;
 
-          case Sliders.services:
+          case Sliders.services.name:
             this.setState({
               slides: servicesSlides,
               currentSlide: servicesSlides[0],

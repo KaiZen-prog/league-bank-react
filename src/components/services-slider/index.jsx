@@ -1,8 +1,10 @@
 import React from 'react';
 import withSlider from '../../hocs/with-slider/with-slider';
 import { Repeat } from '../../utils/common';
-import ServicesSlide from '../services-slide/services-slide';
-import { servicesSlides } from '../../mocks/mocks';
+import Block from './services-slider.styled';
+import ServicesSlide from '../services-slide';
+import {Sliders} from '../../const';
+import {servicesSlides} from '../../mocks/mocks';
 import PropTypes from 'prop-types';
 
 function ServicesSlider(props) {
@@ -17,31 +19,25 @@ function ServicesSlider(props) {
   } = props;
 
   return (
-    <section className="services-slider" ref={sliderRef}>
-      <h2 className="services-slider__header visually-hidden">Наши сервисы</h2>
-      <ul className="services-slider__tabs">
+    <Block ref={sliderRef} id={Sliders.services.name}>
+      <Block.Header>Наши сервисы</Block.Header>
+      <Block.TabList>
         <Repeat numTimes={servicesSlides.length}>
           {(i) => (
-            <li
+            <Block.Tab
               key={i}
-              className={`services-slider__tab services-slider__tab--${servicesSlides[i].name} ${
-                currentSlide === servicesSlides[i] ? 'services-slider__tab--current' : ''
-              }`}
-              onClick={() => {
-                onTabClick(servicesSlides[i], i);
-              }}
+              id={servicesSlides[i].name}
+              $isCurrent={currentSlide === servicesSlides[i]}
+              onClick={() => {onTabClick(servicesSlides[i], i);}}
             >
-              <span
-                className={`services-slider__tab-label services-slider__tab-label--${servicesSlides[i].name}`}
-              >
+              <Block.TabLabel $tabName={servicesSlides[i].name}>
                 {servicesSlides[i].tabName}
-              </span>
-            </li>
+              </Block.TabLabel>
+            </Block.Tab>
           )}
         </Repeat>
-      </ul>
-      <div
-        className="services-slider__slides-container"
+      </Block.TabList>
+      <Block.SlidesContainer
         style={{ left: currentSlideNumber === 0 ? '0' : `-${currentSlideNumber}00%` }}
         onMouseDown={onSwipeStart}
         onTouchStart={onSwipeStart}
@@ -49,22 +45,21 @@ function ServicesSlider(props) {
         <Repeat numTimes={slidesQuantity}>
           {(i) => <ServicesSlide key={i} currentSlide={servicesSlides[i]} />}
         </Repeat>
-      </div>
+      </Block.SlidesContainer>
 
-      <ul className="services-slider__dots">
+      <Block.DotList>
         <Repeat numTimes={slidesQuantity}>
           {(i) => (
-            <li
+            <Block.Dot
               key={i}
-              className={`services-slider__dot services-slider__dot--${currentSlide.name} ${
-                i === currentSlideNumber ? 'services-slider__dot--current' : ''
-              }`}
+              $isCurrent={i === currentSlideNumber}
+              $currentSlideName={currentSlide.name}
             >
-            </li>
+            </Block.Dot>
           )}
         </Repeat>
-      </ul>
-    </section>
+      </Block.DotList>
+    </Block>
   );
 }
 

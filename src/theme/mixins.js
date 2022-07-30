@@ -14,3 +14,13 @@ export const button = (color, background) => css`
 
   cursor: pointer;
 `;
+
+export const visuallyHidden = () => css`
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+`;
+
+export const blockCentered = (width) => css`
+  width: ${width};
+  margin: auto;
+`;

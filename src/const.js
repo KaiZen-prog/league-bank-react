@@ -47,13 +47,25 @@ export const CreditPurpose = {
 };
 
 export const Sliders = {
-  main: 'main-slider',
-  services: 'services-slider',
-};
+  main: {
+    name: 'main-slider',
+    slides: {
+      credit: 'credit',
+      promo: 'promo',
+      offices: 'offices',
+    },
+  },
 
-export const CREDIT_SLIDE = 'credit';
-export const PROMO_SLIDE = 'promo';
-export const OFFICES_SLIDE = 'offices';
+  services: {
+    name: 'services-slider',
+    slides: {
+      deposit: 'deposit',
+      credit: 'credit',
+      insurance: 'insurance',
+      online: 'online',
+    },
+  },
+};
 
 export const InputFields = {
   cost: 'cost',
