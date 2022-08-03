@@ -155,7 +155,10 @@ const withSlider = (Component) => {
       }
 
       this.posX = 0;
-      this.carouselHandler();
+
+      if (this.sliderRef.current === Sliders.main.name) {
+        this.carouselHandler();
+      }
     }
 
     onTabClick(slide, number) {

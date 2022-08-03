@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {css} from 'styled-components';
 import theme from '../../theme/theme';
 import {Sliders} from '../../const';
-import {blockCentered} from '../../theme/mixins';
+import {blockCentered, backgroundImage, button} from '../../theme/mixins';
 
 import slideDeposit from '../../img/slide-services-deposit.jpg';
 import slideDepositTablet from '../../img/slide-services-deposit-tablet.jpg';
@@ -19,6 +19,9 @@ import slideInsuranceDesktop from '../../img/slide-services-insurance-desktop.jp
 import slideOnline from '../../img/slide-services-online.jpg';
 import slideOnlineTablet from '../../img/slide-services-online-tablet.jpg';
 import slideOnlineDesktop from '../../img/slide-services-online-desktop.jpg';
+
+import iconFeatureMobile from '../../img/icon-feature-mobile.svg';
+import iconFeatureTablet from '../../img/icon-feature-tablet.svg';
 
 const ServicesSlide = styled.div`
   background-color: ${theme.color.ghostWhite};
@@ -251,6 +254,272 @@ ServicesSlide.Slogan = styled.p`
       default:
         return css`
                   `;
+    }
+  }}
+`;
+
+ServicesSlide.Features = styled.ul`
+  list-style: none;
+
+  margin-top: 0;
+  margin-bottom: 25px;
+  padding-left: 1px;
+  padding-right: 190px;
+
+  color: ${theme.color.jaguar};
+
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    margin-bottom: 30px;
+    padding-left: 7px;
+  }
+
+  @media (min-width: ${theme.desktopWidthMinThreshold}) {
+    margin-bottom: 34px;
+  }
+
+  ${(props) => {
+    switch (props.$currentSlideName) {
+      case Sliders.services.slides.credit:
+        return css`
+          margin-bottom: 22px;
+
+          @media (min-width: ${theme.tabletWidthMinThreshold}) {
+            margin-bottom: 31px;
+          }
+
+          @media (min-width: ${theme.desktopWidthMinThreshold}) {
+            margin-bottom: 31px;
+          }
+        `;
+
+      case Sliders.services.slides.insurance:
+        return css`
+          margin-bottom: 25px;
+
+          @media (min-width: ${theme.tabletWidthMinThreshold}) {
+            margin-bottom: 31px;
+          }
+
+          @media (min-width: ${theme.desktopWidthMinThreshold}) {
+            margin-bottom: 31px;
+          }
+        `;
+
+      case Sliders.services.slides.online:
+        return css`
+          padding-right: 45px;
+
+          @media (min-width: ${theme.tabletWidthMinThreshold}) {
+            padding-right: 45px;
+            margin-bottom: 31px;
+          }
+
+          @media (min-width: ${theme.desktopWidthMinThreshold}) {
+            padding-right: 45px;
+            margin-bottom: 31px;
+          }
+        `;
+
+      default:
+        return css`
+        `;
+    }
+  }}
+`;
+
+ServicesSlide.Feature = styled.li`
+  position: relative;
+
+  font-size: 14px;
+  line-height: 18px;
+
+  margin-bottom: 12px;
+  padding-left: 14px;
+
+  color: ${theme.color.jaguar};
+
+  &::before {
+    top: 4px;
+    left: -2px;
+
+    ${backgroundImage(iconFeatureMobile, '10px', '8px')};
+  }
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    font-size: 16px;
+    line-height: 21px;
+
+    margin-bottom: 15px;
+
+    &::before {
+      top: 6px;
+      left: -8px;
+
+      ${backgroundImage(iconFeatureTablet, '13px', '10px')};
+    }
+  }
+
+  @media (min-width: ${theme.desktopWidthMinThreshold}) {
+    font-size: 18px;
+    line-height: 23px;
+
+    margin-bottom: 15px;
+
+    width: 420px;
+
+    &::before {
+      top: 5px;
+    }
+  }
+
+  ${(props) => {
+    switch (props.$currentSlideName) {
+      case Sliders.services.slides.deposit:
+        return css`
+          @media (min-width: ${theme.tabletWidthMinThreshold}) {
+            &:last-child {
+              width: 360px;
+            }
+          }
+
+          @media (min-width: ${theme.desktopWidthMinThreshold}) {
+            &:last-child {
+              width: 420px;
+            }
+          }
+        `;
+
+      case Sliders.services.slides.online:
+        return css`
+          padding-right: 30px;
+
+          &:first-child {
+            padding-right: 60px;
+          }
+
+          @media (min-width: ${theme.tabletWidthMinThreshold}) {
+            &:first-child {
+              width: 274px;
+            }
+
+            &:last-child {
+                width: 360px;
+              }
+            }
+          }
+
+          @media (min-width: ${theme.desktopWidthMinThreshold}) {
+            &:first-child {
+              width: 350px;
+            }
+
+            &:last-child {
+                width: 390px;
+              }
+            }
+        `;
+
+      default:
+        return css`
+        `;
+    }
+  }}
+`;
+
+ServicesSlide.SlideText = styled.p`
+  font-size: 14px;
+  line-height: 20px;
+
+  margin: 0;
+  padding-right: 90px;
+
+  color: ${theme.color.jaguar};
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    font-size: 16px;
+    line-height: 21px;
+
+    width: 395px;
+  }
+
+  @media (min-width: ${theme.desktopWidthMinThreshold}) {
+    font-size: 18px;
+    line-height: 25px;
+
+    width: 440px;
+  }
+`;
+
+ServicesSlide.SlideTextLink = styled.a`
+  text-decoration: underline;
+
+  color: ${theme.color.jaguar};
+`;
+
+ServicesSlide.SlideLink = styled.a`
+  ${button(theme.color.ghostWhite, theme.color.neonBlue, theme.color.persianBlue)};
+
+  font-size: 14px;
+  line-height: 16px;
+
+  width: 290px;
+
+  padding: 14px 11px 13px 6px;
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    font-size: 16px;
+    line-height: 22px;
+
+    width: 198px;
+
+    padding: 13px 6px 13px 6px;
+  }
+
+  @media (min-width: ${theme.desktopWidthMinThreshold}) {
+    line-height: 19px;
+
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  ${(props) => {
+    switch (props.$currentSlideName) {
+      case Sliders.services.slides.insurance:
+        return css`
+          padding-top: 15px;
+          padding-bottom: 12px;
+
+          @media (min-width: ${theme.tabletWidthMinThreshold}) {
+            padding-top: 13px;
+            padding-bottom: 13px;
+          }
+
+          @media (min-width: ${theme.desktopWidthMinThreshold}) {
+            padding-top: 13px;
+            padding-bottom: 13px;
+          }
+          `;
+
+      case Sliders.services.slides.online:
+        return css`
+          padding-top: 15px;
+          padding-bottom: 12px;
+
+          @media (min-width: ${theme.tabletWidthMinThreshold}) {
+            padding-top: 13px;
+            padding-bottom: 13px;
+          }
+
+          @media (min-width: ${theme.desktopWidthMinThreshold}) {
+            padding-top: 13px;
+            padding-bottom: 13px;
+          }
+        `;
+
+      default:
+        return css`
+        `;
     }
   }}
 `;

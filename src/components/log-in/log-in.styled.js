@@ -217,7 +217,7 @@ Login.Submit = styled.button`
 
   padding: 20px 188px 19px 186px;
 
-  ${button(theme.color.ghostWhite, theme.color.neonBlue)};
+  ${button(theme.color.ghostWhite, theme.color.neonBlue, theme.color.persianBlue)};
 
   @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     font-weight: 500;

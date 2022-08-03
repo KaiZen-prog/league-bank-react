@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
 
-export const button = (color, background) => css`
+export const button = (color, background, backgroundHovered) => css`
   display: inline-block;
 
   font-weight: 500;
@@ -13,6 +13,10 @@ export const button = (color, background) => css`
   border-radius: 4px;
 
   cursor: pointer;
+
+  &:hover {
+    background: ${backgroundHovered};
+  }
 `;
 
 export const visuallyHidden = () => css`
@@ -23,4 +27,16 @@ export const visuallyHidden = () => css`
 export const blockCentered = (width) => css`
   width: ${width};
   margin: auto;
+`;
+
+export const backgroundImage = (logo, width, height) => css`
+  content: "";
+  position: absolute;
+  display: block;
+
+  width: ${width};
+  height: ${height};
+
+  background-image: url(${logo});
+  background-repeat: no-repeat;
 `;

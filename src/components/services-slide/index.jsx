@@ -12,35 +12,35 @@ function ServicesSlide(props) {
           {currentSlide.slogan}
         </Block.Slogan>
 
-        <ul className={`services-slider__features services-slider__features--${currentSlide.name}`}>
+        <Block.Features $currentSlideName={currentSlide.name}>
           {currentSlide.features.map((feature) => (
-            <li
+            <Block.Feature
               key={feature}
-              className={`services-slider__feature services-slider__feature--${currentSlide.name}`}
+              $currentSlideName={currentSlide.name}
             >
               {feature}
-            </li>
+            </Block.Feature>
           ))}
-        </ul>
+        </Block.Features>
 
         {currentSlide.text && (
-          <p className="services-slider__text">
+          <Block.SlideText>
             {currentSlide.text.firstLine}
             <br />
             {currentSlide.text.secondLine}
-            <a className="services-slider__text-link" href="#">
+            <Block.SlideTextLink href="#">
               {currentSlide.text.link}
-            </a>
-          </p>
+            </Block.SlideTextLink>
+          </Block.SlideText>
         )}
 
         {currentSlide.link && (
-          <a
-            className={`services-slider__link services-slider__link--${currentSlide.name}`}
+          <Block.SlideLink
+            $currentSlideName={currentSlide.name}
             href="#"
           >
             {currentSlide.link}
-          </a>
+          </Block.SlideLink>
         )}
       </Block.SlideWrapper>
     </Block>
