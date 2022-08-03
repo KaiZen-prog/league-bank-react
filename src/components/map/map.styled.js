@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-//import {css} from 'styled-components';
 import theme from '../../theme/theme';
 
 const Map = styled.section`

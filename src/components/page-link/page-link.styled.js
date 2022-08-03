@@ -1,27 +1,31 @@
 import styled from 'styled-components';
+import {css} from 'styled-components';
 import { Link } from 'react-router-dom';
 import theme from '../../theme/theme';
 
+import logoMobile from '../../img/logo-mobile.svg';
+import logoTablet from '../../img/logo-tablet.svg';
+import logoDesktop from '../../img/logo-desktop.svg';
+
+import logoFooterMobile from '../../img/logo-footer-mobile.svg';
+import logoFooterTablet from '../../img/logo-footer-tablet.svg';
+import logoFooterDesktop from '../../img/logo-footer-desktop.svg';
+
 const PageLink = styled(Link)`
   position: relative;
-
   display: block;
 
-  width: 160px;
-
-  margin-right: 93px;
+  min-width: 160px;
 
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
   line-height: 23px;
 
-  transform: translateY(2px);
-
   padding-top: 32px;
   padding-left: 44px;
 
-  color: #1f1e25;
+  color: ${theme.color.jaguar};
 
   letter-spacing: 1.1px;
 
@@ -29,20 +33,10 @@ const PageLink = styled(Link)`
     content: '';
     position: absolute;
     display: block;
-
-    width: 28px;
-    height: 26px;
-
-    top: 24px;
-    left: 6px;
-
-    background-image: url('../../img/logo-desktop.svg');
+    background-repeat: no-repeat;
   }
 
-  @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
-    width: 170px;
-
-    margin-right: 56px;
+  @media (min-width: ${theme.tabletWidthMinThreshold}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     font-size: 18px;
     line-height: 21px;
 
@@ -51,42 +45,117 @@ const PageLink = styled(Link)`
     padding-bottom: 21px;
 
     &::before {
-      content: '';
-      position: absolute;
-      display: block;
-
       width: 26px;
       height: 24px;
-
-      top: 20px;
-      left: 35px;
-
-      background-image: url('../../img/logo-tablet.svg');
     }
   }
 
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
-    margin-top: -12px;
-    padding-top: 9px;
-    padding-left: 40px;
-
     font-size: 16px;
     line-height: 19px;
 
     &::before {
-      content: '';
-      position: absolute;
-      display: block;
-
       width: 20px;
       height: 19px;
-
-      top: 8px;
-      left: 13px;
-
-      background-image: url('../../img/logo-mobile.svg');
     }
   }
+
+  ${(props) => {
+    if (props.$isFooterLogo) {
+      return css`
+        margin-bottom: 16px;
+        padding-top: 0;
+        padding-left: 38px;
+
+        &::before {
+          width: 30px;
+          height: 27px;
+
+          top: -8px;
+          left: -1px;
+
+          background-image: url(${logoFooterDesktop});
+        }
+
+        @media (min-width: ${theme.tabletWidthMinThreshold}) and (max-width: ${theme.desktopWidthMinThreshold}) {
+          min-width: 150px;
+
+          margin-top: -6px;
+          margin-bottom: 32px;
+          padding-top: 7px;
+          padding-left: 32px;
+
+          &::before {
+            top: 0;
+            left: -1px;
+
+            background-image: url(${logoFooterTablet});
+          }
+        }
+
+        @media (max-width: ${theme.tabletWidthMinThreshold}) {
+          min-width: 130px;
+
+          margin: -5px 0 16px -1px;
+          padding-top: 9px;
+          padding-left: 33px;
+
+          &::before {
+              top: 5px;
+              left: 8px;
+
+              background-image: url(${logoFooterMobile});
+            }
+          }
+        }
+      `;
+    } else {
+      return css`
+        margin-right: 93px;
+        transform: translateY(2px);
+
+        &::before {
+          width: 28px;
+          height: 26px;
+
+          top: 24px;
+          left: 6px;
+
+          background-image: url(${logoDesktop});
+        }
+
+          @media (min-width: ${theme.tabletWidthMinThreshold}) and (max-width: ${theme.desktopWidthMinThreshold}) {
+            min-width: 170px;
+
+            margin-right: 56px;
+
+            padding-top: 27px;
+            padding-left: 68px;
+            padding-bottom: 21px;
+
+            &::before {
+              top: 20px;
+              left: 35px;
+
+              background-image: url(${logoTablet});
+            }
+          }
+
+          @media (max-width: ${theme.tabletWidthMinThreshold}) {
+            margin-top: -12px;
+            padding-top: 9px;
+            padding-left: 40px;
+
+            &::before {
+              top: 8px;
+              left: 13px;
+
+              background-image: url(${logoMobile});
+            }
+          }
+      `;
+    }
+  }}
 `;
 
 export default PageLink;

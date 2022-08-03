@@ -1,13 +1,14 @@
 import React from 'react';
 import { AppRoute } from '../../const';
 import PageLink from '../page-link/page-link';
+import Block from './footer.styled';
 
 function Footer() {
   return (
-    <footer className="footer app__footer">
-      <div className="footer__container">
-        <section className="footer__address">
-          <PageLink link={AppRoute.MAIN} htmlClass={'footer__logo'} description={'ЛИГА Банк'} />
+    <Block>
+      <Block.Container>
+        <Block.Address>
+          <PageLink link={AppRoute.MAIN} description={'ЛИГА Банк'} isFooterLogo />
           <div className="footer__info">
             <p>150015, г. Москва, ул. Московская, д. 32</p>
             <p>Генеральная лицензия Банка России №1050</p>
@@ -37,7 +38,8 @@ function Footer() {
               </li>
             </ul>
           </nav>
-        </section>
+        </Block.Address>
+
         <section className="footer__contacts">
           <ul className="footer__contacts-list">
             <li className="footer__contacts-item">
@@ -80,8 +82,8 @@ function Footer() {
             </ul>
           </section>
         </section>
-      </div>
-    </footer>
+      </Block.Container>
+    </Block>
   );
 }
 

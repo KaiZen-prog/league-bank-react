@@ -4,6 +4,7 @@ import { AppRoute } from '../../const';
 import withHeader from '../../hocs/with-header/with-header';
 import Login from '../log-in';
 import Block from './header.styled';
+import PageLink from '../page-link/page-link';
 
 function Header(props) {
   const {
@@ -26,7 +27,7 @@ function Header(props) {
           <Block.BurgerButton type="button" onClick={onBurgerClick}>
             <span className="visually-hidden">Открыть меню</span>
           </Block.BurgerButton>
-          <Block.LogoLink to={AppRoute.MAIN}>ЛИГА Банк</Block.LogoLink>
+          <PageLink link={AppRoute.MAIN} description={'ЛИГА Банк'}/>
           <Block.CloseNavButton type="button" $isNavOpened={isNavOpened} onClick={onNavClose}>
             <span className="visually-hidden">Закрыть меню</span>
           </Block.CloseNavButton>
