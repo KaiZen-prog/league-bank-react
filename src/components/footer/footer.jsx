@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppRoute } from '../../const';
+import { AppRoute, ContactsTel, SocialLinks } from '../../const';
 import PageLink from '../page-link/page-link';
 import Block from './footer.styled';
 
@@ -9,79 +9,82 @@ function Footer() {
       <Block.Container>
         <Block.Address>
           <PageLink link={AppRoute.MAIN} description={'ЛИГА Банк'} isFooterLogo />
-          <div className="footer__info">
+          <Block.Info  className="footer__info">
             <p>150015, г. Москва, ул. Московская, д. 32</p>
             <p>Генеральная лицензия Банка России №1050</p>
             <p>Ⓒ Лига Банк, 2019</p>
-          </div>
-          <nav className="footer__nav footer-nav">
-            <ul className="footer-nav__list">
-              <li className="footer-nav__item">
-                <a href="#" className="footer-nav__link">
+          </Block.Info >
+          <Block.Nav>
+            <Block.NavList>
+              <Block.NavItem>
+                <Block.NavLink href="#">
                   Услуги
-                </a>
-              </li>
-              <li className="footer-nav__item">
-                <a href="#" className="footer-nav__link">
+                </Block.NavLink>
+              </Block.NavItem>
+              <Block.NavItem>
+                <Block.NavLink href="#">
                   Рассчитать кредит
-                </a>
-              </li>
-              <li className="footer-nav__item">
-                <a href="#" className="footer-nav__link">
+                </Block.NavLink>
+              </Block.NavItem>
+              <Block.NavItem>
+                <Block.NavLink href="#">
                   Контакты
-                </a>
-              </li>
-              <li className="footer-nav__item">
-                <a href="#" className="footer-nav__link">
+                </Block.NavLink>
+              </Block.NavItem>
+              <Block.NavItem>
+                <Block.NavLink href="#">
                   Задать вопрос
-                </a>
-              </li>
-            </ul>
-          </nav>
+                </Block.NavLink>
+              </Block.NavItem>
+            </Block.NavList>
+          </Block.Nav>
         </Block.Address>
 
-        <section className="footer__contacts">
-          <ul className="footer__contacts-list">
-            <li className="footer__contacts-item">
-              <a href="tel: *0904" className="footer__tel footer__tel--mobile">
+        <Block.Contacts>
+          <Block.ContactsList>
+            <Block.ContactsItem>
+              <Block.ContactsTel href="tel: *0904" $type={ContactsTel.mobile}>
                 *0904
-              </a>
-              <p className="footer__phone-info">
+              </Block.ContactsTel>
+              <Block.TelInfo>
                 Бесплатно для абонентов МТС, Билайн, Мегафон, Теле2
-              </p>
-            </li>
-            <li className="footer__contacts-item footer__contacts-item--main-phone">
-              <a href="tel: +78001112233" className="footer__tel footer__tel--main">
+              </Block.TelInfo>
+            </Block.ContactsItem>
+            <Block.ContactsItem $isPhone>
+              <Block.ContactsTel href="tel: +78001112233" $type={ContactsTel.main}>
                 8 800 111 22 33
-              </a>
-              <p className="footer__phone-info">Бесплатный для всех городов России</p>
-            </li>
-          </ul>
-          <section className="footer__social social">
-            <ul className="social__list">
-              <li className="social__item">
-                <a href="#" className="social__link social__link--fb">
+              </Block.ContactsTel>
+              <Block.TelInfo>
+                Бесплатный для всех городов России
+              </Block.TelInfo>
+            </Block.ContactsItem>
+          </Block.ContactsList>
+
+          <Block.Socials>
+            <Block.SocialsList>
+              <Block.SocialsItem>
+                <Block.SocialsLink href="#" $type={SocialLinks.facebook}>
                   <span className="visually-hidden">Мы в фейсбуке</span>
-                </a>
-              </li>
-              <li className="social__item">
-                <a href="#" className="social__link social__link--inst">
+                </Block.SocialsLink>
+              </Block.SocialsItem>
+              <Block.SocialsItem>
+                <Block.SocialsLink href="#" $type={SocialLinks.instagram}>
                   <span className="visually-hidden">Мы в инстаграме</span>
-                </a>
-              </li>
-              <li className="social__item">
-                <a href="#" className="social__link social__link--twitter">
+                </Block.SocialsLink>
+              </Block.SocialsItem>
+              <Block.SocialsItem>
+                <Block.SocialsLink href="#" $type={SocialLinks.twitter}>
                   <span className="visually-hidden">Мы в твиттере</span>
-                </a>
-              </li>
-              <li className="social__item">
-                <a href="#" className="social__link social__link--youtube">
+                </Block.SocialsLink>
+              </Block.SocialsItem>
+              <Block.SocialsItem>
+                <Block.SocialsLink href="#" $type={SocialLinks.youtube}>
                   <span className="visually-hidden">Наш канал на ютубе</span>
-                </a>
-              </li>
-            </ul>
-          </section>
-        </section>
+                </Block.SocialsLink>
+              </Block.SocialsItem>
+            </Block.SocialsList>
+          </Block.Socials>
+        </Block.Contacts>
       </Block.Container>
     </Block>
   );

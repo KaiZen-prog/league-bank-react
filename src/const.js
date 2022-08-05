@@ -73,6 +73,18 @@ export const InputFields = {
   term: 'term',
 };
 
+export const ContactsTel = {
+  mobile: 'mobile',
+  main: 'main',
+};
+
+export const SocialLinks = {
+  facebook: 'facebook',
+  instagram: 'instagram',
+  twitter: 'twitter',
+  youtube: 'youtube',
+};
+
 export const MortgageParams = {
   type: 'mortgage',
   minCost: 1200000,
