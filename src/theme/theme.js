@@ -3,6 +3,7 @@ const theme = {
     basicBlack: '#000000',
     basicWhite: '#ffffff',
 
+    blackPearl: '#0A1E32',
     cello: '#394959',
     gainsboro: '#E0E0E0',
     ghost: '#C1C2CA',

@@ -85,6 +85,11 @@ export const SocialLinks = {
   youtube: 'youtube',
 };
 
+export const CalculatorSteps = {
+  params: 'params',
+  request: 'request',
+};
+
 export const MortgageParams = {
   type: 'mortgage',
   minCost: 1200000,

@@ -31,7 +31,6 @@ Footer.Container = styled.div`
   @media (min-width: ${theme.tabletWidthMinThreshold}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     padding: 56px 45px 55px 45px;
   }
-
 `;
 
 Footer.Address = styled.section`

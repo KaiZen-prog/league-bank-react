@@ -1,10 +1,11 @@
 import React from 'react';
-import { CreditPurpose } from '../../const';
+import { CreditPurpose, CalculatorSteps } from '../../const';
 import { shakeEffect } from '../../utils/common';
 import withCalculator from '../../hocs/with-calculator/with-calculator';
 import { divideNumberToSpace } from '../../utils/common';
 import InputMask from 'react-input-mask';
 import PropTypes from 'prop-types';
+import Block from './calculator.styled';
 
 function Calculator(props) {
   const {
@@ -90,40 +91,31 @@ function Calculator(props) {
   };
 
   return (
-    <section className="calculator">
+    <Block>
       <a name="calculator"></a>
-      <form action="#" className="calculator__form" onSubmit={onMakeRequest}>
-        <h2 className="calculator__title">Кредитный калькулятор</h2>
-        <div className="calculator__flex-container">
-          <div className="calculator__container">
-            <fieldset className="calculator__purpose">
-              <h3 className="calculator__step">Шаг 1. Цель кредита</h3>
-              <div
-                className={`calculator__purpose-select${
-                  isPurposeSelectOpened ? ' calculator__purpose-select--opened' : ''
-                }`}
+      <form action="#" onSubmit={onMakeRequest}>
+        <Block.Title>Кредитный калькулятор</Block.Title>
+        <Block.FlexContainer>
+          <Block.Container>
+            <Block.Purpose>
+              <Block.StepTitle>Шаг 1. Цель кредита</Block.StepTitle>
+              <Block.PurposeSelect $isOpened={isPurposeSelectOpened}
                 onClick={isPurposeSelectOpened ? onSelectClose : onSelectOpen}
               >
-                <span className="calculator__select-title">{CreditPurpose[purpose].name}</span>
-                <ul
-                  className={`calculator__purpose-list${
-                    isPurposeSelectOpened ? '' : ' calculator__purpose-list--hidden'
-                  }`}
-                >
-                  <li className="calculator__purpose-item" id="mortgage" onClick={onPurposeChange}>
+                <Block.PurposeSelectTitle>{CreditPurpose[purpose].name}</Block.PurposeSelectTitle>
+                <Block.PurposeList $isClosed={!isPurposeSelectOpened}>
+                  <Block.PurposeItem id="mortgage" onClick={onPurposeChange}>
                     Ипотечное кредитование
-                  </li>
-                  <li className="calculator__purpose-item" id="car" onClick={onPurposeChange}>
+                  </Block.PurposeItem>
+                  <Block.PurposeItem id="car" onClick={onPurposeChange}>
                     Автомобильное кредитование
-                  </li>
-                </ul>
-              </div>
-            </fieldset>
+                  </Block.PurposeItem>
+                </Block.PurposeList>
+              </Block.PurposeSelect>
+            </Block.Purpose>
             {step >= 2 && (
               <fieldset className="calculator__params">
-                <h3 className="calculator__step calculator__step--params">
-                  Шаг 2. Введите параметры кредита
-                </h3>
+                <Block.StepTitle $type={CalculatorSteps.params}>Шаг 2. Введите параметры кредита</Block.StepTitle>
 
                 <div className="calculator__input-container">
                   <label className="calculator__label" htmlFor="cost" onClick={onLabelClick}>
@@ -307,7 +299,7 @@ function Calculator(props) {
                 )}
               </fieldset>
             )}
-          </div>
+          </Block.Container>
           {step >= 2 && (
             <>
               {creditAmount >= paramsCredit.minCreditAmount && (
@@ -359,11 +351,11 @@ function Calculator(props) {
               )}
             </>
           )}
-        </div>
+        </Block.FlexContainer>
       </form>
       {step >= 3 && (
         <form action="#" className="calculator__reg-application" onSubmit={onSubmit}>
-          <h3 className="calculator__step calculator__step--request">Шаг 3. Оформление заявки</h3>
+          <Block.StepTitle $type={CalculatorSteps.request}>Шаг 3. Оформление заявки</Block.StepTitle>
           <table className="calculator__request-table">
             <tbody>
               <tr className="calculator__request-field">
@@ -458,7 +450,7 @@ function Calculator(props) {
           </div>
         </div>
       )}
-    </section>
+    </Block>
   );
 }
 
