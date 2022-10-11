@@ -1,5 +1,5 @@
 import React from 'react';
-import { CreditPurpose, CalculatorSteps } from '../../const';
+import { CreditPurpose, CalculatorSteps, InputTypes, InputIconsTypes } from '../../const';
 import { shakeEffect } from '../../utils/common';
 import withCalculator from '../../hocs/with-calculator/with-calculator';
 import { divideNumberToSpace } from '../../utils/common';
@@ -114,19 +114,19 @@ function Calculator(props) {
               </Block.PurposeSelect>
             </Block.Purpose>
             {step >= 2 && (
-              <fieldset className="calculator__params">
+              <Block.Params>
                 <Block.StepTitle $type={CalculatorSteps.params}>Шаг 2. Введите параметры кредита</Block.StepTitle>
 
-                <div className="calculator__input-container">
-                  <label className="calculator__label" htmlFor="cost" onClick={onLabelClick}>
+                <Block.InputContainer>
+                  <Block.Label htmlFor="cost" onClick={onLabelClick}>
                     Стоимость {paramsCredit.type === 'mortgage' ? 'недвижимости' : 'автомобиля'}
-                  </label>
-                  <span
-                    className="calculator__icon calculator__icon--minus"
+                  </Block.Label>
+                  <Block.Icon
+                    $type={InputIconsTypes.minus}
                     id="minus"
                     onClick={onCostChangeSign}
                   >
-                  </span>
+                  </Block.Icon>
                   <input
                     type="number"
                     className="calculator__input"
@@ -148,27 +148,27 @@ function Calculator(props) {
                   >
                     {typeof cost === 'string' ? cost : `${divideNumberToSpace(cost)} рублей`}
                   </div>
-                  <span
-                    className="calculator__icon calculator__icon--plus"
+                  <Block.Icon
+                    $type={InputIconsTypes.plus}
                     id="plus"
                     onClick={onCostChangeSign}
                   >
-                  </span>
+                  </Block.Icon>
 
                   <p className="calculator__help-text">
                     От {divideNumberToSpace(paramsCredit.minCost)} &nbsp;до{' '}
                     {divideNumberToSpace(paramsCredit.maxCost)} рублей
                   </p>
-                </div>
+                </Block.InputContainer>
 
-                <div className="calculator__input-container calculator__input-container--initialFee">
-                  <label
-                    className="calculator__label calculator__label--initialFee"
+                <Block.InputContainer $type={InputTypes.initialFee}>
+                  <Block.Label
+                    $type={InputTypes.initialFee}
                     htmlFor="initialFee"
                     onClick={onLabelClick}
                   >
                     Первоначальный взнос
-                  </label>
+                  </Block.Label>
 
                   <input
                     type="number"
@@ -214,12 +214,12 @@ function Calculator(props) {
                       : Math.floor((initialFee * 100) / cost)}
                     %
                   </span>
-                </div>
+                </Block.InputContainer>
 
-                <div className="calculator__input-container calculator__input-container--term">
-                  <label className="calculator__label" htmlFor="term" onClick={onLabelClick}>
+                <Block.InputContainer $type={InputTypes.term}>
+                  <Block.Label htmlFor="term" onClick={onLabelClick}>
                     Срок кредитования
-                  </label>
+                  </Block.Label>
 
                   <input
                     type="number"
@@ -259,7 +259,7 @@ function Calculator(props) {
                     </span>
                     <span className="calculator__range-value">{paramsCredit.maxTerm} лет</span>
                   </div>
-                </div>
+                </Block.InputContainer>
 
                 {paramsCredit.maternalCapitalValue && (
                   <label className="calculator__additional">
@@ -297,7 +297,7 @@ function Calculator(props) {
                     </label>
                   </>
                 )}
-              </fieldset>
+              </Block.Params>
             )}
           </Block.Container>
           {step >= 2 && (

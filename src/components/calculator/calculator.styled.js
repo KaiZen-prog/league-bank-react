@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 import {css} from 'styled-components';
 import theme from '../../theme/theme';
-import {CalculatorSteps} from '../../const';
+import {CalculatorSteps, InputTypes, InputIconsTypes} from '../../const';
 import {backgroundImage} from '../../theme/mixins';
 
 import iconPurposeSelect from '../../img/icon-purpose-select.svg';
+
+import iconMinus from '../../img/icon-minus.svg';
+import iconPlus from '../../img/icon-plus.svg';
 
 const Calculator = styled.section`
   padding: 53px 20px 10px;
@@ -172,6 +175,10 @@ Calculator.PurposeSelect = styled.div`
     if(props.$isOpened) {
       return css`
         padding-bottom: 0;
+
+        &::before {
+          transform: rotate(180deg);
+        }
       `;
     }
   }}
@@ -232,6 +239,157 @@ Calculator.PurposeItem = styled.li`
   &:last-child {
       border: none;
     }
+`;
+
+Calculator.Params = styled.fieldset`
+  border: none;
+  padding: 25px 1px 29px 1px;
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    padding-top: 35px;
+    padding-bottom: 39px;
+  }
+
+  @media (min-width: ${theme.desktopWidthMinThreshold}) {
+    margin-right: 0;
+    margin-left: 0;
+    padding: 33px 1px 29px 0;
+  }
+`;
+
+Calculator.InputContainer = styled.div`
+  position: relative;
+
+  margin-bottom: 11px;
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    margin-bottom: 1px;
+  }
+
+  ${(props) => {
+    switch (props.$type) {
+      case InputTypes.initialFee:
+        return css`
+          margin-bottom: 0;
+
+          @media (min-width: ${theme.tabletWidthMinThreshold}) {
+            margin-bottom: 0;
+          }
+        `;
+
+      case InputTypes.term:
+        return css`
+          margin-bottom: 3px;
+
+          @media (min-width: ${theme.tabletWidthMinThreshold}) {
+            margin-bottom: 3px;
+          }
+        `;
+
+      case InputTypes.userInfo:
+        return css`
+          margin-bottom: 30px;
+          padding-right: 3px;
+          padding-left: 3px;
+
+          @media (min-width: ${theme.tabletWidthMinThreshold}) {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            margin-bottom: 20px;
+          }
+
+          @media (min-width: ${theme.desktopWidthMinThreshold}) {
+            padding-right: 70px;
+            padding-left: 70px;
+          }
+        `;
+
+      default:
+        return css`
+        `;
+    }
+  }}
+`;
+
+Calculator.Label = styled.label`
+  display: block;
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+
+  color: ${theme.color.cello};
+
+  margin-top: 0;
+  margin-bottom: 8px;
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    margin-bottom: 8px;
+  }
+
+  ${(props) => {
+    if (props.$type === InputTypes.initialFee) {
+      return css`
+        margin-bottom: 9px;
+
+        @media (min-width: ${theme.tabletWidthMinThreshold}) {
+          margin-bottom: 9px;
+        }
+      `;
+    }
+  }}
+`;
+
+Calculator.Icon = styled.span`
+  content: "";
+  position: absolute;
+  display: block;
+
+  width: 32px;
+  height: 32px;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+
+  z-index: 1;
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    margin-bottom: 8px;
+  }
+
+  ${(props) => {
+    switch (props.$type) {
+      case InputIconsTypes.minus:
+        return css`
+            top: 43px;
+            left: 16px;
+            background-image: url(${iconMinus});
+        `;
+
+      case InputIconsTypes.plus:
+        return css`
+          top: 44px;
+          right: 7px;
+          background-image: url(${iconPlus});
+
+          @media (min-width: ${theme.tabletWidthMinThreshold}) {
+            right: 16px;
+          }
+
+          @media (min-width: ${theme.desktopWidthMinThreshold}) {
+            right: 16px;
+          }
+        `;
+
+      default:
+        return css`
+            `;
+    }
+  }}
 `;
 
 export default Calculator;

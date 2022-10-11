@@ -90,6 +90,17 @@ export const CalculatorSteps = {
   request: 'request',
 };
 
+export const InputTypes = {
+  initialFee: 'initialFee',
+  term: 'term',
+  userInfo: 'userInfo',
+};
+
+export const InputIconsTypes = {
+  minus: 'minus',
+  plus: 'plus',
+};
+
 export const MortgageParams = {
   type: 'mortgage',
   minCost: 1200000,
