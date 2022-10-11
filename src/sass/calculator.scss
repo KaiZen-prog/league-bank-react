@@ -1,78 +1,6 @@
 
 
-.calculator__input {
-  display: none;
 
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-  text-align: center;
-
-  width: 100%;
-  height: 60px;
-
-  margin-bottom: 6px;
-  padding: 19px 50px;
-
-  color: $color-dark-blue;
-  border: 1px solid $color-dark-blue;
-  border-radius: 4px;
-  box-sizing: border-box;
-
-  &[type="number"] {
-    -moz-appearance:textfield;
-  }
-
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-  }
-
-  &--show {
-    display: block;
-  }
-
-  &--initial-fee {
-    margin-bottom: 21px;
-  }
-
-  &--term {
-    margin-bottom: 17px;
-  }
-
-  &--full-name {
-    display: block;
-
-    text-align: start;
-
-    margin-bottom: 20px;
-    padding-top: 20px;
-    padding-right: 14px;
-    padding-left: 14px;
-  }
-
-  &--phone {
-    display: block;
-
-    text-align: start;
-
-    margin-bottom: 20px;
-    padding-top: 20px;
-    padding-right: 14px;
-    padding-left: 14px;
-  }
-
-  &--email {
-    display: block;
-
-    text-align: start;
-
-    padding-top: 20px;
-    padding-right: 14px;
-    padding-left: 14px;
-  }
-}
 
 .calculator__help-text {
   font-size: 14px;
@@ -562,35 +490,6 @@
 }
 
 @media (min-width: $desktop-width-min) {
-
-  .calculator__input {
-    font-size: 18px;
-    line-height: 25px;
-
-    padding: 18px 50px 16px 50px;
-
-    &--full-name {
-      padding: 19px 50px 16px 23px;
-
-      background-color: $color-white;
-    }
-
-    &--phone {
-      width: 300px;
-
-      padding: 19px 50px 16px 23px;
-
-      background-color: $color-white;
-    }
-
-    &--email {
-      width: 300px;
-
-      padding: 19px 50px 16px 23px;
-
-      background-color: $color-white;
-    }
-  }
 
   .calculator__help-text {
     margin-bottom: 20px;

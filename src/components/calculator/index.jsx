@@ -127,9 +127,8 @@ function Calculator(props) {
                     onClick={onCostChangeSign}
                   >
                   </Block.Icon>
-                  <input
+                  <Block.Input
                     type="number"
-                    className="calculator__input"
                     name="cost"
                     id="cost"
                     ref={costInputRef}
@@ -139,15 +138,15 @@ function Calculator(props) {
                     onBlur={onCostChange}
                     onChange={onInputChange}
                   />
-                  <div
-                    className="calculator__input calculator__input--show"
+                  <Block.InputDiv
+                    as="div"
                     tabIndex="0"
                     ref={costDivRef}
                     onClick={onLabelClick}
                     onFocus={onInputFocus}
                   >
                     {typeof cost === 'string' ? cost : `${divideNumberToSpace(cost)} рублей`}
-                  </div>
+                  </Block.InputDiv>
                   <Block.Icon
                     $type={InputIconsTypes.plus}
                     id="plus"
@@ -170,9 +169,8 @@ function Calculator(props) {
                     Первоначальный взнос
                   </Block.Label>
 
-                  <input
+                  <Block.Input
                     type="number"
-                    className="calculator__input"
                     name="initialFee"
                     id="initialFee"
                     ref={initialFeeInputRef}
@@ -182,15 +180,16 @@ function Calculator(props) {
                     onBlur={onInitialFeeChange}
                     onChange={onInputChange}
                   />
-                  <div
-                    className="calculator__input calculator__input--show calculator__input--initial-fee"
+                  <Block.InputDiv
+                    as="div"
+                    $type={InputTypes.initialFee}
                     tabIndex="0"
                     ref={initialFeeDivRef}
                     onClick={onLabelClick}
                     onFocus={onInputFocus}
                   >
                     {divideNumberToSpace(initialFee)} рублей
-                  </div>
+                  </Block.InputDiv>
 
                   <input
                     type="range"
@@ -221,9 +220,8 @@ function Calculator(props) {
                     Срок кредитования
                   </Block.Label>
 
-                  <input
+                  <Block.Input
                     type="number"
-                    className="calculator__input"
                     name="term"
                     id="term"
                     ref={termInputRef}
@@ -233,15 +231,16 @@ function Calculator(props) {
                     onBlur={onTermChange}
                     onChange={onInputChange}
                   />
-                  <div
-                    className="calculator__input calculator__input--show calculator__input--term"
+                  <Block.InputDiv
+                    as="div"
+                    $type={InputTypes.term}
                     tabIndex="0"
                     ref={termDivRef}
                     onClick={onLabelClick}
                     onFocus={onInputFocus}
                   >
                     {setTermLine(term)}
-                  </div>
+                  </Block.InputDiv>
 
                   <input
                     type="range"
@@ -386,11 +385,11 @@ function Calculator(props) {
               </tr>
             </tbody>
           </table>
-          <div className="calculator__input-container calculator__input-container--userInfo">
-            <input
+          <Block.InputContainer $type={InputTypes.userInfo}>
+            <Block.Input
+              $type={InputTypes.fullName}
               type="text"
               name="fullname"
-              className="calculator__input calculator__input--full-name"
               placeholder="ФИО"
               onChange={onRegApplicationChange}
               onInvalid={(evt) => {
@@ -402,14 +401,15 @@ function Calculator(props) {
               autoFocus
               required
             />
-            <InputMask
+            <Block.Input
+              as={InputMask}
+              $type={InputTypes.phone}
               mask="+7 (999) 999-9999"
               maskChar=""
               type="tel"
               name="tel"
               ref={telRef}
               minLength={17}
-              className="calculator__input calculator__input--phone"
               placeholder="Телефон"
               onChange={onChangePhone}
               onInvalid={(evt) => {
@@ -418,10 +418,10 @@ function Calculator(props) {
               value={localStorage.getItem('tel') !== null ? localStorage.getItem('tel') : ''}
               required
             />
-            <input
+            <Block.Input
+              $type={InputTypes.email}
               type="email"
               name="email"
-              className="calculator__input calculator__input--email"
               placeholder="E-mail"
               onChange={onRegApplicationChange}
               onInvalid={(evt) => {
@@ -430,7 +430,7 @@ function Calculator(props) {
               value={localStorage.getItem('email') !== null ? localStorage.getItem('email') : ''}
               required
             />
-          </div>
+          </Block.InputContainer>
           <button
             type="submit"
             className="calculator__submit-button calculator__submit-button--request"

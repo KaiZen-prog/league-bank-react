@@ -91,7 +91,11 @@ export const CalculatorSteps = {
 };
 
 export const InputTypes = {
+  email: 'email',
+  fullName: 'fullName',
   initialFee: 'initialFee',
+  phone: 'phone',
+  show: 'show',
   term: 'term',
   userInfo: 'userInfo',
 };
