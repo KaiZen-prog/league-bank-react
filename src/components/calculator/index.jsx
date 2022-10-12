@@ -1,5 +1,5 @@
 import React from 'react';
-import { CreditPurpose, CalculatorSteps, InputTypes, InputIconsTypes } from '../../const';
+import { CreditPurpose, CalculatorSteps, InputTypes, InputIconsTypes, LabelTypes, OfferTypes, SubmitButtonTypes } from '../../const';
 import { shakeEffect } from '../../utils/common';
 import withCalculator from '../../hocs/with-calculator/with-calculator';
 import { divideNumberToSpace } from '../../utils/common';
@@ -154,10 +154,10 @@ function Calculator(props) {
                   >
                   </Block.Icon>
 
-                  <p className="calculator__help-text">
+                  <Block.HelpText>
                     От {divideNumberToSpace(paramsCredit.minCost)} &nbsp;до{' '}
                     {divideNumberToSpace(paramsCredit.maxCost)} рублей
-                  </p>
+                  </Block.HelpText>
                 </Block.InputContainer>
 
                 <Block.InputContainer $type={InputTypes.initialFee}>
@@ -191,9 +191,8 @@ function Calculator(props) {
                     {divideNumberToSpace(initialFee)} рублей
                   </Block.InputDiv>
 
-                  <input
+                  <Block.InputRange
                     type="range"
-                    className="calculator__input-range"
                     name="initialFee"
                     min={paramsCredit.minInitialFee}
                     max="100"
@@ -201,8 +200,7 @@ function Calculator(props) {
                     value={(initialFee * 100) / cost}
                     onChange={onInputRangeChange}
                   />
-                  <span
-                    className="calculator__range-value"
+                  <Block.RangeValue
                     style={{
                       marginLeft: `${getRangeValuePosition()}%`,
                       transform: `translateX(-${getRangeValuePosition() / 2}%)`,
@@ -212,7 +210,7 @@ function Calculator(props) {
                       ? 0
                       : Math.floor((initialFee * 100) / cost)}
                     %
-                  </span>
+                  </Block.RangeValue>
                 </Block.InputContainer>
 
                 <Block.InputContainer $type={InputTypes.term}>
@@ -242,9 +240,8 @@ function Calculator(props) {
                     {setTermLine(term)}
                   </Block.InputDiv>
 
-                  <input
+                  <Block.InputRange
                     type="range"
-                    className="calculator__input-range"
                     name="term"
                     min={paramsCredit.minTerm}
                     max={paramsCredit.maxTerm}
@@ -252,48 +249,47 @@ function Calculator(props) {
                     value={term}
                     onChange={onInputRangeChange}
                   />
-                  <div className="calculator__term-container">
-                    <span className="calculator__range-value">
+                  <Block.TermContainer>
+                    <Block.RangeValue>
                       {paramsCredit.minTerm} {paramsCredit.minTerm === 1 ? 'год' : 'лет'}
-                    </span>
-                    <span className="calculator__range-value">{paramsCredit.maxTerm} лет</span>
-                  </div>
+                    </Block.RangeValue>
+                    <Block.RangeValue>
+                      {paramsCredit.maxTerm} лет
+                    </Block.RangeValue>
+                  </Block.TermContainer>
                 </Block.InputContainer>
 
                 {paramsCredit.maternalCapitalValue && (
-                  <label className="calculator__additional">
-                    <input
+                  <Block.Additional>
+                    <Block.InputCheckbox
                       type="checkbox"
                       name="maternalCapital"
-                      className="calculator__input-checkbox visually-hidden"
                       onChange={onAdditionalChange}
                     />
-                    <span className="calculator__checkbox-icon"></span>
+                    <Block.CheckboxIcon className="calculator__checkbox-icon"/>
                     Использовать материнский капитал
-                  </label>
+                  </Block.Additional>
                 )}
                 {paramsCredit.additionalToCar && (
                   <>
-                    <label className="calculator__additional calculator__additional--car">
-                      <input
+                    <Block.Additional $type={LabelTypes.car}>
+                      <Block.InputCheckbox
                         type="checkbox"
                         name="casco"
-                        className="calculator__input-checkbox visually-hidden"
                         onChange={onAdditionalChange}
                       />
-                      <span className="calculator__checkbox-icon"></span>
+                      <Block.CheckboxIcon className="calculator__checkbox-icon"/>
                       Оформить КАСКО в нашем банке
-                    </label>
-                    <label className="calculator__additional calculator__additional--car">
-                      <input
+                    </Block.Additional>
+                    <Block.Additional $type={LabelTypes.car}>
+                      <Block.InputCheckbox
                         type="checkbox"
                         name="lifeInsurance"
-                        className="calculator__input-checkbox visually-hidden"
                         onChange={onAdditionalChange}
                       />
-                      <span className="calculator__checkbox-icon"></span>
+                      <Block.CheckboxIcon className="calculator__checkbox-icon"/>
                       Оформить Страхование жизни в нашем банке
-                    </label>
+                    </Block.Additional>
                   </>
                 )}
               </Block.Params>
@@ -302,51 +298,51 @@ function Calculator(props) {
           {step >= 2 && (
             <>
               {creditAmount >= paramsCredit.minCreditAmount && (
-                <div className="calculator__offer">
-                  <h3 className="calculator__offer-title">Наше предложение</h3>
-                  <ul className="calculator__offer-list">
-                    <li className="calculator__offer-item">
-                      <p className="calculator__offer-value">
+                <Block.Offer>
+                  <Block.OfferTitle>Наше предложение</Block.OfferTitle>
+                  <Block.OfferList>
+                    <Block.OfferItem>
+                      <Block.OfferValue>
                         {divideNumberToSpace(creditAmount)} рублей
-                      </p>
-                      <p className="calculator__offer-name">Сумма ипотеки</p>
-                    </li>
-                    <li className="calculator__offer-item">
-                      <p className="calculator__offer-value">{percent}%</p>
-                      <p className="calculator__offer-name">Процентная ставка</p>
-                    </li>
-                    <li className="calculator__offer-item">
-                      <p className="calculator__offer-value">
+                      </Block.OfferValue>
+                      <Block.OfferName>Сумма ипотеки</Block.OfferName>
+                    </Block.OfferItem>
+                    <Block.OfferItem>
+                      <Block.OfferValue>{percent}%</Block.OfferValue>
+                      <Block.OfferName>Процентная ставка</Block.OfferName>
+                    </Block.OfferItem>
+                    <Block.OfferItem>
+                      <Block.OfferValue>
                         {divideNumberToSpace(monthlyPayment)} рублей
-                      </p>
-                      <p className="calculator__offer-name">Ежемесячный платеж</p>
-                    </li>
-                    <li className="calculator__offer-item">
-                      <p className="calculator__offer-value">
+                      </Block.OfferValue>
+                      <Block.OfferName>Ежемесячный платеж</Block.OfferName>
+                    </Block.OfferItem>
+                    <Block.OfferItem>
+                      <Block.OfferValue>
                         {divideNumberToSpace(requiredIncome)} рублей
-                      </p>
-                      <p className="calculator__offer-name">Необходимый доход</p>
-                    </li>
-                  </ul>
-                  <button
+                      </Block.OfferValue>
+                      <Block.OfferName>Необходимый доход</Block.OfferName>
+                    </Block.OfferItem>
+                  </Block.OfferList>
+                  <Block.SubmitButton
+                    $type={SubmitButtonTypes.preorder}
                     type="submit"
-                    className="calculator__submit-button calculator__submit-button--preorder"
                   >
                     Оформить заявку
-                  </button>
-                </div>
+                  </Block.SubmitButton>
+                </Block.Offer>
               )}
               {creditAmount < paramsCredit.minCreditAmount && (
-                <div className="calculator__offer calculator__offer--refusal">
-                  <h3 className="calculator__offer-title calculator__offer-title--refusal">
+                <Block.Offer $type={OfferTypes.refusal}>
+                  <Block.OfferTitle $type={OfferTypes.refusal}>
                     Наш банк не выдаёт{' '}
                     {purpose === CreditPurpose.mortgage.type ? 'ипотечные кредиты' : 'автокредиты'}{' '}
                     меньше {divideNumberToSpace(paramsCredit.minCreditAmount)} рублей.
-                  </h3>
-                  <p className="calculator__offer-name calculator__offer-name--refusal">
+                  </Block.OfferTitle>
+                  <Block.OfferName $type={OfferTypes.refusal}>
                     Попробуйте использовать другие параметры для расчёта.
-                  </p>
-                </div>
+                  </Block.OfferName>
+                </Block.Offer>
               )}
             </>
           )}
@@ -431,12 +427,12 @@ function Calculator(props) {
               required
             />
           </Block.InputContainer>
-          <button
+          <Block.SubmitButton
+            $tupe={SubmitButtonTypes.request}
             type="submit"
-            className="calculator__submit-button calculator__submit-button--request"
           >
             Отправить
-          </button>
+          </Block.SubmitButton>
         </form>
       )}
       {step >= 4 && (

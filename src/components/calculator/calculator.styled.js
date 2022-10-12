@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import {css} from 'styled-components';
 import theme from '../../theme/theme';
-import {CalculatorSteps, InputTypes, InputIconsTypes} from '../../const';
-import {backgroundImage} from '../../theme/mixins';
+import {CalculatorSteps, InputTypes, InputIconsTypes, LabelTypes, OfferTypes, SubmitButtonTypes} from '../../const';
+import {backgroundImage, visuallyHidden, button} from '../../theme/mixins';
 
 import iconPurposeSelect from '../../img/icon-purpose-select.svg';
-
 import iconMinus from '../../img/icon-minus.svg';
 import iconPlus from '../../img/icon-plus.svg';
+import iconCheckbox from '../../img/icon-checkbox.svg';
 
 const Calculator = styled.section`
   padding: 53px 20px 10px;
@@ -501,6 +501,326 @@ Calculator.Input = styled.input`
 
 Calculator.InputDiv = styled(Calculator.Input)`
   display: block;
+`;
+
+Calculator.HelpText = styled.p`
+  font-size: 14px;
+  line-height: 140%;
+
+  margin-top: 0;
+  margin-bottom: 0;
+
+  color: ${theme.color.slateGrey};
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    margin-bottom: 15px;
+  }
+
+  @media (min-width: ${theme.desktopWidthMinThreshold}) {
+    margin-bottom: 20px;
+  }
+`;
+
+Calculator.InputRange = styled.input`
+  display: block;
+
+  width: 100%;
+  height: 1px;
+
+  margin: 15px 0 11px 0;
+
+  background-color: ${theme.color.ghost};
+
+  appearance: none;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+
+    width: 14px;
+    height: 14px;
+
+    background-color: ${theme.color.neonBlue};
+    border-radius: 50%;
+
+    cursor: pointer;
+  }
+
+  &::-moz-range-thumb {
+    -webkit-appearance: none;
+
+    width: 14px;
+    height: 14px;
+
+    background-color: ${theme.color.neonBlue};
+    border-radius: 50%;
+
+    cursor: pointer;
+  }
+`;
+
+Calculator.TermContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 3px;
+`;
+
+Calculator.RangeValue = styled.span`
+  display: inline-block;
+
+  width: max-content;
+
+  font-size: 14px;
+  line-height: 20px;
+
+  color: ${theme.color.slateGrey};
+
+  margin-bottom: 9px;
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    margin-bottom: 14px;
+  }
+
+  @media (min-width: ${theme.desktopWidthMinThreshold}) {
+    margin-bottom: 19px;
+  }
+`;
+
+Calculator.Additional = styled.label`
+  position: relative;
+
+  font-size: 14px;
+  line-height: 20px;
+
+  padding-left: 24px;
+
+  color: ${theme.color.jaguar};
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    font-size: 16px;
+    line-height: 22px;
+    padding-left: 24px;
+  }
+
+  ${(props) => {
+    if (props.$type === LabelTypes.car) {
+      return css`
+        display: block;
+        margin-bottom: 10px;
+      `;
+    }
+  }}
+`;
+
+Calculator.CheckboxIcon = styled.span`
+  content: "";
+  position: absolute;
+  display: block;
+
+  width: 16px;
+  height: 16px;
+
+  top: 0;
+  left: 0;
+
+  border: 1px solid ${theme.color.neonBlue};
+  background-repeat: no-repeat;
+  background-position: center;
+
+  border-radius: 2px;
+  box-sizing: border-box;
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    top: 1px;
+  }
+`;
+
+Calculator.InputCheckbox = styled.input`
+  ${visuallyHidden()};
+
+  &:checked + .calculator__checkbox-icon {
+  border: none;
+
+  background-color: ${theme.color.neonBlue};
+  background-image: url(${iconCheckbox});
+}
+`;
+
+Calculator.Offer = styled.div`
+  position: relative;
+
+  margin-right: 3px;
+  margin-left: 3px;
+  padding: 35px 5px 91px 15px;
+
+  background-color: ${theme.color.ghostWhite};
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    margin-right: 3px;
+    margin-left: 3px;
+    padding: 53px 5px 111px 60px;
+  }
+
+  @media (min-width: ${theme.desktopWidthMinThreshold}) {
+    align-self: flex-start;
+
+    width: 500px;
+
+    margin-top: 7px;
+    margin-right: 0;
+    padding: 53px 5px 111px 58px;
+  }
+
+  ${(props) => {
+    if (props.$type === OfferTypes.refusal) {
+      return css`
+        padding: 35px 10px 34px 15px;
+
+          @media (min-width: ${theme.tabletWidthMinThreshold}) {
+            padding-top: 54px;
+            padding-left: 61px;
+            padding-bottom: 54px;
+          }
+
+          @media (min-width: ${theme.desktopWidthMinThreshold}) {
+            padding: 54px 5px 55px 59px;
+          }
+        `;
+    }
+  }}
+`;
+
+Calculator.OfferTitle = styled.h3`
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+
+  margin-top: 0;
+  margin-bottom: 23px;
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    font-size: 22px;
+    line-height: 31px;
+
+    margin-bottom: 24px;
+  }
+
+  ${(props) => {
+    if (props.$type === OfferTypes.refusal) {
+      return css`
+        width: 220px;
+        margin-bottom: 12px;
+
+        @media (min-width: ${theme.tabletWidthMinThreshold}) {
+          width: 370px;
+          margin-bottom: 13px;
+        }
+      `;
+    }
+  }}
+`;
+
+Calculator.OfferList = styled.ul`
+  list-style: none;
+
+  margin-top: 0;
+  margin-bottom: 29px;
+  padding-left: 0;
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    width: 427px;
+
+    margin-bottom: 8px;
+  }
+`;
+
+Calculator.OfferItem = styled.li`
+  margin-bottom: 14px;
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    width: 200px;
+
+    margin-bottom: 26px;
+  }
+`;
+
+Calculator.OfferValue = styled.p`
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+
+  margin: 0;
+
+  color: ${theme.color.jaguar};
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    font-size: 22px;
+    line-height: 31px;
+
+    margin-bottom: 2px;
+  }
+`;
+
+Calculator.OfferName = styled.p`
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+
+  margin: 0;
+
+  color: ${theme.color.cello};
+
+  ${(props) => {
+    if (props.$type === OfferTypes.refusal) {
+      return css`
+        @media (min-width: ${theme.tabletWidthMinThreshold}) {
+          width: 265px;
+        }
+      `;
+    }
+  }}
+`;
+
+Calculator.SubmitButton = styled.button`
+  font-size: 14px;
+  line-height: 20px;
+
+  padding: 16px 60px 15px 71px;
+
+  ${button(theme.color.ghostWhite, theme.color.neonBlue, theme.color.persianBlue)};
+
+  @media (min-width: ${theme.desktopWidthMinThreshold}) {
+
+  }
+
+  ${(props) => {
+    switch (props.$type) {
+      case SubmitButtonTypes.preorder:
+        return css`
+          position: absolute;
+
+          left: 50%;
+          transform: translateX(-50%);
+        `;
+
+      case SubmitButtonTypes.request:
+        return css`
+          width: 100%;
+
+          margin-right: 3px;
+          margin-left: 3px;
+          padding: 16px 112px 15px 109px;
+        `;
+
+      default:
+        return css`
+        `;
+    }
+  }}
 `;
 
 export default Calculator;

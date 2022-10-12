@@ -100,6 +100,19 @@ export const InputTypes = {
   userInfo: 'userInfo',
 };
 
+export const LabelTypes = {
+  car: 'car',
+};
+
+export const OfferTypes = {
+  refusal: 'refusal',
+};
+
+export const SubmitButtonTypes = {
+  preorder: 'preorder',
+  request: 'request',
+};
+
 export const InputIconsTypes = {
   minus: 'minus',
   plus: 'plus',
