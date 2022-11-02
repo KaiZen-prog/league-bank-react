@@ -307,16 +307,19 @@ function Calculator(props) {
                       </Block.OfferValue>
                       <Block.OfferName>Сумма ипотеки</Block.OfferName>
                     </Block.OfferItem>
+
                     <Block.OfferItem>
                       <Block.OfferValue>{percent}%</Block.OfferValue>
                       <Block.OfferName>Процентная ставка</Block.OfferName>
                     </Block.OfferItem>
+
                     <Block.OfferItem>
                       <Block.OfferValue>
                         {divideNumberToSpace(monthlyPayment)} рублей
                       </Block.OfferValue>
                       <Block.OfferName>Ежемесячный платеж</Block.OfferName>
                     </Block.OfferItem>
+
                     <Block.OfferItem>
                       <Block.OfferValue>
                         {divideNumberToSpace(requiredIncome)} рублей
@@ -349,38 +352,42 @@ function Calculator(props) {
         </Block.FlexContainer>
       </form>
       {step >= 3 && (
-        <form action="#" className="calculator__reg-application" onSubmit={onSubmit}>
+        <Block.RegApplication action="#" onSubmit={onSubmit}>
           <Block.StepTitle $type={CalculatorSteps.request}>Шаг 3. Оформление заявки</Block.StepTitle>
-          <table className="calculator__request-table">
+          <Block.RequestTable>
             <tbody>
-              <tr className="calculator__request-field">
-                <td className="calculator__request-value">№ {`0000${requestNumber}`.slice(-4)}</td>
-                <td className="calculator__request-name">Номер заявки</td>
-              </tr>
-              <tr className="calculator__request-field">
-                <td className="calculator__request-value">
+              <Block.RequestField>
+                <Block.RequestValue>№ {`0000${requestNumber}`.slice(-4)}</Block.RequestValue>
+                <Block.RequestName>Номер заявки</Block.RequestName>
+              </Block.RequestField>
+
+              <Block.RequestField>
+                <Block.RequestValue>
                   {purpose === 'mortgage' ? 'Ипотека' : 'Автокредит'}
-                </td>
-                <td className="calculator__request-name">Цель кредита</td>
-              </tr>
-              <tr className="calculator__request-field">
-                <td className="calculator__request-value">{divideNumberToSpace(cost)} рублей</td>
-                <td className="calculator__request-name">
+                </Block.RequestValue>
+                <Block.RequestName>Цель кредита</Block.RequestName>
+              </Block.RequestField>
+
+              <Block.RequestField>
+                <Block.RequestValue>{divideNumberToSpace(cost)} рублей</Block.RequestValue>
+                <Block.RequestName>
                   Стоимость {purpose === 'mortgage' ? 'недвижимости' : 'автомобиля'}
-                </td>
-              </tr>
-              <tr className="calculator__request-field">
-                <td className="calculator__request-value">
+                </Block.RequestName>
+              </Block.RequestField>
+
+              <Block.RequestField>
+                <Block.RequestValue>
                   {divideNumberToSpace(initialFee)} рублей
-                </td>
-                <td className="calculator__request-name">Первоначальный взнос</td>
-              </tr>
-              <tr className="calculator__request-field">
-                <td className="calculator__request-value">{term} лет</td>
-                <td className="calculator__request-name">Срок кредитования</td>
-              </tr>
+                </Block.RequestValue>
+                <Block.RequestName>Первоначальный взнос</Block.RequestName>
+              </Block.RequestField>
+
+              <Block.RequestField>
+                <Block.RequestValue>{term} лет</Block.RequestValue>
+                <Block.RequestName>Срок кредитования</Block.RequestName>
+              </Block.RequestField>
             </tbody>
-          </table>
+          </Block.RequestTable>
           <Block.InputContainer $type={InputTypes.userInfo}>
             <Block.Input
               $type={InputTypes.fullName}
@@ -428,12 +435,12 @@ function Calculator(props) {
             />
           </Block.InputContainer>
           <Block.SubmitButton
-            $tupe={SubmitButtonTypes.request}
+            $type={SubmitButtonTypes.request}
             type="submit"
           >
             Отправить
           </Block.SubmitButton>
-        </form>
+        </Block.RegApplication>
       )}
       {step >= 4 && (
         <div className="calculator__popup" onClick={onPopupClose}>

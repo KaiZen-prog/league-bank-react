@@ -14,6 +14,7 @@ const theme = {
     persianBlue: '#2028B6',
     quartz: '#E0E1EA',
     slateGrey: '#707C87',
+    silver: '#C4C4C4',
   },
 
   fonts: {},

@@ -1,47 +1,4 @@
 
-
-.calculator__reg-application {
-  padding-top: 43px;
-}
-
-.calculator__request-table {
-  width: 100%;
-
-  margin-right: 0;
-  margin-bottom: 13px;
-  padding: 1px 1px 1px 1px;
-}
-
-.calculator__request-field {
-  display: block;
-
-  width: 100%;
-
-  margin-bottom: 14px;
-  padding-bottom: 10px;
-
-  border-bottom: 1px solid #C4C4C4;
-}
-
-.calculator__request-value {
-  display: block;
-
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 25px;
-
-  color: $color-dark-blue;
-}
-
-.calculator__request-name {
-  display: block;
-
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #394959;
-}
-
 .calculator__popup {
   position: fixed;
 
@@ -114,80 +71,6 @@
 
 @media (min-width: $tablet-width-min) {
 
-  .calculator__submit-button {
-    font-size: 16px;
-    line-height: 22px;
-    padding: 15px 214px 14px 212px;
-
-    &--request {
-      width: calc(100% - 6px);
-      line-height: 19px;
-
-      padding: 17px 296px 15px 303px;
-    }
-  }
-
-  .calculator__reg-application {
-    padding-top: 55px;
-  }
-
-  .calculator__request-table {
-    margin-bottom: 15px;
-    padding: 18px 1px 1px 1px;
-  }
-
-  .calculator__request-field {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-
-    margin-bottom: 12px;
-    padding-bottom: 9px;
-  }
-
-  .calculator__request-value {
-    font-size: 22px;
-    line-height: 31px;
-  }
-
-  .calculator__request-name {
-    padding-top: 5px;
-  }
-
-  .calculator__input {
-    font-size: 16px;
-    line-height: 22px;
-
-    &--full-name {
-      font-size: 18px;
-      line-height: 25px;
-
-      margin-bottom: 30px;
-      padding-top: 21px;
-      padding-left: 23px;
-    }
-
-    &--phone {
-      font-size: 18px;
-      line-height: 25px;
-
-      width: 324px;
-
-      padding-top: 21px;
-      padding-left: 24px;
-    }
-
-    &--email {
-      font-size: 18px;
-      line-height: 25px;
-
-      width: 324px;
-
-      padding-top: 21px;
-      padding-left: 23px;
-    }
-  }
-
   .calculator__popup-container {
     width: 678px;
     min-height: 193px;
@@ -220,36 +103,6 @@
 
 @media (min-width: $desktop-width-min) {
 
-  .calculator__submit-button {
-    font-size: 16px;
-    line-height: 22px;
-    padding: 15px 126px 14px 124px;
-
-    &--request {
-      display: block;
-
-      width: 198px;
-
-      margin-left: 286px;
-      padding: 15px 60px 14px 59px;
-    }
-  }
-
-  .calculator__reg-application {
-    margin-top: 37px;
-    margin-right: auto;
-    margin-left: auto;
-    padding-top: 63px;
-    padding-bottom: 70px;
-
-    width: 770px;
-
-    background-color: $color-white;
-  }
-
-  .calculator__request-table {
-    padding: 4px 67px 1px 67px;
-  }
 
   .calculator__popup-container {
     width: 500px;
