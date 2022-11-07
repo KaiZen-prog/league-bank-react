@@ -1,5 +1,5 @@
 import React from 'react';
-import Converter from '../converter/converter';
+import Converter from '../converter';
 import ConversionHistory from '../conversion-history/conversion-history';
 
 function ConverterScreen() {

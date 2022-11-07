@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withConverter } from '../../hocs/with-converter/with-converter';
-import moment from 'moment';
-import Calendar from '../calendar/calendar';
-import DatePicker from 'react-datepicker';
+import Block from './converter.styled';
+import Calendar from '../calendar';
 
 function Converter(props) {
   const { state, date, onChange, submitHandler, typeChangeHandler, valueChangeHandler } = props;
@@ -11,18 +10,17 @@ function Converter(props) {
   const { currencyInput, currencyOutput } = state;
 
   return (
-    <section className="converter">
-      <h2 className="converter__header">Конвертер валют</h2>
-      <form method="post" action="#" className="converter__form" onSubmit={submitHandler}>
-        <div className="converter__field-wrapper">
-          <div className="converter__field">
+    <Block>
+      <Block.Header>Конвертер валют</Block.Header>
+      <Block.Form method="post" action="#" onSubmit={submitHandler}>
+        <Block.FieldWrapper>
+          <Block.Field>
             <label htmlFor="currency-input">
-              <h3 className="converter__field-title">У меня есть</h3>
+              <Block.FieldTitle>У меня есть</Block.FieldTitle>
             </label>
-            <div className="converter__input-wrapper">
-              <input
+            <Block.InputWrapper>
+              <Block.Input
                 id="currency-input"
-                className="converter__input"
                 name="currencyInput"
                 type="number"
                 min="0"
@@ -32,10 +30,9 @@ function Converter(props) {
                 onChange={valueChangeHandler}
               />
 
-              <label>
-                <select
+              <Block.Label>
+                <Block.Select
                   name="currencyInput"
-                  className="converter__select"
                   value={currencyInput.type}
                   onChange={typeChangeHandler}
                 >
@@ -44,20 +41,19 @@ function Converter(props) {
                   <option value="EUR">EUR</option>
                   <option value="GBP">GBP</option>
                   <option value="CNY">CNY</option>
-                </select>
+                </Block.Select>
                 <span className="visually-hidden">валюта</span>
-              </label>
-            </div>
-          </div>
+              </Block.Label>
+            </Block.InputWrapper>
+          </Block.Field>
 
-          <div className="converter__field">
+          <Block.Field>
             <label htmlFor="currency-input">
-              <h3 className="converter__field-title">Хочу приобрести</h3>
+              <Block.FieldTitle>Хочу приобрести</Block.FieldTitle>
             </label>
-            <div className="converter__input-wrapper">
-              <input
+            <Block.InputWrapper>
+              <Block.Input
                 id="currency-output"
-                className="converter__input"
                 name="currencyOutput"
                 type="number"
                 min="0"
@@ -66,10 +62,9 @@ function Converter(props) {
                 onChange={valueChangeHandler}
               />
 
-              <label>
-                <select
+              <Block.Label>
+                <Block.Select
                   name="currencyOutput"
-                  className="converter__select"
                   value={currencyOutput.type}
                   onChange={typeChangeHandler}
                 >
@@ -78,30 +73,20 @@ function Converter(props) {
                   <option value="EUR">EUR</option>
                   <option value="GBP">GBP</option>
                   <option value="CNY">CNY</option>
-                </select>
+                </Block.Select>
                 <span className="visually-hidden">валюта</span>
-              </label>
-            </div>
-          </div>
-        </div>
+              </Block.Label>
+            </Block.InputWrapper>
+          </Block.Field>
+        </Block.FieldWrapper>
 
-        <div id="calendar">
-          <DatePicker
-            className="calendar__container"
-            selected={new Date(date)}
-            minDate={new Date(moment().utc().subtract(1, 'week').format('YYYY-MM-DD'))}
-            maxDate={new Date(moment().utc().format('YYYY-MM-DD'))}
-            onChange={onChange}
-            dateFormat={'d.MM.yyyy'}
-            customInput={<Calendar />}
-          />
-        </div>
+        <Calendar date={date} onChange={onChange}/>
 
-        <button type="submit" className="converter__button">
+        <Block.Button type="submit">
           Сохранить результат
-        </button>
-      </form>
-    </section>
+        </Block.Button>
+      </Block.Form>
+    </Block>
   );
 }
 

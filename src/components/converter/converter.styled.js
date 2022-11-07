@@ -1,32 +1,40 @@
-.converter {
+import styled from 'styled-components';
+import theme from '../../theme/theme';
+import {button} from '../../theme/mixins';
+
+import iconLeftArrow from '../../img/icon-left-arrow.svg';
+import iconRightArrow from '../../img/icon-right-arrow.svg';
+import iconSelect from '../../img/icon-select.svg';
+
+const Converter = styled.section`
   max-width: 1210px;
 
   margin: 0 auto 100px auto;
   padding-top: 46px;
   padding-right: 20px;
   padding-left: 20px;
-}
+`;
 
-.converter__header {
+Converter.Header = styled.h2`
   font-weight: 700;
   font-size: 41px;
 
-  color: $color-dark-blue;
+  color: ${theme.color.jaguar};
 
   line-height: 57px;
 
   margin-top: 0;
   margin-bottom: 49px;
-}
+`;
 
-.converter__form {
+Converter.Form = styled.form`
   position: relative;
 
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 
-  @media (min-width: $converter-flex-wrap-width) {
+  @media (min-width: ${theme.ConverterFlexWrapWidth}) {
     &::before {
       position: absolute;
       content: "";
@@ -37,7 +45,7 @@
       width: 54px;
       height: 18px;
 
-      background-image: url("../img/icon-left-arrow.svg");
+      background-image: url(${iconLeftArrow});
       background-repeat: no-repeat;
     }
 
@@ -51,21 +59,22 @@
       width: 54px;
       height: 18px;
 
-      background-image: url("../img/icon-right-arrow.svg");
+      background-image: url(${iconRightArrow});
       background-repeat: no-repeat;
     }
   }
-}
 
-.converter__field-wrapper {
+`;
+
+Converter.FieldWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 
   width: 100%;
-}
+`;
 
-.converter__field {
+Converter.Field = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -78,14 +87,14 @@
     margin-right: 120px;
   }
 
-  @media (max-width: $tablet-width-min) {
+  @media (max-width: ${theme.tabletWidthMinThreshold}) {
     &:first-child {
       margin-right: 0;
     }
   }
-}
+`;
 
-.converter__field-title {
+Converter.FieldTitle = styled.h3`
   flex-grow: 1;
   width: 100%;
 
@@ -97,15 +106,17 @@
 
   margin-top: 0;
   margin-bottom: 12px;
-}
+`;
 
-.converter__input-wrapper {
+Converter.InputWrapper = styled.div`
   display: flex;
-
   width: 100%;
-}
+`;
 
-.converter__input {
+Converter.Label = styled.label`
+`;
+
+Converter.Input = styled.input`
   width: 100%;
   height: 60px;
 
@@ -119,7 +130,7 @@
   padding-right: 15px;
   padding-left: 15px;
 
-  border: 1px solid $color-dark-blue;
+  border: 1px solid ${theme.color.jaguar};
   box-sizing: border-box;
   border-radius: 4px;
 
@@ -139,9 +150,9 @@
   &:focus {
     -moz-appearance: number-input;
   }
-}
+`;
 
-.converter__select {
+Converter.Select = styled.select`
   width: 120px;
   height: 60px;
 
@@ -156,7 +167,7 @@
   box-sizing: border-box;
   border-radius: 4px;
 
-  background-image: url("../img/icon-select.svg");
+  background-image: url(${iconSelect});
   background-repeat: no-repeat;
   background-position-x: 85px;
   background-position-y: 24px;
@@ -164,60 +175,12 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-}
 
-#calendar {
-  width: 390px;
+  cursor: pointer;
+`;
 
-  @media (max-width: $mobile-width-max) {
-    width: 100%;
-  }
-}
-
-.react-datepicker-wrapper {
-  display: block;
-}
-
-.converter__calendar {
-  position: relative;
-
-  width: 100%;
-  height: 60px;
-
-  font-family: "Roboto", "Arial", sans-serif;
-  font-size: 24px;
-  line-height: 34px;
-  color: #000000;
-
-  margin-right: 20px;
-  margin-bottom: 30px;
-  padding: 5px 70px 0 22px;
-
-  background-color: #ffffff;
-  border: 1px solid #1F1E25;
-
-  box-sizing: border-box;
-  border-radius: 4px;
-
-  &::after {
-    position: absolute;
-    content: "";
-
-    display: block;
-
-    top: 5px;
-    right: 18px;
-
-    width: 41px;
-    height: 44px;
-
-    background-image: url("../img/icon-calendar.svg");
-    background-repeat: no-repeat;
-  }
-}
-
-.converter__button {
-  @include button($color-white, $color-bright-blue);
+Converter.Button = styled.button`
+  ${button(theme.color.ghostWhite, theme.color.neonBlue, theme.color.persianBlue)};
 
   width: 390px;
   height: 60px;
@@ -227,7 +190,9 @@
 
   padding-top: 4px;
 
-  @media (max-width: $mobile-width-max) {
+  @media (max-width: ${theme.tabletWidthMinThreshold}) {
     width: 100%;
   }
-}
+`;
+
+export default Converter;

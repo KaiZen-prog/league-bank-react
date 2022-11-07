@@ -22,6 +22,7 @@ const theme = {
   tabletWidthMinThreshold: '767px',
   desktopWidthMinThreshold: '1023px',
   desktopContainerWidth: '1170px',
+  ConverterFlexWrapWidth: '1227px',
 };
 
 export default theme;
