@@ -6,6 +6,7 @@ import { divideNumberToSpace } from '../../utils/common';
 import InputMask from 'react-input-mask';
 import PropTypes from 'prop-types';
 import Block from './calculator.styled';
+import PopupConfirm from '../popup-confirm';
 
 function Calculator(props) {
   const {
@@ -443,15 +444,7 @@ function Calculator(props) {
         </Block.RegApplication>
       )}
       {step >= 4 && (
-        <div className="calculator__popup" onClick={onPopupClose}>
-          <div className="calculator__popup-container" onClick={(evt) => evt.stopPropagation()}>
-            <button className="calculator__popup-close" onClick={onPopupClose}></button>
-            <h2 className="calculator__popup-title">Спасибо за обращение в наш банк.</h2>
-            <p className="calculator__popup-content">
-              Наш менеджер скоро свяжется с вами по указанному номеру телефона.
-            </p>
-          </div>
-        </div>
+        <PopupConfirm onPopupClose={onPopupClose}/>
       )}
     </Block>
   );
