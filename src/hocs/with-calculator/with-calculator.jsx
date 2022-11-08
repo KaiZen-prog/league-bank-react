@@ -1,11 +1,7 @@
 import React, { createRef, PureComponent } from 'react';
 import {
   InputFields,
-  MortgageParams,
-  CarParams,
   KeyCode,
-  REQUIRED_INCOME,
-  QUANTITY_MONTH,
   PHONE_LENGTH
 } from '../../const';
 
@@ -29,7 +25,6 @@ const withCalculator = (Component) => {
       this.state = {
         step: 1,
         purpose: 'none',
-        isPurposeSelectOpened: false,
         paramsCredit: {},
 
         cost: 0,
@@ -49,9 +44,6 @@ const withCalculator = (Component) => {
         isFormValid: true,
       };
 
-      this.onSelectOpen = this.onSelectOpen.bind(this);
-      this.onSelectClose = this.onSelectClose.bind(this);
-      this.onPurposeChange = this.onPurposeChange.bind(this);
 
       this.onLabelClick = this.onLabelClick.bind(this);
       this.onInputBlur = this.onInputBlur.bind(this);
@@ -61,11 +53,6 @@ const withCalculator = (Component) => {
       this.onTermChange = this.onTermChange.bind(this);
       this.onInputRangeChange = this.onInputRangeChange.bind(this);
       this.onAdditionalChange = this.onAdditionalChange.bind(this);
-      this.onCostChangeSign = this.onCostChangeSign.bind(this);
-
-      this.getCreditAmount = this.getCreditAmount.bind(this);
-      this.getInterestRate = this.getInterestRate.bind(this);
-      this.getMonthlyPayment = this.getMonthlyPayment.bind(this);
 
       this.onMakeRequest = this.onMakeRequest.bind(this);
       this.onRegApplicationChange = this.onRegApplicationChange.bind(this);
@@ -73,40 +60,6 @@ const withCalculator = (Component) => {
       this.onPopupClose = this.onPopupClose.bind(this);
       this.closePopupKeydown = this.closePopupKeydown.bind(this);
       this.onChangePhone = this.onChangePhone.bind(this);
-    }
-
-    componentDidMount() {
-      this.getCreditAmount();
-      this.getInterestRate();
-      this.getMonthlyPayment();
-    }
-
-    componentDidUpdate() {
-      this.getCreditAmount();
-      this.getInterestRate();
-      this.getMonthlyPayment();
-    }
-
-    onSelectOpen() {
-      this.setState({ isPurposeSelectOpened: true });
-    }
-
-    onSelectClose() {
-      this.setState({ isPurposeSelectOpened: false });
-    }
-
-    onPurposeChange(evt) {
-      const params = evt.currentTarget.id === 'mortgage' ? MortgageParams : CarParams;
-      this.setState({
-        step: 2,
-        purpose: evt.currentTarget.id,
-        paramsCredit: params,
-        cost: params.minCost,
-        initialFee: (params.minCost * params.minInitialFee) / 100,
-        term: params.minTerm,
-        maternalCapital: !!params.maternalCapital,
-      });
-      this.onSelectClose();
     }
 
     onLabelClick(evt) {
@@ -205,98 +158,6 @@ const withCalculator = (Component) => {
       this.setState((prevState) => ({ [evt.target.name]: !prevState[evt.target.name] }));
     }
 
-    onCostChangeSign(evt) {
-      this.costInputRef.current.style.color = '#1F1E25';
-      this.costDivRef.current.style.color = '#1F1E25';
-
-      let cost =
-        this.state.cost === 'Некорректное значение'
-          ? this.state.paramsCredit.minCost
-          : this.state.cost;
-
-      evt.target.id === 'plus'
-        ? (cost += this.state.paramsCredit.step)
-        : (cost -= this.state.paramsCredit.step);
-
-      if (cost < this.state.paramsCredit.minCost) {
-        cost = this.state.paramsCredit.minCost;
-      }
-
-      if (cost > this.state.paramsCredit.maxCost) {
-        cost = this.state.paramsCredit.maxCost;
-      }
-
-      this.setState((prevState) => ({
-        cost,
-        initialFee:
-          prevState.cost === 'Некорректное значение'
-            ? Math.round((cost * prevState.paramsCredit.minInitialFee) / 100)
-            : Math.round((cost * prevState.initialFee) / prevState.cost),
-      }));
-    }
-
-    getCreditAmount() {
-      this.setState((prevState) => ({
-        creditAmount:
-          prevState.cost -
-          prevState.initialFee -
-          (prevState.maternalCapital ? prevState.paramsCredit.maternalCapitalValue : 0),
-      }));
-    }
-
-    setInterestRate(percent) {
-      this.setState({ percent: percent.toFixed(2) });
-    }
-
-    getInterestRate() {
-      if (this.state.purpose === 'mortgage') {
-        this.state.initialFee >=
-        (this.state.cost * this.state.paramsCredit.percent.amountForSpecialPercent) / 100
-          ? this.setState((prevState) => ({
-            percent: prevState.paramsCredit.percent.specialPercent.toFixed(2),
-          }))
-          : this.setState((prevState) => ({
-            percent: prevState.paramsCredit.percent.default.toFixed(2),
-          }));
-      }
-
-      if (this.state.purpose === 'car') {
-        let percent = this.state.paramsCredit.percent.default;
-
-        if (this.state.cost >= this.state.paramsCredit.percent.amountForSpecialPercent) {
-          percent = this.state.paramsCredit.percent.specialPercent;
-        }
-
-        if (this.state.casco || this.state.lifeInsurance) {
-          percent = this.state.paramsCredit.percent.oneAddition;
-        }
-
-        if (this.state.casco && this.state.lifeInsurance) {
-          percent = this.state.paramsCredit.percent.allAdditions;
-        }
-
-        this.setInterestRate(percent);
-      }
-    }
-
-    setMonthlyPayment(result) {
-      this.setState({
-        monthlyPayment: result,
-        requiredIncome: Math.floor((result * 100) / REQUIRED_INCOME),
-      });
-    }
-
-    getMonthlyPayment() {
-      const monthlyPercent = this.state.percent / 100 / QUANTITY_MONTH;
-
-      const result = Math.floor(
-        (this.state.creditAmount * monthlyPercent) /
-          (1 - 1 / Math.pow(1 + monthlyPercent, this.state.term * QUANTITY_MONTH)),
-      );
-
-      this.setMonthlyPayment(result);
-    }
-
     onMakeRequest(evt) {
       evt.preventDefault();
       this.requestNumber =
@@ -355,17 +216,7 @@ const withCalculator = (Component) => {
     render() {
       return (
         <Component
-          costInputRef={this.costInputRef}
-          costDivRef={this.costDivRef}
-          initialFeeInputRef={this.initialFeeInputRef}
-          initialFeeDivRef={this.initialFeeDivRef}
-          termInputRef={this.termInputRef}
-          termDivRef={this.termDivRef}
           telRef={this.telRef}
-          state={this.state}
-          onSelectOpen={this.onSelectOpen}
-          onSelectClose={this.onSelectClose}
-          onPurposeChange={this.onPurposeChange}
           onLabelClick={this.onLabelClick}
           onInputFocus={this.onInputFocus}
           onInputChange={this.onInputChange}
@@ -374,7 +225,6 @@ const withCalculator = (Component) => {
           onTermChange={this.onTermChange}
           onInputRangeChange={this.onInputRangeChange}
           onAdditionalChange={this.onAdditionalChange}
-          onCostChangeSign={this.onCostChangeSign}
           onMakeRequest={this.onMakeRequest}
           onSubmit={this.onSubmit}
           onPopupClose={this.onPopupClose}
