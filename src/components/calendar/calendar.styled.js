@@ -36,6 +36,8 @@ Calendar.Button = styled.button`
   box-sizing: border-box;
   border-radius: 4px;
 
+  cursor: pointer;
+
   &::after {
     position: absolute;
     content: "";

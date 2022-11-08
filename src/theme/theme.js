@@ -22,7 +22,9 @@ const theme = {
   tabletWidthMinThreshold: '767px',
   desktopWidthMinThreshold: '1023px',
   desktopContainerWidth: '1170px',
-  ConverterFlexWrapWidth: '1227px',
+  converterFlexWrapWidth: '1227px',
+  converterHistoryListWidth: '1220px',
+  converterHistoryListMobileWidth: '560px',
 };
 
 export default theme;

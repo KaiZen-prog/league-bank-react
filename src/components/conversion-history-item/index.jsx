@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Block from './conversion-history-item.styled';
 
 function ConversionHistoryItem({ date, inputAmount, inputCurrency, outputAmount, outputCurrency }) {
   return (
-    <li className="conversion-history__item">
-      <p className="conversion-history__date">{date}</p>
-      <div className="conversion-history__container">
-        <p className="conversion-history__before">
+    <Block>
+      <Block.Date>{date}</Block.Date>
+      <Block.Container>
+        <Block.Before>
           {inputAmount.toString().replace('.', ',')} {inputCurrency}
-        </p>
-        <p className="conversion-history__after">
+        </Block.Before>
+        <Block.After>
           {outputAmount.toString().replace('.', ',')} {outputCurrency}
-        </p>
-      </div>
-    </li>
+        </Block.After>
+      </Block.Container>
+    </Block>
   );
 }
 

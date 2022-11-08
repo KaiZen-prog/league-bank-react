@@ -34,7 +34,7 @@ Converter.Form = styled.form`
   flex-wrap: wrap;
   justify-content: space-between;
 
-  @media (min-width: ${theme.ConverterFlexWrapWidth}) {
+  @media (min-width: ${theme.converterFlexWrapWidth}) {
     &::before {
       position: absolute;
       content: "";

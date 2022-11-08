@@ -1,6 +1,6 @@
 import React from 'react';
 import Converter from '../converter';
-import ConversionHistory from '../conversion-history/conversion-history';
+import ConversionHistory from '../conversion-history';
 
 function ConverterScreen() {
   return (
