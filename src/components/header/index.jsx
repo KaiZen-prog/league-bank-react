@@ -1,24 +1,44 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { AppRoute } from '../../const';
-import withHeader from '../../hocs/with-header/with-header';
-import Login from '../log-in';
+import React, {useState} from 'react';
+import {AppRoute, KeyCode} from '../../const';
+import PopupLogin from '../popup-log-in';
 import Block from './header.styled';
 import PageLink from '../page-link/page-link';
 
-function Header(props) {
-  const {
-    passwordInputRef,
-    isNavOpened,
-    onBurgerClick,
-    onNavClose,
-    isLogInOpened,
-    onLogInOpening,
-    onLogInClosure,
-    onLogInFieldChange,
-    onPasswordShow,
-    onPasswordHide,
-  } = props;
+function Header() {
+  const [isNavOpened, setIsNavOpened] = useState(false);
+  const [isLogInOpened, setIsLoginInOpened] = useState(false);
+
+  const onNavClose = () => {
+    setIsNavOpened(false);
+    document.documentElement.style.overflow = 'auto';
+  };
+
+  const onBurgerClick = () => {
+    if (isNavOpened === false) {
+      setIsNavOpened(true);
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      onNavClose();
+    }
+  };
+
+  const onLogInOpening = () => {
+    setIsLoginInOpened(true);
+    document.documentElement.style.overflow = 'hidden';
+    document.addEventListener('keydown', closeLogInKeydown);
+  };
+
+  const onLogInClosure = () => {
+    setIsLoginInOpened(false);
+    document.documentElement.style.overflow = 'auto';
+    document.removeEventListener('keydown', closeLogInKeydown);
+  };
+
+  function closeLogInKeydown(evt) {
+    if (evt.keyCode === KeyCode.ESC) {
+      onLogInClosure();
+    }
+  }
 
   return (
     <Block $isNavOpened={isNavOpened}>
@@ -64,36 +84,17 @@ function Header(props) {
               Войти в Интернет-банк
             </Block.UserLinkValue>
           </Block.UserLink>
-          <Login
-            passwordInputRef={passwordInputRef}
-            isLogInOpened={isLogInOpened}
-            onLogInClosure={onLogInClosure}
-            onLogInFieldChange={onLogInFieldChange}
-            onPasswordShow={onPasswordShow}
-            onPasswordHide={onPasswordHide}
-          />
+          {isLogInOpened && (
+            <PopupLogin
+              onLogInClosure={onLogInClosure}
+            />
+          )}
         </Block.UserBlock>
       </Block.Container>
     </Block>
   );
 }
 
-Header.propTypes = {
-  passwordInputRef: PropTypes.shape({}).isRequired,
-
-  isNavOpened: PropTypes.bool.isRequired,
-  onBurgerClick: PropTypes.func.isRequired,
-  onNavClose: PropTypes.func.isRequired,
-
-  isLogInOpened: PropTypes.bool.isRequired,
-
-  onLogInOpening: PropTypes.func.isRequired,
-  onLogInClosure: PropTypes.func.isRequired,
-  onLogInFieldChange: PropTypes.func.isRequired,
-  onPasswordShow: PropTypes.func.isRequired,
-  onPasswordHide: PropTypes.func.isRequired,
-};
-
 Header.displayName = 'Header';
 
-export default withHeader(Header);
+export default Header;

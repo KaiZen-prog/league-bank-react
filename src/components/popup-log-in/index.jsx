@@ -1,19 +1,43 @@
-import React from 'react';
+import React, {createRef, useState} from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Block from './log-in.styled';
 
-function Login(props) {
+const modalRoot = document.getElementById('modal-root');
+
+function PopupLogin(props) {
+  const passwordInputRef = createRef();
+
+  const [state, setState] = useState({
+    login: localStorage.getItem('login') !== null ? localStorage.getItem('login') : '',
+    password: localStorage.getItem('password') !== null ? localStorage.getItem('password') : '',
+  });
+
   const {
-    passwordInputRef,
-    isLogInOpened,
     onLogInClosure,
-    onLogInFieldChange,
-    onPasswordShow,
-    onPasswordHide,
   } = props;
 
-  return (
-    <Block $isLogInOpened={isLogInOpened} onClick={onLogInClosure}>
+  const onPasswordShow = () => {
+    passwordInputRef.current.type = 'text';
+  };
+
+  const onPasswordHide = () => {
+    passwordInputRef.current.type = 'password';
+  };
+
+  const onLogInFieldChange = (evt) => {
+    const { name, value } = evt.target;
+
+    setState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+
+    localStorage.setItem(name, value);
+  };
+
+  return ReactDOM.createPortal(
+    <Block onClick={onLogInClosure}>
       <Block.Form action="#" onClick={(evt) => evt.stopPropagation()}>
         <Block.Logo />
         <Block.Close type="button" onClick={onLogInClosure}>
@@ -26,7 +50,7 @@ function Login(props) {
             type="text"
             name="login"
             onChange={onLogInFieldChange}
-            value={localStorage.getItem('login') !== null ? localStorage.getItem('login') : ''}
+            value={state.login}
             autoFocus
             required
           />
@@ -39,9 +63,7 @@ function Login(props) {
             name="password"
             ref={passwordInputRef}
             onChange={onLogInFieldChange}
-            value={
-              localStorage.getItem('password') !== null ? localStorage.getItem('password') : ''
-            }
+            value={state.password}
             required
           />
         </Block.PasswordLabel>
@@ -49,17 +71,13 @@ function Login(props) {
         <Block.Submit type="submit">Войти</Block.Submit>
         <Block.RestorePasswordLink href="#top">Забыли пароль?</Block.RestorePasswordLink>
       </Block.Form>
-    </Block>
+    </Block>,
+    modalRoot,
   );
 }
 
-Login.propTypes = {
-  passwordInputRef: PropTypes.shape({}).isRequired,
-  isLogInOpened: PropTypes.bool.isRequired,
+PopupLogin.propTypes = {
   onLogInClosure: PropTypes.func.isRequired,
-  onLogInFieldChange: PropTypes.func.isRequired,
-  onPasswordShow: PropTypes.func.isRequired,
-  onPasswordHide: PropTypes.func.isRequired,
 };
 
-export default Login;
+export default PopupLogin;

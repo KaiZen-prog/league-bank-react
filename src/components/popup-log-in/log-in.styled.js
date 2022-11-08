@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { css } from 'styled-components';
 import { button } from '../../theme/mixins';
 import theme from '../../theme/theme';
 
@@ -10,7 +9,7 @@ import iconPassword from '../../img/icon-password.svg';
 const Login = styled.div`
   position: fixed;
 
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
 
@@ -22,14 +21,6 @@ const Login = styled.div`
   background-color: ${theme.color.matterhorn};
 
   z-index: 99;
-
-  ${(props) => {
-    if (props.$isLogInOpened) {
-      return css`
-        display: flex;
-      `;
-    }
-  }}
 `;
 
 Login.Form = styled.form`
@@ -50,7 +41,7 @@ Login.Form = styled.form`
   border: 4px solid ${theme.color.neonBlue};
   box-sizing: border-box;
 
-  @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
+  @media (min-width: ${theme.tabletWidthMinThreshold}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     width: 678px;
     min-height: 493px;
     padding: 55px 84px;
@@ -73,7 +64,7 @@ Login.Logo = styled.div`
   background-image: url(${iconLogin});
   background-repeat: no-repeat;
 
-  @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
+  @media (min-width: ${theme.tabletWidthMinThreshold}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     margin-bottom: 35px;
     margin-left: -1px;
   }
@@ -100,7 +91,7 @@ Login.Close = styled.button`
   border: none;
   cursor: pointer;
 
-  @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
+  @media (min-width: ${theme.tabletWidthMinThreshold}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     top: 55px;
     right: 81px;
 
@@ -161,7 +152,7 @@ Login.Input = styled.input`
 
   box-sizing: border-box;
 
-  @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
+  @media (min-width: ${theme.tabletWidthMinThreshold}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     width: 502px;
     height: 60px;
   }
@@ -174,7 +165,7 @@ Login.Input = styled.input`
 Login.LoginInput = styled(Login.Input)`
   padding-right: 60px;
 
-  @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
+  @media (min-width: ${theme.tabletWidthMinThreshold}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     padding-right: 50px;
   }
 `;
@@ -200,7 +191,7 @@ Login.ShowPassword = styled.button`
   border: none;
   cursor: pointer;
 
-  @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
+  @media (min-width: ${theme.tabletWidthMinThreshold}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     right: 108px;
   }
 
@@ -219,7 +210,7 @@ Login.Submit = styled.button`
 
   ${button(theme.color.ghostWhite, theme.color.neonBlue, theme.color.persianBlue)};
 
-  @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
+  @media (min-width: ${theme.tabletWidthMinThreshold}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     font-weight: 500;
     font-size: 18px;
     line-height: 21px;
@@ -244,7 +235,7 @@ Login.RestorePasswordLink = styled.a`
   color: ${theme.color.slateGrey};
   text-align: right;
 
-  @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
+  @media (min-width: ${theme.tabletWidthMinThreshold}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     font-size: 12px;
     line-height: 17px;
 
