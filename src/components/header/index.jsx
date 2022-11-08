@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
-import {AppRoute, KeyCode} from '../../const';
-import PopupLogin from '../popup-log-in';
+import {AppRoute} from '../../const';
 import Block from './header.styled';
 import PageLink from '../page-link/page-link';
+import UserAccount from '../user-accout';
 
 function Header() {
   const [isNavOpened, setIsNavOpened] = useState(false);
-  const [isLogInOpened, setIsLoginInOpened] = useState(false);
 
   const onNavClose = () => {
     setIsNavOpened(false);
@@ -21,24 +20,6 @@ function Header() {
       onNavClose();
     }
   };
-
-  const onLogInOpening = () => {
-    setIsLoginInOpened(true);
-    document.documentElement.style.overflow = 'hidden';
-    document.addEventListener('keydown', closeLogInKeydown);
-  };
-
-  const onLogInClosure = () => {
-    setIsLoginInOpened(false);
-    document.documentElement.style.overflow = 'auto';
-    document.removeEventListener('keydown', closeLogInKeydown);
-  };
-
-  function closeLogInKeydown(evt) {
-    if (evt.keyCode === KeyCode.ESC) {
-      onLogInClosure();
-    }
-  }
 
   return (
     <Block $isNavOpened={isNavOpened}>
@@ -78,18 +59,8 @@ function Header() {
           </Block.NavList>
         </Block.Nav>
 
-        <Block.UserBlock $isNavOpened={isNavOpened}>
-          <Block.UserLink href="#" $isNavOpened={isNavOpened} onClick={onLogInOpening}>
-            <Block.UserLinkValue $isNavOpened={isNavOpened}>
-              Войти в Интернет-банк
-            </Block.UserLinkValue>
-          </Block.UserLink>
-          {isLogInOpened && (
-            <PopupLogin
-              onLogInClosure={onLogInClosure}
-            />
-          )}
-        </Block.UserBlock>
+        <UserAccount isNavOpened={isNavOpened}/>
+
       </Block.Container>
     </Block>
   );
