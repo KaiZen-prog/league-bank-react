@@ -1,6 +1,7 @@
 import { extend } from '../../../utils/common';
-import { ActionType } from '../../actions';
+import { ActionType } from '../../actions/converter';
 import moment from 'moment';
+import {MAX_HISTORY_LENGTH} from '../../../const';
 
 const initialState = {
   date: moment().utc().format('YYYY-MM-DD'),
@@ -11,6 +12,7 @@ const initialState = {
     GBP: 0,
     CNY: 0,
   },
+  conversionHistory: [],
 };
 
 const converter = (state = initialState, action) => {
@@ -23,6 +25,19 @@ const converter = (state = initialState, action) => {
     case ActionType.PASTE_EXCHANGE_RATE:
       return extend(state, {
         exchangeRate: action.payload,
+      });
+
+    case ActionType.ADD_CONVERSION:
+      return extend(state, {
+        conversionHistory: [action.payload, ...state.conversionHistory].slice(
+          0,
+          MAX_HISTORY_LENGTH,
+        ),
+      });
+
+    case ActionType.CLEAR_HISTORY:
+      return extend(state, {
+        conversionHistory: [],
       });
   }
 

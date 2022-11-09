@@ -1,16 +1,17 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {
-  CreditPurpose,
   CalculatorSteps,
+  CarParams,
+  CreditPurpose,
   InputTypes,
-  OfferTypes,
-  SubmitButtonTypes,
   MortgageParams,
-  CarParams, QUANTITY_MONTH, REQUIRED_INCOME
+  OfferTypes,
+  SubmitButtonTypes
 } from '../../const';
-import { shakeEffect } from '../../utils/common';
+import {ActionType} from '../../store/actions/calculator';
+import {divideNumberToSpace, shakeEffect} from '../../utils/common';
 import withCalculator from '../../hocs/with-calculator/with-calculator';
-import { divideNumberToSpace } from '../../utils/common';
 import InputMask from 'react-input-mask';
 import PropTypes from 'prop-types';
 import Block from './calculator.styled';
@@ -28,110 +29,28 @@ function Calculator(props) {
     onRegApplicationChange,
     onChangePhone,
     requestNumber,
-    onLabelClick,
-    onCostChange,
-    onInputChange,
-    onInputFocus,
-    onInitialFeeChange,
-    onInputRangeChange,
-    onTermChange,
-    onAdditionalChange,
   } = props;
 
+  const state = useSelector((store) => store.CALCULATOR);
   const [isPurposeSelectOpened, setIsPurposeSelectOpened] = useState(false);
 
-  const [state, setState] = useState({
-    step: 1,
-    purpose: 'none',
-    paramsCredit: {},
-
-    cost: 0,
-    initialFee: 0,
-    term: 0,
-
-    maternalCapital: false,
-    casco: false,
-    lifeInsurance: false,
-
-    creditAmount: 0,
-    percent: '0',
-    monthlyPayment: 0,
-    requiredIncome: 0,
-
-    isLabelClicked: false,
-    isFormValid: true,
-  });
-
-  const prevStateRef = useRef();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    prevStateRef.current = state;
-
-    getCreditAmount();
-    getInterestRate(prevStateRef.current);
-    getMonthlyPayment();
-  }, [state.purpose, state.creditAmount, state.monthlyPayment, state.requiredIncome,state.percent]);
-
-  function getCreditAmount() {
-    setState((prevState)=> ({
-      ...prevState,
-      creditAmount:
-        prevState.cost -
-        prevState.initialFee -
-        (prevState.maternalCapital ? prevState.paramsCredit.maternalCapitalValue : 0),
-    }));
-  }
-
-  function getInterestRate(previousState) {
-    if (state.purpose === 'mortgage') {
-      state.initialFee >=
-      (state.cost * state.paramsCredit.percent.amountForSpecialPercent) / 100
-        ? setState((prevState)=> ({
-          ...prevState,
-          percent: previousState.paramsCredit.percent.specialPercent.toFixed(2),
-        }))
-        : setState((prevState)=> ({
-          ...prevState,
-          percent: previousState.paramsCredit.percent.default.toFixed(2),
-        }));
-    }
-
-    if (state.purpose === 'car') {
-      let percent = state.paramsCredit.percent.default;
-
-      if (state.cost >= state.paramsCredit.percent.amountForSpecialPercent) {
-        percent = state.paramsCredit.percent.specialPercent;
-      }
-
-      if (state.casco || state.lifeInsurance) {
-        percent = state.paramsCredit.percent.oneAddition;
-      }
-
-      if (state.casco && state.lifeInsurance) {
-        percent = state.paramsCredit.percent.allAdditions;
-      }
-
-      setState((prevState)=> ({
-        ...prevState,
-        percent: percent.toFixed(2),
-      }));
-    }
-  }
-
-  function getMonthlyPayment() {
-    const monthlyPercent = state.percent / 100 / QUANTITY_MONTH;
-
-    const result = Math.floor(
-      (state.creditAmount * monthlyPercent) /
-      (1 - 1 / Math.pow(1 + monthlyPercent, state.term * QUANTITY_MONTH)),
-    );
-
-    setState((prevState)=> ({
-      ...prevState,
-      monthlyPayment: result,
-      requiredIncome: Math.floor((result * 100) / REQUIRED_INCOME),
-    }));
-  }
+    dispatch({type: ActionType.SET_CREDIT_DATA});
+  }, [
+    state.initialFee,
+    state.term,
+    state.purpose,
+    state.creditAmount,
+    state.monthlyPayment,
+    state.requiredIncome,
+    state.percent,
+    state.cost,
+    state.casco,
+    state.lifeInsurance,
+    state.maternalCapital,
+  ]);
 
   const togglePurposeSelect = () => {
     setIsPurposeSelectOpened(!isPurposeSelectOpened);
@@ -141,8 +60,7 @@ function Calculator(props) {
     const id = evt.currentTarget.id;
     const params = id === 'mortgage' ? MortgageParams : CarParams;
 
-    setState((prevState)=> ({
-      ...prevState,
+    dispatch({type: ActionType.CHANGE_PURPOSE, payload: {
       step: 2,
       purpose: id,
       paramsCredit: params,
@@ -152,7 +70,7 @@ function Calculator(props) {
       term: params.minTerm,
 
       maternalCapital: !!params.maternalCapital,
-    }));
+    }});
 
     togglePurposeSelect();
   };
@@ -181,20 +99,7 @@ function Calculator(props) {
               </Block.PurposeSelect>
             </Block.Purpose>
             {state.step >= 2 && (
-              <LoanParams
-                paramsCredit={state.paramsCredit}
-                cost={state.cost}
-                term={state.term}
-                initialFee={state.initialFee}
-                onLabelClick={onLabelClick}
-                onCostChange={onCostChange}
-                onInputChange={onInputChange}
-                onInputFocus={onInputFocus}
-                onInitialFeeChange={onInitialFeeChange}
-                onInputRangeChange={onInputRangeChange}
-                onTermChange={onTermChange}
-                onAdditionalChange={onAdditionalChange}
-              />
+              <LoanParams/>
             )}
           </Block.Container>
           {state.step >= 2 && (

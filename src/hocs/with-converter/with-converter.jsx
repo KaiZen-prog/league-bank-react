@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import { addConversion, changeDate } from '../../store/actions';
+import { addConversion, changeDate } from '../../store/actions/converter';
 import moment from 'moment';
 import React from 'react';
 import '../../../node_modules/react-datepicker/dist/react-datepicker.css';
-import { loadExchangeRate } from '../../store/api-actions';
+import { loadExchangeRate } from '../../store/actions/api-actions';
 import { FormFields, Currencies, FLOAT_COEFFICIENT } from '../../const';
 import PropTypes from 'prop-types';
 

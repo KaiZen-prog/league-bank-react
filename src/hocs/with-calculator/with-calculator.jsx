@@ -1,6 +1,5 @@
 import React, { createRef, PureComponent } from 'react';
 import {
-  InputFields,
   KeyCode,
   PHONE_LENGTH
 } from '../../const';
@@ -44,118 +43,12 @@ const withCalculator = (Component) => {
         isFormValid: true,
       };
 
-
-      this.onLabelClick = this.onLabelClick.bind(this);
-      this.onInputBlur = this.onInputBlur.bind(this);
-      this.onInputChange = this.onInputChange.bind(this);
-      this.onCostChange = this.onCostChange.bind(this);
-      this.onInitialFeeChange = this.onInitialFeeChange.bind(this);
-      this.onTermChange = this.onTermChange.bind(this);
-      this.onInputRangeChange = this.onInputRangeChange.bind(this);
-      this.onAdditionalChange = this.onAdditionalChange.bind(this);
-
       this.onMakeRequest = this.onMakeRequest.bind(this);
       this.onRegApplicationChange = this.onRegApplicationChange.bind(this);
       this.onSubmit = this.onSubmit.bind(this);
       this.onPopupClose = this.onPopupClose.bind(this);
       this.closePopupKeydown = this.closePopupKeydown.bind(this);
       this.onChangePhone = this.onChangePhone.bind(this);
-    }
-
-    onLabelClick(evt) {
-      this.setState({ isLabelClicked: true });
-
-      switch (evt.target.htmlFor) {
-        case InputFields.cost:
-          this.costInputRef.current.style.display = 'block';
-          this.costDivRef.current.style.display = 'none';
-          break;
-
-        case InputFields.initialFee:
-          this.initialFeeInputRef.current.style.display = 'block';
-          this.initialFeeDivRef.current.style.display = 'none';
-          break;
-
-        case InputFields.term:
-          this.termInputRef.current.style.display = 'block';
-          this.termDivRef.current.style.display = 'none';
-          break;
-      }
-    }
-
-    onInputFocus(evt) {
-      evt.target.style.display = 'none';
-      evt.target.previousElementSibling.style.display = 'block';
-      evt.target.previousElementSibling.focus();
-    }
-
-    onInputBlur(evt, name, value) {
-      evt.target.style.display = 'none';
-      evt.target.nextElementSibling.style.display = 'block';
-      this.setState({ [name]: value, isLabelClicked: false });
-    }
-
-    onInputChange(evt) {
-      const { name, value } = evt.target;
-      this.setState({ [name]: value });
-    }
-
-    onCostChange(evt) {
-      const name = evt.target.name;
-      let value = evt.target.value;
-
-      if (value < this.state.paramsCredit.minCost || value > this.state.paramsCredit.maxCost) {
-        evt.target.nextElementSibling.style.color = 'red';
-        value = 'Некорректное значение';
-      } else {
-        evt.target.nextElementSibling.style.color = '#1F1E25';
-        value = +value;
-        this.setState((prevState) => ({
-          initialFee: (value * prevState.paramsCredit.minInitialFee) / 100,
-        }));
-      }
-
-      this.onInputBlur(evt, name, value);
-    }
-
-    onInitialFeeChange(evt) {
-      const name = evt.target.name;
-      let value = evt.target.value;
-
-      if (value < (this.state.cost * this.state.paramsCredit.minInitialFee) / 100) {
-        value = (this.state.cost * this.state.paramsCredit.minInitialFee) / 100;
-      }
-      if (value > this.state.cost) {
-        value = this.state.cost;
-      }
-
-      this.onInputBlur(evt, name, value);
-    }
-
-    onTermChange(evt) {
-      const name = evt.target.name;
-      let value = evt.target.value;
-
-      if (value < this.state.paramsCredit.minTerm) {
-        value = this.state.paramsCredit.minTerm;
-      }
-      if (value > this.state.paramsCredit.maxTerm) {
-        value = this.state.paramsCredit.maxTerm;
-      }
-
-      this.onInputBlur(evt, name, value);
-    }
-
-    onInputRangeChange(evt) {
-      const { name, value } = evt.target;
-
-      name === 'initialFee'
-        ? this.setState((prevState) => ({ [name]: (prevState.cost * value) / 100 }))
-        : this.setState({ [name]: value });
-    }
-
-    onAdditionalChange(evt) {
-      this.setState((prevState) => ({ [evt.target.name]: !prevState[evt.target.name] }));
     }
 
     onMakeRequest(evt) {
@@ -217,14 +110,6 @@ const withCalculator = (Component) => {
       return (
         <Component
           telRef={this.telRef}
-          onLabelClick={this.onLabelClick}
-          onInputFocus={this.onInputFocus}
-          onInputChange={this.onInputChange}
-          onCostChange={this.onCostChange}
-          onInitialFeeChange={this.onInitialFeeChange}
-          onTermChange={this.onTermChange}
-          onInputRangeChange={this.onInputRangeChange}
-          onAdditionalChange={this.onAdditionalChange}
           onMakeRequest={this.onMakeRequest}
           onSubmit={this.onSubmit}
           onPopupClose={this.onPopupClose}

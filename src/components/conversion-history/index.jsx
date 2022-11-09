@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ConversionHistoryItem from '../conversion-history-item';
-import { clearHistory } from '../../store/actions';
+import { clearHistory } from '../../store/actions/converter';
 import PropTypes from 'prop-types';
 import Block from './conversion-history.styled';
 

@@ -1,6 +1,6 @@
-import { pasteExchangeRate } from './actions';
-import { adaptExchangeRatesToApp } from '../utils/common';
-import { APIValues, APIRoutes } from '../const';
+import { pasteExchangeRate } from './converter';
+import { adaptExchangeRatesToApp } from '../../utils/common';
+import { APIValues, APIRoutes } from '../../const';
 
 export const loadExchangeRate =
   (date, callback = () => {}) =>

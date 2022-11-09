@@ -1,12 +1,13 @@
 import React, {createRef, useState} from 'react';
-import {CalculatorSteps, InputTypes, InputIconsTypes, LabelTypes} from '../../const';
+import {useSelector, useDispatch} from 'react-redux';
+import {CalculatorSteps, InputTypes, InputIconsTypes, LabelTypes, InputFields} from '../../const';
+import {ActionType} from '../../store/actions/calculator';
 import { divideNumberToSpace } from '../../utils/common';
-import PropTypes from 'prop-types';
 import Block from './loan-params.styled';
 import StepTitle from '../step-title';
 import InputContainer from '../input-container';
 
-function LoanParams(props) {
+function LoanParams() {
   const costInputRef = createRef();
   const costDivRef = createRef();
   const initialFeeInputRef = createRef();
@@ -14,60 +15,23 @@ function LoanParams(props) {
   const termInputRef = createRef();
   const termDivRef = createRef();
 
-  const {
-    paramsCredit,
-    cost,
-    term,
-    initialFee,
-    onLabelClick,
-    onCostChange,
-    onInputChange,
-    onInputFocus,
-    onInitialFeeChange,
-    onInputRangeChange,
-    onTermChange,
-    onAdditionalChange,
-  } = props;
+  const state = useSelector((store) => store.CALCULATOR);
+  const [isLabelClicked, setIsLabelClicked] = useState(false);
 
-  const [state, setState] = useState({
-    cost: cost,
-    initialFee: initialFee,
-  });
+  const dispatch = useDispatch();
 
   const onCostChangeSign = (evt) => {
     costInputRef.current.style.color = '#1F1E25';
     costDivRef.current.style.color = '#1F1E25';
+    const evtID = evt.target.id;
 
-    let newCost =
-      state.cost === 'Некорректное значение'
-        ? paramsCredit.minCost
-        : state.cost;
-
-    evt.target.id === 'plus'
-      ? (newCost += paramsCredit.step)
-      : (newCost -= paramsCredit.step);
-
-    if (newCost < paramsCredit.minCost) {
-      newCost = paramsCredit.minCost;
-    }
-
-    if (newCost > paramsCredit.maxCost) {
-      newCost = paramsCredit.maxCost;
-    }
-
-    setState((prevState) => ({
-      cost: newCost,
-      initialFee:
-        prevState.cost === 'Некорректное значение'
-          ? Math.round((newCost * paramsCredit.minInitialFee) / 100)
-          : Math.round((newCost * initialFee) / prevState.cost),
-    }));
+    dispatch({type: ActionType.CHANGE_COST, payload: evtID});
   };
 
   const getRangeValuePosition = () => {
     let position =
-      (((state.initialFee * 100) / state.cost - paramsCredit.minInitialFee) * 100) /
-      (100 - paramsCredit.minInitialFee);
+      (((state.initialFee * 100) / state.cost - state.paramsCredit.minInitialFee) * 100) /
+      (100 - state.paramsCredit.minInitialFee);
     if (position < 0) {
       position = 0;
     }
@@ -101,13 +65,120 @@ function LoanParams(props) {
     }
   };
 
+  const onLabelClick = (evt) => {
+    setIsLabelClicked(!isLabelClicked);
+
+    switch (evt.target.htmlFor) {
+      case InputFields.cost:
+        this.costInputRef.current.style.display = 'block';
+        this.costDivRef.current.style.display = 'none';
+        break;
+
+      case InputFields.initialFee:
+        this.initialFeeInputRef.current.style.display = 'block';
+        this.initialFeeDivRef.current.style.display = 'none';
+        break;
+
+      case InputFields.term:
+        this.termInputRef.current.style.display = 'block';
+        this.termDivRef.current.style.display = 'none';
+        break;
+    }
+  };
+
+  const onInputChange = (evt) => {
+    const { name, value } = evt.target;
+    dispatch({type: ActionType.CHANGE_FIELD_VALUE, payload: {
+      name: name,
+      value: value,
+    }});
+  };
+
+  const onInputFocus = (evt) => {
+    evt.target.style.display = 'none';
+    evt.target.previousElementSibling.style.display = 'block';
+    evt.target.previousElementSibling.focus();
+  };
+
+  const onInputBlur = (evt, name, value) => {
+    evt.target.style.display = 'none';
+    evt.target.nextElementSibling.style.display = 'block';
+
+    setIsLabelClicked(true);
+
+    onInputChange(evt, name, value);
+  };
+
+  const onCostChange = (evt) => {
+    const name = evt.target.name;
+    let value = evt.target.value;
+
+    if (value < state.paramsCredit.minCost || value > state.paramsCredit.maxCost) {
+      evt.target.nextElementSibling.style.color = 'red';
+      value = 'Некорректное значение';
+    } else {
+      evt.target.nextElementSibling.style.color = '#1F1E25';
+      value = +value;
+
+      dispatch({type: ActionType.CHANGE_INITIAL_FEE, payload: value});
+    }
+
+    onInputBlur(evt, name, value);
+  };
+
+  const onInitialFeeChange = (evt) => {
+    const name = evt.target.name;
+    let value = evt.target.value;
+
+    if (value < (state.cost * state.paramsCredit.minInitialFee) / 100) {
+      value = (state.cost * state.paramsCredit.minInitialFee) / 100;
+    }
+    if (value > state.cost) {
+      value = state.cost;
+    }
+
+    onInputBlur(evt, name, value);
+  };
+
+  const onTermChange = (evt) => {
+    const name = evt.target.name;
+    let value = evt.target.value;
+
+    if (value < state.paramsCredit.minTerm) {
+      value = state.paramsCredit.minTerm;
+    }
+    if (value > state.paramsCredit.maxTerm) {
+      value = state.paramsCredit.maxTerm;
+    }
+
+    onInputBlur(evt, name, value);
+  };
+
+  const onInputRangeChange = (evt) => {
+    const { name, value } = evt.target;
+
+    name === 'initialFee'
+      ? dispatch({type: ActionType.CHANGE_FIELD_VALUE, payload: {
+        name: name,
+        value: (state.cost * value) / 100,
+      }})
+      : onInputChange(evt);
+  };
+
+  const onAdditionalChange = (evt) => {
+    dispatch({type: ActionType.CHANGE_ADDITIONAL, payload: {
+      name: evt.target.name,
+      value: !state[evt.target.name],
+    }});
+  };
+
   return (
     <Block>
       <StepTitle type={CalculatorSteps.params} value={'Шаг 2. Введите параметры кредита'}/>
 
       <InputContainer>
         <Block.Label htmlFor="cost" onClick={onLabelClick}>
-          Стоимость {paramsCredit.type === 'mortgage' ? 'недвижимости' : 'автомобиля'}
+          Стоимость {state.paramsCredit.type === 'mortgage' ? 'недвижимости' : 'автомобиля'}
         </Block.Label>
         <Block.Icon
           $type={InputIconsTypes.minus}
@@ -120,8 +191,8 @@ function LoanParams(props) {
           name="cost"
           id="cost"
           ref={costInputRef}
-          min={paramsCredit.minCost}
-          max={paramsCredit.maxCost}
+          min={state.paramsCredit.minCost}
+          max={state.paramsCredit.maxCost}
           value={state.cost}
           onBlur={onCostChange}
           onChange={onInputChange}
@@ -143,8 +214,8 @@ function LoanParams(props) {
         </Block.Icon>
 
         <Block.HelpText>
-          От {divideNumberToSpace(paramsCredit.minCost)} &nbsp;до{' '}
-          {divideNumberToSpace(paramsCredit.maxCost)} рублей
+          От {divideNumberToSpace(state.paramsCredit.minCost)} &nbsp;до{' '}
+          {divideNumberToSpace(state.paramsCredit.maxCost)} рублей
         </Block.HelpText>
       </InputContainer>
 
@@ -163,8 +234,8 @@ function LoanParams(props) {
           name="initialFee"
           id="initialFee"
           ref={initialFeeInputRef}
-          min={(paramsCredit.minCost * paramsCredit.minInitialFee) / 100}
-          max={paramsCredit.maxCost}
+          min={(state.paramsCredit.minCost * state.paramsCredit.minInitialFee) / 100}
+          max={state.paramsCredit.maxCost}
           value={state.initialFee}
           onBlur={onInitialFeeChange}
           onChange={onInputChange}
@@ -183,7 +254,7 @@ function LoanParams(props) {
         <Block.InputRange
           type="range"
           name="initialFee"
-          min={paramsCredit.minInitialFee}
+          min={state.paramsCredit.minInitialFee}
           max="100"
           step="5"
           value={(state.initialFee * 100) / state.cost}
@@ -212,9 +283,9 @@ function LoanParams(props) {
           name="term"
           id="term"
           ref={termInputRef}
-          min={paramsCredit.minTerm}
-          max={paramsCredit.maxTerm}
-          value={term}
+          min={state.paramsCredit.minTerm}
+          max={state.paramsCredit.maxTerm}
+          value={state.term}
           onBlur={onTermChange}
           onChange={onInputChange}
         />
@@ -226,29 +297,29 @@ function LoanParams(props) {
           onClick={onLabelClick}
           onFocus={onInputFocus}
         >
-          {setTermLine(term)}
+          {setTermLine(state.term)}
         </Block.InputDiv>
 
         <Block.InputRange
           type="range"
           name="term"
-          min={paramsCredit.minTerm}
-          max={paramsCredit.maxTerm}
+          min={state.paramsCredit.minTerm}
+          max={state.paramsCredit.maxTerm}
           step="1"
-          value={term}
+          value={state.term}
           onChange={onInputRangeChange}
         />
         <Block.TermContainer>
           <Block.RangeValue>
-            {paramsCredit.minTerm} {paramsCredit.minTerm === 1 ? 'год' : 'лет'}
+            {state.paramsCredit.minTerm} {state.paramsCredit.minTerm === 1 ? 'год' : 'лет'}
           </Block.RangeValue>
           <Block.RangeValue>
-            {paramsCredit.maxTerm} лет
+            {state.paramsCredit.maxTerm} лет
           </Block.RangeValue>
         </Block.TermContainer>
       </InputContainer>
 
-      {paramsCredit.maternalCapitalValue && (
+      {state.paramsCredit.maternalCapitalValue && (
         <Block.Additional>
           <Block.InputCheckbox
             type="checkbox"
@@ -259,7 +330,7 @@ function LoanParams(props) {
           Использовать материнский капитал
         </Block.Additional>
       )}
-      {paramsCredit.additionalToCar && (
+      {state.paramsCredit.additionalToCar && (
         <>
           <Block.Additional $type={LabelTypes.car}>
             <Block.InputCheckbox
@@ -284,49 +355,6 @@ function LoanParams(props) {
     </Block>
   );
 }
-
-LoanParams.propTypes = {
-  paramsCredit: PropTypes.oneOfType([
-    PropTypes.shape({}),
-    PropTypes.shape({
-      type: PropTypes.string.isRequired,
-      minCost: PropTypes.number.isRequired,
-      maxCost: PropTypes.number.isRequired,
-      step: PropTypes.number.isRequired,
-      minInitialFee: PropTypes.number.isRequired,
-      minTerm: PropTypes.number.isRequired,
-      maxTerm: PropTypes.number.isRequired,
-      minCreditAmount: PropTypes.number.isRequired,
-      maternalCapitalValue: PropTypes.number.isRequired,
-      percent: PropTypes.shape({
-        default: PropTypes.number.isRequired,
-        specialPercent: PropTypes.number.isRequired,
-        amountForSpecialPercent: PropTypes.number.isRequired,
-      }),
-    }),
-    PropTypes.shape({
-      type: PropTypes.string.isRequired,
-      minCost: PropTypes.number.isRequired,
-      maxCost: PropTypes.number.isRequired,
-      step: PropTypes.number.isRequired,
-      minInitialFee: PropTypes.number.isRequired,
-      minTerm: PropTypes.number.isRequired,
-      maxTerm: PropTypes.number.isRequired,
-      minCreditAmount: PropTypes.number.isRequired,
-      percent: PropTypes.shape({
-        default: PropTypes.number.isRequired,
-        specialPercent: PropTypes.number.isRequired,
-        amountForSpecialPercent: PropTypes.number.isRequired,
-        oneAddition: PropTypes.number.isRequired,
-        allAdditions: PropTypes.number.isRequired,
-      }),
-      additionalToCar: PropTypes.shape({
-        casco: PropTypes.string.isRequired,
-        lifeInsurance: PropTypes.string.isRequired,
-      }),
-    }),
-  ]).isRequired,
-};
 
 LoanParams.displayName = 'LoanParams';
 
