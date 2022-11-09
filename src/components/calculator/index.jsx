@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   CalculatorSteps,
   CarParams,
   CreditPurpose,
-  InputTypes,
+  InputTypes, KeyCode,
   MortgageParams,
-  OfferTypes,
+  PHONE_LENGTH,
   SubmitButtonTypes
 } from '../../const';
 import {ActionType} from '../../store/actions/calculator';
@@ -19,20 +19,21 @@ import PopupConfirm from '../popup-confirm';
 import LoanParams from '../loan-params';
 import StepTitle from '../step-title';
 import InputContainer from '../input-container';
+import Offer from '../offer';
 
 function Calculator(props) {
   const {
-    telRef,
-    onMakeRequest,
-    onSubmit,
-    onPopupClose,
     onRegApplicationChange,
     onChangePhone,
-    requestNumber,
   } = props;
+
+  const telRef = useRef();
 
   const state = useSelector((store) => store.CALCULATOR);
   const [isPurposeSelectOpened, setIsPurposeSelectOpened] = useState(false);
+  const [requestNumber, setRequestNumber] = useState(localStorage.getItem('requestNumber') !== null
+    ? localStorage.getItem('requestNumber')
+    : 1);
 
   const dispatch = useDispatch();
 
@@ -75,6 +76,42 @@ function Calculator(props) {
     togglePurposeSelect();
   };
 
+  const onSubmit = (evt) => {
+    evt.preventDefault();
+    if (telRef.current !== null && telRef.current.value.length < PHONE_LENGTH) {
+      telRef.current.getInputDOMNode().style.borderColor = 'red';
+      return;
+    }
+
+    localStorage.setItem('requestNumber', this.requestNumber);
+    dispatch({type: ActionType.CHANGE_STEP, payload: 4});
+
+    document.documentElement.style.overflow = 'hidden';
+    document.addEventListener('keydown', closePopupKeydown);
+  };
+
+  const onPopupClose = () => {
+    dispatch({type: ActionType.CLOSE_POPUP, payload: {
+      step: 1,
+      purpose: 'none',
+    }});
+
+    document.documentElement.style.overflow = 'auto';
+    document.removeEventListener('keydown', closePopupKeydown);
+  };
+
+  function closePopupKeydown(evt) {
+    if (evt.keyCode === KeyCode.ESC) {
+      onPopupClose();
+    }
+  }
+
+  const onMakeRequest = (evt) => {
+    evt.preventDefault();
+    setRequestNumber(requestNumber + 1);
+    dispatch({type: ActionType.CHANGE_STEP, payload: 3});
+  };
+
   return (
     <Block>
       <a name="calculator"></a>
@@ -103,58 +140,14 @@ function Calculator(props) {
             )}
           </Block.Container>
           {state.step >= 2 && (
-            <>
-              {state.creditAmount >= state.paramsCredit.minCreditAmount && (
-                <Block.Offer>
-                  <Block.OfferTitle>Наше предложение</Block.OfferTitle>
-                  <Block.OfferList>
-                    <Block.OfferItem>
-                      <Block.OfferValue>
-                        {divideNumberToSpace(state.creditAmount)} рублей
-                      </Block.OfferValue>
-                      <Block.OfferName>Сумма ипотеки</Block.OfferName>
-                    </Block.OfferItem>
-
-                    <Block.OfferItem>
-                      <Block.OfferValue>{state.percent}%</Block.OfferValue>
-                      <Block.OfferName>Процентная ставка</Block.OfferName>
-                    </Block.OfferItem>
-
-                    <Block.OfferItem>
-                      <Block.OfferValue>
-                        {divideNumberToSpace(state.monthlyPayment)} рублей
-                      </Block.OfferValue>
-                      <Block.OfferName>Ежемесячный платеж</Block.OfferName>
-                    </Block.OfferItem>
-
-                    <Block.OfferItem>
-                      <Block.OfferValue>
-                        {divideNumberToSpace(state.requiredIncome)} рублей
-                      </Block.OfferValue>
-                      <Block.OfferName>Необходимый доход</Block.OfferName>
-                    </Block.OfferItem>
-                  </Block.OfferList>
-                  <Block.SubmitButton
-                    $type={SubmitButtonTypes.preorder}
-                    type="submit"
-                  >
-                    Оформить заявку
-                  </Block.SubmitButton>
-                </Block.Offer>
-              )}
-              {state.creditAmount < state.paramsCredit.minCreditAmount && (
-                <Block.Offer $type={OfferTypes.refusal}>
-                  <Block.OfferTitle $type={OfferTypes.refusal}>
-                    Наш банк не выдаёт{' '}
-                    {state.purpose === CreditPurpose.mortgage.type ? 'ипотечные кредиты' : 'автокредиты'}{' '}
-                    меньше {divideNumberToSpace(state.paramsCredit.minCreditAmount)} рублей.
-                  </Block.OfferTitle>
-                  <Block.OfferName $type={OfferTypes.refusal}>
-                    Попробуйте использовать другие параметры для расчёта.
-                  </Block.OfferName>
-                </Block.Offer>
-              )}
-            </>
+            <Offer
+              purpose={state.purpose}
+              creditAmount={state.creditAmount}
+              minCreditAmount={state.paramsCredit.minCreditAmount}
+              percent={state.percent}
+              monthlyPayment={state.monthlyPayment}
+              requiredIncome={state.requiredIncome}
+            />
           )}
         </Block.FlexContainer>
       </form>
@@ -251,21 +244,15 @@ function Calculator(props) {
         </Block.RegApplication>
       )}
       {state.step >= 4 && (
-        <PopupConfirm onPopupClose={onPopupClose}/>
+        <PopupConfirm/>
       )}
     </Block>
   );
 }
 
 Calculator.propTypes = {
-  telRef: PropTypes.shape({}).isRequired,
-
-  onMakeRequest: PropTypes.func.isRequired,
   onRegApplicationChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  onPopupClose: PropTypes.func.isRequired,
   onChangePhone: PropTypes.func.isRequired,
-  requestNumber: PropTypes.number,
 };
 
 Calculator.displayName = 'Calculator';

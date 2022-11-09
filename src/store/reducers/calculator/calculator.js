@@ -149,6 +149,19 @@ const calculator = (state = initialState, action) => {
         [action.payload.name]: action.payload.value,
       });
     }
+
+    case ActionType.CHANGE_STEP: {
+      return Object.assign({}, state, {
+        step: action.payload,
+      });
+    }
+
+    case ActionType.CLOSE_POPUP: {
+      return Object.assign({}, state, {
+        step: action.payload.step,
+        purpose: action.payload.purpose,
+      });
+    }
   }
 
   return state;

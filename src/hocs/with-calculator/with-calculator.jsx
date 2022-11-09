@@ -1,8 +1,4 @@
 import React, { createRef, PureComponent } from 'react';
-import {
-  KeyCode,
-  PHONE_LENGTH
-} from '../../const';
 
 /* eslint no-unused-expressions: ["error", { "allowTernary": true }]*/
 const withCalculator = (Component) => {
@@ -18,8 +14,6 @@ const withCalculator = (Component) => {
 
       this.termInputRef = createRef();
       this.termDivRef = createRef();
-
-      this.telRef = createRef();
 
       this.state = {
         step: 1,
@@ -43,22 +37,8 @@ const withCalculator = (Component) => {
         isFormValid: true,
       };
 
-      this.onMakeRequest = this.onMakeRequest.bind(this);
       this.onRegApplicationChange = this.onRegApplicationChange.bind(this);
-      this.onSubmit = this.onSubmit.bind(this);
-      this.onPopupClose = this.onPopupClose.bind(this);
-      this.closePopupKeydown = this.closePopupKeydown.bind(this);
       this.onChangePhone = this.onChangePhone.bind(this);
-    }
-
-    onMakeRequest(evt) {
-      evt.preventDefault();
-      this.requestNumber =
-        localStorage.getItem('requestNumber') !== null
-          ? +localStorage.getItem('requestNumber') + 1
-          : 1;
-
-      this.setState({ step: 3 });
     }
 
     onRegApplicationChange(evt) {
@@ -66,35 +46,6 @@ const withCalculator = (Component) => {
 
       this.setState({ name: value });
       localStorage.setItem(name, value);
-    }
-
-    onSubmit(evt) {
-      evt.preventDefault();
-      if (this.telRef.current !== null && this.telRef.current.value.length < PHONE_LENGTH) {
-        this.telRef.current.getInputDOMNode().style.borderColor = 'red';
-        return;
-      }
-
-      localStorage.setItem('requestNumber', this.requestNumber);
-      this.setState({ step: 4 });
-      document.documentElement.style.overflow = 'hidden';
-      document.addEventListener('keydown', this.closePopupKeydown);
-    }
-
-    onPopupClose() {
-      this.setState({
-        step: 1,
-        purpose: 'none',
-      });
-
-      document.documentElement.style.overflow = 'auto';
-      document.removeEventListener('keydown', this.closePopupKeydown);
-    }
-
-    closePopupKeydown(evt) {
-      if (evt.keyCode === KeyCode.ESC) {
-        this.onPopupClose();
-      }
     }
 
     onChangePhone(evt) {
@@ -109,13 +60,8 @@ const withCalculator = (Component) => {
     render() {
       return (
         <Component
-          telRef={this.telRef}
-          onMakeRequest={this.onMakeRequest}
-          onSubmit={this.onSubmit}
-          onPopupClose={this.onPopupClose}
           onRegApplicationChange={this.onRegApplicationChange}
           onChangePhone={this.onChangePhone}
-          requestNumber={this.requestNumber}
         />
       );
     }
