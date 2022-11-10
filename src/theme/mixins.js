@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
 import theme from './theme';
-import {InputTypes} from '../const';
+import {InputTypes, SubmitButtonTypes} from '../const';
 
 export const button = (color, background, backgroundHovered) => css`
   display: inline-block;
@@ -19,6 +19,66 @@ export const button = (color, background, backgroundHovered) => css`
   &:hover {
     background: ${backgroundHovered};
   }
+`;
+
+export const submitButton = () => css`
+  ${button(theme.color.ghostWhite, theme.color.neonBlue, theme.color.persianBlue)};
+  font-size: 14px;
+  line-height: 20px;
+
+  padding: 16px 60px 15px 71px;
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    font-size: 16px;
+    line-height: 22px;
+    padding: 15px 214px 14px 212px;
+  }
+
+  @media (min-width: ${theme.desktopWidthMinThreshold}) {
+    font-size: 16px;
+    line-height: 22px;
+    padding: 15px 126px 14px 124px;
+  }
+
+  ${(props) => {
+    switch (props.$type) {
+      case SubmitButtonTypes.preorder:
+        return css`
+          position: absolute;
+
+          left: 50%;
+          transform: translateX(-50%);
+        `;
+
+      case SubmitButtonTypes.request:
+        return css`
+          width: 100%;
+
+          margin-right: 3px;
+          margin-left: 3px;
+          padding: 16px 112px 15px 109px;
+
+          @media (min-width: ${theme.tabletWidthMinThreshold}) {
+            width: calc(100% - 6px);
+            line-height: 19px;
+            padding: 17px 296px 15px 303px;
+          }
+
+          @media (min-width: ${theme.desktopWidthMinThreshold}) {
+            display: block;
+
+            width: 198px;
+
+            margin-left: 286px;
+            padding: 15px 60px 14px 59px;
+          }
+        `;
+
+      default:
+        return css`
+              `;
+    }
+  }}
 `;
 
 export const visuallyHidden = () => css`

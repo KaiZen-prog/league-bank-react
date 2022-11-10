@@ -50,7 +50,7 @@ ConversionHistory.propTypes = {
 ConversionHistory.displayName = 'ConversionHistory';
 
 const mapStateToProps = (state) => ({
-  conversionHistory: state.CONVERSION_HISTORY.conversionHistory,
+  conversionHistory: state.CONVERTER.conversionHistory,
 });
 
 const mapDispatchToProps = (dispatch) => ({
