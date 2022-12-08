@@ -1,185 +1,181 @@
-import React, { createRef } from 'react';
-import { DESKTOP_MIN_WIDTH, Sliders } from '../../const';
-import { getNextElement, getPreviousElement } from '../../utils/common';
-import { mainSlides, servicesSlides } from '../../mocks/mocks';
+import React, {useEffect, useState, createRef} from 'react';
+import {DESKTOP_MIN_WIDTH, Sliders} from '../../const';
+import {getNextElement, getPreviousElement} from '../../utils/common';
 
-/* eslint no-unused-expressions: ["error", { "allowTernary": true }]*/
-const withSlider = (Component) => {
-  class WithSlider extends React.PureComponent {
-    constructor(props) {
-      super(props);
+function WithSlider(props) {
+  const {Component, slides, withTabs = false} = props;
 
-      this.sliderRef = createRef();
+  const sliderRef = createRef();
 
-      this.state = {
-        slides: [],
-        currentSlide: {},
-        currentSlideNumber: 0,
-        slidesQuantity: 0,
-      };
+  const [sliderState, setSliderState] = useState({
+    slides: slides,
+    currentSlide: slides[0],
+    currentSlideNumber: 0,
+    slidesQuantity: slides.length,
+  });
 
-      this.carouselHandler = this.carouselHandler.bind(this);
+  let interval = () => {};
+  let swipeEvent = null;
+  let leftCoord = null;
+  let startCoords = null;
+  let initPosX = null;
+  let currentPosX = null;
+  let posX = null;
+  let slider = {};
+  let width = null;
 
-      this.onSwipeStart = this.onSwipeStart.bind(this);
-      this.swipeAction = this.swipeAction.bind(this);
-      this.swipeEnd = this.swipeEnd.bind(this);
+  // Получаем следующий или предыдущий слайд из массива slides
+  const getNewSlide = (isGettingNextSlide) => {
+    let newSlide;
 
-      this.onTabClick = this.onTabClick.bind(this);
+    if (isGettingNextSlide) {
+      sliderState.currentSlide === sliderState.slides[sliderState.slides.length - 1]
+        ? (newSlide = sliderState.slides[0])
+        : (newSlide = getNextElement(sliderState.slides, sliderState.currentSlide));
+    } else {
+      sliderState.currentSlide === sliderState.slides[0]
+        ? (newSlide = sliderState.slides[sliderState.slides.length - 1])
+        : (newSlide = getPreviousElement(sliderState.slides, sliderState.currentSlide));
     }
 
-    componentDidMount() {
-      if (this.sliderRef.current !== null) {
-        switch (this.sliderRef.current.id) {
-          case Sliders.main.name:
-            this.setState({
-              slides: mainSlides,
-              currentSlide: mainSlides[0],
-              currentSlideNumber: 0,
-              slidesQuantity: mainSlides.length,
-            });
-            this.carouselHandler();
-            break;
+    return newSlide;
+  };
 
-          case Sliders.services.name:
-            this.setState({
-              slides: servicesSlides,
-              currentSlide: servicesSlides[0],
-              currentSlideNumber: 0,
-              slidesQuantity: servicesSlides.length,
-            });
-            break;
-        }
-      }
+  useEffect(() => {
+    if(!withTabs) {
+      carouselInterval();
     }
 
-    componentWillUnmount() {
-      clearInterval(this.carouselInterval);
-    }
+    return () => {
+      clearInterval(interval);
+    };
 
-    // Получаем следующий или предыдущий слайд из массива promoSlides
-    getNewSlide(isGettingNextSlide) {
-      let newSlide;
+  }, [sliderState]);
 
-      if (isGettingNextSlide) {
-        this.state.currentSlide === this.state.slides[this.state.slides.length - 1]
-          ? (newSlide = this.state.slides[0])
-          : (newSlide = getNextElement(this.state.slides, this.state.currentSlide));
-      } else {
-        this.state.currentSlide === this.state.slides[0]
-          ? (newSlide = this.state.slides[this.state.slides.length - 1])
-          : (newSlide = getPreviousElement(this.state.slides, this.state.currentSlide));
-      }
+  function carouselInterval() {
+    interval = setInterval(() => {
+      const nextSlide = getNewSlide(true);
 
-      return newSlide;
-    }
-
-    carouselHandler() {
-      this.carouselInterval = setInterval(() => {
-        const nextSlide = this.getNewSlide(true);
-
-        this.setState((prevState) => ({
-          currentSlide: nextSlide,
-          currentSlideNumber: prevState.slides.indexOf(nextSlide),
-        }));
-      }, 5000);
-    }
-
-    onSwipeStart(evt) {
-      if (window.innerWidth >= DESKTOP_MIN_WIDTH) {
-        return;
-      }
-
-      clearInterval(this.carouselInterval);
-
-      this.evt = evt.type === 'touchstart' ? evt.touches[0] : evt;
-
-      this.initPosX = this.evt.clientX;
-
-      this.slider = evt.currentTarget;
-      this.width = this.slider.clientWidth;
-      this.startCoords = this.slider.style.left;
-
-      this.slider.style.transition = 'none';
-
-      document.addEventListener('mousemove', this.swipeAction);
-      document.addEventListener('touchmove', this.swipeAction);
-      document.addEventListener('mouseup', this.swipeEnd);
-      document.addEventListener('touchend', this.swipeEnd);
-    }
-
-    swipeAction(evt) {
-      this.currentPosX = this.evt.clientX;
-
-      this.posX = this.initPosX - this.currentPosX;
-      this.leftCoord = this.posX - this.width * this.state.currentSlideNumber;
-
-      if (this.leftCoord > 0) {
-        this.leftCoord = 0;
-      }
-
-      if (this.leftCoord < this.width * -(this.state.slidesQuantity - 1)) {
-        this.leftCoord = this.width * -(this.state.slidesQuantity - 1);
-      }
-
-      this.slider.style.left = `${this.leftCoord}px`;
-
-      this.initPosX = evt.type === 'touchmove' ? evt.touches[0].clientX : evt.clientX;
-    }
-
-    swipeEndHandler(newSlide, newSlideIndex) {
-      this.setState({
-        currentSlide: newSlide,
-        currentSlideNumber: newSlideIndex,
-      });
-    }
-
-    swipeEnd() {
-      document.removeEventListener('mousemove', this.swipeAction);
-      document.removeEventListener('touchmove', this.swipeAction);
-      document.removeEventListener('mouseup', this.swipeEnd);
-      document.removeEventListener('touchend', this.swipeEnd);
-
-      this.slider.style.transition = 'left 0.5s';
-
-      if ((this.posX * -1) / this.width > 0.5) {
-        const newSlide = this.getNewSlide(true);
-        const newSlideIndex = this.state.slides.indexOf(newSlide);
-        this.swipeEndHandler(newSlide, newSlideIndex);
-      } else if ((this.posX * -1) / this.width < -0.5) {
-        const newSlide = this.getNewSlide(false);
-        const newSlideIndex = this.state.slides.indexOf(newSlide);
-
-        this.swipeEndHandler(newSlide, newSlideIndex);
-      } else {
-        this.slider.style.left = this.startCoords;
-      }
-
-      this.posX = 0;
-
-      if (this.sliderRef.current === Sliders.main.name) {
-        this.carouselHandler();
-      }
-    }
-
-    onTabClick(slide, number) {
-      this.setState({ currentSlide: slide, currentSlideNumber: number });
-    }
-
-    render() {
-      return (
-        <Component
-          sliderRef={this.sliderRef}
-          currentSlide={this.state.currentSlide}
-          currentSlideNumber={this.state.currentSlideNumber}
-          slidesQuantity={this.state.slidesQuantity}
-          onSwipeStart={this.onSwipeStart}
-          onTabClick={this.onTabClick}
-        />
-      );
-    }
+      setSliderState((prevState) => ({
+        ...prevState,
+        currentSlide: nextSlide,
+        currentSlideNumber: prevState.slides.indexOf(nextSlide),
+      }));
+    }, 3000);
   }
 
-  return WithSlider;
-};
+  const onTabClick = (slide, number) => {
+    setSliderState((prevState) => ({
+      ...prevState,
+      currentSlide: slide,
+      currentSlideNumber: number,
+    }));
+  };
 
-export default withSlider;
+  const swipeEndHandler = (newSlide, newSlideIndex) => {
+    setSliderState((prevState) => ({
+      ...prevState,
+      currentSlide: newSlide,
+      currentSlideNumber: newSlideIndex,
+    }));
+  };
+
+  const swipeAction = (evt) => {
+    currentPosX = swipeEvent.clientX;
+
+    posX = initPosX - currentPosX;
+    leftCoord = posX - width * sliderState.currentSlideNumber;
+
+    if (leftCoord > 0) {
+      leftCoord = 0;
+    }
+
+    if (leftCoord < width * -(sliderState.slidesQuantity - 1)) {
+      leftCoord = width * -(sliderState.slidesQuantity - 1);
+    }
+
+    slider.style.left = `${leftCoord}px`;
+
+    initPosX = evt.type === 'touchmove' ? evt.touches[0].clientX : evt.clientX;
+  };
+
+  const swipeEnd = () => {
+    document.removeEventListener('mousemove', swipeAction);
+    document.removeEventListener('touchmove', swipeAction);
+    document.removeEventListener('mouseup', swipeEnd);
+    document.removeEventListener('touchend', swipeEnd);
+
+    slider.style.transition = 'left 1s';
+
+    if ((posX * -1) / width > 0.5) {
+      const newSlide = getNewSlide(true);
+      const newSlideIndex = sliderState.slides.indexOf(newSlide);
+      swipeEndHandler(newSlide, newSlideIndex);
+    } else if ((posX * -1) / width < -0.5) {
+      const newSlide = getNewSlide(false);
+      const newSlideIndex = sliderState.slides.indexOf(newSlide);
+
+      swipeEndHandler(newSlide, newSlideIndex);
+    } else {
+      slider.style.left = startCoords;
+    }
+
+    posX = 0;
+
+    if (sliderRef.current === Sliders.main.name) {
+      carouselInterval();
+    }
+  };
+
+  const onSwipeStart = (evt) => {
+    if (window.innerWidth >= DESKTOP_MIN_WIDTH) {
+      return;
+    }
+
+    clearInterval(interval);
+
+    swipeEvent = evt.type === 'touchstart' ? evt.touches[0] : evt;
+
+    initPosX = swipeEvent.clientX;
+
+    slider = evt.currentTarget;
+    width = slider.clientWidth;
+    startCoords = slider.style.left;
+
+    slider.style.transition = 'none';
+
+    document.addEventListener('mousemove', swipeAction);
+    document.addEventListener('touchmove', swipeAction);
+    document.addEventListener('mouseup', swipeEnd);
+    document.addEventListener('touchend', swipeEnd);
+  };
+
+  return (
+    <>
+      {withTabs && (
+        <Component
+          slides={sliderState.slides}
+          currentSlide={sliderState.currentSlide}
+          currentSlideNumber={sliderState.currentSlideNumber}
+          slidesQuantity={sliderState.slidesQuantity}
+          sliderRef={sliderRef}
+          onSwipeStart={onSwipeStart}
+          onTabClick={onTabClick}
+        />
+      )}
+
+      {!withTabs && (
+        <Component
+          slides={sliderState.slides}
+          currentSlide={sliderState.currentSlide}
+          currentSlideNumber={sliderState.currentSlideNumber}
+          slidesQuantity={sliderState.slidesQuantity}
+          sliderRef={sliderRef}
+          onSwipeStart={onSwipeStart}
+        />
+      )}
+    </>
+  );
+}
+
+export default WithSlider;
