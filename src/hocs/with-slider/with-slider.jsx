@@ -25,10 +25,10 @@ function WithSlider(props) {
   let width = null;
 
   // Получаем следующий или предыдущий слайд из массива slides
-  const getNewSlide = (isGettingNextSlide) => {
+  const getNewSlide = (isGoingOnwards) => {
     let newSlide;
 
-    if (isGettingNextSlide) {
+    if (isGoingOnwards) {
       sliderState.currentSlide === sliderState.slides[sliderState.slides.length - 1]
         ? (newSlide = sliderState.slides[0])
         : (newSlide = getNextElement(sliderState.slides, sliderState.currentSlide));
@@ -43,7 +43,7 @@ function WithSlider(props) {
 
   useEffect(() => {
     if(!withTabs) {
-      carouselInterval();
+      initCarouselInterval();
     }
 
     return () => {
@@ -60,7 +60,7 @@ function WithSlider(props) {
     }));
   };
 
-  function carouselInterval() {
+  function initCarouselInterval() {
     interval = setInterval(() => {
       const nextSlide = getNewSlide(true);
       const nextSlideIndex = sliderState.slides.indexOf(nextSlide);
@@ -88,6 +88,12 @@ function WithSlider(props) {
     initPosX = evt.type === 'touchmove' ? evt.touches[0].clientX : evt.clientX;
   };
 
+  const changeSlideOnSwipe = (isGoingOnwards) => {
+    const newSlide = getNewSlide(isGoingOnwards);
+    const newSlideIndex = sliderState.slides.indexOf(newSlide);
+    slideChangeHandler(newSlide, newSlideIndex);
+  };
+
   const swipeEnd = () => {
     document.removeEventListener('mousemove', swipeAction);
     document.removeEventListener('touchmove', swipeAction);
@@ -97,14 +103,9 @@ function WithSlider(props) {
     slider.style.transition = 'left 1s';
 
     if ((posX * -1) / width > 0.5) {
-      const newSlide = getNewSlide(true);
-      const newSlideIndex = sliderState.slides.indexOf(newSlide);
-      slideChangeHandler(newSlide, newSlideIndex);
+      changeSlideOnSwipe(true);
     } else if ((posX * -1) / width < -0.5) {
-      const newSlide = getNewSlide(false);
-      const newSlideIndex = sliderState.slides.indexOf(newSlide);
-
-      slideChangeHandler(newSlide, newSlideIndex);
+      changeSlideOnSwipe(false);
     } else {
       slider.style.left = startCoords;
     }
@@ -112,7 +113,7 @@ function WithSlider(props) {
     posX = 0;
 
     if (sliderRef.current === Sliders.main.name) {
-      carouselInterval();
+      initCarouselInterval();
     }
   };
 
