@@ -52,33 +52,22 @@ function WithSlider(props) {
 
   }, [sliderState]);
 
-  function carouselInterval() {
-    interval = setInterval(() => {
-      const nextSlide = getNewSlide(true);
-
-      setSliderState((prevState) => ({
-        ...prevState,
-        currentSlide: nextSlide,
-        currentSlideNumber: prevState.slides.indexOf(nextSlide),
-      }));
-    }, 3000);
-  }
-
-  const onTabClick = (slide, number) => {
+  const slideChangeHandler = (slide, newSlideIndex) => {
     setSliderState((prevState) => ({
       ...prevState,
       currentSlide: slide,
-      currentSlideNumber: number,
-    }));
-  };
-
-  const swipeEndHandler = (newSlide, newSlideIndex) => {
-    setSliderState((prevState) => ({
-      ...prevState,
-      currentSlide: newSlide,
       currentSlideNumber: newSlideIndex,
     }));
   };
+
+  function carouselInterval() {
+    interval = setInterval(() => {
+      const nextSlide = getNewSlide(true);
+      const nextSlideIndex = sliderState.slides.indexOf(nextSlide);
+
+      slideChangeHandler(nextSlide, nextSlideIndex);
+    }, 3000);
+  }
 
   const swipeAction = (evt) => {
     currentPosX = swipeEvent.clientX;
@@ -110,12 +99,12 @@ function WithSlider(props) {
     if ((posX * -1) / width > 0.5) {
       const newSlide = getNewSlide(true);
       const newSlideIndex = sliderState.slides.indexOf(newSlide);
-      swipeEndHandler(newSlide, newSlideIndex);
+      slideChangeHandler(newSlide, newSlideIndex);
     } else if ((posX * -1) / width < -0.5) {
       const newSlide = getNewSlide(false);
       const newSlideIndex = sliderState.slides.indexOf(newSlide);
 
-      swipeEndHandler(newSlide, newSlideIndex);
+      slideChangeHandler(newSlide, newSlideIndex);
     } else {
       slider.style.left = startCoords;
     }
@@ -160,7 +149,7 @@ function WithSlider(props) {
           slidesQuantity={sliderState.slidesQuantity}
           sliderRef={sliderRef}
           onSwipeStart={onSwipeStart}
-          onTabClick={onTabClick}
+          onTabClick={slideChangeHandler}
         />
       )}
 
