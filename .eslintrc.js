@@ -30,6 +30,7 @@ module.exports = {
         'react/react-in-jsx-scope': 'off',
         'jsx-a11y/anchor-is-valid': 'off',
         'no-console': 'off',
+        'no-shadow': 'off',
         'no-mixed-spaces-and-tabs': 0,
         'react/no-array-index-key': 'off',
         'jsx-a11y/click-events-have-key-events': 'off',

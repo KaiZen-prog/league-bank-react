@@ -70,18 +70,18 @@ function LoanParams() {
 
     switch (evt.target.htmlFor) {
       case InputFields.cost:
-        this.costInputRef.current.style.display = 'block';
-        this.costDivRef.current.style.display = 'none';
+        costInputRef.current.style.display = 'block';
+        costDivRef.current.style.display = 'none';
         break;
 
       case InputFields.initialFee:
-        this.initialFeeInputRef.current.style.display = 'block';
-        this.initialFeeDivRef.current.style.display = 'none';
+        initialFeeInputRef.current.style.display = 'block';
+        initialFeeDivRef.current.style.display = 'none';
         break;
 
       case InputFields.term:
-        this.termInputRef.current.style.display = 'block';
-        this.termDivRef.current.style.display = 'none';
+        termInputRef.current.style.display = 'block';
+        termDivRef.current.style.display = 'none';
         break;
     }
   };
