@@ -37,7 +37,7 @@ function Converter(props) {
 
   const conversionToUSD = (name, value) => {
     const divider = exchangeRate[inputs[name].type];
-    return divider === 0 ? 0 : Math.floor((value / exchangeRate[inputs[name].type]) * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
+    return divider === 0 ? 0 : Math.floor((value / divider) * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
   };
 
   const conversionFromUSD = (name, value) =>
