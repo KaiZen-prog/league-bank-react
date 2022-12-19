@@ -1,11 +1,17 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import ConversionHistoryItem from '../conversion-history-item';
-import { clearHistory } from '../../store/actions/converter';
-import PropTypes from 'prop-types';
 import Block from './conversion-history.styled';
+import {ActionType} from '../../store/actions/converter';
 
-function ConversionHistory({ conversionHistory, clear }) {
+function ConversionHistory() {
+  const conversionHistory = useSelector((store) => store.CONVERTER.conversionHistory);
+  const dispatch = useDispatch();
+
+  const clearHistory = () => {
+    dispatch({type: ActionType.CLEAR_HISTORY, payload: []});
+  };
+
   return (
     <Block>
       <Block.Wrapper>
@@ -22,7 +28,7 @@ function ConversionHistory({ conversionHistory, clear }) {
             />
           ))}
         </Block.List>
-        <Block.ButtonClear type='button' onClick={clear}>
+        <Block.ButtonClear type='button' onClick={clearHistory}>
           Очистить историю
         </Block.ButtonClear>
       </Block.Wrapper>
@@ -30,33 +36,5 @@ function ConversionHistory({ conversionHistory, clear }) {
   );
 }
 
-ConversionHistory.propTypes = {
-  conversionHistory: PropTypes.arrayOf(
-    PropTypes.shape({
-      date: PropTypes.string,
-      currencyInput: PropTypes.shape({
-        amount: PropTypes.number,
-        type: PropTypes.string,
-      }),
-      currencyOutput: PropTypes.shape({
-        amount: PropTypes.number,
-        type: PropTypes.string,
-      }),
-    }),
-  ),
-  clear: PropTypes.func.isRequired,
-};
-
 ConversionHistory.displayName = 'ConversionHistory';
-
-const mapStateToProps = (state) => ({
-  conversionHistory: state.CONVERTER.conversionHistory,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  clear() {
-    dispatch(clearHistory());
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ConversionHistory);
+export default ConversionHistory;

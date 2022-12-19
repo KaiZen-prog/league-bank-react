@@ -10,7 +10,6 @@ import {ActionType} from '../../store/actions/converter';
 function Converter(props) {
   const currentDate = useSelector((store) => store.CONVERTER.date);
   const exchangeRate = useSelector((store) => store.CONVERTER.exchangeRate);
-
   const dispatch = useDispatch();
 
   const [inputs, setInputs] = useState({
@@ -107,11 +106,6 @@ function Converter(props) {
     setInputToChange({name: FormFields.INPUT, value: inputAmount});
   };
 
-  const onDateChange = (date) => {
-    const formatDate = moment(date).format('YYYY-MM-DD');
-    dispatch({type: ActionType.CHANGE_DATE, payload: formatDate});
-  };
-
   const submitHandler = (evt) => {
     evt.preventDefault();
 
@@ -193,7 +187,7 @@ function Converter(props) {
           </Block.Field>
         </Block.FieldWrapper>
 
-        <Calendar date={currentDate} onChange={onDateChange}/>
+        <Calendar/>
 
         <Block.Button type="submit">
           Сохранить результат
@@ -210,5 +204,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Converter.displayName = 'Converter';
-
 export default connect(null, mapDispatchToProps)(Converter);

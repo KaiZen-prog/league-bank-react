@@ -9,8 +9,3 @@ export const pasteExchangeRate = (exchangeRate) => ({
   type: ActionType.PASTE_EXCHANGE_RATE,
   payload: exchangeRate,
 });
-
-export const clearHistory = () => ({
-  type: ActionType.CLEAR_HISTORY,
-  payload: [],
-});
