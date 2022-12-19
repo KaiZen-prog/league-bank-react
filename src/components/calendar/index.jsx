@@ -4,6 +4,8 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import Block from './calendar.styled';
 
+import 'react-datepicker/dist/react-datepicker.css';
+
 class Calendar extends React.Component {
   render() {
     const { date, onChange } = this.props;
