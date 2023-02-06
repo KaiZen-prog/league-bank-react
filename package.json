@@ -16,12 +16,11 @@
     }
   },
   "scripts": {
-    "eslint": "eslint --fix --ext .jsx --ext .js src/",
-    "test": "react-scripts test",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "eject": "react-scripts eject",
-    "format": "prettier --write \"**/*.+(ts|tsx|js|jsx|json|css|md)\""
+    "eslint": "eslint --ext .jsx --ext .js src/",
+    "test": "npm run eslint && npm run test.jest",
+    "test.jest": "jest",
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --open"
   },
   "eslintConfig": {
     "extends": [
@@ -42,25 +41,36 @@
     ]
   },
   "devDependencies": {
-    "@svgr/cli": "5.5.0",
+    "@babel/core": "7.8.7",
+    "@babel/preset-env": "7.8.7",
+    "@babel/preset-react": "7.8.3",
+    "@svgr/cli": "6.5.1",
     "axios-mock-adapter": "1.20.0",
+    "babel-loader": "8.1.0",
     "cross-env": "7.0.3",
+    "css-loader": "5.0.0",
     "eslint": "7.32.0",
     "eslint-config-htmlacademy": "4.0.2",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-react": "7.23.2",
+    "file-loader": "6.1.1",
     "identity-obj-proxy": "3.0.0",
-    "prettier": "2.4.1"
+    "prettier": "2.4.1",
+    "style-loader": "2.0.0",
+    "svg-url-loader": "8.0.0",
+    "webpack": "5.75.0",
+    "webpack-cli": "5.0.1",
+    "webpack-dev-server": "4.11.1"
   },
   "optionalDependencies": {
     "fsevents": "2.3.2"
   },
   "dependencies": {
     "@types/react-datepicker": "4.1.7",
-    "axios": "0.21.1",
+    "axios": "0.21.4",
     "date-fns": "2.0.0-beta.5",
     "history": "4.10.1",
-    "moment": "2.29.1",
+    "moment": "2.29.4",
     "prop-types": "15.7.2",
     "react": "17.0.2",
     "react-datepicker": "3.6.0",
@@ -69,7 +79,6 @@
     "react-redux": "7.2.3",
     "react-router": "5.2.0",
     "react-router-dom": "5.2.0",
-    "react-scripts": "4.0.3",
     "react-test-renderer": "17.0.2",
     "redux": "4.0.5",
     "redux-devtools-extension": "2.13.9",
