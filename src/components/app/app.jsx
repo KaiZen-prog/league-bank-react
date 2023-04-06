@@ -1,7 +1,7 @@
 import React from 'react';
 import GlobalStyle from '../../theme/globalStyle';
-import { Redirect, Switch, Route } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import {Routes, Route} from 'react-router-dom';
+import {AppRoute} from '../../const';
 import Header from '../header';
 import Footer from '../footer/footer';
 import MainScreen from '../main-screen/main-screen';
@@ -13,11 +13,10 @@ function App() {
       <GlobalStyle />
       <Header />
       <main>
-        <Switch>
-          <Route exact path={AppRoute.MAIN} component={MainScreen} />
-          <Route exact path={AppRoute.CONVERTER} component={ConverterScreen} />
-          <Redirect to={AppRoute.MAIN} />
-        </Switch>
+        <Routes>
+          <Route path={AppRoute.MAIN} element={<MainScreen/>} />
+          <Route path={AppRoute.CONVERTER} element={<ConverterScreen/>} />
+        </Routes>
       </main>
       <Footer />
     </>

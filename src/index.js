@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import {HashRouter} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 import thunk from 'redux-thunk';
 import {createAPI} from './services/api';
 import {createStore, applyMiddleware} from 'redux';
@@ -18,9 +18,9 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <HashRouter>
+    <BrowserRouter>
       <App />
-    </HashRouter>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root'),
 );

@@ -1,5 +1,5 @@
 export const AppRoute = {
-  MAIN: '/',
+  MAIN: '',
   CONVERTER: '/converter',
 };
 
