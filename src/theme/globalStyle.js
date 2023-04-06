@@ -3,7 +3,7 @@ import { normalize } from 'styled-normalize';
 
 const GlobalStyle = createGlobalStyle`
  ${normalize}
- 
+
  @font-face {
   font-family: "Roboto";
   font-weight: normal;
@@ -37,6 +37,7 @@ const GlobalStyle = createGlobalStyle`
 html {
   box-sizing: border-box;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 *,
