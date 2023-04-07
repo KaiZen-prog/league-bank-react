@@ -2,7 +2,7 @@ import React, {createRef, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {CalculatorSteps, InputTypes, InputIconsTypes, LabelTypes, InputFields} from '../../const';
 import {ActionType} from '../../store/actions/calculator';
-import { divideNumberToSpace } from '../../utils/common';
+import {divideNumberToSpace} from '../../utils/common';
 import Block from './loan-params.styled';
 import StepTitle from '../step-title';
 import InputContainer from '../input-container';
