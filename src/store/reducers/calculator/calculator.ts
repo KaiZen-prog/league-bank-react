@@ -1,10 +1,24 @@
 import { ActionType } from '../../actions/calculator';
 import {QUANTITY_MONTH, REQUIRED_INCOME} from '../../../const';
+import {InitialCalculatorState} from '../../../common/types';
 
-const initialState = {
+const initialState: InitialCalculatorState = {
   step: 1,
   purpose: 'none',
-  paramsCredit: {},
+  paramsCredit: {
+    maternalCapitalValue: 0,
+    minInitialFee: 0,
+    step : 0,
+    minCost: 0,
+    maxCost: 0,
+    percent: {
+      amountForSpecialPercent: 0,
+      specialPercent: 0,
+      default: 0,
+      oneAddition: 0,
+      allAdditions: 0
+    }
+  },
 
   cost: 0,
   initialFee: 0,
@@ -22,24 +36,24 @@ const initialState = {
   isFormValid: true,
 };
 
-const getCreditAmount = (state) => state.cost
+const getCreditAmount = (state: InitialCalculatorState) => <number>state.cost
   - state.initialFee
   - (state.maternalCapital ? state.paramsCredit.maternalCapitalValue : 0);
 
-const getInterestRate = (state) => {
+const getInterestRate = (state: InitialCalculatorState) => {
   let percent = 0;
 
   if (state.purpose === 'mortgage') {
     state.initialFee >=
-    (state.cost * state.paramsCredit.percent.amountForSpecialPercent) / 100
-      ? percent = state.paramsCredit.percent.specialPercent.toFixed(2)
-      : percent = state.paramsCredit.percent.default.toFixed(2);
+    (<number>state.cost * state.paramsCredit.percent.amountForSpecialPercent) / 100
+      ? percent = parseInt(state.paramsCredit.percent.specialPercent.toFixed(2))
+      : percent = parseInt(state.paramsCredit.percent.default.toFixed(2));
   }
 
   if (state.purpose === 'car') {
     percent = state.paramsCredit.percent.default;
 
-    if (state.cost >= state.paramsCredit.percent.amountForSpecialPercent) {
+    if (<number>state.cost >= state.paramsCredit.percent.amountForSpecialPercent) {
       percent = state.paramsCredit.percent.specialPercent;
     }
 
@@ -51,13 +65,13 @@ const getInterestRate = (state) => {
       percent = state.paramsCredit.percent.allAdditions;
     }
 
-    percent = percent.toFixed(2);
+    percent = parseInt(percent.toFixed(2));
   }
 
   return percent;
 };
 
-const getMonthlyPayment = (percent, state) => {
+const getMonthlyPayment = (percent: number, state: InitialCalculatorState) => {
   const monthlyPercent = percent / 100 / QUANTITY_MONTH;
 
   return Math.floor(
@@ -66,11 +80,11 @@ const getMonthlyPayment = (percent, state) => {
   );
 };
 
-const getNewCostAndInitialFee = (state, evtID) => {
-  let newCost =
+const getNewCostAndInitialFee = (state: InitialCalculatorState, evtID: string) => {
+  let newCost: number =
     state.cost === 'Некорректное значение'
       ? state.paramsCredit.minCost
-      : state.cost;
+      : <number>state.cost;
 
   evtID === 'plus'
     ? (newCost += state.paramsCredit.step)
@@ -86,12 +100,12 @@ const getNewCostAndInitialFee = (state, evtID) => {
 
   const initialFee = state.cost === 'Некорректное значение'
     ? Math.round((newCost * state.paramsCredit.minInitialFee) / 100)
-    : Math.round((newCost * state.initialFee) / state.cost);
+    : Math.round((newCost * state.initialFee) / <number>state.cost);
 
   return [newCost, initialFee];
 };
 
-const calculator = (state = initialState, action) => {
+const calculator = (state = initialState, action: {type: string; payload?: any;}) => {
   switch (action.type) {
     case ActionType.SET_CREDIT_DATA: {
       const creditAmount = getCreditAmount(state);

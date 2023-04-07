@@ -7,7 +7,7 @@ import Block from './calendar.styled';
 import 'react-datepicker/dist/react-datepicker.css';
 
 function Calendar() {
-  const currentDate = useSelector((store) => store.CONVERTER.date);
+  const currentDate = useSelector((store) => store.converter.date);
 
   const dispatch = useDispatch();
 

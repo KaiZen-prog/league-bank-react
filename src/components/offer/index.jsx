@@ -5,7 +5,7 @@ import {divideNumberToSpace} from '../../utils/common';
 import Block from './offer.styled';
 
 function Offer() {
-  const state = useSelector((store) => store.CALCULATOR);
+  const state = useSelector((store) => store.calculator);
 
   return (
     <>

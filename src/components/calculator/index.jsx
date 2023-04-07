@@ -7,7 +7,7 @@ import CalculatorForm from '../calculator-form';
 import ApplicationForm from '../applicaion-form';
 
 function Calculator() {
-  const state = useSelector((store) => store.CALCULATOR);
+  const state = useSelector((store) => store.calculator);
 
   const dispatch = useDispatch();
 

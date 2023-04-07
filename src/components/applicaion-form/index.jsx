@@ -11,7 +11,7 @@ import InputContainer from '../input-container';
 function ApplicationForm() {
   const telRef = useRef();
 
-  const state = useSelector((store) => store.CALCULATOR);
+  const state = useSelector((store) => store.calculator);
 
   const requestNumber = localStorage.getItem('requestNumber') !== null
     ? localStorage.getItem('requestNumber')

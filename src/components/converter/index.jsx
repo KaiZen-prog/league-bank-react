@@ -8,8 +8,8 @@ import moment from 'moment';
 import {ActionType} from '../../store/actions/converter';
 
 function Converter(props) {
-  const currentDate = useSelector((store) => store.CONVERTER.date);
-  const exchangeRate = useSelector((store) => store.CONVERTER.exchangeRate);
+  const currentDate = useSelector((store) => store.converter.date);
+  const exchangeRate = useSelector((store) => store.converter.exchangeRate);
   const dispatch = useDispatch();
 
   const [inputs, setInputs] = useState({

@@ -15,7 +15,7 @@ function LoanParams() {
   const termInputRef = createRef();
   const termDivRef = createRef();
 
-  const state = useSelector((store) => store.CALCULATOR);
+  const state = useSelector((store) => store.calculator);
   const [isLabelClicked, setIsLabelClicked] = useState(false);
 
   const dispatch = useDispatch();

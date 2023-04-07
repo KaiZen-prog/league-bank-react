@@ -1,9 +1,10 @@
 import { extend } from '../../../utils/common';
 import { ActionType } from '../../actions/converter';
+import {InitialConverterState} from '../../../common/types';
 import moment from 'moment';
 import {MAX_HISTORY_LENGTH} from '../../../const';
 
-const initialState = {
+const initialState: InitialConverterState = {
   date: moment().utc().format('YYYY-MM-DD'),
   exchangeRate: {
     USD: 0,
@@ -15,7 +16,7 @@ const initialState = {
   conversionHistory: [],
 };
 
-const converter = (state = initialState, action) => {
+const converter = (state = initialState, action: {type: string; payload?: any;}) => {
   switch (action.type) {
     case ActionType.CHANGE_DATE:
       return extend(state, {
@@ -44,4 +45,4 @@ const converter = (state = initialState, action) => {
   return state;
 };
 
-export { converter };
+export {converter};

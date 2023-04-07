@@ -9,7 +9,7 @@ import Offer from '../offer';
 
 function CalculatorForm() {
 
-  const state = useSelector((store) => store.CALCULATOR);
+  const state = useSelector((store) => store.calculator);
   const [isPurposeSelectOpened, setIsPurposeSelectOpened] = useState(false);
   const [requestNumber, setRequestNumber] = useState(localStorage.getItem('requestNumber') !== null
     ? localStorage.getItem('requestNumber')

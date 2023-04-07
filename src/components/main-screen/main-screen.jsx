@@ -5,6 +5,7 @@ import Map from '../map';
 import {mainSlides, servicesSlides} from '../../mocks/mocks';
 import MainSlider from '../../components/main-slider/index';
 import ServicesSlider from '../../components/services-slider/index';
+import ConverterScreen from "../converter-screen/converter-screen";
 
 function MainScreen() {
   return (
@@ -19,6 +20,7 @@ function MainScreen() {
         withTabs
       />
       <Calculator />
+      <ConverterScreen/>
       <Map />
     </>
   );

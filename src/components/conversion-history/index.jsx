@@ -5,7 +5,7 @@ import Block from './conversion-history.styled';
 import {ActionType} from '../../store/actions/converter';
 
 function ConversionHistory() {
-  const conversionHistory = useSelector((store) => store.CONVERTER.conversionHistory);
+  const conversionHistory = useSelector((store) => store.converter.conversionHistory);
   const dispatch = useDispatch();
 
   const clearHistory = () => {
