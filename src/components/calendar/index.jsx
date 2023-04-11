@@ -1,19 +1,29 @@
-import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, {useState, useEffect} from 'react';
+import {loadExchangeRate} from '../../store/actions/api-actions';
+import {connect, useSelector, useDispatch} from 'react-redux';
 import {ActionType} from '../../store/actions/converter';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import Block from './calendar.styled';
 import 'react-datepicker/dist/react-datepicker.css';
 
-function Calendar() {
-  const currentDate = useSelector((store) => store.converter.date);
+function Calendar(props) {
+  const currentDate = useSelector((store) => store.converter.currentDate);
+  const isFetchingExchangeRates = useSelector((store) => store.converter.isFetchingExchangeRates);
 
   const dispatch = useDispatch();
+  const [date, setDate] = useState(currentDate);
+
+  useEffect(() => {
+    if(isFetchingExchangeRates) {
+      props.loadData(date);
+    }
+  }, [isFetchingExchangeRates])
 
   const onDateChange = (date) => {
     const formatDate = moment(date).format('YYYY-MM-DD');
-    dispatch({type: ActionType.CHANGE_DATE, payload: formatDate});
+    setDate(formatDate);
+    dispatch({type: ActionType.FETCH_DATA});
   };
 
   return (
@@ -34,5 +44,11 @@ function Calendar() {
   );
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  loadData(date) {
+    dispatch(loadExchangeRate(date));
+  },
+});
+
 Calendar.displayName = 'Calendar';
-export default Calendar;
+export default connect(null, mapDispatchToProps)(Calendar);

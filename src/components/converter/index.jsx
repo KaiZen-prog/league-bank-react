@@ -1,15 +1,18 @@
 import React, {useState, useEffect} from 'react';
-import {connect, useSelector, useDispatch} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import Block from './converter.styled';
 import Calendar from '../calendar';
-import {loadExchangeRate} from '../../store/actions/api-actions';
 import {Currencies, FLOAT_COEFFICIENT, FormFields} from '../../const';
 import moment from 'moment';
 import {ActionType} from '../../store/actions/converter';
 
 function Converter(props) {
-  const currentDate = useSelector((store) => store.converter.date);
-  const exchangeRate = useSelector((store) => store.converter.exchangeRate);
+  const currentDate = useSelector((store) => store.converter.currentDate);
+  console.log(`currentDate: ${currentDate}`);
+
+  const exchangeRate = useSelector((store) => store.converter.exchangeRates[currentDate]);
+  console.log(`exchangeRate: ${JSON.stringify(exchangeRate)}`);
+
   const dispatch = useDispatch();
 
   const [inputs, setInputs] = useState({
@@ -26,10 +29,6 @@ function Converter(props) {
 
   let entryField = '';
   let outputField = '';
-
-  useEffect(() => {
-    props.loadData(currentDate);
-  }, [currentDate]);
 
   useEffect(() => {
     valueConversion(inputToChange.name, inputToChange.value);
@@ -197,11 +196,5 @@ function Converter(props) {
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  loadData(date) {
-    dispatch(loadExchangeRate(date));
-  },
-});
-
 Converter.displayName = 'Converter';
-export default connect(null, mapDispatchToProps)(Converter);
+export default Converter;

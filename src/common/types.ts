@@ -1,6 +1,12 @@
 import moment from 'moment';
 
-export type exchangeRateType = Record<string, number>;
+type exchangeRateType = {
+  USD: number,
+  RUB: number,
+  EUR: number,
+  GBP: number,
+  CNY: number,
+};
 
 type conversion = {
   date: string,
@@ -14,10 +20,16 @@ type conversion = {
   }
 };
 
+export type exchangeRate = {
+  date: string,
+  exchangeRate: exchangeRateType
+};
+
 export type InitialConverterState = {
-  date: moment.MomentInput,
-  exchangeRate: Record<string, number>,
+  currentDate: moment.MomentInput,
+  exchangeRates: Record<string, exchangeRateType>,
   conversionHistory: Array<conversion>,
+  isFetchingExchangeRates: boolean
 }
 
 export type InitialCalculatorState = {
