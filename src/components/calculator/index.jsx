@@ -8,7 +8,6 @@ import ApplicationForm from '../applicaion-form';
 
 function Calculator() {
   const state = useSelector((store) => store.calculator);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,10 +16,6 @@ function Calculator() {
     state.initialFee,
     state.term,
     state.purpose,
-    state.creditAmount,
-    state.monthlyPayment,
-    state.requiredIncome,
-    state.percent,
     state.cost,
     state.casco,
     state.lifeInsurance,

@@ -30,8 +30,8 @@ const initialState: InitialCalculatorState = {
 
   creditAmount: 0,
   percent: 0,
-  monthlyPayment: null,
-  requiredIncome: null,
+  monthlyPayment: 0,
+  requiredIncome: 0,
 
   isFormValid: true,
 };
@@ -73,11 +73,12 @@ const getInterestRate = (state: InitialCalculatorState) => {
 
 const getMonthlyPayment = (percent: number, state: InitialCalculatorState) => {
   const monthlyPercent = percent / 100 / QUANTITY_MONTH;
-
-  return Math.floor(
+  const result = Math.floor(
     (state.creditAmount * monthlyPercent) /
     (1 - 1 / Math.pow(1 + monthlyPercent, state.term * QUANTITY_MONTH)),
   );
+
+  return isNaN(result) ? 0 : result;
 };
 
 const getNewCostAndInitialFee = (state: InitialCalculatorState, evtID: string) => {

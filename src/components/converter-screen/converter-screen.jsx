@@ -5,8 +5,8 @@ import ConversionHistory from '../conversion-history';
 function ConverterScreen() {
   return (
     <>
-      <Converter />
-      <ConversionHistory />
+      <Converter/>
+      <ConversionHistory/>
     </>
   );
 }

@@ -1,4 +1,6 @@
 const path = require('path');
+const webpack = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -17,24 +19,47 @@ module.exports = {
     historyApiFallback: true
   },
 
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+  },
+
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        parallel: true,
+        terserOptions: {
+        },
+      }),
+    ],
+  },
+
+  plugins: [
+    new webpack.IgnorePlugin({
+      resourceRegExp: /^\.\/locale$/,
+      contextRegExp: /moment$/,
+    }),
+  ],
+
   module: {
     rules: [
       {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
-        use: "ts-loader",
+        use: 'ts-loader',
       },
 
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
             presets: [
-              "@babel/preset-env",
-              "@babel/preset-react",
-              "@babel/preset-typescript",
+              '@babel/preset-env',
+              '@babel/preset-react',
+              '@babel/preset-typescript',
             ],
           },
         }
@@ -66,7 +91,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [".js", ".ts", ".tsx", ".jsx"]
+    extensions: ['.js', '.ts', '.tsx', '.jsx']
   },
   devtool: 'source-map',
 };

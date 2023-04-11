@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {lazy, Suspense} from 'react';
+import RenderLoader from '../render-loader/';
 import WithSlider from '../../hocs/with-slider/with-slider';
 import Calculator from '../calculator';
-import Map from '../map';
 import {mainSlides, servicesSlides} from '../../mocks/mocks';
 import MainSlider from '../../components/main-slider/index';
 import ServicesSlider from '../../components/services-slider/index';
-import ConverterScreen from "../converter-screen/converter-screen";
+
+const Map = lazy(() => import('../map'));
+const ConverterScreen = lazy(() => import('../converter-screen/converter-screen'));
 
 function MainScreen() {
   return (
@@ -19,9 +21,13 @@ function MainScreen() {
         slides={servicesSlides}
         withTabs
       />
-      <Calculator />
-      <ConverterScreen/>
-      <Map />
+      <Calculator/>
+      <Suspense fallback={RenderLoader()}>
+        <ConverterScreen/>
+      </Suspense>
+      <Suspense fallback={RenderLoader()}>
+        <Map/>
+      </Suspense>
     </>
   );
 }

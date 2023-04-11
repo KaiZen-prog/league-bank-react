@@ -81,6 +81,7 @@
     "styled-components": "5.3.9",
     "styled-normalize": "8.0.7",
     "svg-url-loader": "8.0.0",
+    "terser-webpack-plugin": "5.3.7",
     "ts-loader": "9.4.2",
     "typescript": "5.0.3",
     "webpack": "5.78.0",
