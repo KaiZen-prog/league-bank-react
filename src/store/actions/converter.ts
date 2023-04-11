@@ -1,7 +1,7 @@
 import {exchangeRate} from '../../common/types';
 
 export const ActionType = {
-  CHANGE_DATE: 'CHANGE_DATE',
+  CHANGE_CURRENT_DATE: 'CHANGE_CURRENT_DATE',
   FETCH_DATA: 'FETCH_DATA',
   PASTE_EXCHANGE_RATE: 'PASTE_EXCHANGE_RATE',
   ADD_CONVERSION: 'ADD_CONVERSION',
@@ -9,7 +9,7 @@ export const ActionType = {
 };
 
 export const changeDate = (date: string) => ({
-  type: ActionType.CHANGE_DATE,
+  type: ActionType.CHANGE_CURRENT_DATE,
   payload: date,
 });
 

@@ -18,20 +18,28 @@ const initialState: InitialConverterState = {
     }
   },
   conversionHistory: [],
-  isFetchingExchangeRates: true
+  fetchingData: {
+    date: dateNow,
+    isFetching: true
+  }
 };
 
 const converter = (state = initialState, action: {type: string; payload?: any;}) => {
   switch (action.type) {
-    case ActionType.CHANGE_DATE:
+    case ActionType.CHANGE_CURRENT_DATE:
       return extend(state, {
         currentDate: action.payload,
-        isFetchingExchangeRates: false,
+        fetchingData: Object.assign({}, state.fetchingData, {
+          isFetching: false,
+        })
       });
 
     case ActionType.FETCH_DATA:
       return extend(state, {
-        isFetchingExchangeRates: true,
+        fetchingData: Object.assign({}, state.fetchingData, {
+          date: action.payload,
+          isFetching: true,
+        })
       });
 
     case ActionType.PASTE_EXCHANGE_RATE:
