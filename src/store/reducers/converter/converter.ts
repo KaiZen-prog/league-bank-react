@@ -8,20 +8,9 @@ const dateNow = moment().utc().format('YYYY-MM-DD');
 
 const initialState: InitialConverterState = {
   currentDate: dateNow,
-  exchangeRates: {
-    [dateNow]: {
-      USD: 0,
-      RUB: 0,
-      EUR: 0,
-      GBP: 0,
-      CNY: 0,
-    }
-  },
+  isFetchingData: false,
+  exchangeRates: {},
   conversionHistory: [],
-  fetchingData: {
-    date: dateNow,
-    isFetching: true
-  }
 };
 
 const converter = (state = initialState, action: {type: string; payload?: any;}) => {
@@ -29,17 +18,16 @@ const converter = (state = initialState, action: {type: string; payload?: any;})
     case ActionType.CHANGE_CURRENT_DATE:
       return extend(state, {
         currentDate: action.payload,
-        fetchingData: Object.assign({}, state.fetchingData, {
-          isFetching: false,
-        })
       });
 
-    case ActionType.FETCH_DATA:
+    case ActionType.START_FETCHING_EXCHANGE_RATES:
       return extend(state, {
-        fetchingData: Object.assign({}, state.fetchingData, {
-          date: action.payload,
-          isFetching: true,
-        })
+        isFetchingData: true,
+      });
+
+    case ActionType.FINISH_FETCHING_EXCHANGE_RATES:
+      return extend(state, {
+        isFetchingData: false,
       });
 
     case ActionType.PASTE_EXCHANGE_RATE:

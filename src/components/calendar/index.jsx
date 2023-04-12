@@ -1,20 +1,19 @@
 import React from 'react';
-import {loadExchangeRate} from '../../store/actions/api-actions';
-import {connect, useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {ActionType} from '../../store/actions/converter';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import Block from './calendar.styled';
 import 'react-datepicker/dist/react-datepicker.css';
 
-function Calendar() {
-  const currentDate = useSelector((store) => store.converter.currentDate);
+function Calendar(props) {
+  const {currentDate} = props;
 
   const dispatch = useDispatch();
 
   const onDateChange = (date) => {
     const formatDate = moment(date).format('YYYY-MM-DD');
-    dispatch({type: ActionType.FETCH_DATA, payload: formatDate});
+    dispatch({type: ActionType.CHANGE_CURRENT_DATE, payload: formatDate});
   };
 
   return (

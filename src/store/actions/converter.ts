@@ -2,15 +2,19 @@ import {exchangeRate} from '../../common/types';
 
 export const ActionType = {
   CHANGE_CURRENT_DATE: 'CHANGE_CURRENT_DATE',
-  FETCH_DATA: 'FETCH_DATA',
+  START_FETCHING_EXCHANGE_RATES: 'START_FETCHING_EXCHANGE_RATES',
+  FINISH_FETCHING_EXCHANGE_RATES: 'FINISH_FETCHING_EXCHANGE_RATES',
   PASTE_EXCHANGE_RATE: 'PASTE_EXCHANGE_RATE',
   ADD_CONVERSION: 'ADD_CONVERSION',
   CLEAR_HISTORY: 'CLEAR_HISTORY',
 };
 
-export const changeDate = (date: string) => ({
-  type: ActionType.CHANGE_CURRENT_DATE,
-  payload: date,
+export const startFetchingExchangeRates = () => ({
+  type: ActionType.START_FETCHING_EXCHANGE_RATES,
+});
+
+export const finishFetchingExchangeRates = () => ({
+  type: ActionType.FINISH_FETCHING_EXCHANGE_RATES,
 });
 
 export const pasteExchangeRate = (exchangeRate: exchangeRate) => ({

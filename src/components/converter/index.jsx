@@ -1,16 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import { useSelector, useDispatch, connect } from "react-redux";
+import { useSelector, useDispatch, connect } from 'react-redux';
 import Block from './converter.styled';
 import Calendar from '../calendar';
 import {Currencies, FLOAT_COEFFICIENT, FormFields} from '../../const';
 import moment from 'moment';
 import {ActionType} from '../../store/actions/converter';
-import { loadExchangeRate } from "../../store/actions/api-actions";
+import {loadExchangeRate} from '../../store/actions/api-actions';
+import RenderLoader from '../render-loader';
 
 function Converter(props) {
   const currentDate = useSelector((store) => store.converter.currentDate);
   const exchangeRates = useSelector((store) => store.converter.exchangeRates);
-  const fetchingData = useSelector((store) => store.converter.fetchingData);
+  let currentExchangeRate = exchangeRates[currentDate];
 
   const dispatch = useDispatch();
 
@@ -30,31 +31,24 @@ function Converter(props) {
   let outputField = '';
 
   useEffect(() => {
-    console.log('UseEffect[]');
-    props.loadData(fetchingData.date);
-  }, [])
-
-  useEffect(() => {
-    console.log('UseEffect');
-    if(fetchingData.isFetching && !exchangeRates[fetchingData.date]) {
-      props.loadData(fetchingData.date);
-    } else {
-      console.log('Избежали запроса на сервер');
-      dispatch({type: ActionType.CHANGE_CURRENT_DATE, payload: fetchingData.date})
+    if(!currentExchangeRate) {
+      props.loadData(currentDate);
     }
-  }, [fetchingData.isFetching]);
+  }, [currentDate]);
 
   useEffect(() => {
-    valueConversion(inputToChange.name, inputToChange.value);
-  }, [inputToChange, exchangeRates[currentDate]]);
+    if(currentExchangeRate) {
+      valueConversion(inputToChange.name, inputToChange.value);
+    }
+  }, [inputToChange, currentExchangeRate]);
 
   const conversionToUSD = (name, value) => {
-    const divider = exchangeRates[currentDate][inputs[name].type];
+    const divider = currentExchangeRate[inputs[name].type];
     return divider === 0 ? 0 : Math.floor((value / divider) * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
   };
 
   const conversionFromUSD = (name, value) =>
-    Math.floor(value * exchangeRates[currentDate][inputs[name].type] * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
+    Math.floor(value * currentExchangeRate[inputs[name].type] * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
 
   function valueConversion(name, value) {
     if (name === FormFields.INPUT) {
@@ -129,6 +123,10 @@ function Converter(props) {
     }});
   };
 
+  if(!currentExchangeRate) {
+    return (<RenderLoader/>)
+  }
+
   return (
     <Block>
       <Block.Header>Конвертер валют</Block.Header>
@@ -200,7 +198,7 @@ function Converter(props) {
           </Block.Field>
         </Block.FieldWrapper>
 
-        <Calendar/>
+        <Calendar currentDate={currentDate}/>
 
         <Block.Button type="submit">
           Сохранить результат

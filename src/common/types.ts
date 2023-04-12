@@ -25,16 +25,11 @@ export type exchangeRate = {
   exchangeRate: exchangeRateType
 };
 
-type fetchingData = {
-  date: moment.MomentInput,
-  isFetching: boolean,
-};
-
 export type InitialConverterState = {
   currentDate: moment.MomentInput,
+  isFetchingData: boolean,
   exchangeRates: Record<string, exchangeRateType>,
-  conversionHistory: Array<conversion>,
-  fetchingData: fetchingData
+  conversionHistory: Array<conversion>
 };
 
 export type InitialCalculatorState = {
