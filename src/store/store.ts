@@ -1,14 +1,11 @@
 import {applyMiddleware, createStore} from 'redux';
 import rootReducer from './reducers/root-reducer';
 import {composeWithDevTools} from 'redux-devtools-extension';
-import {createAPI} from '../services/api';
-import thunk from 'redux-thunk';
-
-const api = createAPI();
+import thunkMiddleware from 'redux-thunk';
 
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api))),
+  composeWithDevTools(applyMiddleware(thunkMiddleware)),
 );
 
 export type RootState = ReturnType<typeof store.getState>
