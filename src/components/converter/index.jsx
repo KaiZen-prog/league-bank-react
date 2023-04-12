@@ -8,7 +8,7 @@ import {ActionType} from '../../store/actions/converter';
 import {loadExchangeRate} from '../../store/actions/api-actions';
 import RenderLoader from '../render-loader';
 
-function Converter(props) {
+function Converter() {
   const currentDate = useSelector((store) => store.converter.currentDate);
   const exchangeRates = useSelector((store) => store.converter.exchangeRates);
   let currentExchangeRate = exchangeRates[currentDate];
@@ -32,7 +32,7 @@ function Converter(props) {
 
   useEffect(() => {
     if(!currentExchangeRate) {
-      props.loadData(currentDate);
+      dispatch(loadExchangeRate(currentDate))
     }
   }, [currentDate]);
 
@@ -208,11 +208,5 @@ function Converter(props) {
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  loadData(date) {
-    dispatch(loadExchangeRate(date));
-  },
-});
-
 Converter.displayName = 'Converter';
-export default connect(null, mapDispatchToProps)(Converter);
+export default Converter;
