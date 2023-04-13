@@ -1,21 +1,23 @@
 import React, {useState, useRef} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import ReactDOM from 'react-dom';
 import {CalculatorSteps, InputTypes, PHONE_LENGTH, SubmitButtonTypes} from '../../const';
+import {FormSubmitEventHandler, InputChangeEventHandler} from '../../common/types';
 import {ActionType} from '../../store/actions/calculator';
 import {divideNumberToSpace, shakeEffect} from '../../utils/common';
+import {useAppSelector, useAppDispatch} from '../../hooks/hooks';
 import InputMask from 'react-input-mask';
 import Block from './application-form.styled';
 import StepTitle from '../step-title';
 import InputContainer from '../input-container';
 
-function ApplicationForm() {
-  const telRef = useRef();
+const ApplicationForm: React.FunctionComponent = () => {
+  const telRef = useRef<HTMLInputElement>(null);
 
-  const state = useSelector((store) => store.calculator);
+  const state = useAppSelector((store) => store.calculator);
 
-  const requestNumber = localStorage.getItem('requestNumber') !== null
+  const requestNumber: string | null = localStorage.getItem('requestNumber') !== null
     ? localStorage.getItem('requestNumber')
-    : 1;
+    : '1';
 
   const [formFields, setFormFields] = useState({
     tel: localStorage.getItem('tel') !== null ? localStorage.getItem('tel') : '',
@@ -23,16 +25,21 @@ function ApplicationForm() {
     email: localStorage.getItem('email') !== null ? localStorage.getItem('email') : '',
   });
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const onSubmit = (evt) => {
+  const onSubmit: FormSubmitEventHandler = (evt) => {
     evt.preventDefault();
     if (telRef.current !== null && telRef.current.value.length < PHONE_LENGTH) {
-      telRef.current.getInputDOMNode().style.borderColor = 'red';
+      const node = ReactDOM.findDOMNode(telRef.current) as HTMLInputElement;
+      node.style.borderColor = 'red';
       return;
     }
 
-    const newRequestNumberInt = parseInt(requestNumber, 10) + 1;
+    let newRequestNumberInt: number = 0;
+
+    if (requestNumber) {
+      newRequestNumberInt = parseInt(requestNumber, 10) + 1;
+    }
 
     localStorage.setItem('requestNumber', newRequestNumberInt.toString());
     dispatch({type: ActionType.CHANGE_STEP, payload: 4});
@@ -40,10 +47,11 @@ function ApplicationForm() {
     document.documentElement.style.overflow = 'hidden';
   };
 
-  const onChangePhone = (evt) => {
+  const onChangePhone: InputChangeEventHandler = (evt) => {
     const { name, value } = evt.target;
 
-    telRef.current.getInputDOMNode().style.borderColor = '#1F1E25';
+    const node = ReactDOM.findDOMNode(telRef.current) as HTMLInputElement;
+    node.style.borderColor = '#1F1E25';
 
     setFormFields((prevState) => ({
       ...prevState,
@@ -53,7 +61,7 @@ function ApplicationForm() {
     localStorage.setItem(name, value);
   };
 
-  const onRegApplicationChange = (evt) => {
+  const onRegApplicationChange: InputChangeEventHandler = (evt) => {
     const { name, value } = evt.target;
 
     setFormFields((prevState) => ({
@@ -109,7 +117,7 @@ function ApplicationForm() {
           name="fullName"
           placeholder="ФИО"
           onChange={onRegApplicationChange}
-          onInvalid={(evt) => {shakeEffect(evt.target);}}
+          onInvalid={(evt: Event) => {shakeEffect(evt.target);}}
           value={formFields.fullName}
           autoFocus
           required
@@ -125,7 +133,7 @@ function ApplicationForm() {
           minLength={17}
           placeholder="Телефон"
           onChange={onChangePhone}
-          onInvalid={(evt) => {shakeEffect(evt.target);}}
+          onInvalid={(evt: Event) => {shakeEffect(evt.target);}}
           value={formFields.tel}
           required
         />
@@ -135,7 +143,7 @@ function ApplicationForm() {
           name="email"
           placeholder="E-mail"
           onChange={onRegApplicationChange}
-          onInvalid={(evt) => {shakeEffect(evt.target);}}
+          onInvalid={(evt: Event) => {shakeEffect(evt.target);}}
           value={formFields.email}
           required
         />

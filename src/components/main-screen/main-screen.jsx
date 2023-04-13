@@ -6,8 +6,6 @@ import {mainSlides, servicesSlides} from '../../mocks/mocks';
 import MainSlider from '../../components/main-slider/index';
 import ServicesSlider from '../../components/services-slider/index';
 
-const Converter = lazy(() => import('../converter'));
-const ConversionHistory = lazy(() => import('../conversion-history'));
 const Map = lazy(() => import('../map'));
 
 function MainScreen() {
@@ -23,10 +21,6 @@ function MainScreen() {
         withTabs
       />
       <Calculator/>
-      <Suspense fallback={RenderLoader()}>
-        <Converter/>
-        <ConversionHistory/>
-      </Suspense>
       <Suspense fallback={RenderLoader()}>
         <Map/>
       </Suspense>

@@ -1,4 +1,10 @@
+import React from 'react';
 import moment from 'moment';
+
+export type FormSubmitEventHandler = React.FormEventHandler<HTMLFormElement>
+export type InputChangeEventHandler = React.ChangeEventHandler<HTMLInputElement>
+export type TextareaChangeEventHandler = React.ChangeEventHandler<HTMLTextAreaElement>
+export type SelectChangeEventHandler = React.ChangeEventHandler<HTMLSelectElement>
 
 type exchangeRateType = {
   USD: number,

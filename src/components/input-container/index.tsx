@@ -1,12 +1,13 @@
 import React from 'react';
 import Block from './input-container.styled';
 
-function InputContainer(props) {
+interface Props {
+  type: string,
+  children: any
+}
 
-  const {
-    type,
-    children,
-  } = props;
+const InputContainer: React.FunctionComponent<Props> = props => {
+  const {type, children} = props;
 
   return (
     <Block $type={type}>
@@ -15,10 +16,5 @@ function InputContainer(props) {
   );
 }
 
-InputContainer.propTypes = {
-
-};
-
 InputContainer.displayName = 'InputContainer';
-
 export default InputContainer;

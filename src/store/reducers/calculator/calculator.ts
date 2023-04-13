@@ -71,10 +71,11 @@ const getInterestRate = (state: InitialCalculatorState) => {
   return percent;
 };
 
-const getMonthlyPayment = (percent: number, state: InitialCalculatorState) => {
+const getMonthlyPayment = (percent: number, creditAmount: number, state: InitialCalculatorState) => {
   const monthlyPercent = percent / 100 / QUANTITY_MONTH;
+
   const result = Math.floor(
-    (state.creditAmount * monthlyPercent) /
+    (creditAmount * monthlyPercent) /
     (1 - 1 / Math.pow(1 + monthlyPercent, state.term * QUANTITY_MONTH)),
   );
 
@@ -111,7 +112,7 @@ const calculator = (state = initialState, action: {type: string; payload?: any;}
     case ActionType.SET_CREDIT_DATA: {
       const creditAmount = getCreditAmount(state);
       const percent = getInterestRate(state);
-      const monthlyPayment = getMonthlyPayment(percent, state);
+      const monthlyPayment = getMonthlyPayment(percent, creditAmount, state);
       const requiredIncome = Math.floor((monthlyPayment * 100) / REQUIRED_INCOME);
 
       return Object.assign({}, state, {
