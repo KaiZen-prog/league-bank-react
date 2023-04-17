@@ -1,10 +1,23 @@
-import styled from 'styled-components';
-import {css} from 'styled-components';
+import styled, {css, StyledComponentBase} from 'styled-components';
 import theme from '../../theme/theme';
 import {InputTypes} from '../../const';
 import {input, submitButton} from '../../theme/mixins';
 
-const ApplicationForm = styled.form`
+interface IApplicationForm extends StyledComponentBase<any, object> {
+  InputContainer?: any,
+  Input?: any,
+  RequestTable?: any,
+  RequestField?: any,
+  RequestValue?: any,
+  RequestName?: any,
+  SubmitButton?: any,
+}
+
+interface Props {
+  $type: string;
+}
+
+const ApplicationForm: IApplicationForm = styled.form`
   padding-top: 43px;
 
   @media (min-width: ${theme.tabletWidthMinThreshold}) {
@@ -24,7 +37,7 @@ const ApplicationForm = styled.form`
   }
 `;
 
-ApplicationForm.InputContainer = styled.div`
+ApplicationForm.InputContainer = styled.div<Props>`
   position: relative;
 
   margin-bottom: 11px;
@@ -33,54 +46,54 @@ ApplicationForm.InputContainer = styled.div`
     margin-bottom: 1px;
   }
 
-  ${(props) => {
+  ${props => {
     switch (props.$type) {
       case InputTypes.initialFee:
         return css`
-          margin-bottom: 0;
-
-          @media (min-width: ${theme.tabletWidthMinThreshold}) {
             margin-bottom: 0;
-          }
-        `;
+
+            @media (min-width: ${theme.tabletWidthMinThreshold}) {
+              margin-bottom: 0;
+            }
+          `;
 
       case InputTypes.term:
         return css`
-          margin-bottom: 3px;
-
-          @media (min-width: ${theme.tabletWidthMinThreshold}) {
             margin-bottom: 3px;
-          }
-        `;
+
+            @media (min-width: ${theme.tabletWidthMinThreshold}) {
+              margin-bottom: 3px;
+            }
+          `;
 
       case InputTypes.userInfo:
         return css`
-          margin-bottom: 30px;
-          padding-right: 3px;
-          padding-left: 3px;
+            margin-bottom: 30px;
+            padding-right: 3px;
+            padding-left: 3px;
 
-          @media (min-width: ${theme.tabletWidthMinThreshold}) {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            @media (min-width: ${theme.tabletWidthMinThreshold}) {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-between;
 
-            margin-bottom: 20px;
-          }
+              margin-bottom: 20px;
+            }
 
-          @media (min-width: ${theme.desktopWidthMinThreshold}) {
-            padding-right: 70px;
-            padding-left: 70px;
-          }
-        `;
+            @media (min-width: ${theme.desktopWidthMinThreshold}) {
+              padding-right: 70px;
+              padding-left: 70px;
+            }
+          `;
 
       default:
         return css`
-          `;
+            `;
     }
   }}
 `;
 
-ApplicationForm.Input = styled.input`
+ApplicationForm.Input = styled.input<Props>`
   ${input()};
 `;
 
@@ -149,7 +162,7 @@ ApplicationForm.RequestName = styled.td`
   }
 `;
 
-ApplicationForm.SubmitButton = styled.button`
+ApplicationForm.SubmitButton = styled.button<Props>`
   ${submitButton()};
 `;
 

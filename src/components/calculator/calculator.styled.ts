@@ -1,7 +1,9 @@
-import styled from 'styled-components';
+import styled, {StyledComponentBase} from 'styled-components';
 import theme from '../../theme/theme';
 
-const Calculator = styled.section`
+interface ICalculator extends StyledComponentBase<any, object> {}
+
+const Calculator: ICalculator = styled.section`
   padding: 53px 20px 10px;
 
   margin: auto;

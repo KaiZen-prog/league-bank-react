@@ -1,14 +1,14 @@
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useAppSelector, useAppDispatch} from '../../hooks/hooks';
 import {ActionType} from '../../store/actions/calculator';
 import Block from './calculator.styled';
 import PopupConfirm from '../popup-confirm';
 import CalculatorForm from '../calculator-form';
 import ApplicationForm from '../applicaion-form';
 
-function Calculator() {
-  const state = useSelector((store) => store.calculator);
-  const dispatch = useDispatch();
+const Calculator: React.FunctionComponent = () => {
+  const state = useAppSelector((store) => store.calculator);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch({type: ActionType.SET_CREDIT_DATA});
@@ -24,7 +24,6 @@ function Calculator() {
 
   return (
     <Block>
-      <a name='calculator'></a>
       <CalculatorForm/>
       {state.step >= 3 && (<ApplicationForm/>)}
       {state.step >= 4 && (<PopupConfirm/>)}

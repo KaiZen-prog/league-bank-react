@@ -1,9 +1,14 @@
-import styled from 'styled-components';
-import {css} from 'styled-components';
+import styled, {css, StyledComponentBase} from 'styled-components';
 import theme from '../../theme/theme';
 import {InputTypes} from '../../const';
 
-const InputContainer = styled.div`
+interface StyledComponent extends StyledComponentBase<any, object> {}
+
+interface Props {
+  $type: string;
+}
+
+const InputContainer: StyledComponent = styled.div<Props>`
   position: relative;
 
   margin-bottom: 11px;

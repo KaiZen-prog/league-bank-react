@@ -1,11 +1,25 @@
-import styled from 'styled-components';
-import {css} from 'styled-components';
+import styled, {css, StyledComponentBase} from 'styled-components';
 import theme from '../../theme/theme';
 import {backgroundImage} from '../../theme/mixins';
+const iconPurposeSelect = require('../../img/icon-purpose-select.svg') as string;
 
-import iconPurposeSelect from '../../img/icon-purpose-select.svg';
+interface ICalculatorForm extends StyledComponentBase<any, object> {
+  Title?: any,
+  FlexContainer?: any,
+  Container?: any,
+  Purpose?: any,
+  PurposeSelect?: any,
+  PurposeSelectTitle?: any,
+  PurposeList?: any,
+  PurposeItem?: any
+}
 
-const CalculatorForm = styled.form`
+interface Props {
+  $isOpened: boolean;
+  $isClosed: boolean
+}
+
+const CalculatorForm: ICalculatorForm = styled.form`
 `;
 
 CalculatorForm.Title = styled.p`
@@ -64,7 +78,7 @@ CalculatorForm.Purpose = styled.fieldset`
   }
 `;
 
-CalculatorForm.PurposeSelect = styled.div`
+CalculatorForm.PurposeSelect = styled.div<Props>`
   position: relative;
 
   width: 100%;
@@ -97,6 +111,8 @@ CalculatorForm.PurposeSelect = styled.div`
           transform: rotate(180deg);
         }
       `;
+    } else {
+      return css``
     }
   }}
 `;
@@ -120,18 +136,20 @@ CalculatorForm.PurposeSelectTitle = styled.span`
   }
 `;
 
-CalculatorForm.PurposeList = styled.ul`
+CalculatorForm.PurposeList = styled.ul<Props>`
   list-style: none;
 
   margin: 0;
   padding-left: 0;
 
   ${(props) => {
-    if(props.$isClosed) {
-      return css`
-        display: none;
-      `;
-    }
+      if(props.$isClosed) {
+        return css`
+          display: none;
+        `;
+      } else {
+        return css``
+      }
   }}
 `;
 

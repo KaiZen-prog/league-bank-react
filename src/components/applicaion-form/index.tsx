@@ -6,9 +6,9 @@ import {ActionType} from '../../store/actions/calculator';
 import {divideNumberToSpace, shakeEffect} from '../../utils/common';
 import {useAppSelector, useAppDispatch} from '../../hooks/hooks';
 import InputMask from 'react-input-mask';
-import Block from './application-form.styled';
 import StepTitle from '../step-title';
 import InputContainer from '../input-container';
+import Block from './application-form.styled';
 
 const ApplicationForm: React.FunctionComponent = () => {
   const telRef = useRef<HTMLInputElement>(null);

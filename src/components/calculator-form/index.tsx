@@ -1,27 +1,28 @@
 import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useAppSelector, useAppDispatch} from '../../hooks/hooks';
 import {CarParams, CreditPurpose, MortgageParams} from '../../const';
+import {FormSubmitEventHandler, SelectChangeEventHandler} from '../../common/types';
 import {ActionType} from '../../store/actions/calculator';
 import Block from './calculator-form.styled';
 import LoanParams from '../loan-params';
 import StepTitle from '../step-title';
 import Offer from '../offer';
 
-function CalculatorForm() {
+const CalculatorForm: React.FunctionComponent = () => {
 
-  const state = useSelector((store) => store.calculator);
+  const state = useAppSelector((store) => store.calculator);
   const [isPurposeSelectOpened, setIsPurposeSelectOpened] = useState(false);
   const [requestNumber, setRequestNumber] = useState(localStorage.getItem('requestNumber') !== null
     ? localStorage.getItem('requestNumber')
-    : 1);
+    : '1');
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const togglePurposeSelect = () => {
     setIsPurposeSelectOpened(!isPurposeSelectOpened);
   };
 
-  const onPurposeChange = (evt) => {
+  const onPurposeChange: SelectChangeEventHandler = (evt) => {
     const id = evt.currentTarget.id;
     const params = id === 'mortgage' ? MortgageParams : CarParams;
 
@@ -32,17 +33,18 @@ function CalculatorForm() {
 
       cost: params.minCost,
       initialFee: (params.minCost * params.minInitialFee) / 100,
-      term: params.minTerm,
-
-      maternalCapital: !!params.maternalCapital,
+      term: params.minTerm
     }});
 
     togglePurposeSelect();
   };
 
-  const onMakeRequest = (evt) => {
+  const onMakeRequest: FormSubmitEventHandler = (evt) => {
     evt.preventDefault();
-    setRequestNumber(requestNumber + 1);
+
+    let newNumber = parseInt(requestNumber) + 1;
+    setRequestNumber(newNumber.toString());
+
     dispatch({type: ActionType.CHANGE_STEP, payload: 3});
   };
 

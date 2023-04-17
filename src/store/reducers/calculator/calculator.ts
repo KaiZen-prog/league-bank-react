@@ -131,9 +131,7 @@ const calculator = (state = initialState, action: {type: string; payload?: any;}
 
         cost: action.payload.cost,
         initialFee: action.payload.initialFee,
-        term: action.payload.term,
-
-        maternalCapital: action.payload.maternalCapital,
+        term: action.payload.term
       });
     }
 
