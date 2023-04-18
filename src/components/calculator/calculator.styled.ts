@@ -1,9 +1,9 @@
 import styled, {StyledComponentBase} from 'styled-components';
 import theme from '../../theme/theme';
 
-interface ICalculator extends StyledComponentBase<any, object> {}
+interface StyledComponent extends StyledComponentBase<any, object> {}
 
-const Calculator: ICalculator = styled.section`
+const CalculatorSection: StyledComponent = styled.section`
   padding: 53px 20px 10px;
 
   margin: auto;
@@ -20,4 +20,4 @@ const Calculator: ICalculator = styled.section`
   }
 `;
 
-export default Calculator;
+export default CalculatorSection;

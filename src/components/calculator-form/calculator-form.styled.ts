@@ -3,26 +3,17 @@ import theme from '../../theme/theme';
 import {backgroundImage} from '../../theme/mixins';
 const iconPurposeSelect = require('../../img/icon-purpose-select.svg') as string;
 
-interface ICalculatorForm extends StyledComponentBase<any, object> {
-  Title?: any,
-  FlexContainer?: any,
-  Container?: any,
-  Purpose?: any,
-  PurposeSelect?: any,
-  PurposeSelectTitle?: any,
-  PurposeList?: any,
-  PurposeItem?: any
-}
+interface StyledComponent extends StyledComponentBase<any, object> {}
 
 interface Props {
   $isOpened: boolean;
   $isClosed: boolean
 }
 
-const CalculatorForm: ICalculatorForm = styled.form`
+export const Form: StyledComponent = styled.form`
 `;
 
-CalculatorForm.Title = styled.p`
+export const Title = styled.p`
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
@@ -51,7 +42,7 @@ CalculatorForm.Title = styled.p`
   }
 `;
 
-CalculatorForm.FlexContainer = styled.div`
+export const FlexContainer: StyledComponent = styled.div`
   @media (min-width: ${theme.desktopWidthMinThreshold}) {
     display: flex;
     justify-content: space-between;
@@ -59,7 +50,7 @@ CalculatorForm.FlexContainer = styled.div`
   }
 `;
 
-CalculatorForm.Container = styled.div`
+export const Container: StyledComponent = styled.div`
   @media (min-width: ${theme.desktopWidthMinThreshold}) {
     flex-grow: 1;
     max-width: 600px;
@@ -67,7 +58,7 @@ CalculatorForm.Container = styled.div`
   }
 `;
 
-CalculatorForm.Purpose = styled.fieldset`
+export const Purpose: StyledComponent = styled.fieldset`
   border: none;
 
   margin: 0;
@@ -78,7 +69,7 @@ CalculatorForm.Purpose = styled.fieldset`
   }
 `;
 
-CalculatorForm.PurposeSelect = styled.div<Props>`
+export const PurposeSelect: StyledComponent = styled.div<Props>`
   position: relative;
 
   width: 100%;
@@ -117,7 +108,7 @@ CalculatorForm.PurposeSelect = styled.div<Props>`
   }}
 `;
 
-CalculatorForm.PurposeSelectTitle = styled.span`
+export const PurposeSelectTitle: StyledComponent = styled.span`
   display: block;
 
   font-style: normal;
@@ -136,7 +127,7 @@ CalculatorForm.PurposeSelectTitle = styled.span`
   }
 `;
 
-CalculatorForm.PurposeList = styled.ul<Props>`
+export const PurposeList: StyledComponent = styled.ul<Props>`
   list-style: none;
 
   margin: 0;
@@ -153,7 +144,7 @@ CalculatorForm.PurposeList = styled.ul<Props>`
   }}
 `;
 
-CalculatorForm.PurposeItem = styled.li`
+export const PurposeItem: StyledComponent = styled.li`
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -175,5 +166,3 @@ CalculatorForm.PurposeItem = styled.li`
       border: none;
     }
 `;
-
-export default CalculatorForm;

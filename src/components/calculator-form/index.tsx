@@ -3,10 +3,20 @@ import {useAppSelector, useAppDispatch} from '../../hooks/hooks';
 import {CarParams, CreditPurpose, MortgageParams} from '../../const';
 import {FormSubmitEventHandler, SelectChangeEventHandler} from '../../common/types';
 import {ActionType} from '../../store/actions/calculator';
-import Block from './calculator-form.styled';
 import LoanParams from '../loan-params';
 import StepTitle from '../step-title';
 import Offer from '../offer';
+import {
+  Form,
+  Title,
+  FlexContainer,
+  Container,
+  Purpose,
+  PurposeSelect,
+  PurposeSelectTitle,
+  PurposeList,
+  PurposeItem
+} from './calculator-form.styled';
 
 const CalculatorForm: React.FunctionComponent = () => {
 
@@ -42,43 +52,43 @@ const CalculatorForm: React.FunctionComponent = () => {
   const onMakeRequest: FormSubmitEventHandler = (evt) => {
     evt.preventDefault();
 
-    let newNumber = parseInt(requestNumber) + 1;
+    let newNumber = parseInt(requestNumber as string) + 1;
     setRequestNumber(newNumber.toString());
 
     dispatch({type: ActionType.CHANGE_STEP, payload: 3});
   };
 
   return (
-    <Block action="#" onSubmit={onMakeRequest}>
-      <Block.Title>Кредитный калькулятор</Block.Title>
-      <Block.FlexContainer>
-        <Block.Container>
-          <Block.Purpose>
+    <Form action="#" onSubmit={onMakeRequest}>
+      <Title>Кредитный калькулятор</Title>
+      <FlexContainer>
+        <Container>
+          <Purpose>
             <StepTitle value={'Шаг 1. Цель кредита'}/>
-            <Block.PurposeSelect
+            <PurposeSelect
               $isOpened={isPurposeSelectOpened}
               onClick={togglePurposeSelect}
             >
-              <Block.PurposeSelectTitle>{CreditPurpose[state.purpose].name}</Block.PurposeSelectTitle>
-              <Block.PurposeList $isClosed={!isPurposeSelectOpened}>
-                <Block.PurposeItem id="mortgage" onClick={onPurposeChange}>
+              <PurposeSelectTitle>{CreditPurpose[state.purpose].name}</PurposeSelectTitle>
+              <PurposeList $isClosed={!isPurposeSelectOpened}>
+                <PurposeItem id="mortgage" onClick={onPurposeChange}>
                   Ипотечное кредитование
-                </Block.PurposeItem>
-                <Block.PurposeItem id="car" onClick={onPurposeChange}>
+                </PurposeItem>
+                <PurposeItem id="car" onClick={onPurposeChange}>
                   Автомобильное кредитование
-                </Block.PurposeItem>
-              </Block.PurposeList>
-            </Block.PurposeSelect>
-          </Block.Purpose>
+                </PurposeItem>
+              </PurposeList>
+            </PurposeSelect>
+          </Purpose>
           {state.step >= 2 && (
             <LoanParams/>
           )}
-        </Block.Container>
+        </Container>
         {state.step >= 2 && (
           <Offer/>
         )}
-      </Block.FlexContainer>
-    </Block>
+      </FlexContainer>
+    </Form>
   );
 }
 

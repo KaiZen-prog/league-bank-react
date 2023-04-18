@@ -1,23 +1,15 @@
-import styled, {css, StyledComponentBase} from 'styled-components';
+import styled, {StyledComponentBase} from 'styled-components';
+import InputMask from 'react-input-mask';
 import theme from '../../theme/theme';
-import {InputTypes} from '../../const';
 import {input, submitButton} from '../../theme/mixins';
 
-interface IApplicationForm extends StyledComponentBase<any, object> {
-  InputContainer?: any,
-  Input?: any,
-  RequestTable?: any,
-  RequestField?: any,
-  RequestValue?: any,
-  RequestName?: any,
-  SubmitButton?: any,
-}
+interface StyledComponent extends StyledComponentBase<any, object> {}
 
 interface Props {
   $type: string;
 }
 
-const ApplicationForm: IApplicationForm = styled.form`
+export const Form: StyledComponent = styled.form`
   padding-top: 43px;
 
   @media (min-width: ${theme.tabletWidthMinThreshold}) {
@@ -37,67 +29,15 @@ const ApplicationForm: IApplicationForm = styled.form`
   }
 `;
 
-ApplicationForm.InputContainer = styled.div<Props>`
-  position: relative;
-
-  margin-bottom: 11px;
-
-  @media (min-width: ${theme.tabletWidthMinThreshold}) {
-    margin-bottom: 1px;
-  }
-
-  ${props => {
-    switch (props.$type) {
-      case InputTypes.initialFee:
-        return css`
-            margin-bottom: 0;
-
-            @media (min-width: ${theme.tabletWidthMinThreshold}) {
-              margin-bottom: 0;
-            }
-          `;
-
-      case InputTypes.term:
-        return css`
-            margin-bottom: 3px;
-
-            @media (min-width: ${theme.tabletWidthMinThreshold}) {
-              margin-bottom: 3px;
-            }
-          `;
-
-      case InputTypes.userInfo:
-        return css`
-            margin-bottom: 30px;
-            padding-right: 3px;
-            padding-left: 3px;
-
-            @media (min-width: ${theme.tabletWidthMinThreshold}) {
-              display: flex;
-              flex-wrap: wrap;
-              justify-content: space-between;
-
-              margin-bottom: 20px;
-            }
-
-            @media (min-width: ${theme.desktopWidthMinThreshold}) {
-              padding-right: 70px;
-              padding-left: 70px;
-            }
-          `;
-
-      default:
-        return css`
-            `;
-    }
-  }}
-`;
-
-ApplicationForm.Input = styled.input<Props>`
+export const TextInput: StyledComponent= styled.input`
   ${input()};
 `;
 
-ApplicationForm.RequestTable = styled.table`
+export const PhoneInput: StyledComponent= styled(InputMask)`
+  ${input()};
+`;
+
+export const RequestTable: StyledComponent = styled.table`
   width: 100%;
 
   margin-right: 0;
@@ -114,7 +54,7 @@ ApplicationForm.RequestTable = styled.table`
   }
 `;
 
-ApplicationForm.RequestField = styled.tr`
+export const RequestField: StyledComponent = styled.tr`
   display: block;
 
   width: 100%;
@@ -134,7 +74,7 @@ ApplicationForm.RequestField = styled.tr`
   }
 `;
 
-ApplicationForm.RequestValue = styled.td`
+export const RequestValue: StyledComponent = styled.td`
   display: block;
 
   font-weight: 500;
@@ -149,7 +89,7 @@ ApplicationForm.RequestValue = styled.td`
   }
 `;
 
-ApplicationForm.RequestName = styled.td`
+export const RequestName: StyledComponent = styled.td`
   display: block;
 
   font-size: 16px;
@@ -162,8 +102,6 @@ ApplicationForm.RequestName = styled.td`
   }
 `;
 
-ApplicationForm.SubmitButton = styled.button<Props>`
+export const SubmitButton: StyledComponent = styled.button<Props>`
   ${submitButton()};
 `;
-
-export default ApplicationForm;

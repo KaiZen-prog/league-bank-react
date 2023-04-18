@@ -5,10 +5,18 @@ import {FormSubmitEventHandler, InputChangeEventHandler} from '../../common/type
 import {ActionType} from '../../store/actions/calculator';
 import {divideNumberToSpace, shakeEffect} from '../../utils/common';
 import {useAppSelector, useAppDispatch} from '../../hooks/hooks';
-import InputMask from 'react-input-mask';
 import StepTitle from '../step-title';
 import InputContainer from '../input-container';
-import Block from './application-form.styled';
+import {
+  Form,
+  TextInput,
+  PhoneInput,
+  RequestTable,
+  RequestField,
+  RequestValue,
+  RequestName,
+  SubmitButton
+} from './application-form.styled';
 
 const ApplicationForm: React.FunctionComponent = () => {
   const telRef = useRef<HTMLInputElement>(null);
@@ -47,22 +55,13 @@ const ApplicationForm: React.FunctionComponent = () => {
     document.documentElement.style.overflow = 'hidden';
   };
 
-  const onChangePhone: InputChangeEventHandler = (evt) => {
+  const onInputChange: InputChangeEventHandler = (evt) => {
     const { name, value } = evt.target;
 
-    const node = ReactDOM.findDOMNode(telRef.current) as HTMLInputElement;
-    node.style.borderColor = '#1F1E25';
-
-    setFormFields((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-
-    localStorage.setItem(name, value);
-  };
-
-  const onRegApplicationChange: InputChangeEventHandler = (evt) => {
-    const { name, value } = evt.target;
+    if (name === 'tel') {
+      const node = ReactDOM.findDOMNode(telRef.current) as HTMLInputElement;
+      node.style.borderColor = '#1F1E25';
+    }
 
     setFormFields((prevState) => ({
       ...prevState,
@@ -73,88 +72,89 @@ const ApplicationForm: React.FunctionComponent = () => {
   };
 
   return (
-    <Block action="#" onSubmit={onSubmit}>
+    <Form action="#" onSubmit={onSubmit}>
       <StepTitle type={CalculatorSteps.request} value={'Шаг 3. Оформление заявки'}/>
-      <Block.RequestTable>
+      <RequestTable>
         <tbody>
-          <Block.RequestField>
-            <Block.RequestValue>№ {`0000${requestNumber}`.slice(-4)}</Block.RequestValue>
-            <Block.RequestName>Номер заявки</Block.RequestName>
-          </Block.RequestField>
+          <RequestField>
+            <RequestValue>№ {`0000${requestNumber}`.slice(-4)}</RequestValue>
+            <RequestName>Номер заявки</RequestName>
+          </RequestField>
 
-          <Block.RequestField>
-            <Block.RequestValue>
+          <RequestField>
+            <RequestValue>
               {state.purpose === 'mortgage' ? 'Ипотека' : 'Автокредит'}
-            </Block.RequestValue>
-            <Block.RequestName>Цель кредита</Block.RequestName>
-          </Block.RequestField>
+            </RequestValue>
+            <RequestName>Цель кредита</RequestName>
+          </RequestField>
 
-          <Block.RequestField>
-            <Block.RequestValue>{divideNumberToSpace(state.cost)} рублей</Block.RequestValue>
-            <Block.RequestName>
+          <RequestField>
+            <RequestValue>{divideNumberToSpace(state.cost)} рублей</RequestValue>
+            <RequestName>
               Стоимость {state.purpose === 'mortgage' ? 'недвижимости' : 'автомобиля'}
-            </Block.RequestName>
-          </Block.RequestField>
+            </RequestName>
+          </RequestField>
 
-          <Block.RequestField>
-            <Block.RequestValue>
+          <RequestField>
+            <RequestValue>
               {divideNumberToSpace(state.initialFee)} рублей
-            </Block.RequestValue>
-            <Block.RequestName>Первоначальный взнос</Block.RequestName>
-          </Block.RequestField>
+            </RequestValue>
+            <RequestName>Первоначальный взнос</RequestName>
+          </RequestField>
 
-          <Block.RequestField>
-            <Block.RequestValue>{state.term} лет</Block.RequestValue>
-            <Block.RequestName>Срок кредитования</Block.RequestName>
-          </Block.RequestField>
+          <RequestField>
+            <RequestValue>{state.term} лет</RequestValue>
+            <RequestName>Срок кредитования</RequestName>
+          </RequestField>
         </tbody>
-      </Block.RequestTable>
+      </RequestTable>
 
       <InputContainer type={InputTypes.userInfo}>
-        <Block.Input
+        <TextInput
           $type={InputTypes.fullName}
           type="text"
           name="fullName"
           placeholder="ФИО"
-          onChange={onRegApplicationChange}
+          onChange={onInputChange}
           onInvalid={(evt: Event) => {shakeEffect(evt.target);}}
           value={formFields.fullName}
           autoFocus
           required
         />
-        <Block.Input
-          as={InputMask}
+
+        <PhoneInput
           $type={InputTypes.phone}
-          mask="+7 (999) 999-9999"
+          mask="+7 (999) 999-99-99"
           maskChar=""
           type="tel"
           name="tel"
           ref={telRef}
           minLength={17}
           placeholder="Телефон"
-          onChange={onChangePhone}
+          onChange={onInputChange}
           onInvalid={(evt: Event) => {shakeEffect(evt.target);}}
           value={formFields.tel}
           required
         />
-        <Block.Input
+
+        <TextInput
           $type={InputTypes.email}
           type="email"
           name="email"
           placeholder="E-mail"
-          onChange={onRegApplicationChange}
+          onChange={onInputChange}
           onInvalid={(evt: Event) => {shakeEffect(evt.target);}}
           value={formFields.email}
           required
         />
       </InputContainer>
-      <Block.SubmitButton
+      <SubmitButton
         $type={SubmitButtonTypes.request}
         type="submit"
       >
         Отправить
-      </Block.SubmitButton>
-    </Block>
+      </SubmitButton>
+    </Form>
   );
 }
 
