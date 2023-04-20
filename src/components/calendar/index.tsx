@@ -1,23 +1,30 @@
 import React from 'react';
-import {useDispatch} from 'react-redux';
+import {useAppDispatch} from '../../hooks/hooks';
 import {ActionType} from '../../store/actions/converter';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
-import Block from './calendar.styled';
 import 'react-datepicker/dist/react-datepicker.css';
+import {
+  CalendarBlock,
+  Button
+} from './calendar.styled';
 
-function Calendar(props) {
+interface Props {
+  currentDate: string
+}
+
+const Calendar: React.FunctionComponent<Props> = (props) => {
   const {currentDate} = props;
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const onDateChange = (date) => {
+  const onDateChange = (date: Date) => {
     const formatDate = moment(date).format('YYYY-MM-DD');
     dispatch({type: ActionType.CHANGE_CURRENT_DATE, payload: formatDate});
   };
 
   return (
-    <Block>
+    <CalendarBlock>
       <DatePicker
         selected={new Date(currentDate)}
         minDate={new Date(moment().utc().subtract(1, 'week').format('YYYY-MM-DD'))}
@@ -25,12 +32,12 @@ function Calendar(props) {
         onChange={onDateChange}
         dateFormat={'d.MM.yyyy'}
         customInput={
-          <Block.Button type='button'>
+          <Button type='button'>
             {moment(currentDate).format('DD.MM.YYYY')}
-          </Block.Button>
+          </Button>
         }
       />
-    </Block>
+    </CalendarBlock>
   );
 }
 

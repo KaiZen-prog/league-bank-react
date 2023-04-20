@@ -5,6 +5,8 @@ import Calculator from '../calculator';
 import {mainSlides, servicesSlides} from '../../mocks/mocks';
 import MainSlider from '../../components/main-slider/index';
 import ServicesSlider from '../../components/services-slider/index';
+import Converter from '../converter';
+import ConversionHistory from '../conversion-history';
 
 const Map = lazy(() => import('../map'));
 
@@ -22,6 +24,8 @@ function MainScreen() {
       />
       <Calculator/>
       <Suspense fallback={RenderLoader()}>
+        <Converter/>
+        <ConversionHistory/>
         <Map/>
       </Suspense>
     </>

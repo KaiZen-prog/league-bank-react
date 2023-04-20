@@ -1,19 +1,31 @@
 import React, {useState, useEffect} from 'react';
-import { useSelector, useDispatch, connect } from 'react-redux';
-import Block from './converter.styled';
+import {useAppSelector, useAppDispatch} from '../../hooks/hooks';
+import {FormSubmitEventHandler, InputChangeEventHandler, SelectChangeEventHandler} from '../../common/types';
 import Calendar from '../calendar';
 import {Currencies, FLOAT_COEFFICIENT, FormFields} from '../../const';
+import {loadExchangeRate} from '../../store/actions/api-actions';
 import moment from 'moment';
 import {ActionType} from '../../store/actions/converter';
-import {loadExchangeRate} from '../../store/actions/api-actions';
 import RenderLoader from '../render-loader';
+import {
+  ConverterBlock,
+  Header,
+  Form,
+  FieldWrapper,
+  Field,
+  FieldTitle,
+  InputWrapper,
+  Input,
+  Select,
+  Button
+} from './converter.styled';
 
-function Converter() {
-  const currentDate = useSelector((store) => store.converter.currentDate);
-  const exchangeRates = useSelector((store) => store.converter.exchangeRates);
+const Converter: React.FunctionComponent = () => {
+  const currentDate = useAppSelector((store) => store.converter.currentDate);
+  const exchangeRates = useAppSelector((store) => store.converter.exchangeRates);
   let currentExchangeRate = exchangeRates[currentDate];
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [inputs, setInputs] = useState({
     currencyInput: {type: Currencies.RUB, amount: 0},
@@ -32,9 +44,9 @@ function Converter() {
 
   useEffect(() => {
     if(!currentExchangeRate) {
-      dispatch(loadExchangeRate(currentDate))
+      loadExchangeRate(currentDate, dispatch);
     }
-  }, [currentDate]);
+  }, [[currentDate]]);
 
   useEffect(() => {
     if(currentExchangeRate) {
@@ -42,15 +54,15 @@ function Converter() {
     }
   }, [inputToChange, currentExchangeRate]);
 
-  const conversionToUSD = (name, value) => {
+  const conversionToUSD = (name: string, value: number) => {
     const divider = currentExchangeRate[inputs[name].type];
     return divider === 0 ? 0 : Math.floor((value / divider) * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
   };
 
-  const conversionFromUSD = (name, value) =>
+  const conversionFromUSD = (name: string, value: number) =>
     Math.floor(value * currentExchangeRate[inputs[name].type] * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
 
-  function valueConversion(name, value) {
+  function valueConversion(name: string, value: number) {
     if (name === FormFields.INPUT) {
       entryField = FormFields.INPUT;
       outputField = FormFields.OUTPUT;
@@ -68,20 +80,20 @@ function Converter() {
     }));
   }
 
-  const valueChangeHandler = (evt) => {
+  const valueChangeHandler: InputChangeEventHandler = (evt) => {
     const {name, value} = evt.target;
 
     setInputs((prevState) => ({
       ...prevState,
       [name]: Object.assign({}, prevState[name], {
-        amount: value === '' ? '' : Math.floor(value * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT,
+        amount: value === '' ? '' : (Math.floor(parseInt(value) * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT).toString(),
       }),
     }));
 
     setInputToChange({name: name, value: value});
   };
 
-  const typeChangeHandler = (evt) => {
+  const typeChangeHandler: SelectChangeEventHandler = (evt) => {
     const {name, value} = evt.target;
     const inputAmount = currencyInput.amount;
 
@@ -113,7 +125,7 @@ function Converter() {
     setInputToChange({name: FormFields.INPUT, value: inputAmount});
   };
 
-  const submitHandler = (evt) => {
+  const submitHandler: FormSubmitEventHandler = (evt) => {
     evt.preventDefault();
 
     dispatch({type: ActionType.ADD_CONVERSION, payload: {
@@ -128,16 +140,16 @@ function Converter() {
   }
 
   return (
-    <Block>
-      <Block.Header>Конвертер валют</Block.Header>
-      <Block.Form method="post" action="#" onSubmit={submitHandler}>
-        <Block.FieldWrapper>
-          <Block.Field>
+    <ConverterBlock>
+      <Header>Конвертер валют</Header>
+      <Form method="post" action="#" onSubmit={submitHandler}>
+        <FieldWrapper>
+          <Field>
             <label htmlFor="currency-input">
-              <Block.FieldTitle>У меня есть</Block.FieldTitle>
+              <FieldTitle>У меня есть</FieldTitle>
             </label>
-            <Block.InputWrapper>
-              <Block.Input
+            <InputWrapper>
+              <Input
                 id="currency-input"
                 name="currencyInput"
                 type="number"
@@ -148,8 +160,8 @@ function Converter() {
                 onChange={valueChangeHandler}
               />
 
-              <Block.Label>
-                <Block.Select
+              <label>
+                <Select
                   name="currencyInput"
                   value={currencyInput.type}
                   onChange={typeChangeHandler}
@@ -159,18 +171,18 @@ function Converter() {
                   <option value="EUR">EUR</option>
                   <option value="GBP">GBP</option>
                   <option value="CNY">CNY</option>
-                </Block.Select>
+                </Select>
                 <span className="visually-hidden">валюта</span>
-              </Block.Label>
-            </Block.InputWrapper>
-          </Block.Field>
+              </label>
+            </InputWrapper>
+          </Field>
 
-          <Block.Field>
+          <Field>
             <label htmlFor="currency-input">
-              <Block.FieldTitle>Хочу приобрести</Block.FieldTitle>
+              <FieldTitle>Хочу приобрести</FieldTitle>
             </label>
-            <Block.InputWrapper>
-              <Block.Input
+            <InputWrapper>
+              <Input
                 id="currency-output"
                 name="currencyOutput"
                 type="number"
@@ -180,8 +192,8 @@ function Converter() {
                 onChange={valueChangeHandler}
               />
 
-              <Block.Label>
-                <Block.Select
+              <label>
+                <Select
                   name="currencyOutput"
                   value={currencyOutput.type}
                   onChange={typeChangeHandler}
@@ -191,20 +203,20 @@ function Converter() {
                   <option value="EUR">EUR</option>
                   <option value="GBP">GBP</option>
                   <option value="CNY">CNY</option>
-                </Block.Select>
+                </Select>
                 <span className="visually-hidden">валюта</span>
-              </Block.Label>
-            </Block.InputWrapper>
-          </Block.Field>
-        </Block.FieldWrapper>
+              </label>
+            </InputWrapper>
+          </Field>
+        </FieldWrapper>
 
         <Calendar currentDate={currentDate}/>
 
-        <Block.Button type="submit">
+        <Button type="submit">
           Сохранить результат
-        </Block.Button>
-      </Block.Form>
-    </Block>
+        </Button>
+      </Form>
+    </ConverterBlock>
   );
 }
 

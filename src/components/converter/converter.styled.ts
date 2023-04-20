@@ -1,12 +1,14 @@
-import styled from 'styled-components';
+import styled, { StyledComponentBase } from "styled-components";
 import theme from '../../theme/theme';
 import {button} from '../../theme/mixins';
 
-import iconLeftArrow from '../../img/icon-left-arrow.svg';
-import iconRightArrow from '../../img/icon-right-arrow.svg';
-import iconSelect from '../../img/icon-select.svg';
+const iconLeftArrow = require('../../img/icon-left-arrow.svg') as string;
+const iconRightArrow = require('../../img/icon-right-arrow.svg') as string;
+const iconSelect = require('../../img/icon-select.svg') as string;
 
-const Converter = styled.section`
+interface StyledComponent extends StyledComponentBase<any, object> {}
+
+export const ConverterBlock: StyledComponent = styled.section`
   max-width: 1210px;
 
   margin: 0 auto 100px auto;
@@ -15,7 +17,7 @@ const Converter = styled.section`
   padding-left: 20px;
 `;
 
-Converter.Header = styled.h2`
+export const Header: StyledComponent = styled.h2`
   font-weight: 700;
   font-size: 41px;
 
@@ -27,7 +29,7 @@ Converter.Header = styled.h2`
   margin-bottom: 49px;
 `;
 
-Converter.Form = styled.form`
+export const Form: StyledComponent = styled.form`
   position: relative;
 
   display: flex;
@@ -66,7 +68,7 @@ Converter.Form = styled.form`
 
 `;
 
-Converter.FieldWrapper = styled.div`
+export const FieldWrapper: StyledComponent = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -74,7 +76,7 @@ Converter.FieldWrapper = styled.div`
   width: 100%;
 `;
 
-Converter.Field = styled.div`
+export const Field: StyledComponent = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -94,7 +96,7 @@ Converter.Field = styled.div`
   }
 `;
 
-Converter.FieldTitle = styled.h3`
+export const FieldTitle: StyledComponent = styled.h3`
   flex-grow: 1;
   width: 100%;
 
@@ -108,15 +110,12 @@ Converter.FieldTitle = styled.h3`
   margin-bottom: 12px;
 `;
 
-Converter.InputWrapper = styled.div`
+export const InputWrapper: StyledComponent = styled.div`
   display: flex;
   width: 100%;
 `;
 
-Converter.Label = styled.label`
-`;
-
-Converter.Input = styled.input`
+export const Input: StyledComponent = styled.input`
   width: 100%;
   height: 60px;
 
@@ -152,7 +151,7 @@ Converter.Input = styled.input`
   }
 `;
 
-Converter.Select = styled.select`
+export const Select: StyledComponent = styled.select`
   width: 120px;
   height: 60px;
 
@@ -179,7 +178,7 @@ Converter.Select = styled.select`
   cursor: pointer;
 `;
 
-Converter.Button = styled.button`
+export const Button: StyledComponent = styled.button`
   ${button(theme.color.ghostWhite, theme.color.neonBlue, theme.color.persianBlue)};
 
   width: 390px;
@@ -194,5 +193,3 @@ Converter.Button = styled.button`
     width: 100%;
   }
 `;
-
-export default Converter;

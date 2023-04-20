@@ -1,9 +1,10 @@
-import styled from 'styled-components';
+import styled, { StyledComponentBase } from "styled-components";
 import theme from '../../theme/theme';
 
-import iconCalendar from '../../img/icon-calendar.svg';
+const iconCalendar = require('../../img/icon-calendar.svg') as string;
+interface StyledComponent extends StyledComponentBase<any, object> {}
 
-const Calendar = styled.div`
+export const CalendarBlock: StyledComponent = styled.div`
   width: 390px;
 
   .react-datepicker-wrapper {
@@ -15,7 +16,7 @@ const Calendar = styled.div`
   }
 `;
 
-Calendar.Button = styled.button`
+export const Button: StyledComponent = styled.button`
   position: relative;
 
   width: 100%;
@@ -54,5 +55,3 @@ Calendar.Button = styled.button`
     background-repeat: no-repeat;
   }
 `;
-
-export default Calendar;

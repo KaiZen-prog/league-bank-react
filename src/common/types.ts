@@ -14,7 +14,7 @@ type exchangeRateType = {
   CNY: number,
 };
 
-type conversion = {
+export type conversion = {
   date: string,
   currencyInput: {
     type: string,

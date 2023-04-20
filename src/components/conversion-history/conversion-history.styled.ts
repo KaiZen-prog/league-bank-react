@@ -1,8 +1,10 @@
-import styled from 'styled-components';
+import styled, { StyledComponentBase } from 'styled-components';
 import theme from '../../theme/theme';
 import {visuallyHidden, button} from '../../theme/mixins';
 
-const ConvertionHistory = styled.section`
+interface StyledComponent extends StyledComponentBase<any, object> {}
+
+export const ConversionHistoryBlock: StyledComponent = styled.section`
   max-width: 1210px;
 
   margin: 0 auto 110px auto;
@@ -10,7 +12,7 @@ const ConvertionHistory = styled.section`
   padding-left: 20px;
 `;
 
-ConvertionHistory.Wrapper = styled.div`
+export const Wrapper = styled.div`
   position: relative;
 
   width: 100%;
@@ -45,7 +47,7 @@ ConvertionHistory.Wrapper = styled.div`
   }
 `;
 
-ConvertionHistory.Header = styled.h2`
+export const Header: StyledComponent = styled.h2`
   width: 371px;
 
   font-weight: 500;
@@ -63,7 +65,7 @@ ConvertionHistory.Header = styled.h2`
   }
 `;
 
-ConvertionHistory.List = styled.ul`
+export const List: StyledComponent = styled.ul`
   display: flex;
   flex-direction: column;
   align-content: space-between;
@@ -94,7 +96,7 @@ ConvertionHistory.List = styled.ul`
   }
 `;
 
-ConvertionHistory.ButtonClear = styled.button`
+export const ButtonClearHistory: StyledComponent = styled.button`
   ${button(theme.color.ghostWhite, theme.color.neonBlue, theme.color.persianBlue)};
 
   width: 198px;
@@ -110,5 +112,3 @@ ConvertionHistory.ButtonClear = styled.button`
     margin-left: auto;
   }
 `;
-
-export default ConvertionHistory;

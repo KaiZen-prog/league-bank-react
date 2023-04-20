@@ -1,9 +1,10 @@
-import styled from 'styled-components';
+import styled, { StyledComponentBase } from "styled-components";
 import theme from '../../theme/theme';
 
-import iconArrow from '../../img/icon-conversion-arrow.svg';
+const iconArrow = require('../../img/icon-conversion-arrow.svg') as string;
+interface StyledComponent extends StyledComponentBase<any, object> {}
 
-const ConversionHistoryItem = styled.li`
+export const ConversionHistoryItemBlock: StyledComponent = styled.li`
   display: flex;
   padding-right: 12px;
 
@@ -37,11 +38,11 @@ const ConversionHistoryItem = styled.li`
   }
 `;
 
-ConversionHistoryItem.Date = styled.p`
+export const Date: StyledComponent = styled.p`
   margin-right: 41px;
 `;
 
-ConversionHistoryItem.Container = styled.div`
+export const Container: StyledComponent = styled.div`
   position: relative;
 
   display: flex;
@@ -68,13 +69,11 @@ ConversionHistoryItem.Container = styled.div`
   }
 `;
 
-ConversionHistoryItem.Before = styled.p`
+export const Before: StyledComponent = styled.p`
   margin-right: 70px;
   width: 130px;
 `;
 
-ConversionHistoryItem.After = styled.p`
+export const After: StyledComponent = styled.p`
   width: 130px;
 `;
-
-export default ConversionHistoryItem;
