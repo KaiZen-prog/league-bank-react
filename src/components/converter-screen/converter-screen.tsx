@@ -2,7 +2,7 @@ import React from 'react';
 import Converter from '../converter';
 import ConversionHistory from '../conversion-history';
 
-function ConverterScreen() {
+const ConverterScreen: React.FunctionComponent = () => {
   return (
     <>
       <Converter/>

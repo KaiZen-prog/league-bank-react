@@ -1,21 +1,28 @@
-import styled from 'styled-components';
+import styled, { StyledComponentBase } from "styled-components";
 import {css} from 'styled-components';
 import theme from '../../theme/theme';
 import {ContactsTel, SocialLinks} from '../../const';
 
-import iconMobile from '../../img/icon-mobile-tablet.svg';
-import iconPhone from '../../img/icon-phone-tablet.svg';
+const iconMobile = require('../../img/icon-mobile-tablet.svg') as string;
+const iconPhone = require('../../img/icon-phone-tablet.svg') as string;
 
-import iconFacebook from '../../img/icon-facebook-mobile.svg';
-import iconInstagram from '../../img/icon-instagram-mobile.svg';
-import iconTwitter from '../../img/icon-twitter-mobile.svg';
-import iconYoutube from '../../img/icon-youtube-mobile.svg';
+const iconFacebook = require('../../img/icon-facebook-mobile.svg') as string;
+const iconInstagram = require('../../img/icon-instagram-mobile.svg') as string;
+const iconTwitter = require('../../img/icon-twitter-mobile.svg') as string;
+const iconYoutube = require('../../img/icon-youtube-mobile.svg') as string;
 
-const Footer = styled.footer`
+interface StyledComponent extends StyledComponentBase<any, object> {}
+
+interface Props {
+  $type?: string
+  $isPhone?: boolean
+}
+
+export const FooterBLock: StyledComponent = styled.footer`
   background-color: ${theme.color.ghostWhite};
 `;
 
-Footer.Container = styled.div`
+export const Container: StyledComponent  = styled.div`
   display: flex;
   justify-content: space-between;
 
@@ -33,7 +40,7 @@ Footer.Container = styled.div`
   }
 `;
 
-Footer.Address = styled.section`
+export const Address: StyledComponent  = styled.section`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -52,7 +59,7 @@ Footer.Address = styled.section`
   }
 `;
 
-Footer.Info = styled.div`
+export const Info: StyledComponent  = styled.div`
   margin-top: -4px;
   padding-left: 1px;
   font-size: 12px;
@@ -73,7 +80,7 @@ Footer.Info = styled.div`
   }
 `;
 
-Footer.Nav = styled.nav`
+export const Nav: StyledComponent  = styled.nav`
   padding-left: 56px;
   align-self: flex-end;
 
@@ -95,13 +102,13 @@ Footer.Nav = styled.nav`
   }
 `;
 
-Footer.NavList = styled.ul`
+export const NavList: StyledComponent  = styled.ul`
   margin: 0;
   padding: 0;
   list-style: none;
 `;
 
-Footer.NavItem = styled.li`
+export const NavItem: StyledComponent  = styled.li`
   margin-bottom: 11px;
 
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
@@ -109,7 +116,7 @@ Footer.NavItem = styled.li`
   }
 `;
 
-Footer.NavLink = styled.a`
+export const NavLink: StyledComponent  = styled.a`
   font-size: 16px;
   line-height: 20px;
   font-weight: 500;
@@ -120,7 +127,7 @@ Footer.NavLink = styled.a`
   }
 `;
 
-Footer.Contacts = styled.section`
+export const Contacts: StyledComponent  = styled.section`
   display: flex;
   justify-content: space-between;
   flex-grow: 1;
@@ -134,7 +141,7 @@ Footer.Contacts = styled.section`
   }
 `;
 
-Footer.ContactsList = styled.ul`
+export const ContactsList: StyledComponent  = styled.ul`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -156,7 +163,7 @@ Footer.ContactsList = styled.ul`
   }
 `;
 
-Footer.ContactsItem = styled.li`
+export const ContactsItem: StyledComponent  = styled.li<Props>`
   padding-left: 44px;
 
   @media (max-width: ${theme.desktopWidthMinThreshold}) {
@@ -164,8 +171,15 @@ Footer.ContactsItem = styled.li`
     padding-top: 2px;
     padding-left: 0;
 
-    margin-left: ${(props) => props.$isPhone || '4px'};
-  }
+    ${(props) => {
+      if (props.$isPhone) {
+        return css`
+          margin-left: 4px;
+        `
+      } else {
+        return css``
+      }
+    }};
 
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
     margin-right: 40px;
@@ -179,7 +193,7 @@ Footer.ContactsItem = styled.li`
   }
 `;
 
-Footer.ContactsTel = styled.a`
+export const ContactsPhone: StyledComponent  = styled.a<Props>`
   position: relative;
   display: block;
   font-size: 16px;
@@ -224,7 +238,7 @@ Footer.ContactsTel = styled.a`
   }}
 `;
 
-Footer.TelInfo = styled.p`
+export const PhoneInfo: StyledComponent  = styled.p`
   width: 170px;
   margin-top: 1px;
   font-size: 12px;
@@ -236,7 +250,7 @@ Footer.TelInfo = styled.p`
   }
 `;
 
-Footer.Socials = styled.section`
+export const Socials: StyledComponent  = styled.section`
   margin-left: 17px;
   margin-right: -1px;
   padding-left: 0;
@@ -255,7 +269,7 @@ Footer.Socials = styled.section`
   }
 `;
 
-Footer.SocialsList = styled.ul`
+export const SocialsList: StyledComponent  = styled.ul`
   display: flex;
   margin: 4px 0 0;
   padding: 0;
@@ -266,7 +280,7 @@ Footer.SocialsList = styled.ul`
   }
 `;
 
-Footer.SocialsItem = styled.li`
+export const SocialsItem: StyledComponent  = styled.li`
 
   @media (max-width: ${theme.desktopWidthMinThreshold}) {
     margin-right: 5px;
@@ -278,7 +292,7 @@ Footer.SocialsItem = styled.li`
   }
 `;
 
-Footer.SocialsLink = styled.a`
+export const SocialsLink: StyledComponent  = styled.a<Props>`
   position: relative;
   display: block;
   width: 16px;
@@ -323,6 +337,3 @@ Footer.SocialsLink = styled.a`
     }
   }}
 `;
-
-
-export default Footer;

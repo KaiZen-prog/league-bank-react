@@ -1,12 +1,18 @@
-import styled from 'styled-components';
+import styled, { StyledComponentBase } from "styled-components";
 import { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 import theme from '../../theme/theme';
 
-import iconBurger from '../../img/icon-burger.svg';
-import iconClose from '../../img/icon-close.svg';
+const iconBurger = require('../../img/icon-burger.svg') as string;
+const iconClose = require('../../img/icon-close.svg') as string;
 
-const Header = styled.header`
+interface StyledComponent extends StyledComponentBase<any, object> {}
+
+interface Props {
+  $isNavOpened: boolean
+}
+
+export const HeaderBlock: StyledComponent = styled.header<Props>`
   background-color: ${theme.color.ghostWhite};
 
   ${(props) => {
@@ -28,11 +34,13 @@ const Header = styled.header`
           height: auto;
         }
       `;
+    } else {
+      return css``
     }
-  }}
+}}
 `;
 
-Header.Container = styled.div`
+export const Container: StyledComponent = styled.div`
   display: flex;
 
   padding-right: 20px;
@@ -51,7 +59,7 @@ Header.Container = styled.div`
   }
 `;
 
-Header.Wrapper = styled.div`
+export const Wrapper: StyledComponent = styled.div`
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
     display: flex;
     padding-top: 16px;
@@ -59,7 +67,7 @@ Header.Wrapper = styled.div`
   }
 `;
 
-Header.BurgerButton = styled.button`
+export const BurgerButton: StyledComponent = styled.button`
   display: none;
 
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
@@ -73,7 +81,7 @@ Header.BurgerButton = styled.button`
   }
 `;
 
-Header.CloseNavButton = styled.button`
+export const CloseNavButton: StyledComponent = styled.button<Props>`
   display: none;
 
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
@@ -89,31 +97,35 @@ Header.CloseNavButton = styled.button`
       return css`
           display: block;
         `;
+    } else {
+      return css``
     }
   }}
   }
 `;
 
-Header.Nav = styled.nav`
+export const Nav: StyledComponent = styled.nav<Props>`
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
     display: none;
     margin-top: 36px;
 
     ${(props) => {
-    if (props.$isNavOpened) {
-      return css`
+      if (props.$isNavOpened) {
+        return css`
           display: block;
 
           margin-top: 47px;
           padding-left: 14px;
           padding-right: 3px;
         `;
-    }
-  }}
+      } else {
+        return css``
+      }
+    }}
   }
 `;
 
-Header.NavList = styled.ul`
+export const NavList: StyledComponent = styled.ul`
   display: flex;
   flex-wrap: wrap;
   margin: 0;
@@ -131,7 +143,7 @@ Header.NavList = styled.ul`
   }
 `;
 
-Header.NavItem = styled.li`
+export const NavItem: StyledComponent = styled.li`
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
     border-top: 1px solid ${theme.color.ghost};
 
@@ -141,7 +153,7 @@ Header.NavItem = styled.li`
   }
 `;
 
-Header.NavLink = styled(Link)`
+export const NavLink: StyledComponent = styled(Link)<Props>`
   display: inline-block;
   padding: 16px 12.5px;
   font-size: 16px;
@@ -153,7 +165,7 @@ Header.NavLink = styled(Link)`
     color: ${theme.color.neonBlue};
   }
 
-  @media (min-width: ${theme.tabletWidthMin}) and (max-width: ${theme.desktopWidthMinThreshold}) {
+  @media (min-width: ${theme.tabletWidthMinThreshold}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     padding: 14px 10px;
     margin-bottom: -2px;
     font-size: 14px;
@@ -171,8 +183,8 @@ Header.NavLink = styled(Link)`
         padding-top: 20px;
         padding-bottom: 20px;
       `;
+    } else {
+      return css``
     }
   }}
 `;
-
-export default Header;

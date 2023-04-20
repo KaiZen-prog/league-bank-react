@@ -24,8 +24,6 @@ function MainScreen() {
       />
       <Calculator/>
       <Suspense fallback={RenderLoader()}>
-        <Converter/>
-        <ConversionHistory/>
         <Map/>
       </Suspense>
     </>
