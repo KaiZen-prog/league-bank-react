@@ -2,7 +2,7 @@ import React from 'react';
 import Block from './input-container.styled';
 
 interface Props {
-  type: string,
+  type?: string,
   children: any
 }
 

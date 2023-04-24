@@ -9,6 +9,7 @@ const initialState: InitialCalculatorState = {
     maternalCapitalValue: 0,
     minInitialFee: 0,
     step : 0,
+    type: '',
     minCost: 0,
     maxCost: 0,
     percent: {
@@ -36,7 +37,7 @@ const initialState: InitialCalculatorState = {
   isFormValid: true,
 };
 
-const getCreditAmount = (state: InitialCalculatorState) => <number>state.cost
+const getCreditAmount = (state: InitialCalculatorState) => state.cost
   - state.initialFee
   - (state.maternalCapital ? state.paramsCredit.maternalCapitalValue : 0);
 
@@ -45,7 +46,7 @@ const getInterestRate = (state: InitialCalculatorState) => {
 
   if (state.purpose === 'mortgage') {
     state.initialFee >=
-    (<number>state.cost * state.paramsCredit.percent.amountForSpecialPercent) / 100
+    (state.cost * state.paramsCredit.percent.amountForSpecialPercent) / 100
       ? percent = parseInt(state.paramsCredit.percent.specialPercent.toFixed(2))
       : percent = parseInt(state.paramsCredit.percent.default.toFixed(2));
   }
@@ -53,7 +54,7 @@ const getInterestRate = (state: InitialCalculatorState) => {
   if (state.purpose === 'car') {
     percent = state.paramsCredit.percent.default;
 
-    if (<number>state.cost >= state.paramsCredit.percent.amountForSpecialPercent) {
+    if (state.cost >= state.paramsCredit.percent.amountForSpecialPercent) {
       percent = state.paramsCredit.percent.specialPercent;
     }
 
@@ -84,9 +85,9 @@ const getMonthlyPayment = (percent: number, creditAmount: number, state: Initial
 
 const getNewCostAndInitialFee = (state: InitialCalculatorState, evtID: string) => {
   let newCost: number =
-    state.cost === 'Некорректное значение'
+    isNaN(state.cost)
       ? state.paramsCredit.minCost
-      : <number>state.cost;
+      : state.cost;
 
   evtID === 'plus'
     ? (newCost += state.paramsCredit.step)
@@ -100,9 +101,9 @@ const getNewCostAndInitialFee = (state: InitialCalculatorState, evtID: string) =
     newCost = state.paramsCredit.maxCost;
   }
 
-  const initialFee = state.cost === 'Некорректное значение'
+  const initialFee = isNaN(state.cost)
     ? Math.round((newCost * state.paramsCredit.minInitialFee) / 100)
-    : Math.round((newCost * state.initialFee) / <number>state.cost);
+    : Math.round((newCost * state.initialFee) / state.cost);
 
   return [newCost, initialFee];
 };

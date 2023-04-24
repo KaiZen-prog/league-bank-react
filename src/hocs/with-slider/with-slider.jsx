@@ -10,8 +10,7 @@ function WithSlider(props) {
   const [sliderState, setSliderState] = useState({
     slides: slides,
     currentSlide: slides[0],
-    currentSlideNumber: 0,
-    slidesQuantity: slides.length,
+    currentSlideNumber: 0
   });
 
   let interval = () => {};
@@ -159,7 +158,6 @@ function WithSlider(props) {
           slides={sliderState.slides}
           currentSlide={sliderState.currentSlide}
           currentSlideNumber={sliderState.currentSlideNumber}
-          slidesQuantity={sliderState.slidesQuantity}
           sliderRef={sliderRef}
           onSwipeStart={onSwipeStart}
         />

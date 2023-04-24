@@ -3,14 +3,12 @@ import RenderLoader from '../render-loader/';
 import WithSlider from '../../hocs/with-slider/with-slider';
 import Calculator from '../calculator';
 import {mainSlides, servicesSlides} from '../../mocks/mocks';
-import MainSlider from '../../components/main-slider/index';
+import MainSlider from '../main-slider';
 import ServicesSlider from '../../components/services-slider/index';
-import Converter from '../converter';
-import ConversionHistory from '../conversion-history';
 
 const Map = lazy(() => import('../map'));
 
-function MainScreen() {
+const  MainScreen: React.FunctionComponent = () => {
   return (
     <>
       <WithSlider

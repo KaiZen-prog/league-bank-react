@@ -1,26 +1,41 @@
-import React, {createRef, useState} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import React, { ChangeEvent, createRef, RefObject, useState } from "react";
+import {useAppSelector, useAppDispatch} from '../../hooks/hooks';
 import {CalculatorSteps, InputTypes, InputIconsTypes, LabelTypes, InputFields} from '../../const';
+import {setTermLine} from '../../utils/common';
+import {MouseEventHandler, FocusEventHandler, InputChangeEventHandler} from '../../common/types';
 import {ActionType} from '../../store/actions/calculator';
 import {divideNumberToSpace} from '../../utils/common';
-import Block from './loan-params.styled';
 import StepTitle from '../step-title';
 import InputContainer from '../input-container';
+import {
+  LoanParamsBlock,
+  Label,
+  Icon,
+  Input,
+  InputDiv,
+  HelpText,
+  InputRange,
+  RangeValue,
+  TermContainer,
+  Additional,
+  InputCheckbox,
+  CheckboxIcon,
+} from './loan-params.styled';
 
-function LoanParams() {
-  const costInputRef = createRef();
-  const costDivRef = createRef();
-  const initialFeeInputRef = createRef();
-  const initialFeeDivRef = createRef();
-  const termInputRef = createRef();
-  const termDivRef = createRef();
+const LoanParams: React.FunctionComponent = () => {
+  const costInputRef: RefObject<HTMLElement> = createRef();
+  const costDivRef: RefObject<HTMLElement> = createRef();
+  const initialFeeInputRef: RefObject<HTMLElement> = createRef();
+  const initialFeeDivRef: RefObject<HTMLElement> = createRef();
+  const termInputRef: RefObject<HTMLElement> = createRef();
+  const termDivRef: RefObject<HTMLElement> = createRef();
 
-  const state = useSelector((store) => store.calculator);
+  const state = useAppSelector((store) => store.calculator);
   const [isLabelClicked, setIsLabelClicked] = useState(false);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const onCostChangeSign = (evt) => {
+  const onCostChangeSign: InputChangeEventHandler = (evt) => {
     costInputRef.current.style.color = '#1F1E25';
     costDivRef.current.style.color = '#1F1E25';
     const evtID = evt.target.id;
@@ -42,33 +57,12 @@ function LoanParams() {
     return position;
   };
 
-  const setTermLine = (str) => {
-    if (str > 10 && str < 20) {
-      return `${str} лет`;
-    }
-
-    switch (str.toString().substr(-1)) {
-      case '1':
-        return `${str} год`;
-
-      case '2':
-        return `${str} года`;
-
-      case '3':
-        return `${str} года`;
-
-      case '4':
-        return `${str} года`;
-
-      default:
-        return `${str} лет`;
-    }
-  };
-
-  const onLabelClick = (evt) => {
+  const onLabelClick: MouseEventHandler = (evt) => {
     setIsLabelClicked(!isLabelClicked);
 
-    switch (evt.target.htmlFor) {
+    const label = evt.target as HTMLLabelElement;
+
+    switch (label.htmlFor) {
       case InputFields.cost:
         costInputRef.current.style.display = 'block';
         costDivRef.current.style.display = 'none';
@@ -86,49 +80,55 @@ function LoanParams() {
     }
   };
 
-  const onInputChange = (evt) => {
-    const { name, value } = evt.target;
+  const onInputChange: InputChangeEventHandler = (evt) => {
+    const {name, value} = evt.target;
     dispatch({type: ActionType.CHANGE_FIELD_VALUE, payload: {
       name: name,
       value: value,
     }});
   };
 
-  const onInputFocus = (evt) => {
-    evt.target.style.display = 'none';
-    evt.target.previousElementSibling.style.display = 'block';
-    evt.target.previousElementSibling.focus();
+  const onInputFocus: FocusEventHandler = (evt) => {
+    const element: HTMLElement = evt.target;
+    const prevElement: HTMLElement = element.previousElementSibling as HTMLElement;
+
+    element.style.display = 'none';
+    prevElement.style.display = 'block';
+    prevElement.focus();
   };
 
-  const onInputBlur = (evt, name, value) => {
-    evt.target.style.display = 'none';
-    evt.target.nextElementSibling.style.display = 'block';
+  const onInputBlur = (evt: ChangeEvent<HTMLInputElement>) => {
+    const element: HTMLElement = evt.target;
+    const nextElement: HTMLElement = element.nextElementSibling as HTMLElement;
+
+    element.style.display = 'none';
+    nextElement.style.display = 'block';
 
     setIsLabelClicked(true);
 
-    onInputChange(evt, name, value);
+    onInputChange(evt);
   };
 
-  const onCostChange = (evt) => {
-    const name = evt.target.name;
-    let value = evt.target.value;
+  const onCostChange: InputChangeEventHandler = (evt) => {
+    const element: HTMLInputElement = evt.target;
+    const nextElement: HTMLElement = element.nextElementSibling as HTMLElement;
+    let value = parseInt(element.value);
 
     if (value < state.paramsCredit.minCost || value > state.paramsCredit.maxCost) {
-      evt.target.nextElementSibling.style.color = 'red';
-      value = 'Некорректное значение';
+      nextElement.style.color = 'red';
+      value = NaN;
     } else {
-      evt.target.nextElementSibling.style.color = '#1F1E25';
+      nextElement.style.color = '#1F1E25';
       value = +value;
 
       dispatch({type: ActionType.CHANGE_INITIAL_FEE, payload: value});
     }
 
-    onInputBlur(evt, name, value);
+    onInputBlur(evt);
   };
 
-  const onInitialFeeChange = (evt) => {
-    const name = evt.target.name;
-    let value = evt.target.value;
+  const onInitialFeeChange: InputChangeEventHandler = (evt) => {
+    let value = parseInt(evt.target.value);
 
     if (value < (state.cost * state.paramsCredit.minInitialFee) / 100) {
       value = (state.cost * state.paramsCredit.minInitialFee) / 100;
@@ -137,12 +137,11 @@ function LoanParams() {
       value = state.cost;
     }
 
-    onInputBlur(evt, name, value);
+    onInputBlur(evt);
   };
 
-  const onTermChange = (evt) => {
-    const name = evt.target.name;
-    let value = evt.target.value;
+  const onTermChange: InputChangeEventHandler = (evt) => {
+    let value = parseInt(evt.target.value);
 
     if (value < state.paramsCredit.minTerm) {
       value = state.paramsCredit.minTerm;
@@ -151,21 +150,22 @@ function LoanParams() {
       value = state.paramsCredit.maxTerm;
     }
 
-    onInputBlur(evt, name, value);
+    onInputBlur(evt);
   };
 
-  const onInputRangeChange = (evt) => {
+  const onInputRangeChange: InputChangeEventHandler = (evt) => {
     const { name, value } = evt.target;
+    const newValue = parseInt(value);
 
     name === 'initialFee'
       ? dispatch({type: ActionType.CHANGE_FIELD_VALUE, payload: {
         name: name,
-        value: (state.cost * value) / 100,
+        value: (state.cost * newValue) / 100,
       }})
       : onInputChange(evt);
   };
 
-  const onAdditionalChange = (evt) => {
+  const onAdditionalChange: InputChangeEventHandler = (evt) => {
     dispatch({type: ActionType.CHANGE_ADDITIONAL, payload: {
       name: evt.target.name,
       value: !state[evt.target.name],
@@ -173,20 +173,20 @@ function LoanParams() {
   };
 
   return (
-    <Block>
+    <LoanParamsBlock>
       <StepTitle type={CalculatorSteps.params} value={'Шаг 2. Введите параметры кредита'}/>
 
       <InputContainer>
-        <Block.Label htmlFor="cost" onClick={onLabelClick}>
+        <Label htmlFor="cost" onClick={onLabelClick}>
           Стоимость {state.paramsCredit.type === 'mortgage' ? 'недвижимости' : 'автомобиля'}
-        </Block.Label>
-        <Block.Icon
+        </Label>
+        <Icon
           $type={InputIconsTypes.minus}
           id="minus"
           onClick={onCostChangeSign}
         >
-        </Block.Icon>
-        <Block.Input
+        </Icon>
+        <Input
           type="number"
           name="cost"
           id="cost"
@@ -197,39 +197,38 @@ function LoanParams() {
           onBlur={onCostChange}
           onChange={onInputChange}
         />
-        <Block.InputDiv
-          as="div"
+        <InputDiv
           tabIndex="0"
           ref={costDivRef}
           onClick={onLabelClick}
           onFocus={onInputFocus}
         >
-          {typeof state.cost === 'string' ? state.cost : `${divideNumberToSpace(state.cost)} рублей`}
-        </Block.InputDiv>
-        <Block.Icon
+          {divideNumberToSpace(state.cost)} рублей
+        </InputDiv>
+        <Icon
           $type={InputIconsTypes.plus}
           id="plus"
           onClick={onCostChangeSign}
         >
-        </Block.Icon>
+        </Icon>
 
-        <Block.HelpText>
+        <HelpText>
           От {divideNumberToSpace(state.paramsCredit.minCost)} &nbsp;до{' '}
           {divideNumberToSpace(state.paramsCredit.maxCost)} рублей
-        </Block.HelpText>
+        </HelpText>
       </InputContainer>
 
 
       <InputContainer type={InputTypes.initialFee}>
-        <Block.Label
+        <Label
           $type={InputTypes.initialFee}
           htmlFor="initialFee"
           onClick={onLabelClick}
         >
           Первоначальный взнос
-        </Block.Label>
+        </Label>
 
-        <Block.Input
+        <Input
           type="number"
           name="initialFee"
           id="initialFee"
@@ -240,8 +239,7 @@ function LoanParams() {
           onBlur={onInitialFeeChange}
           onChange={onInputChange}
         />
-        <Block.InputDiv
-          as="div"
+        <InputDiv
           $type={InputTypes.initialFee}
           tabIndex="0"
           ref={initialFeeDivRef}
@@ -249,9 +247,9 @@ function LoanParams() {
           onFocus={onInputFocus}
         >
           {divideNumberToSpace(state.initialFee)} рублей
-        </Block.InputDiv>
+        </InputDiv>
 
-        <Block.InputRange
+        <InputRange
           type="range"
           name="initialFee"
           min={state.paramsCredit.minInitialFee}
@@ -260,25 +258,25 @@ function LoanParams() {
           value={(state.initialFee * 100) / state.cost}
           onChange={onInputRangeChange}
         />
-        <Block.RangeValue
+        <RangeValue
           style={{
             marginLeft: `${getRangeValuePosition()}%`,
             transform: `translateX(-${getRangeValuePosition() / 2}%)`,
           }}
         >
-          {isNaN(Math.floor((state.initialFee * 100) / state.cost))
+          {isNaN(Math.floor((state.initialFee as number * 100) / state.cost as number))
             ? 0
-            : Math.floor((state.initialFee * 100) / state.cost)}
+            : Math.floor((state.initialFee as number * 100) / state.cost as number)}
           %
-        </Block.RangeValue>
+        </RangeValue>
       </InputContainer>
 
       <InputContainer type={InputTypes.term}>
-        <Block.Label htmlFor="term" onClick={onLabelClick}>
+        <Label htmlFor="term" onClick={onLabelClick}>
           Срок кредитования
-        </Block.Label>
+        </Label>
 
-        <Block.Input
+        <Input
           type="number"
           name="term"
           id="term"
@@ -289,8 +287,7 @@ function LoanParams() {
           onBlur={onTermChange}
           onChange={onInputChange}
         />
-        <Block.InputDiv
-          as="div"
+        <InputDiv
           $type={InputTypes.term}
           tabIndex="0"
           ref={termDivRef}
@@ -298,9 +295,9 @@ function LoanParams() {
           onFocus={onInputFocus}
         >
           {setTermLine(state.term)}
-        </Block.InputDiv>
+        </InputDiv>
 
-        <Block.InputRange
+        <InputRange
           type="range"
           name="term"
           min={state.paramsCredit.minTerm}
@@ -309,50 +306,50 @@ function LoanParams() {
           value={state.term}
           onChange={onInputRangeChange}
         />
-        <Block.TermContainer>
-          <Block.RangeValue>
+        <TermContainer>
+          <RangeValue>
             {state.paramsCredit.minTerm} {state.paramsCredit.minTerm === 1 ? 'год' : 'лет'}
-          </Block.RangeValue>
-          <Block.RangeValue>
+          </RangeValue>
+          <RangeValue>
             {state.paramsCredit.maxTerm} лет
-          </Block.RangeValue>
-        </Block.TermContainer>
+          </RangeValue>
+        </TermContainer>
       </InputContainer>
 
       {state.paramsCredit.maternalCapitalValue && (
-        <Block.Additional>
-          <Block.InputCheckbox
+        <Additional>
+          <InputCheckbox
             type="checkbox"
             name="maternalCapital"
             onChange={onAdditionalChange}
           />
-          <Block.CheckboxIcon className="calculator__checkbox-icon"/>
+          <CheckboxIcon className="calculator__checkbox-icon"/>
           Использовать материнский капитал
-        </Block.Additional>
+        </Additional>
       )}
       {state.paramsCredit.additionalToCar && (
         <>
-          <Block.Additional $type={LabelTypes.car}>
-            <Block.InputCheckbox
+          <Additional $type={LabelTypes.car}>
+            <InputCheckbox
               type="checkbox"
               name="casco"
               onChange={onAdditionalChange}
             />
-            <Block.CheckboxIcon className="calculator__checkbox-icon"/>
+            <CheckboxIcon className="calculator__checkbox-icon"/>
             Оформить КАСКО в нашем банке
-          </Block.Additional>
-          <Block.Additional $type={LabelTypes.car}>
-            <Block.InputCheckbox
+          </Additional>
+          <Additional $type={LabelTypes.car}>
+            <InputCheckbox
               type="checkbox"
               name="lifeInsurance"
               onChange={onAdditionalChange}
             />
-            <Block.CheckboxIcon className="calculator__checkbox-icon"/>
+            <CheckboxIcon className="calculator__checkbox-icon"/>
             Оформить Страхование жизни в нашем банке
-          </Block.Additional>
+          </Additional>
         </>
       )}
-    </Block>
+    </LoanParamsBlock>
   );
 }
 

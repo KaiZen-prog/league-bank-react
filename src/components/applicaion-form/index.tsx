@@ -116,7 +116,7 @@ const ApplicationForm: React.FunctionComponent = () => {
           name="fullName"
           placeholder="ФИО"
           onChange={onInputChange}
-          onInvalid={(evt: Event) => {shakeEffect(evt.target);}}
+          onInvalid={(evt: Event) => {shakeEffect(evt.target as HTMLElement);}}
           value={formFields.fullName}
           autoFocus
           required
@@ -132,7 +132,7 @@ const ApplicationForm: React.FunctionComponent = () => {
           minLength={17}
           placeholder="Телефон"
           onChange={onInputChange}
-          onInvalid={(evt: Event) => {shakeEffect(evt.target);}}
+          onInvalid={(evt: Event) => {shakeEffect(evt.target as HTMLElement);}}
           value={formFields.tel}
           required
         />
@@ -143,7 +143,7 @@ const ApplicationForm: React.FunctionComponent = () => {
           name="email"
           placeholder="E-mail"
           onChange={onInputChange}
-          onInvalid={(evt: Event) => {shakeEffect(evt.target);}}
+          onInvalid={(evt: Event) => {shakeEffect(evt.target as HTMLElement);}}
           value={formFields.email}
           required
         />

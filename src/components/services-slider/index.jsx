@@ -1,5 +1,4 @@
 import React from 'react';
-import {Repeat} from '../../utils/common';
 import Block from './services-slider.styled';
 import ServicesSlide from '../services-slide';
 import {Sliders} from '../../const';
@@ -10,7 +9,6 @@ function ServicesSlider(props) {
     slides,
     currentSlide,
     currentSlideNumber,
-    slidesQuantity,
 
     sliderRef,
 
@@ -22,42 +20,38 @@ function ServicesSlider(props) {
     <Block ref={sliderRef} id={Sliders.services.name}>
       <Block.Header>Наши сервисы</Block.Header>
       <Block.TabList>
-        <Repeat numTimes={slides.length}>
-          {(i) => (
-            <Block.Tab
-              key={i}
-              id={slides[i].name}
-              $isCurrent={currentSlide === slides[i]}
-              onClick={() => {onTabClick(slides[i], i);}}
-            >
-              <Block.TabLabel $tabName={slides[i].name}>
-                {slides[i].tabName}
-              </Block.TabLabel>
-            </Block.Tab>
-          )}
-        </Repeat>
+        {slides.map((slide, index) => (
+          <Block.Tab
+            key={index}
+            id={slide.name}
+            $isCurrent={currentSlide === slide}
+            onClick={() => {onTabClick(slide, index);}}
+          >
+            <Block.TabLabel $tabName={slide.name}>
+              {slide.tabName}
+            </Block.TabLabel>
+          </Block.Tab>
+        ))}
       </Block.TabList>
       <Block.SlidesContainer
         style={{ left: currentSlideNumber === 0 ? '0' : `-${currentSlideNumber}00%` }}
         onMouseDown={onSwipeStart}
         onTouchStart={onSwipeStart}
       >
-        <Repeat numTimes={slidesQuantity}>
-          {(i) => <ServicesSlide key={i} currentSlide={slides[i]} />}
-        </Repeat>
+        {slides.map((slide, index) => (
+          <ServicesSlide key={index} currentSlide={slide} />
+        ))}
       </Block.SlidesContainer>
 
       <Block.DotList>
-        <Repeat numTimes={slidesQuantity}>
-          {(i) => (
-            <Block.Dot
-              key={i}
-              $isCurrent={i === currentSlideNumber}
-              $currentSlideName={currentSlide.name}
-            >
-            </Block.Dot>
-          )}
-        </Repeat>
+        {slides.map((_, index) => (
+          <Block.Dot
+            key={index}
+            $isCurrent={index === currentSlideNumber}
+            $currentSlideName={currentSlide.name}
+          >
+          </Block.Dot>
+        ))}
       </Block.DotList>
     </Block>
   );

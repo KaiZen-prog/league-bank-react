@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { StyledComponentBase } from "styled-components";
 import { css } from 'styled-components';
 import theme from '../../theme/theme';
 import {Sliders} from '../../const';
@@ -17,7 +17,13 @@ import creditSlideBlackCardDesktop from '../../img/card-black-desktop.png';
 import creditSlideWhiteCardTablet from '../../img/card-white-tablet.png';
 import creditSlideWhiteCardDesktop from '../../img/card-white-desktop.png';
 
-const MainSlide = styled.div`
+interface StyledComponent extends StyledComponentBase<any, object> {}
+
+interface Props {
+  $slideName: string
+}
+
+export const MainSlideBlock: StyledComponent = styled.div<Props>`
   position: relative;
   min-height: 226px;
   min-width: 100%;
@@ -40,12 +46,14 @@ const MainSlide = styled.div`
           background-image: linear-gradient(180.24deg, rgba(32, 39, 179, 0) 36.31%, #2027B3 99.79%);
         }
       `;
+    } else {
+      return css``
     }
   }}
 `;
 
 
-MainSlide.GradientContainer = styled.div`
+export const GradientContainer: StyledComponent = styled.div<Props>`
   position: absolute;
   min-height: 100%;
   max-width: 1170px;
@@ -53,8 +61,8 @@ MainSlide.GradientContainer = styled.div`
 
   @media (min-width: ${theme.tabletWidthMinThreshold}) {
     ${(props) => {
-    if (props.$slideName === Sliders.main.slides.credit) {
-      return css`
+      if (props.$slideName === Sliders.main.slides.credit) {
+        return css`
           &::after {
             content: "";
             position: absolute;
@@ -68,13 +76,16 @@ MainSlide.GradientContainer = styled.div`
             z-index: 1;
           }
         `;
-    }
-    if (props.$slideName === Sliders.main.slides.promo || props.$slideName === Sliders.main.slides.offices) {
-      return css`
+      }
+
+      if (props.$slideName === Sliders.main.slides.promo || props.$slideName === Sliders.main.slides.offices) {
+        return css`
           max-width: 100%;
         `;
-    }
-  }}
+      } else {
+        return css``
+      }
+    }}
   }
 
   @media (min-width: ${theme.desktopWidthMinThreshold}) {
@@ -84,26 +95,27 @@ MainSlide.GradientContainer = styled.div`
     ${(props) => {
     if (props.$slideName === Sliders.main.slides.credit) {
       return css`
-              &::before {
-        content: "";
-        position: absolute;
-        display: block;
-        width: 150px;
-        height: 269px;
-        margin-left: -45.5%;
-        left: 50%;
-        bottom: 0;
-        background-image: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 66.3%, #3841FF 97.14%);
-        z-index: 1;
-      }
+        &::before {
+          content: "";
+          position: absolute;
+          display: block;
+          width: 150px;
+          height: 269px;
+          margin-left: -45.5%;
+          left: 50%;
+          bottom: 0;
+          background-image: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 66.3%, #3841FF 97.14%);
+          z-index: 1;
+        }
 
-      &::after {
-        width: 270px;
-        height: 269px;
-        margin-right: -32.8%;
-      }
-            `;
-    }
+        &::after {
+          width: 270px;
+          height: 269px;
+          margin-right: -32.8%;
+        }
+      `;
+    } else {
+      return css``
   }}
   }
 
@@ -112,97 +124,98 @@ MainSlide.GradientContainer = styled.div`
       return css`
         max-width: 100%;
       `;
+    } else {
+      return css``
     }
   }}
 `;
 
-MainSlide.BackgroundContainer = styled.div`
+export const BackgroundContainer: StyledComponent = styled.div<Props>`
   min-height: 100%;
   position: absolute;
 
   ${(props) => {
-    switch (props.$slideName) {
-      case Sliders.main.slides.credit:
-        return css`
+  switch (props.$slideName) {
+    case Sliders.main.slides.credit:
+      return css`
+        width: 78.3%;
+        margin-left: -45.5%;
+        top: 0;
+        left: 50%;
+        background-color: ${theme.color.neonBlue};
+
+        @media (min-width: ${theme.tabletWidthMinThreshold}) {
+          width: 82.7%;
+          margin-left: 0;
+          left: 0;
+        }
+
+        @media (min-width: ${theme.desktopWidthMinThreshold}) {
           width: 78.3%;
           margin-left: -45.5%;
           top: 0;
           left: 50%;
           background-color: ${theme.color.neonBlue};
+        }
+      `;
 
-          @media (min-width: ${theme.tabletWidthMinThreshold}) {
-            width: 82.7%;
-            margin-left: 0;
-            left: 0;
-          }
+    case Sliders.main.slides.promo:
+      return css`
+        width: 100%;
+        background-color: #dde2ec;
+        background-image: url(${promoSlideBackgroundMobile});
+        background-repeat: no-repeat;
+        background-position: right;
+        overflow: hidden;
+        z-index: -1;
 
-          @media (min-width: ${theme.desktopWidthMinThreshold}) {
-            width: 78.3%;
-            margin-left: -45.5%;
+        @media (min-width: ${theme.tabletWidthMinThreshold}) {
+          background-image: url(${promoSlideBackgroundTablet}),
+          linear-gradient(to right, #dde2ec 0%, #dde2ec 50%, #F6FCFF 50%, #F6FCFF 100%);
+        }
+
+        @media (min-width: ${theme.desktopWidthMinThreshold}) {
+          background-image: url(${promoSlideBackgroundDesktop}),
+          linear-gradient(to right, #dde2ec 0%, #dde2ec 50%, #F6FCFF 50%, #F6FCFF 100%);
+          background-position: center;
+
+          &::after {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 100%;
             top: 0;
-            left: 50%;
-            background-color: ${theme.color.neonBlue};
+            left: calc(50% + 683px);
+            background-image: linear-gradient(to top, #f6fcff 0%, #f0f6ff 100%);
           }
-        `;
+      `;
 
-      case Sliders.main.slides.promo:
-        return css`
-          width: 100%;
-          background-color: #dde2ec;
-          background-image: url(${promoSlideBackgroundMobile});
-          background-repeat: no-repeat;
-          background-position: right;
+    case Sliders.main.slides.offices:
+      return css`
+        width: 100%;
+        background-color: #E6F1FE;
+        background-image: url(${officesSlideBackgroundMobile});
+        background-repeat: no-repeat;
+        background-position: right;
+
+        @media (min-width: ${theme.tabletWidthMinThreshold}) {
+          background-image: url(${officesSlideBackgroundTablet});
           overflow: hidden;
-          z-index: -1;
+        }
 
-          @media (min-width: ${theme.tabletWidthMinThreshold}) {
-            background-image: url(${promoSlideBackgroundTablet}),
-            linear-gradient(to right, #dde2ec 0%, #dde2ec 50%, #F6FCFF 50%, #F6FCFF 100%);
-          }
-
-          @media (min-width: ${theme.desktopWidthMinThreshold}) {
-            background-image: url(${promoSlideBackgroundDesktop}),
-            linear-gradient(to right, #dde2ec 0%, #dde2ec 50%, #F6FCFF 50%, #F6FCFF 100%);
-            background-position: center;
-
-            &::after {
-              content: "";
-              position: absolute;
-              display: block;
-              width: 100%;
-              height: 100%;
-              top: 0;
-              left: calc(50% + 683px);
-              background-image: linear-gradient(to top, #f6fcff 0%, #f0f6ff 100%);
-          }
-        `;
-
-      case Sliders.main.slides.offices:
-        return css`
-          width: 100%;
-          background-color: #E6F1FE;
-          background-image: url(${officesSlideBackgroundMobile});
-          background-repeat: no-repeat;
-          background-position: right;
-
-          @media (min-width: ${theme.tabletWidthMinThreshold}) {
-            background-image: url(${officesSlideBackgroundTablet});
-            overflow: hidden;
-          }
-
-          @media (min-width: ${theme.desktopWidthMinThreshold}) {
-            background-image: url(${officesSlideBackgroundDesktop});
-            background-position: center;
-          }
-        `;
-      default:
-        return css`
-          `;
-    }
-  }}
+        @media (min-width: ${theme.desktopWidthMinThreshold}) {
+          background-image: url(${officesSlideBackgroundDesktop});
+          background-position: center;
+        }
+      `;
+    default:
+      return css``;
+  }
+}}
 `;
 
-MainSlide.TextContainer = styled.div`
+export const TextContainer: StyledComponent = styled.div<Props>`
   position: relative;
   max-width: 1170px;
   min-height: 226px;
@@ -257,7 +270,7 @@ MainSlide.TextContainer = styled.div`
             background-position: left, top;
             z-index: 2;
           }
-            }
+        }
 
         @media (min-width: ${theme.desktopWidthMinThreshold}) {
           &::before {
@@ -275,13 +288,15 @@ MainSlide.TextContainer = styled.div`
             right: 126px;
             background-image: url(${creditSlideWhiteCardDesktop});
           }
-            }
+        }
       `;
+    } else {
+      return css``
     }
   }}
 `;
 
-MainSlide.Title = styled.h1`
+export const Title: StyledComponent = styled.h1<Props>`
   margin: 0;
   font-size: 38px;
   line-height: 45px;
@@ -301,11 +316,13 @@ MainSlide.Title = styled.h1`
       return css`
           color: ${theme.color.ghostWhite};
         `;
+    } else {
+      return css``
     }
   }}
 `;
 
-MainSlide.Slogan = styled.p`
+export const Slogan: StyledComponent = styled.p<Props>`
   margin-top: 5px;
   font-size: 16px;
   line-height: 19px;
@@ -341,7 +358,7 @@ MainSlide.Slogan = styled.p`
   }}
 `;
 
-MainSlide.Link = styled.a`
+export const Link: StyledComponent = styled.a<Props>`
   display: block;
   width: 188px;
   height: 43px;
@@ -389,5 +406,3 @@ MainSlide.Link = styled.a`
     }
   }}
 `;
-
-export default MainSlide;

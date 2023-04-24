@@ -1,14 +1,20 @@
-import styled from 'styled-components';
-import { css } from 'styled-components';
+import styled, {css, StyledComponentBase} from 'styled-components';
 import theme from '../../theme/theme';
 import {Sliders} from '../../const';
 
-const MainSlider = styled.section`
+interface StyledComponent extends StyledComponentBase<any, object> {}
+
+interface Props {
+  $isCurrent: boolean,
+  $slideName: string
+}
+
+export const MainSliderBlock: StyledComponent = styled.section`
   position: relative;
   overflow: hidden;
 `;
 
-MainSlider.SlidesContainer = styled.div`
+export const SlidesContainer: StyledComponent = styled.div`
   display: flex;
   position: relative;
   transition: left 1.5s ease 0s;
@@ -20,7 +26,7 @@ MainSlider.SlidesContainer = styled.div`
   }
 `;
 
-MainSlider.Dots = styled.ul`
+export const Dots: StyledComponent = styled.ul`
   position: absolute;
 
   list-style: none;
@@ -49,7 +55,7 @@ MainSlider.Dots = styled.ul`
   }
 `;
 
-MainSlider.Dot = styled.li`
+export const Dot: StyledComponent = styled.li<Props>`
   width: 6px;
   height: 6px;
 
@@ -77,8 +83,8 @@ MainSlider.Dot = styled.li`
           background-color: ${theme.color.ghostWhite};
         `;
       }
+    } else {
+      return css``
     }
   }}
 `;
-
-export default MainSlider;

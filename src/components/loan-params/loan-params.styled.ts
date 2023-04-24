@@ -1,15 +1,20 @@
-import styled from 'styled-components';
+import styled, { StyledComponentBase } from "styled-components";
 import {css} from 'styled-components';
 import theme from '../../theme/theme';
 import {InputTypes, InputIconsTypes, LabelTypes} from '../../const';
 import {visuallyHidden, input} from '../../theme/mixins';
 
-import iconMinus from '../../img/icon-minus.svg';
-import iconPlus from '../../img/icon-plus.svg';
-import iconCheckbox from '../../img/icon-checkbox.svg';
+const iconMinus = require('../../img/icon-minus.svg') as string;
+const iconPlus = require('../../img/icon-plus.svg') as string;
+const iconCheckbox = require('../../img/icon-checkbox.svg') as string;
 
+interface StyledComponent extends StyledComponentBase<any, object> {}
 
-const LoanParams = styled.fieldset`
+interface Props {
+  $type: string
+}
+
+export const LoanParamsBlock: StyledComponent = styled.fieldset`
   border: none;
   padding: 25px 1px 29px 1px;
 
@@ -25,7 +30,7 @@ const LoanParams = styled.fieldset`
   }
 `;
 
-LoanParams.Label = styled.label`
+export const Label: StyledComponent = styled.label<Props>`
   display: block;
 
   font-style: normal;
@@ -51,11 +56,13 @@ LoanParams.Label = styled.label`
             margin-bottom: 9px;
           }
         `;
+    } else {
+      return css``
     }
   }}
 `;
 
-LoanParams.Icon = styled.span`
+export const Icon: StyledComponent = styled.span<Props>`
   content: "";
   position: absolute;
   display: block;
@@ -77,42 +84,43 @@ LoanParams.Icon = styled.span`
     switch (props.$type) {
       case InputIconsTypes.minus:
         return css`
-              top: 43px;
-              left: 16px;
-              background-image: url(${iconMinus});
-          `;
+          top: 43px;
+          left: 16px;
+          background-image: url(${iconMinus});
+        `;
 
-      case InputIconsTypes.plus:
-        return css`
-            top: 44px;
-            right: 7px;
-            background-image: url(${iconPlus});
+    case InputIconsTypes.plus:
+      return css`
+        top: 44px;
+        right: 7px;
+        background-image: url(${iconPlus});
 
-            @media (min-width: ${theme.tabletWidthMinThreshold}) {
-              right: 16px;
-            }
+        @media (min-width: ${theme.tabletWidthMinThreshold}) {
+          right: 16px;
+        }
 
-            @media (min-width: ${theme.desktopWidthMinThreshold}) {
-              right: 16px;
-            }
-          `;
+        @media (min-width: ${theme.desktopWidthMinThreshold}) {
+          right: 16px;
+        }
+      `;
 
-      default:
-        return css`
+    default:
+      return css`
               `;
-    }
-  }}
+  }
+}}
 `;
 
-LoanParams.Input = styled.input`
+export const Input: StyledComponent = styled.input`
   ${input()};
 `;
 
-LoanParams.InputDiv = styled(LoanParams.Input)`
+export const InputDiv: StyledComponent = styled.div`
+  ${input()};
   display: block;
 `;
 
-LoanParams.HelpText = styled.p`
+export const HelpText: StyledComponent = styled.p`
   font-size: 14px;
   line-height: 140%;
 
@@ -130,7 +138,7 @@ LoanParams.HelpText = styled.p`
   }
 `;
 
-LoanParams.InputRange = styled.input`
+export const InputRange: StyledComponent = styled.input`
   display: block;
 
   width: 100%;
@@ -167,7 +175,7 @@ LoanParams.InputRange = styled.input`
   }
 `;
 
-LoanParams.RangeValue = styled.span`
+export const RangeValue: StyledComponent = styled.span`
   display: inline-block;
 
   width: max-content;
@@ -188,14 +196,14 @@ LoanParams.RangeValue = styled.span`
   }
 `;
 
-LoanParams.TermContainer = styled.div`
+export const TermContainer: StyledComponent = styled.div`
   display: flex;
   justify-content: space-between;
 
   margin-bottom: 3px;
 `;
 
-LoanParams.Additional = styled.label`
+export const Additional: StyledComponent = styled.label<Props>`
   position: relative;
 
   font-size: 14px;
@@ -217,11 +225,13 @@ LoanParams.Additional = styled.label`
           display: block;
           margin-bottom: 10px;
         `;
+    } else {
+      return css``
     }
   }}
 `;
 
-LoanParams.InputCheckbox = styled.input`
+export const InputCheckbox: StyledComponent = styled.input`
   ${visuallyHidden()};
 
   &:checked + .calculator__checkbox-icon {
@@ -232,7 +242,7 @@ LoanParams.InputCheckbox = styled.input`
 }
 `;
 
-LoanParams.CheckboxIcon = styled.span`
+export const CheckboxIcon: StyledComponent = styled.span`
   content: "";
   position: absolute;
   display: block;
@@ -254,5 +264,3 @@ LoanParams.CheckboxIcon = styled.span`
     top: 1px;
   }
 `;
-
-export default LoanParams;

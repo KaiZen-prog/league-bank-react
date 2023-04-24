@@ -5,6 +5,18 @@ export type FormSubmitEventHandler = React.FormEventHandler<HTMLFormElement>
 export type InputChangeEventHandler = React.ChangeEventHandler<HTMLInputElement>
 export type TextareaChangeEventHandler = React.ChangeEventHandler<HTMLTextAreaElement>
 export type SelectChangeEventHandler = React.ChangeEventHandler<HTMLSelectElement>
+export type FocusEventHandler = React.FocusEventHandler<HTMLElement>
+export type MouseEventHandler = React.MouseEventHandler<HTMLElement>
+
+export type ratesData = {
+  rates: {
+    USD: number,
+    RUB: number,
+    EUR: number,
+    GBP: number,
+    CNY: number,
+  }
+}
 
 type exchangeRateType = {
   USD: number,
@@ -45,6 +57,7 @@ export type InitialCalculatorState = {
     maternalCapitalValue: number,
     minInitialFee: number,
     step: number,
+    type: string,
     minCost: number,
     maxCost: number,
     percent: {
@@ -53,10 +66,16 @@ export type InitialCalculatorState = {
       default: number,
       oneAddition: number,
       allAdditions: number
+    },
+    minTerm?: number,
+    maxTerm?: number,
+    additionalToCar?: {
+      casco: string,
+      lifeInsurance: string,
     }
   },
 
-  cost: number | string,
+  cost: number,
   initialFee: number,
   term: number,
 
