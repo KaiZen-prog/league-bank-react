@@ -1,9 +1,15 @@
-import styled from 'styled-components';
+import styled, {StyledComponentBase} from 'styled-components';
 import {css} from 'styled-components';
 import theme from '../../theme/theme';
 import {CalculatorSteps} from '../../const';
 
-const StepTitle = styled.h3`
+interface StyledComponent extends StyledComponentBase<any, object> {}
+
+interface Props {
+  $type: string
+}
+
+export const StepTitleBlock: StyledComponent = styled.h3<Props>`
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -67,5 +73,3 @@ const StepTitle = styled.h3`
     }
   }}
 `;
-
-export default StepTitle;

@@ -1,13 +1,16 @@
 import React, {useState} from 'react';
-import PropTypes from 'prop-types';
 import {KeyCode} from '../../const';
 import PopupLogin from '../popup-log-in';
-import Block from './user-account.styled';
+import {UserBlock, Link, Value} from './user-account.styled';
 
-function UserAccount(props) {
-  const [isLogInOpened, setIsLoginInOpened] = useState(false);
+interface Props {
+  isNavOpened: boolean
+}
 
+const UserAccount: React.FunctionComponent<Props> = (props) => {
   const {isNavOpened} = props;
+
+  const [isLogInOpened, setIsLoginInOpened] = useState(false);
 
   const onLogInOpening = () => {
     setIsLoginInOpened(true);
@@ -21,31 +24,27 @@ function UserAccount(props) {
     document.removeEventListener('keydown', closeLogInKeydown);
   };
 
-  function closeLogInKeydown(evt) {
+  function closeLogInKeydown(evt: KeyboardEvent) {
     if (evt.keyCode === KeyCode.ESC) {
       onLogInClosure();
     }
   }
 
   return (
-    <Block $isNavOpened={isNavOpened}>
-      <Block.Link href="#" $isNavOpened={isNavOpened} onClick={onLogInOpening}>
-        <Block.Value $isNavOpened={isNavOpened}>
+    <UserBlock $isNavOpened={isNavOpened}>
+      <Link href="#" $isNavOpened={isNavOpened} onClick={onLogInOpening}>
+        <Value $isNavOpened={isNavOpened}>
           Войти в Интернет-банк
-        </Block.Value>
-      </Block.Link>
+        </Value>
+      </Link>
       {isLogInOpened && (
         <PopupLogin
           onLogInClosure={onLogInClosure}
         />
       )}
-    </Block>
+    </UserBlock>
   );
 }
-
-UserAccount.propTypes = {
-  isNavOpened: PropTypes.bool.isRequired,
-};
 
 UserAccount.displayName = 'UserAccount';
 

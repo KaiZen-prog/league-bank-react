@@ -1,4 +1,5 @@
 import React from 'react';
+import {IMainSlide} from '../../common/interfaces';
 import {
   MainSlideBlock,
   GradientContainer,
@@ -10,30 +11,26 @@ import {
 } from './main-slide.styled';
 
 interface Props {
-  currentSlide: {
-    name: string,
-    title: string,
-    slogan: string,
-    link: string,
-    linkHref: string,
-  }
+  key: number,
+  currentSlide: IMainSlide
 }
 
 
 const MainSlide:React.FunctionComponent<Props> = (props) => {
-  const {currentSlide} = props;
+  const {key, currentSlide} = props;
+  const {name, slogan, link, linkHref} = currentSlide;
 
   return (
-    <MainSlideBlock $slideName={currentSlide.name}>
-      <GradientContainer $slideName={currentSlide.name}>
-        <BackgroundContainer $slideName={currentSlide.name}/>
+    <MainSlideBlock key={key} $slideName={name}>
+      <GradientContainer $slideName={name}>
+        <BackgroundContainer $slideName={name}/>
       </GradientContainer>
-      <TextContainer $slideName={currentSlide.name}>
-        <Title $slideName={currentSlide.name}>Лига Банк</Title>
-        <Slogan $slideName={currentSlide.name}>{currentSlide.slogan}</Slogan>
-        {currentSlide.link && (
-          <Link $slideName={currentSlide.name} href={`#${currentSlide.linkHref}`}>
-            {currentSlide.link}
+      <TextContainer $slideName={name}>
+        <Title $slideName={name}>Лига Банк</Title>
+        <Slogan $slideName={name}>{slogan}</Slogan>
+        {link && (
+          <Link $slideName={name} href={`#${linkHref}`}>
+            {link}
           </Link>
         )}
       </TextContainer>

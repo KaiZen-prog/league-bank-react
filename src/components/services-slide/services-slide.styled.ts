@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {StyledComponentBase} from 'styled-components';
 import {css} from 'styled-components';
 import theme from '../../theme/theme';
 import {Sliders} from '../../const';
@@ -20,10 +20,16 @@ import slideOnline from '../../img/slide-services-online.jpg';
 import slideOnlineTablet from '../../img/slide-services-online-tablet.jpg';
 import slideOnlineDesktop from '../../img/slide-services-online-desktop.jpg';
 
-import iconFeatureMobile from '../../img/icon-feature-mobile.svg';
-import iconFeatureTablet from '../../img/icon-feature-tablet.svg';
+const iconFeatureMobile = require('../../img/icon-feature-mobile.svg') as string;
+const iconFeatureTablet = require('../../img/icon-feature-tablet.svg') as string;
 
-const ServicesSlide = styled.div`
+interface StyledComponent extends StyledComponentBase<any, object> {}
+
+interface Props {
+  $currentSlideName: string
+}
+
+export const ServicesSlideBlock: StyledComponent = styled.div`
   background-color: ${theme.color.ghostWhite};
 
   min-width: 100%;
@@ -48,7 +54,7 @@ const ServicesSlide = styled.div`
   }
 `;
 
-ServicesSlide.SlideWrapper = styled.div`
+export const SlideWrapper: StyledComponent = styled.div<Props>`
   position: relative;
 
   padding: 55px 10px 47px 23px;
@@ -162,7 +168,7 @@ ServicesSlide.SlideWrapper = styled.div`
   }}
 `;
 
-ServicesSlide.Slogan = styled.p`
+export const Slogan: StyledComponent = styled.p<Props>`
   font-size: 16px;
   font-weight: 500;
   line-height: 22px;
@@ -258,7 +264,7 @@ ServicesSlide.Slogan = styled.p`
   }}
 `;
 
-ServicesSlide.Features = styled.ul`
+export const Features: StyledComponent = styled.ul<Props>`
   list-style: none;
 
   margin-top: 0;
@@ -328,7 +334,7 @@ ServicesSlide.Features = styled.ul`
   }}
 `;
 
-ServicesSlide.Feature = styled.li`
+export const Feature: StyledComponent = styled.li<Props>`
   position: relative;
 
   font-size: 14px;
@@ -427,7 +433,7 @@ ServicesSlide.Feature = styled.li`
   }}
 `;
 
-ServicesSlide.SlideText = styled.p`
+export const SlideText: StyledComponent = styled.p`
   font-size: 14px;
   line-height: 20px;
 
@@ -451,13 +457,13 @@ ServicesSlide.SlideText = styled.p`
   }
 `;
 
-ServicesSlide.SlideTextLink = styled.a`
+export const SlideTextLink: StyledComponent = styled.a`
   text-decoration: underline;
 
   color: ${theme.color.jaguar};
 `;
 
-ServicesSlide.SlideLink = styled.a`
+export const SlideLink: StyledComponent = styled.a<Props>`
   ${button(theme.color.ghostWhite, theme.color.neonBlue, theme.color.persianBlue)};
 
   font-size: 14px;
@@ -523,5 +529,3 @@ ServicesSlide.SlideLink = styled.a`
     }
   }}
 `;
-
-export default ServicesSlide;

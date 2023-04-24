@@ -9,16 +9,6 @@ export type FocusEventHandler = React.FocusEventHandler<HTMLElement>
 export type MouseEventHandler = React.MouseEventHandler<HTMLElement>
 export type KeyboardEventHandler = React.KeyboardEventHandler<HTMLElement>
 
-export type ratesData = {
-  rates: {
-    USD: number,
-    RUB: number,
-    EUR: number,
-    GBP: number,
-    CNY: number,
-  }
-}
-
 type exchangeRateType = {
   USD: number,
   RUB: number,
@@ -26,6 +16,10 @@ type exchangeRateType = {
   GBP: number,
   CNY: number,
 };
+
+export type ratesData = {
+  rates: exchangeRateType
+}
 
 export type conversion = {
   date: string,

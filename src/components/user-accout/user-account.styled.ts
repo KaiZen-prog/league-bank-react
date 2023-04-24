@@ -1,11 +1,17 @@
-import styled from 'styled-components';
+import styled, { StyledComponentBase } from "styled-components";
 import {css} from 'styled-components';
 import theme from '../../theme/theme';
 
-import iconLogin from '../../img/icon-login.svg';
-import iconLoginMobile from '../../img/icon-login-mobile.svg';
+const iconLogin = require('../../img/icon-login.svg') as string;
+const iconLoginMobile = require('../../img/icon-login-mobile.svg') as string;
 
-const UserBlock = styled.div`
+interface StyledComponent extends StyledComponentBase<any, object> {}
+
+interface Props {
+  $isNavOpened: boolean
+}
+
+export const UserBlock: StyledComponent = styled.div<Props>`
   flex-shrink: 0;
   margin-left: auto;
 
@@ -19,11 +25,13 @@ const UserBlock = styled.div`
       return css`
         position: static;
       `;
+    } else {
+      return css``
     }
   }}
 `;
 
-UserBlock.Link = styled.a`
+export const Link: StyledComponent = styled.a<Props>`
   position: relative;
   display: inline-block;
   padding-left: 30px;
@@ -79,12 +87,14 @@ UserBlock.Link = styled.a`
             left: 14px;
           }
         `;
+    } else {
+      return css``
     }
   }}
   }
 `;
 
-UserBlock.Value = styled.span`
+export const Value: StyledComponent = styled.span<Props>`
   @media (max-width: ${theme.desktopWidthMinThreshold}) {
     display: none;
   }
@@ -95,9 +105,9 @@ UserBlock.Value = styled.span`
       return css`
           display: block;
         `;
+    } else {
+      return css``
     }
   }}
   }
 `;
-
-export default UserBlock;

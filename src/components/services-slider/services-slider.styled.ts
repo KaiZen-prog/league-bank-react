@@ -1,15 +1,22 @@
-import styled from 'styled-components';
+import styled, {StyledComponentBase} from 'styled-components';
 import {css} from 'styled-components';
 import { visuallyHidden } from '../../theme/mixins';
 import theme from '../../theme/theme';
 import {Sliders} from '../../const';
 
-import iconDeposit from '../../img/icon-deposit.svg';
-import iconCredit from '../../img/icon-credit.svg';
-import iconInsurance from '../../img/icon-insurance.svg';
-import iconOnline from '../../img/icon-online.svg';
+const iconDeposit = require('../../img/icon-deposit.svg') as string;
+const iconCredit = require('../../img/icon-credit.svg') as string;
+const iconInsurance = require('../../img/icon-insurance.svg') as string;
+const iconOnline = require('../../img/icon-online.svg') as string;
 
-const ServicesSlider = styled.section`
+interface StyledComponent extends StyledComponentBase<any, object> {}
+
+interface Props {
+  $isCurrent?: boolean,
+  $tabName?: string
+}
+
+export const ServicesSliderBlock: StyledComponent = styled.section`
   position: relative;
   overflow: hidden;
 
@@ -23,11 +30,11 @@ const ServicesSlider = styled.section`
   }
 `;
 
-ServicesSlider.Header = styled.h2`
+export const Header: StyledComponent = styled.h2`
   ${visuallyHidden()};
 `;
 
-ServicesSlider.TabList = styled.ul`
+export const TabList: StyledComponent = styled.ul`
   display: none;
 
   @media (min-width: ${theme.desktopWidthMinThreshold}) {
@@ -43,7 +50,7 @@ ServicesSlider.TabList = styled.ul`
   }
 `;
 
-ServicesSlider.Tab = styled.li`
+export const Tab: StyledComponent = styled.li<Props>`
   @media (min-width: ${theme.desktopWidthMinThreshold}) {
     flex-grow: 1;
 
@@ -64,18 +71,19 @@ ServicesSlider.Tab = styled.li`
       return css`
         background-color: ${theme.color.ghostWhite};
       `;
-    }
+    } else {
+      return css``
   }}
   }
 `;
 
-ServicesSlider.TabLabel = styled.span`
+export const TabLabel: StyledComponent = styled.span<Props>`
   @media (min-width: ${theme.desktopWidthMinThreshold}) {
     display: inline-block;
     position: relative;
     transform: translateX(22px);
 
-    color: ${theme.jaguar};
+    color: ${theme.color.jaguar};
 
     &::before {
       content: "";
@@ -138,7 +146,7 @@ ServicesSlider.TabLabel = styled.span`
   }
 `;
 
-ServicesSlider.SlidesContainer = styled.div`
+export const SlidesContainer: StyledComponent = styled.div`
   display: flex;
   position: relative;
 
@@ -154,7 +162,7 @@ ServicesSlider.SlidesContainer = styled.div`
   }
 `;
 
-ServicesSlider.DotList = styled.ul`
+export const DotList: StyledComponent = styled.ul`
   position: absolute;
 
   list-style: none;
@@ -186,7 +194,7 @@ ServicesSlider.DotList = styled.ul`
   }
 `;
 
-ServicesSlider.Dot = styled.li`
+export const Dot: StyledComponent = styled.li<Props>`
   width: 6px;
   height: 6px;
 
@@ -208,9 +216,8 @@ ServicesSlider.Dot = styled.li`
       return css`
         background-color: ${theme.color.gainsboro};
       `;
+    } else {
+      return css``
     }
   }}
 `;
-
-
-export default ServicesSlider;

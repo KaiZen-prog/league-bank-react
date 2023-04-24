@@ -1,20 +1,27 @@
 import React, {useEffect, useState, createRef} from 'react';
 import {DESKTOP_MIN_WIDTH, Sliders} from '../../const';
 import {getNextElement, getPreviousElement} from '../../utils/common';
+import {MainSlideProps, ServicesSlideProps,IMainSlide, IServicesSlide} from '../../common/interfaces';
 
-function WithSlider(props) {
+interface Props {
+  Component: React.FunctionComponent<MainSlideProps> | React.FunctionComponent<ServicesSlideProps>,
+  slides: IMainSlide[] | IServicesSlide[];
+  withTabs: boolean,
+}
+
+const WithSlider: React.FunctionComponent<Props> = (props) => {
   const {Component, slides, withTabs = false} = props;
 
-  const sliderRef = createRef();
+  const sliderRef: React.RefObject<HTMLElement> = createRef();
 
   const [sliderState, setSliderState] = useState({
-    slides: slides,
-    currentSlide: slides[0],
+    slides: slides  as IMainSlide[] & IServicesSlide[],
+    currentSlide: slides[0] as IMainSlide & IServicesSlide,
     currentSlideNumber: 0
   });
 
   let interval = () => {};
-  let swipeEvent = null;
+  let swipeEvent: React.MouseEvent | React.TouchEvent = null;
   let leftCoord = null;
   let startCoords = null;
   let initPosX = null;
@@ -139,28 +146,27 @@ function WithSlider(props) {
     document.addEventListener('touchend', swipeEnd);
   };
 
+  const propsWithoutTabs = {
+    slides: sliderState.slides,
+    currentSlide: sliderState.currentSlide,
+    currentSlideNumber: sliderState.currentSlideNumber,
+    sliderRef: sliderRef,
+    onSwipeStart: onSwipeStart,
+    onTabClick: slideChangeHandler
+  };
+
+  const propsWithTabs = Object.assign({}, propsWithoutTabs, {
+    onTabClick: slideChangeHandler
+  });
+
   return (
     <>
       {withTabs && (
-        <Component
-          slides={sliderState.slides}
-          currentSlide={sliderState.currentSlide}
-          currentSlideNumber={sliderState.currentSlideNumber}
-          slidesQuantity={sliderState.slidesQuantity}
-          sliderRef={sliderRef}
-          onSwipeStart={onSwipeStart}
-          onTabClick={slideChangeHandler}
-        />
+        <Component {...propsWithTabs}/>
       )}
 
       {!withTabs && (
-        <Component
-          slides={sliderState.slides}
-          currentSlide={sliderState.currentSlide}
-          currentSlideNumber={sliderState.currentSlideNumber}
-          sliderRef={sliderRef}
-          onSwipeStart={onSwipeStart}
-        />
+        <Component {...propsWithoutTabs}/>
       )}
     </>
   );
