@@ -1,8 +1,11 @@
-import styled from 'styled-components';
+import styled, {StyledComponentBase} from 'styled-components';
 import theme from '../../theme/theme';
-import iconPopupClose from '../../img/icon-close.svg';
 
-const PopupConfirm = styled.div`
+const iconPopupClose = require('../../img/icon-close.svg') as string;
+
+interface StyledComponent extends StyledComponentBase<any, object> {}
+
+export const PopupConfirmBlock: StyledComponent = styled.div`
   position: fixed;
 
   display: flex;
@@ -20,7 +23,7 @@ const PopupConfirm = styled.div`
   z-index: 1;
 `;
 
-PopupConfirm.Container = styled.div`
+export const Container: StyledComponent = styled.div`
   position: fixed;
 
   width: 290px;
@@ -45,7 +48,7 @@ PopupConfirm.Container = styled.div`
   }
 `;
 
-PopupConfirm.CloseButton = styled.button`
+export const CloseButton: StyledComponent = styled.button`
   position: absolute;
   display: block;
 
@@ -77,7 +80,7 @@ PopupConfirm.CloseButton = styled.button`
   }
 `;
 
-PopupConfirm.Title = styled.h2`
+export const Title: StyledComponent = styled.h2`
   width: 200px;
 
   margin: 0 auto 13px;
@@ -99,7 +102,7 @@ PopupConfirm.Title = styled.h2`
   }
 `;
 
-PopupConfirm.Content = styled.p`
+export const Content: StyledComponent = styled.p`
   width: auto;
 
   font-size: 16px;
@@ -113,4 +116,3 @@ PopupConfirm.Content = styled.p`
   }
 `;
 
-export default PopupConfirm;

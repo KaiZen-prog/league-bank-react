@@ -1,12 +1,14 @@
-import styled from 'styled-components';
+import styled, {StyledComponentBase} from 'styled-components';
 import { button } from '../../theme/mixins';
 import theme from '../../theme/theme';
 
-import iconClose from '../../img/icon-close.svg';
-import iconLogin from '../../img/logo-log-in.svg';
-import iconPassword from '../../img/icon-password.svg';
+const iconClose = require('../../img/icon-close.svg') as string;
+const iconLogin = require('../../img/logo-log-in.svg') as string;
+const iconPassword = require('../../img/icon-password.svg') as string;
 
-const Login = styled.div`
+interface StyledComponent extends StyledComponentBase<any, object> {}
+
+export const LoginBlock: StyledComponent = styled.div`
   position: fixed;
 
   display: flex;
@@ -23,7 +25,7 @@ const Login = styled.div`
   z-index: 99;
 `;
 
-Login.Form = styled.form`
+export const Form: StyledComponent = styled.form`
   position: fixed;
 
   display: flex;
@@ -53,7 +55,7 @@ Login.Form = styled.form`
   }
 `;
 
-Login.Logo = styled.div`
+export const Logo: StyledComponent = styled.div`
   width: 151px;
   height: 31px;
 
@@ -74,7 +76,7 @@ Login.Logo = styled.div`
   }
 `;
 
-Login.Close = styled.button`
+export const Close: StyledComponent = styled.button`
   position: absolute;
 
   top: 53px;
@@ -108,7 +110,7 @@ Login.Close = styled.button`
   }
 `;
 
-Login.Label = styled.label`
+export const Label: StyledComponent = styled.label`
   position: relative;
 
   font-size: 16px;
@@ -120,7 +122,7 @@ Login.Label = styled.label`
   color: ${theme.color.cello};
 `;
 
-Login.LoginLabel = styled(Login.Label)`
+export const LoginLabel: StyledComponent = styled(Label)`
   margin-bottom: 23px;
 
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
@@ -128,7 +130,7 @@ Login.LoginLabel = styled(Login.Label)`
   }
 `;
 
-Login.PasswordLabel = styled(Login.Label)`
+export const PasswordLabel: StyledComponent = styled(Label)`
   margin-bottom: 49px;
 
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
@@ -136,7 +138,7 @@ Login.PasswordLabel = styled(Login.Label)`
   }
 `;
 
-Login.Input = styled.input`
+export const Input: StyledComponent = styled.input`
   font-size: 24px;
   line-height: 58px;
 
@@ -162,7 +164,7 @@ Login.Input = styled.input`
   }
 `;
 
-Login.LoginInput = styled(Login.Input)`
+export const LoginInput: StyledComponent = styled(Input)`
   padding-right: 60px;
 
   @media (min-width: ${theme.tabletWidthMinThreshold}) and (max-width: ${theme.desktopWidthMinThreshold}) {
@@ -170,11 +172,11 @@ Login.LoginInput = styled(Login.Input)`
   }
 `;
 
-Login.PasswordInput = styled(Login.Input)`
+export const PasswordInput: StyledComponent = styled(Input)`
   padding-right: 50px;
 `;
 
-Login.ShowPassword = styled.button`
+export const ShowPassword: StyledComponent = styled.button`
   position: absolute;
   display: block;
 
@@ -201,7 +203,7 @@ Login.ShowPassword = styled.button`
   }
 `;
 
-Login.Submit = styled.button`
+export const Submit: StyledComponent = styled.button`
   font-weight: 500;
   font-size: 14px;
   line-height: 21px;
@@ -223,7 +225,7 @@ Login.Submit = styled.button`
   }
 `;
 
-Login.RestorePasswordLink = styled.a`
+export const RestorePasswordLink: StyledComponent = styled.a`
   position: absolute;
 
   font-size: 14px;
@@ -248,5 +250,3 @@ Login.RestorePasswordLink = styled.a`
     transform: translateX(50%);
   }
 `;
-
-export default Login;

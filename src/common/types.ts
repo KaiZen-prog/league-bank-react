@@ -7,6 +7,7 @@ export type TextareaChangeEventHandler = React.ChangeEventHandler<HTMLTextAreaEl
 export type SelectChangeEventHandler = React.ChangeEventHandler<HTMLSelectElement>
 export type FocusEventHandler = React.FocusEventHandler<HTMLElement>
 export type MouseEventHandler = React.MouseEventHandler<HTMLElement>
+export type KeyboardEventHandler = React.KeyboardEventHandler<HTMLElement>
 
 export type ratesData = {
   rates: {
@@ -55,6 +56,7 @@ export type InitialCalculatorState = {
   purpose: string
   paramsCredit: {
     maternalCapitalValue: number,
+    minCreditAmount: number,
     minInitialFee: number,
     step: number,
     type: string,

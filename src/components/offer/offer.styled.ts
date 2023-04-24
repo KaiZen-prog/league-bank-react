@@ -1,9 +1,15 @@
-import styled, {css} from 'styled-components';
+import styled, {css, StyledComponentBase} from 'styled-components';
 import theme from '../../theme/theme';
 import {OfferTypes} from '../../const';
 import {submitButton} from '../../theme/mixins';
 
-const Offer = styled.div`
+interface StyledComponent extends StyledComponentBase<any, object> {}
+
+interface Props {
+  $type: string
+}
+
+export const OfferBlock: StyledComponent = styled.div<Props>`
   position: relative;
 
   margin-right: 3px;
@@ -43,11 +49,13 @@ const Offer = styled.div`
            padding: 54px 5px 55px 59px;
         }
       `;
+    } else {
+      return css``
     }
   }}
 `;
 
-Offer.OfferTitle = styled.h3`
+export const Title: StyledComponent = styled.h3<Props>`
   font-weight: 500;
   font-size: 18px;
   line-height: 25px;
@@ -73,11 +81,13 @@ Offer.OfferTitle = styled.h3`
           margin-bottom: 13px;
         }
       `;
+    } else {
+      return css``
     }
   }}
 `;
 
-Offer.OfferList = styled.ul`
+export const List: StyledComponent = styled.ul`
   list-style: none;
 
   margin-top: 0;
@@ -95,7 +105,7 @@ Offer.OfferList = styled.ul`
   }
 `;
 
-Offer.OfferItem = styled.li`
+export const Item: StyledComponent = styled.li`
   margin-bottom: 14px;
 
   @media (min-width: ${theme.tabletWidthMinThreshold}) {
@@ -105,7 +115,7 @@ Offer.OfferItem = styled.li`
   }
 `;
 
-Offer.OfferValue = styled.p`
+export const Value: StyledComponent = styled.p`
   font-weight: 500;
   font-size: 18px;
   line-height: 25px;
@@ -122,7 +132,7 @@ Offer.OfferValue = styled.p`
   }
 `;
 
-Offer.OfferName = styled.p`
+export const Name: StyledComponent = styled.p<Props>`
   font-weight: normal;
   font-size: 16px;
   line-height: 22px;
@@ -138,12 +148,12 @@ Offer.OfferName = styled.p`
           width: 265px;
         }
       `;
+    } else {
+      return css``
     }
   }}
 `;
 
-Offer.SubmitButton = styled.button`
+export const SubmitButton: StyledComponent = styled.button`
   ${submitButton()};
 `;
-
-export default Offer;

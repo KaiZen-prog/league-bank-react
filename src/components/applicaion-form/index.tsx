@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {CalculatorSteps, InputTypes, PHONE_LENGTH, SubmitButtonTypes} from '../../const';
 import {FormSubmitEventHandler, InputChangeEventHandler} from '../../common/types';
 import {ActionType} from '../../store/actions/calculator';
-import {divideNumberToSpace, shakeEffect} from '../../utils/common';
+import {divideNumberToSpace, shakeEffect, setTermLine} from '../../utils/common';
 import {useAppSelector, useAppDispatch} from '../../hooks/hooks';
 import StepTitle from '../step-title';
 import InputContainer from '../input-container';
@@ -103,7 +103,7 @@ const ApplicationForm: React.FunctionComponent = () => {
           </RequestField>
 
           <RequestField>
-            <RequestValue>{state.term} лет</RequestValue>
+            <RequestValue>{setTermLine(state.term)}</RequestValue>
             <RequestName>Срок кредитования</RequestName>
           </RequestField>
         </tbody>

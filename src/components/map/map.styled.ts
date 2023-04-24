@@ -1,7 +1,9 @@
-import styled from 'styled-components';
+import styled, {StyledComponentBase} from 'styled-components';
 import theme from '../../theme/theme';
 
-const Map = styled.section`
+interface StyledComponent extends StyledComponentBase<any, object> {}
+
+export const MapBlock: StyledComponent = styled.section`
   margin-bottom: 56px;
 
   @media (min-width: ${theme.tabletWidthMinThreshold}) {
@@ -19,7 +21,7 @@ const Map = styled.section`
   }
 `;
 
-Map.Header = styled.h2`
+export const Header: StyledComponent = styled.h2`
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
@@ -47,7 +49,7 @@ Map.Header = styled.h2`
   }
 `;
 
-Map.Iframe = styled.iframe`
+export const Iframe: StyledComponent = styled.iframe`
   width: 100%;
   height: 381px;
 
@@ -57,5 +59,3 @@ Map.Iframe = styled.iframe`
     height: 458px;
   }
 `;
-
-export default Map;

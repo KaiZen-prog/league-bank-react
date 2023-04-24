@@ -1,12 +1,28 @@
 import React, {createRef, useState} from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
-import Block from './log-in.styled';
+import {InputChangeEventHandler} from '../../common/types';
+import {
+  LoginBlock,
+  Form,
+  Logo,
+  Close,
+  LoginLabel,
+  LoginInput,
+  PasswordLabel,
+  PasswordInput,
+  ShowPassword,
+  Submit,
+  RestorePasswordLink
+} from './popup-log-in.styled';
+
+interface Props {
+  onLogInClosure: (...args: any[]) => void
+}
 
 const modalRoot = document.getElementById('modal-root');
 
-function PopupLogin(props) {
-  const passwordInputRef = createRef();
+const PopupLogin: React.FunctionComponent<Props> = (props) => {
+  const passwordInputRef: React.RefObject<HTMLInputElement> = createRef();
 
   const [state, setState] = useState({
     login: localStorage.getItem('login') !== null ? localStorage.getItem('login') : '',
@@ -25,7 +41,7 @@ function PopupLogin(props) {
     passwordInputRef.current.type = 'password';
   };
 
-  const onLogInFieldChange = (evt) => {
+  const onLogInFieldChange: InputChangeEventHandler = (evt) => {
     const { name, value } = evt.target;
 
     setState((prevState) => ({
@@ -37,15 +53,15 @@ function PopupLogin(props) {
   };
 
   return ReactDOM.createPortal(
-    <Block onClick={onLogInClosure}>
-      <Block.Form action="#" onClick={(evt) => evt.stopPropagation()}>
-        <Block.Logo />
-        <Block.Close type="button" onClick={onLogInClosure}>
+    <LoginBlock onClick={onLogInClosure}>
+      <Form action="#" onClick={(evt: React.MouseEvent) => evt.stopPropagation()}>
+        <Logo />
+        <Close type="button" onClick={onLogInClosure}>
           <span className="visually-hidden">Закрыть окно</span>
-        </Block.Close>
-        <Block.LoginLabel>
+        </Close>
+        <LoginLabel>
           Логин
-          <Block.LoginInput
+          <LoginInput
             id="login"
             type="text"
             name="login"
@@ -54,10 +70,10 @@ function PopupLogin(props) {
             autoFocus
             required
           />
-        </Block.LoginLabel>
-        <Block.PasswordLabel>
+        </LoginLabel>
+        <PasswordLabel>
           Пароль
-          <Block.PasswordInput
+          <PasswordInput
             id="password"
             type="password"
             name="password"
@@ -66,18 +82,14 @@ function PopupLogin(props) {
             value={state.password}
             required
           />
-        </Block.PasswordLabel>
-        <Block.ShowPassword type="button" onMouseDown={onPasswordShow} onMouseUp={onPasswordHide} />
-        <Block.Submit type="submit">Войти</Block.Submit>
-        <Block.RestorePasswordLink href="#top">Забыли пароль?</Block.RestorePasswordLink>
-      </Block.Form>
-    </Block>,
+        </PasswordLabel>
+        <ShowPassword type="button" onMouseDown={onPasswordShow} onMouseUp={onPasswordHide} />
+        <Submit type="submit">Войти</Submit>
+        <RestorePasswordLink href="#top">Забыли пароль?</RestorePasswordLink>
+      </Form>
+    </LoginBlock>,
     modalRoot,
   );
 }
-
-PopupLogin.propTypes = {
-  onLogInClosure: PropTypes.func.isRequired,
-};
 
 export default PopupLogin;

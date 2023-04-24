@@ -1,17 +1,23 @@
-import styled from 'styled-components';
+import styled, { StyledComponentBase } from "styled-components";
 import {css} from 'styled-components';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import theme from '../../theme/theme';
 
-import logoMobile from '../../img/logo-mobile.svg';
-import logoTablet from '../../img/logo-tablet.svg';
-import logoDesktop from '../../img/logo-desktop.svg';
+const logoMobile = require('../../img/logo-mobile.svg') as string;
+const logoTablet = require('../../img/logo-tablet.svg') as string;
+const logoDesktop = require('../../img/logo-desktop.svg') as string;
 
-import logoFooterMobile from '../../img/logo-footer-mobile.svg';
-import logoFooterTablet from '../../img/logo-footer-tablet.svg';
-import logoFooterDesktop from '../../img/logo-footer-desktop.svg';
+const logoFooterMobile = require('../../img/logo-footer-mobile.svg') as string;
+const logoFooterTablet = require('../../img/logo-footer-tablet.svg') as string;
+const logoFooterDesktop = require('../../img/logo-footer-desktop.svg') as string;
 
-const PageLink = styled(Link)`
+interface StyledComponent extends StyledComponentBase<any, object> {}
+
+interface Props {
+  $isFooterLogo: boolean
+}
+
+export const PageLinkBlock: StyledComponent = styled(Link)<Props>`
   position: relative;
   display: block;
 
@@ -157,5 +163,3 @@ const PageLink = styled(Link)`
     }
   }}
 `;
-
-export default PageLink;

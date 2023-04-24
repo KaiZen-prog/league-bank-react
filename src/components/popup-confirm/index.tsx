@@ -1,14 +1,19 @@
 import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
-import Block from './popup-confirm.styled';
 import {ActionType} from '../../store/actions/calculator';
 import {KeyCode} from '../../const';
+import {
+  PopupConfirmBlock,
+  Container,
+  CloseButton,
+  Title,
+  Content
+} from './popup-confirm.styled';
 
 const modalRoot = document.getElementById('modal-root');
 
-function PopupConfirm() {
+const PopupConfirm: React.FunctionComponent = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,30 +30,26 @@ function PopupConfirm() {
     document.removeEventListener('keydown', closePopupKeydown);
   };
 
-  function closePopupKeydown(evt) {
+  function closePopupKeydown (evt: KeyboardEvent) {
     if (evt.keyCode === KeyCode.ESC) {
       onPopupClose();
     }
   }
 
   return ReactDOM.createPortal(
-    <Block onClick={onPopupClose}>
-      <Block.Container onClick={(evt) => evt.stopPropagation()}>
-        <Block.CloseButton type='button' onClick={onPopupClose}></Block.CloseButton>
-        <Block.Title>Спасибо за обращение в наш банк.</Block.Title>
-        <Block.Content>
+    <PopupConfirmBlock onClick={onPopupClose}>
+      <Container onClick={(evt: MouseEvent) => evt.stopPropagation()}>
+        <CloseButton type='button' onClick={onPopupClose}></CloseButton>
+        <Title>Спасибо за обращение в наш банк.</Title>
+        <Content>
           Наш менеджер скоро свяжется с вами по указанному номеру телефона.
-        </Block.Content>
-      </Block.Container>
-    </Block>,
+        </Content>
+      </Container>
+    </PopupConfirmBlock>,
     modalRoot,
   );
 }
 
 PopupConfirm.displayName = 'PopupConfirm';
-
-PopupConfirm.propTypes = {
-  onPopupClose: PropTypes.func,
-};
 
 export default PopupConfirm;

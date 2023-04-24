@@ -7,6 +7,7 @@ const initialState: InitialCalculatorState = {
   purpose: 'none',
   paramsCredit: {
     maternalCapitalValue: 0,
+    minCreditAmount: 0,
     minInitialFee: 0,
     step : 0,
     type: '',
