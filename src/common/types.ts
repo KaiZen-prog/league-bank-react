@@ -10,6 +10,26 @@ export type MouseEventHandler = React.MouseEventHandler<HTMLElement>
 export type KeyboardEventHandler = React.KeyboardEventHandler<HTMLElement>
 export type TouchEventHandler = React.TouchEvent<HTMLElement>
 
+type Slide = {
+  name: string,
+  slogan: string,
+  link: string
+};
+
+export type MainSlideType = Slide & {
+  linkHref: string,
+}
+
+export type ServicesSlideType = Slide & {
+  tabName: string,
+  features: Array<string>,
+  text?: {
+    firstLine?: string,
+    secondLine?: string,
+    link?: string,
+  }
+};
+
 type exchangeRateType = {
   USD: number,
   RUB: number,

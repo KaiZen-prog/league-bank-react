@@ -1,5 +1,5 @@
 import React from 'react';
-import {IServicesSlide} from '../../common/interfaces';
+import {ServicesSlideType} from '../../common/types';
 import {
   ServicesSlideBlock,
   SlideWrapper,
@@ -13,7 +13,7 @@ import {
 
 interface Props {
   key: number,
-  currentSlide: IServicesSlide
+  currentSlide: ServicesSlideType
 }
 
 const ServicesSlide: React.FunctionComponent<Props> = (props) => {

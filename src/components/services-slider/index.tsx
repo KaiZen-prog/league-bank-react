@@ -1,6 +1,6 @@
 import React from 'react';
 import ServicesSlide from '../services-slide';
-import {ServicesSlideProps} from '../../common/interfaces';
+import {ServicesSlideType} from '../../common/types';
 import {Sliders} from '../../const';
 import {
   ServicesSliderBlock,
@@ -13,7 +13,16 @@ import {
   Dot
 } from './services-slider.styled';
 
-const ServicesSlider: React.FunctionComponent<ServicesSlideProps> = (props) => {
+interface Props {
+  slides: ServicesSlideType[],
+  currentSlide: ServicesSlideType,
+  currentSlideNumber: number,
+  sliderRef: React.RefObject<HTMLElement>,
+  onTabClick: (slide: ServicesSlideType, index: number) => void
+  onSwipeStart: (...args: any[]) => void
+}
+
+const ServicesSlider: React.FunctionComponent<Props> = (props) => {
   const {
     slides,
     currentSlide,

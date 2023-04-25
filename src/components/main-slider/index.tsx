@@ -1,6 +1,6 @@
 import React from 'react';
 import MainSlide from '../main-slide';
-import {MainSlideProps} from '../../common/interfaces';
+import {MainSlideType} from '../../common/types';
 import {Sliders} from '../../const';
 import {
   MainSliderBlock,
@@ -9,7 +9,15 @@ import {
   Dot
 } from './main-slider.styled';
 
-const MainSlider:React.FunctionComponent<MainSlideProps> = (props) => {
+interface Props {
+  slides: MainSlideType[],
+  currentSlide: MainSlideType,
+  currentSlideNumber: number,
+  sliderRef: React.RefObject<any>
+  onSwipeStart: (...args: any[]) => void;
+}
+
+const MainSlider:React.FunctionComponent<Props> = (props) => {
   const {
     slides,
     currentSlide,

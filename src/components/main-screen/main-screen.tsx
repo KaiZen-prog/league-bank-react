@@ -1,6 +1,6 @@
 import React, {lazy, Suspense} from 'react';
 import RenderLoader from '../render-loader/';
-import WithSlider from '../../hocs/with-slider/with-slider';
+import Slider from '../slider/slider';
 import Calculator from '../calculator';
 import {mainSlides, servicesSlides} from '../../mocks/mocks';
 
@@ -9,10 +9,10 @@ const Map = lazy(() => import('../map'));
 const  MainScreen: React.FunctionComponent = () => {
   return (
     <>
-      <WithSlider
+      <Slider
         slides={mainSlides}
       />
-      <WithSlider
+      <Slider
         slides={servicesSlides}
       />
       <Calculator/>

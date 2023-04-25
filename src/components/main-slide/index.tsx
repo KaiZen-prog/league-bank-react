@@ -1,5 +1,5 @@
 import React from 'react';
-import {IMainSlide} from '../../common/interfaces';
+import {MainSlideType} from '../../common/types';
 import {
   MainSlideBlock,
   GradientContainer,
@@ -12,7 +12,7 @@ import {
 
 interface Props {
   key: number,
-  currentSlide: IMainSlide
+  currentSlide: MainSlideType
 }
 
 

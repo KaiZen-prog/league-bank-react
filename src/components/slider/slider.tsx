@@ -1,15 +1,15 @@
 import React, { useEffect, useState, createRef, Touch } from "react";
 import {DESKTOP_MIN_WIDTH, Sliders} from '../../const';
 import {getNextElement, getPreviousElement} from '../../utils/common';
-import {IMainSlide, IServicesSlide} from '../../common/interfaces';
-import MainSlider from '../../components/main-slider';
-import ServicesSlider from '../../components/services-slider';
+import {MainSlideType, ServicesSlideType} from '../../common/types';
+import MainSlider from '../main-slider';
+import ServicesSlider from '../services-slider';
 
 interface Props {
-  slides: IMainSlide[] | IServicesSlide[]
+  slides: MainSlideType[] | ServicesSlideType[]
 }
 
-const WithSlider: React.FunctionComponent<Props> = (props) => {
+const Slider: React.FunctionComponent<Props> = (props) => {
   const {slides} = props;
 
   const sliderRef: React.RefObject<HTMLElement> = createRef();
@@ -21,8 +21,8 @@ const WithSlider: React.FunctionComponent<Props> = (props) => {
   }
 
   const [sliderState, setSliderState] = useState({
-    slides: slides  as IMainSlide[] | IServicesSlide[],
-    currentSlide: slides[0] as IMainSlide | IServicesSlide,
+    slides: slides  as MainSlideType[] | ServicesSlideType[],
+    currentSlide: slides[0] as MainSlideType | ServicesSlideType,
     currentSlideNumber: 0
   });
 
@@ -64,7 +64,7 @@ const WithSlider: React.FunctionComponent<Props> = (props) => {
 
   }, [sliderState]);
 
-  const slideChangeHandler = (slide: IMainSlide | IServicesSlide, newSlideIndex: number) => {
+  const slideChangeHandler = (slide: MainSlideType | ServicesSlideType, newSlideIndex: number) => {
     setSliderState((prevState) => ({
       ...prevState,
       currentSlide: slide,
@@ -152,30 +152,36 @@ const WithSlider: React.FunctionComponent<Props> = (props) => {
     document.addEventListener('touchend', swipeEnd);
   };
 
-  return (
-    <>
-      {withTabs && (
-        <ServicesSlider
-          slides={sliderState.slides as IServicesSlide[]}
-          currentSlide={sliderState.currentSlide as IServicesSlide}
-          currentSlideNumber={sliderState.currentSlideNumber}
-          sliderRef={sliderRef}
-          onSwipeStart={onSwipeStart}
-          onTabClick={slideChangeHandler}
-        />
-      )}
+  switch (true) {
+    case 'linkHref' in sliderState.currentSlide:
+      return (
+        <>
+          <MainSlider
+            slides={sliderState.slides as MainSlideType[]}
+            currentSlide={sliderState.currentSlide as MainSlideType}
+            currentSlideNumber={sliderState.currentSlideNumber}
+            sliderRef={sliderRef}
+            onSwipeStart={onSwipeStart}
+          />
+        </>
+      );
 
-      {!withTabs && (
-        <MainSlider
-          slides={sliderState.slides as IMainSlide[]}
-          currentSlide={sliderState.currentSlide as IMainSlide}
-          currentSlideNumber={sliderState.currentSlideNumber}
-          sliderRef={sliderRef}
-          onSwipeStart={onSwipeStart}
-        />
-      )}
-    </>
-  );
+    case 'features' in sliderState.currentSlide:
+      return (
+        <>
+          <ServicesSlider
+            slides={sliderState.slides as ServicesSlideType[]}
+            currentSlide={sliderState.currentSlide as ServicesSlideType}
+            currentSlideNumber={sliderState.currentSlideNumber}
+            sliderRef={sliderRef}
+            onSwipeStart={onSwipeStart}
+            onTabClick={slideChangeHandler}
+          />
+        </>
+      );
+    default:
+      return null;
+  }
 }
 
-export default WithSlider;
+export default Slider;
