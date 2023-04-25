@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {setItem} from '../../services/localstorage';
 import {useAppSelector, useAppDispatch} from '../../hooks/hooks';
 import ConversionHistoryItem from '../conversion-history-item';
 import {ActionType} from '../../store/actions/converter';
-import {conversion} from '../../common/types';
+import {Conversion} from '../../common/types';
 import {
   ConversionHistoryBlock,
   Wrapper,
@@ -15,6 +16,10 @@ const ConversionHistory: React.FunctionComponent = () => {
   const conversionHistory = useAppSelector((store) => store.converter.conversionHistory);
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    setItem('conversionHistory', conversionHistory);
+  }, [conversionHistory]);
+
   const clearHistory = () => {
     dispatch({type: ActionType.CLEAR_HISTORY, payload: []});
   };
@@ -24,7 +29,7 @@ const ConversionHistory: React.FunctionComponent = () => {
       <Wrapper>
         <Header>История конвертации</Header>
         <List>
-          {conversionHistory.map((elem: conversion, i: number) => (
+          {conversionHistory.map((elem: Conversion, i: number) => (
             <ConversionHistoryItem
               key={i}
               date={elem.date}

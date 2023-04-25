@@ -1,8 +1,6 @@
 import { APIValues, DIGIT_SPACE } from '../const';
 import {ratesData} from '../common/types';
 
-export const extend = (a: any, b: any) => Object.assign({}, a, b);
-
 export const getPreviousElement = (array: Array<any>, element: any) =>
   array[(array.indexOf(element) + array.length - 1) % array.length];
 

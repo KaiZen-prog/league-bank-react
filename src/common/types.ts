@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 
 export type FormSubmitEventHandler = React.FormEventHandler<HTMLFormElement>
 export type InputChangeEventHandler = React.ChangeEventHandler<HTMLInputElement>
@@ -42,8 +41,9 @@ export type ratesData = {
   rates: exchangeRateType
 }
 
-export type conversion = {
+export type Conversion = {
   date: string,
+  id: number,
   currencyInput: {
     type: string,
     amount: number
@@ -60,10 +60,10 @@ export type exchangeRate = {
 };
 
 export type InitialConverterState = {
-  currentDate: moment.MomentInput,
+  currentDate: string,
   isFetchingData: boolean,
   exchangeRates: Record<string, exchangeRateType>,
-  conversionHistory: Array<conversion>
+  conversionHistory: Array<Conversion>
 };
 
 export type InitialCalculatorState = {
