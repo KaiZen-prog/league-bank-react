@@ -14,12 +14,6 @@ const Slider: React.FunctionComponent<Props> = (props) => {
 
   const sliderRef: React.RefObject<HTMLElement> = createRef();
 
-  let withTabs = false;
-
-  if ("features" in slides[0]) {
-    withTabs = true;
-  }
-
   const [sliderState, setSliderState] = useState({
     slides: slides  as MainSlideType[] | ServicesSlideType[],
     currentSlide: slides[0] as MainSlideType | ServicesSlideType,
@@ -53,8 +47,9 @@ const Slider: React.FunctionComponent<Props> = (props) => {
     return newSlide;
   };
 
+  // Запускаем карусель если не предусмотрены табы для перехода по слайдам
   useEffect(() => {
-    if(!withTabs) {
+    if (!('tabName' in sliderState.currentSlide)) {
       initCarouselInterval();
     }
 
@@ -152,6 +147,7 @@ const Slider: React.FunctionComponent<Props> = (props) => {
     document.addEventListener('touchend', swipeEnd);
   };
 
+  // В зависимости от типа полученных слайдов, рендерим подходящий для них компонент
   switch (true) {
     case 'linkHref' in sliderState.currentSlide:
       return (
