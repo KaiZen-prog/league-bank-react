@@ -1,37 +1,43 @@
-import React, {useEffect, useState, createRef} from 'react';
+import React, { useEffect, useState, createRef, Touch } from "react";
 import {DESKTOP_MIN_WIDTH, Sliders} from '../../const';
 import {getNextElement, getPreviousElement} from '../../utils/common';
-import {MainSlideProps, ServicesSlideProps,IMainSlide, IServicesSlide} from '../../common/interfaces';
+import {IMainSlide, IServicesSlide} from '../../common/interfaces';
+import MainSlider from '../../components/main-slider';
+import ServicesSlider from '../../components/services-slider';
 
 interface Props {
-  Component: React.FunctionComponent<MainSlideProps> | React.FunctionComponent<ServicesSlideProps>,
-  slides: IMainSlide[] | IServicesSlide[];
-  withTabs: boolean,
+  slides: IMainSlide[] | IServicesSlide[]
 }
 
 const WithSlider: React.FunctionComponent<Props> = (props) => {
-  const {Component, slides, withTabs = false} = props;
+  const {slides} = props;
 
   const sliderRef: React.RefObject<HTMLElement> = createRef();
 
+  let withTabs = false;
+
+  if ("features" in slides[0]) {
+    withTabs = true;
+  }
+
   const [sliderState, setSliderState] = useState({
-    slides: slides  as IMainSlide[] & IServicesSlide[],
-    currentSlide: slides[0] as IMainSlide & IServicesSlide,
+    slides: slides  as IMainSlide[] | IServicesSlide[],
+    currentSlide: slides[0] as IMainSlide | IServicesSlide,
     currentSlideNumber: 0
   });
 
-  let interval = () => {};
-  let swipeEvent: React.MouseEvent | React.TouchEvent = null;
-  let leftCoord = null;
-  let startCoords = null;
-  let initPosX = null;
-  let currentPosX = null;
-  let posX = null;
-  let slider = {};
-  let width = null;
+  let interval: NodeJS.Timeout = null;
+  let swipeEvent: MouseEvent | Touch = null;
+  let leftCoord: number = null;
+  let startCoords: number = null;
+  let initPosX: number = null;
+  let currentPosX: number = null;
+  let posX: number = null;
+  let slider: HTMLElement = null;
+  let width: number = null;
 
   // Получаем следующий или предыдущий слайд из массива slides
-  const getNewSlide = (isGoingOnwards) => {
+  const getNewSlide = (isGoingOnwards: boolean) => {
     let newSlide;
 
     if (isGoingOnwards) {
@@ -58,7 +64,7 @@ const WithSlider: React.FunctionComponent<Props> = (props) => {
 
   }, [sliderState]);
 
-  const slideChangeHandler = (slide, newSlideIndex) => {
+  const slideChangeHandler = (slide: IMainSlide | IServicesSlide, newSlideIndex: number) => {
     setSliderState((prevState) => ({
       ...prevState,
       currentSlide: slide,
@@ -75,7 +81,7 @@ const WithSlider: React.FunctionComponent<Props> = (props) => {
     }, 3000);
   }
 
-  const swipeAction = (evt) => {
+  const swipeAction = (evt: MouseEvent | TouchEvent) => {
     currentPosX = swipeEvent.clientX;
 
     posX = initPosX - currentPosX;
@@ -85,16 +91,16 @@ const WithSlider: React.FunctionComponent<Props> = (props) => {
       leftCoord = 0;
     }
 
-    if (leftCoord < width * -(sliderState.slidesQuantity - 1)) {
-      leftCoord = width * -(sliderState.slidesQuantity - 1);
+    if (leftCoord < width * -(sliderState.slides.length - 1)) {
+      leftCoord = width * -(sliderState.slides.length - 1);
     }
 
     slider.style.left = `${leftCoord}px`;
 
-    initPosX = evt.type === 'touchmove' ? evt.touches[0].clientX : evt.clientX;
+    initPosX = evt.type === 'touchmove' ? (evt as TouchEvent).touches[0].clientX : (evt as MouseEvent).clientX;
   };
 
-  const changeSlideOnSwipe = (isGoingOnwards) => {
+  const changeSlideOnSwipe = (isGoingOnwards: boolean) => {
     const newSlide = getNewSlide(isGoingOnwards);
     const newSlideIndex = sliderState.slides.indexOf(newSlide);
     slideChangeHandler(newSlide, newSlideIndex);
@@ -113,30 +119,30 @@ const WithSlider: React.FunctionComponent<Props> = (props) => {
     } else if ((posX * -1) / width < -0.5) {
       changeSlideOnSwipe(false);
     } else {
-      slider.style.left = startCoords;
+      slider.style.left = startCoords.toString();
     }
 
     posX = 0;
 
-    if (sliderRef.current === Sliders.main.name) {
+    if (sliderRef.current.id === Sliders.main.name) {
       initCarouselInterval();
     }
   };
 
-  const onSwipeStart = (evt) => {
+  const onSwipeStart = (evt: MouseEvent | TouchEvent) => {
     if (window.innerWidth >= DESKTOP_MIN_WIDTH) {
       return;
     }
 
     clearInterval(interval);
 
-    swipeEvent = evt.type === 'touchstart' ? evt.touches[0] : evt;
+    swipeEvent = evt.type === 'touchstart' ? (evt as TouchEvent).touches[0] : (evt as MouseEvent);
 
     initPosX = swipeEvent.clientX;
 
-    slider = evt.currentTarget;
+    slider = evt.currentTarget as HTMLElement;
     width = slider.clientWidth;
-    startCoords = slider.style.left;
+    startCoords = parseInt(slider.style.left);
 
     slider.style.transition = 'none';
 
@@ -146,27 +152,27 @@ const WithSlider: React.FunctionComponent<Props> = (props) => {
     document.addEventListener('touchend', swipeEnd);
   };
 
-  const propsWithoutTabs = {
-    slides: sliderState.slides,
-    currentSlide: sliderState.currentSlide,
-    currentSlideNumber: sliderState.currentSlideNumber,
-    sliderRef: sliderRef,
-    onSwipeStart: onSwipeStart,
-    onTabClick: slideChangeHandler
-  };
-
-  const propsWithTabs = Object.assign({}, propsWithoutTabs, {
-    onTabClick: slideChangeHandler
-  });
-
   return (
     <>
       {withTabs && (
-        <Component {...propsWithTabs}/>
+        <ServicesSlider
+          slides={sliderState.slides as IServicesSlide[]}
+          currentSlide={sliderState.currentSlide as IServicesSlide}
+          currentSlideNumber={sliderState.currentSlideNumber}
+          sliderRef={sliderRef}
+          onSwipeStart={onSwipeStart}
+          onTabClick={slideChangeHandler}
+        />
       )}
 
       {!withTabs && (
-        <Component {...propsWithoutTabs}/>
+        <MainSlider
+          slides={sliderState.slides as IMainSlide[]}
+          currentSlide={sliderState.currentSlide as IMainSlide}
+          currentSlideNumber={sliderState.currentSlideNumber}
+          sliderRef={sliderRef}
+          onSwipeStart={onSwipeStart}
+        />
       )}
     </>
   );

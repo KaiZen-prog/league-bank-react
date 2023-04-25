@@ -8,6 +8,7 @@ export type SelectChangeEventHandler = React.ChangeEventHandler<HTMLSelectElemen
 export type FocusEventHandler = React.FocusEventHandler<HTMLElement>
 export type MouseEventHandler = React.MouseEventHandler<HTMLElement>
 export type KeyboardEventHandler = React.KeyboardEventHandler<HTMLElement>
+export type TouchEventHandler = React.TouchEvent<HTMLElement>
 
 type exchangeRateType = {
   USD: number,
