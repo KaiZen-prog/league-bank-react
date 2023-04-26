@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {v4 as uuidv4} from 'uuid';
 import {useAppSelector, useAppDispatch} from '../../hooks/hooks';
 import {FormSubmitEventHandler, InputChangeEventHandler, SelectChangeEventHandler} from '../../common/types';
 import Calendar from '../calendar';
@@ -129,6 +130,7 @@ const Converter: React.FunctionComponent = () => {
     evt.preventDefault();
 
     dispatch({type: ActionType.ADD_CONVERSION, payload: {
+      id: uuidv4(),
       date: moment(currentDate).format('DD.MM.YYYY'),
       currencyInput: inputs.currencyInput,
       currencyOutput: inputs.currencyOutput,

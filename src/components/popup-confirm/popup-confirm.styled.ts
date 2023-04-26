@@ -1,7 +1,6 @@
 import styled, {StyledComponentBase} from 'styled-components';
+import {closeButton} from '../../theme/mixins';
 import theme from '../../theme/theme';
-
-const iconPopupClose = require('../../img/icon-close.svg') as string;
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 
@@ -49,22 +48,13 @@ export const Container: StyledComponent = styled.div`
 `;
 
 export const CloseButton: StyledComponent = styled.button`
-  position: absolute;
-  display: block;
+  ${closeButton()};
 
   width: 15px;
   height: 15px;
 
   top: 14px;
   right: 14px;
-
-  background-image: url(${iconPopupClose});
-  background-repeat: no-repeat;
-  background-color: ${theme.color.ghostWhite};
-  background-size: cover;
-
-  border: none;
-  cursor: pointer;
 
   @media (min-width: ${theme.tabletWidthMinThreshold}) {
     top: 30px;

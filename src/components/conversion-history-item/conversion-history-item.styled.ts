@@ -1,10 +1,12 @@
 import styled, { StyledComponentBase } from "styled-components";
 import theme from '../../theme/theme';
+import {closeButton} from '../../theme/mixins';
 
 const iconArrow = require('../../img/icon-conversion-arrow.svg') as string;
 interface StyledComponent extends StyledComponentBase<any, object> {}
 
 export const ConversionHistoryItemBlock: StyledComponent = styled.li`
+  position: relative;
   display: flex;
   padding-right: 12px;
 
@@ -76,4 +78,27 @@ export const Before: StyledComponent = styled.p`
 
 export const After: StyledComponent = styled.p`
   width: 130px;
+`;
+
+export const CloseButton: StyledComponent = styled.button`
+  ${closeButton()};
+
+  width: 10px;
+  height: 10px;
+
+  top: 3px;
+  right: 15px;
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    top: 30px;
+    right: 30px;
+  }
+
+  @media (min-width: ${theme.desktopWidthMinThreshold}) {
+    width: 10px;
+    height: 10px;
+
+    top: 3px;
+    right: 15px;
+  }
 `;

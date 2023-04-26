@@ -1,25 +1,39 @@
 import React from 'react';
+import {useAppDispatch} from '../../hooks/hooks';
+import {ActionType} from '../../store/actions/converter';
+import {Conversion} from '../../common/types';
 import {
   ConversionHistoryItemBlock,
   Date,
   Container,
   Before,
-  After
+  After,
+  CloseButton
 } from './conversion-history-item.styled';
 
 interface Props {
-  date: string,
-  inputAmount: number,
-  inputCurrency: string,
-  outputAmount: number,
-  outputCurrency: string
+  key: number,
+  conversion: Conversion
 }
 
 const ConversionHistoryItem: React.FunctionComponent<Props> = (props) => {
-  const {date, inputAmount, inputCurrency, outputAmount, outputCurrency} = props;
+  const {key, conversion} = props;
+  const {id, date, currencyInput, currencyOutput} = conversion;
+
+  const inputAmount = currencyInput.amount;
+  const outputAmount = currencyOutput.amount;
+
+  const inputCurrency = currencyInput.type;
+  const outputCurrency = currencyOutput.type;
+
+  const dispatch = useAppDispatch();
+
+  const onItemDelete = () => {
+    dispatch({type: ActionType.DELETE_CONVERSION, payload: id})
+  }
 
   return (
-    <ConversionHistoryItemBlock>
+    <ConversionHistoryItemBlock key={key}>
       <Date>{date}</Date>
       <Container>
         <Before>
@@ -29,6 +43,7 @@ const ConversionHistoryItem: React.FunctionComponent<Props> = (props) => {
           {outputAmount.toString().replace('.', ',')} {outputCurrency}
         </After>
       </Container>
+      <CloseButton type='button' onClick={onItemDelete}></CloseButton>
     </ConversionHistoryItemBlock>
   );
 }

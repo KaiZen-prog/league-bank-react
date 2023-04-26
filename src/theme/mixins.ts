@@ -2,7 +2,13 @@ import { css } from 'styled-components';
 import theme from './theme';
 import {InputTypes, SubmitButtonTypes} from '../const';
 
-export const button = (color, background, backgroundHovered) => css`
+const iconPopupClose = require('../img/icon-close.svg') as string;
+
+interface Props {
+  $type: string
+}
+
+export const button = (color: string, background: string, backgroundHovered: string) => css`
   display: inline-block;
 
   font-weight: 500;
@@ -21,7 +27,7 @@ export const button = (color, background, backgroundHovered) => css`
   }
 `;
 
-export const submitButton = () => css`
+export const submitButton = () => css<Props>`
   ${button(theme.color.ghostWhite, theme.color.neonBlue, theme.color.persianBlue)};
   font-size: 14px;
   line-height: 20px;
@@ -81,17 +87,31 @@ export const submitButton = () => css`
   }}
 `;
 
-export const visuallyHidden = () => css`
-    position: absolute;
-    clip: rect(0, 0, 0, 0);
+export const closeButton = () => css`
+  position: absolute;
+  display: block;
+
+  background-image: url(${iconPopupClose});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: ${theme.color.ghostWhite};
+  background-size: contain;
+
+  border: none;
+  cursor: pointer;
 `;
 
-export const blockCentered = (width) => css`
+export const visuallyHidden = () => css`
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+`;
+
+export const blockCentered = (width: string) => css`
   width: ${width};
   margin: auto;
 `;
 
-export const backgroundImage = (logo, width, height) => css`
+export const backgroundImage = (logo: string, width: string, height: string) => css`
   content: "";
   position: absolute;
   display: block;
@@ -103,7 +123,7 @@ export const backgroundImage = (logo, width, height) => css`
   background-repeat: no-repeat;
 `;
 
-export const input = () => css`
+export const input = () => css<Props>`
 display: none;
 
   font-style: normal;

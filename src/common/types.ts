@@ -42,8 +42,8 @@ export type ratesData = {
 }
 
 export type Conversion = {
+  id: string,
   date: string,
-  id: number,
   currencyInput: {
     type: string,
     amount: number

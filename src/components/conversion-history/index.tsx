@@ -32,11 +32,7 @@ const ConversionHistory: React.FunctionComponent = () => {
           {conversionHistory.map((elem: Conversion, i: number) => (
             <ConversionHistoryItem
               key={i}
-              date={elem.date}
-              inputAmount={elem.currencyInput.amount}
-              inputCurrency={elem.currencyInput.type}
-              outputAmount={elem.currencyOutput.amount}
-              outputCurrency={elem.currencyOutput.type}
+              conversion={elem}
             />
           ))}
         </List>

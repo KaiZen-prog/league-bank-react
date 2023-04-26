@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import {useAppDispatch} from '../../hooks/hooks';
 import ReactDOM from 'react-dom';
 import {ActionType} from '../../store/actions/calculator';
 import {KeyCode} from '../../const';
@@ -14,7 +14,7 @@ import {
 const modalRoot = document.getElementById('modal-root');
 
 const PopupConfirm: React.FunctionComponent = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     document.addEventListener('keydown', closePopupKeydown);
