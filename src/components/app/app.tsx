@@ -2,10 +2,10 @@ import React from 'react';
 import GlobalStyle from '../../theme/globalStyle';
 import {Routes, Route} from 'react-router-dom';
 import {AppRoute} from '../../const';
-import Header from '../header';
-import Footer from '../footer/footer';
-import MainScreen from '../main-screen/main-screen';
-import ConverterScreen from '../converter-screen/converter-screen';
+import Header from '../blocks/header';
+import Footer from '../blocks/footer/footer';
+import MainPage from '../pages/main-page/main-page';
+import ConverterPage from '../pages/converter-page/converter-page';
 
 function App() {
   return (
@@ -14,8 +14,8 @@ function App() {
       <Header />
       <main>
         <Routes>
-          <Route path={AppRoute.MAIN} element={<MainScreen/>} />
-          <Route path={AppRoute.CONVERTER} element={<ConverterScreen/>} />
+          <Route path={AppRoute.MAIN} element={<MainPage/>} />
+          <Route path={AppRoute.CONVERTER} element={<ConverterPage/>} />
         </Routes>
       </main>
       <Footer />
