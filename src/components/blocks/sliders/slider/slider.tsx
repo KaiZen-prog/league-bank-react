@@ -154,7 +154,6 @@ const Slider: React.FunctionComponent<Props> = (props) => {
         <>
           <MainSlider
             slides={sliderState.slides as MainSlideType[]}
-            currentSlide={sliderState.currentSlide as MainSlideType}
             currentSlideNumber={sliderState.currentSlideNumber}
             sliderRef={sliderRef}
             onSwipeStart={onSwipeStart}
@@ -167,11 +166,10 @@ const Slider: React.FunctionComponent<Props> = (props) => {
         <>
           <ServicesSlider
             slides={sliderState.slides as ServicesSlideType[]}
-            currentSlide={sliderState.currentSlide as ServicesSlideType}
             currentSlideNumber={sliderState.currentSlideNumber}
             sliderRef={sliderRef}
-            onSwipeStart={onSwipeStart}
             onTabClick={slideChangeHandler}
+            onSwipeStart={onSwipeStart}
           />
         </>
       );

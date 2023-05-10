@@ -1,4 +1,5 @@
 import React from 'react';
+import Dots from '../dots';
 import ServicesSlide from '../services-slide';
 import {ServicesSlideType} from '../../../../common/types';
 import {Sliders} from '../../../../const';
@@ -8,14 +9,11 @@ import {
   TabList,
   Tab,
   TabLabel,
-  SlidesContainer,
-  DotList,
-  Dot
+  SlidesContainer
 } from './services-slider.styled';
 
 interface Props {
   slides: ServicesSlideType[],
-  currentSlide: ServicesSlideType,
   currentSlideNumber: number,
   sliderRef: React.RefObject<HTMLElement>,
   onTabClick: (slide: ServicesSlideType, index: number) => void
@@ -25,7 +23,6 @@ interface Props {
 const ServicesSlider: React.FunctionComponent<Props> = (props) => {
   const {
     slides,
-    currentSlide,
     currentSlideNumber,
 
     sliderRef,
@@ -42,7 +39,7 @@ const ServicesSlider: React.FunctionComponent<Props> = (props) => {
           <Tab
             key={index}
             id={slide.name}
-            $isCurrent={currentSlide === slide}
+            $isCurrent={index === currentSlideNumber}
             onClick={() => {onTabClick(slide, index);}}
           >
             <TabLabel $tabName={slide.name}>
@@ -61,16 +58,11 @@ const ServicesSlider: React.FunctionComponent<Props> = (props) => {
         ))}
       </SlidesContainer>
 
-      <DotList>
-        {slides.map((_, index) => (
-          <Dot
-            key={index}
-            $isCurrent={index === currentSlideNumber}
-            $currentSlideName={currentSlide.name}
-          >
-          </Dot>
-        ))}
-      </DotList>
+      <Dots
+        slides={slides}
+        currentSlideNumber={currentSlideNumber}
+        hideDotsOnDesktop={true}
+      />
     </ServicesSliderBlock>
   );
 }
