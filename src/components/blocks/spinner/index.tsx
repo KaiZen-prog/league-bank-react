@@ -1,14 +1,11 @@
 import React, {CSSProperties} from 'react';
-import ClipLoader from 'react-spinners/ClipLoader';
+import MoonLoader from 'react-spinners/MoonLoader';
 import {SpinnerBlock} from './spinner.styled';
 import theme from '../../../theme/theme'
 
 
 const override: CSSProperties = {
-  display: "block",
   margin: "0 auto",
-  borderColor: theme.color.neonBlue
-
 };
 
 interface Props {
@@ -20,8 +17,8 @@ const Spinner: React.FunctionComponent<Props> = (props) => {
 
   return (
     <SpinnerBlock className="spinner">
-      <ClipLoader
-        color={'blue'}
+      <MoonLoader
+        color={theme.color.neonBlue}
         loading={isLoading}
         cssOverride={override}
         size={150}
