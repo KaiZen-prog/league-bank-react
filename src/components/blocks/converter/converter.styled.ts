@@ -9,6 +9,8 @@ const iconSelect = require('../../../img/icon-select.svg') as string;
 interface StyledComponent extends StyledComponentBase<any, object> {}
 
 export const ConverterBlock: StyledComponent = styled.section`
+  position: relative;
+
   max-width: 1210px;
 
   margin: 0 auto 100px auto;

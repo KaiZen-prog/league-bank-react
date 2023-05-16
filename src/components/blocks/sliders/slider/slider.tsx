@@ -161,7 +161,7 @@ const Slider: React.FunctionComponent<Props> = (props) => {
         </>
       );
 
-    case 'features' in sliderState.currentSlide:
+    case 'tabName' in sliderState.currentSlide:
       return (
         <>
           <ServicesSlider

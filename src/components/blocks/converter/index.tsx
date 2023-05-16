@@ -7,7 +7,7 @@ import {Currencies, FLOAT_COEFFICIENT, FormFields} from '../../../const';
 import {loadExchangeRate} from '../../../store/actions/api-actions';
 import moment from 'moment';
 import {ActionType} from '../../../store/actions/converter';
-import RenderLoader from '../render-loader';
+import Spinner from '../spinner';
 import {
   ConverterBlock,
   Header,
@@ -24,6 +24,8 @@ import {
 const Converter: React.FunctionComponent = () => {
   const currentDate = useAppSelector((store) => store.converter.currentDate);
   const exchangeRates = useAppSelector((store) => store.converter.exchangeRates);
+  const isFetchingData = useAppSelector((store) => store.converter.isFetchingData);
+
   let currentExchangeRate = exchangeRates[currentDate];
 
   const dispatch = useAppDispatch();
@@ -137,13 +139,10 @@ const Converter: React.FunctionComponent = () => {
     }});
   };
 
-  if(!currentExchangeRate) {
-    return (<RenderLoader/>)
-  }
-
   return (
     <ConverterBlock>
       <Header>Конвертер валют</Header>
+
       <Form method="post" action="#" onSubmit={submitHandler}>
         <FieldWrapper>
           <Field>
@@ -218,6 +217,9 @@ const Converter: React.FunctionComponent = () => {
           Сохранить результат
         </Button>
       </Form>
+
+      <Spinner isLoading={isFetchingData}/>
+
     </ConverterBlock>
   );
 }

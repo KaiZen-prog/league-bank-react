@@ -1,10 +1,8 @@
-import React, {lazy, Suspense} from 'react';
-import RenderLoader from '../../blocks/render-loader';
+import React from 'react';
 import Slider from '../../blocks/sliders/slider/slider';
 import Calculator from '../../blocks/calculator';
+import Map from '../../blocks/map';
 import {mainSlides, servicesSlides} from '../../../mocks/mocks';
-
-const Map = lazy(() => import('../../blocks/map'));
 
 const  MainPage: React.FunctionComponent = () => {
   return (
@@ -16,9 +14,7 @@ const  MainPage: React.FunctionComponent = () => {
         slides={servicesSlides}
       />
       <Calculator/>
-      <Suspense fallback={RenderLoader()}>
-        <Map/>
-      </Suspense>
+      <Map/>
     </>
   );
 }
