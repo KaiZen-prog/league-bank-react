@@ -123,24 +123,28 @@ export const backgroundImage = (logo: string, width: string, height: string) => 
   background-repeat: no-repeat;
 `;
 
-export const input = () => css<Props>`
-display: none;
-
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-  text-align: center;
-
+export const input = () => css`
   width: 100%;
   height: 60px;
 
-  margin-bottom: 6px;
-  padding: 19px 50px;
+  font-weight: 500;
+  text-align: center;
 
   color: ${theme.color.jaguar};
   border: 1px solid ${theme.color.jaguar};
   border-radius: 4px;
+`;
+
+export const textInput = () => css<Props>`
+  display: none;
+
+  font-style: normal;
+  font-size: 16px;
+  line-height: 22px;
+
+  margin-bottom: 6px;
+  padding: 19px 50px;
+
   box-sizing: border-box;
 
   &[type="number"] {
@@ -150,11 +154,6 @@ display: none;
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
       -webkit-appearance: none;
-  }
-
-  @media (min-width: ${theme.tabletWidthMinThreshold}) {
-    font-size: 16px;
-    line-height: 22px;
   }
 
   @media (min-width: ${theme.desktopWidthMinThreshold}) {
@@ -259,7 +258,7 @@ display: none;
 
       default:
         return css`
-                `;
+        `;
     }
   }}
 `;

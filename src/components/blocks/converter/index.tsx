@@ -1,23 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import {v4 as uuidv4} from 'uuid';
-import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
-import {FormSubmitEventHandler, InputChangeEventHandler, SelectChangeEventHandler} from '../../../common/types';
-import Calendar from '../calendar';
-import {Currencies, FLOAT_COEFFICIENT, FormFields} from '../../../const';
-import {loadExchangeRate} from '../../../store/actions/api-actions';
 import moment from 'moment';
+import {Currencies, FLOAT_COEFFICIENT, FormFields, ConverterInputParams} from '../../../const';
+import {loadExchangeRate} from '../../../store/actions/api-actions';
 import {ActionType} from '../../../store/actions/converter';
+import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
+import {FormSubmitEventHandler, InputChangeEventHandler, SelectChangeEventHandler } from '../../../common/types';
+import {conversionToUSD, conversionFromUSD} from '../../../utils/common';
+import ConverterField from '../converter-field';
+import Calendar from '../calendar';
 import Spinner from '../spinner';
 import {
   ConverterBlock,
   Header,
   Form,
   FieldWrapper,
-  Field,
-  FieldTitle,
-  InputWrapper,
-  Input,
-  Select,
   Button
 } from './converter.styled';
 
@@ -31,8 +28,8 @@ const Converter: React.FunctionComponent = () => {
   const dispatch = useAppDispatch();
 
   const [inputs, setInputs] = useState({
-    currencyInput: {type: Currencies.RUB, amount: 0},
-    currencyOutput: {type: Currencies.USD, amount: 0},
+    currencyInput: {type: Currencies[0], amount: 0},
+    currencyOutput: {type: Currencies[1], amount: 0},
   });
 
   const [inputToChange, setInputToChange] = useState({
@@ -57,14 +54,6 @@ const Converter: React.FunctionComponent = () => {
     }
   }, [inputToChange, currentExchangeRate]);
 
-  const conversionToUSD = (name: string, value: number) => {
-    const divider = currentExchangeRate[inputs[name].type];
-    return divider === 0 ? 0 : Math.floor((value / divider) * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
-  };
-
-  const conversionFromUSD = (name: string, value: number) =>
-    Math.floor(value * currentExchangeRate[inputs[name].type] * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
-
   function valueConversion(name: string, value: number) {
     if (name === FormFields.INPUT) {
       entryField = FormFields.INPUT;
@@ -74,8 +63,11 @@ const Converter: React.FunctionComponent = () => {
       outputField = FormFields.INPUT;
     }
 
-    const convertedToUSD = conversionToUSD(entryField, value);
-    const result = conversionFromUSD(outputField, convertedToUSD);
+    const entryExchangeRate: number = currentExchangeRate[inputs[entryField].type];
+    const outputExchangeRate: number = currentExchangeRate[inputs[outputField].type];
+
+    const convertedToUSD = conversionToUSD(value, entryExchangeRate);
+    const result = conversionFromUSD(convertedToUSD, outputExchangeRate);
 
     setInputs((prevState) => ({
       ...prevState,
@@ -86,14 +78,21 @@ const Converter: React.FunctionComponent = () => {
   const valueChangeHandler: InputChangeEventHandler = (evt) => {
     const {name, value} = evt.target;
 
+    const valueNumber = parseInt(value);
+    let checkedValue: number = 0;
+
+    checkedValue = valueNumber > ConverterInputParams.maxValue
+      ? ConverterInputParams.maxValue
+      : valueNumber;
+
     setInputs((prevState) => ({
       ...prevState,
       [name]: Object.assign({}, prevState[name], {
-        amount: value === '' ? '' : (Math.floor(parseInt(value) * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT).toString(),
+        amount: checkedValue === 0 ? '' : (Math.floor(checkedValue * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT).toString(),
       }),
     }));
 
-    setInputToChange({name: name, value: value});
+    setInputToChange({name: name, value: checkedValue});
   };
 
   const typeChangeHandler: SelectChangeEventHandler = (evt) => {
@@ -145,70 +144,22 @@ const Converter: React.FunctionComponent = () => {
 
       <Form method="post" action="#" onSubmit={submitHandler}>
         <FieldWrapper>
-          <Field>
-            <label htmlFor="currency-input">
-              <FieldTitle>У меня есть</FieldTitle>
-            </label>
-            <InputWrapper>
-              <Input
-                id="currency-input"
-                name="currencyInput"
-                type="number"
-                min="0"
-                max="10000000"
-                step="any"
-                value={currencyInput.amount}
-                onChange={valueChangeHandler}
-              />
+          <ConverterField
+            inputParams={ConverterInputParams.input}
+            amount={currencyInput.amount}
+            currency={currencyInput.type}
+            valueChangeHandler={valueChangeHandler}
+            typeChangeHandler={typeChangeHandler}
+          />
 
-              <label>
-                <Select
-                  name="currencyInput"
-                  value={currencyInput.type}
-                  onChange={typeChangeHandler}
-                >
-                  <option value="RUB">RUB</option>
-                  <option value="USD">USD</option>
-                  <option value="EUR">EUR</option>
-                  <option value="GBP">GBP</option>
-                  <option value="CNY">CNY</option>
-                </Select>
-                <span className="visually-hidden">валюта</span>
-              </label>
-            </InputWrapper>
-          </Field>
+          <ConverterField
+            inputParams={ConverterInputParams.output}
+            amount={currencyOutput.amount}
+            currency={currencyOutput.type}
+            valueChangeHandler={valueChangeHandler}
+            typeChangeHandler={typeChangeHandler}
+          />
 
-          <Field>
-            <label htmlFor="currency-input">
-              <FieldTitle>Хочу приобрести</FieldTitle>
-            </label>
-            <InputWrapper>
-              <Input
-                id="currency-output"
-                name="currencyOutput"
-                type="number"
-                min="0"
-                step="any"
-                value={currencyOutput.amount}
-                onChange={valueChangeHandler}
-              />
-
-              <label>
-                <Select
-                  name="currencyOutput"
-                  value={currencyOutput.type}
-                  onChange={typeChangeHandler}
-                >
-                  <option value="RUB">RUB</option>
-                  <option value="USD">USD</option>
-                  <option value="EUR">EUR</option>
-                  <option value="GBP">GBP</option>
-                  <option value="CNY">CNY</option>
-                </Select>
-                <span className="visually-hidden">валюта</span>
-              </label>
-            </InputWrapper>
-          </Field>
         </FieldWrapper>
 
         <Calendar currentDate={currentDate}/>

@@ -1,3 +1,7 @@
+import { Input } from './components/blocks/converter-input/converter-input.styled';
+import React from 'react';
+import { Select } from "./components/blocks/converter/converter.styled";
+
 export const AppRoute = {
   MAIN: '',
   CONVERTER: '/converter',
@@ -8,10 +12,7 @@ export const FormFields = {
   OUTPUT: 'currencyOutput',
 };
 
-export const Currencies = {
-  RUB: 'RUB',
-  USD: 'USD',
-};
+export const Currencies = ['RUB', 'USD', 'EUR', 'GBP', 'CNY'];
 
 export const FLOAT_COEFFICIENT = 100;
 
@@ -26,8 +27,6 @@ export const APIRoutes = {
 };
 
 export const BASE_URL = 'https://openexchangerates.org/api/';
-
-export const REQUEST_TIMEOUT = 5000;
 
 export const MAX_HISTORY_LENGTH = 10;
 
@@ -166,3 +165,17 @@ export const QUANTITY_MONTH = 12;
 export const DESKTOP_MIN_WIDTH = 1024;
 export const DIGIT_SPACE = 3;
 export const PHONE_LENGTH = 17;
+
+export const ConverterInputParams = {
+  maxValue: 1000000,
+
+  input: {
+    id: 'currency-input',
+    name: 'currencyInput',
+  },
+
+  output: {
+    id: 'currency-output',
+    name: 'currencyOutput',
+  }
+}

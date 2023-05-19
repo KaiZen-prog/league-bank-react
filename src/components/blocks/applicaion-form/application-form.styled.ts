@@ -1,7 +1,7 @@
 import styled, {StyledComponentBase} from 'styled-components';
 import InputMask from 'react-input-mask';
 import theme from '../../../theme/theme';
-import {input, submitButton} from '../../../theme/mixins';
+import {input, textInput, submitButton} from '../../../theme/mixins';
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 
@@ -31,10 +31,12 @@ export const Form: StyledComponent = styled.form`
 
 export const TextInput: StyledComponent= styled.input`
   ${input()};
+  ${textInput()};
 `;
 
 export const PhoneInput: StyledComponent= styled(InputMask)`
   ${input()};
+  ${textInput()};
 `;
 
 export const RequestTable: StyledComponent = styled.table`

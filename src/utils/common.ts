@@ -1,4 +1,4 @@
-import { APIValues, DIGIT_SPACE } from '../const';
+import { APIValues, DIGIT_SPACE, FLOAT_COEFFICIENT } from "../const";
 import {ratesData} from '../common/types';
 
 export const getPreviousElement = (array: Array<any>, element: any) =>
@@ -13,6 +13,13 @@ export const shakeEffect = (element: any) => {
     element.style.animation = '';
   }, 600);
 };
+
+export const conversionToUSD = (value: number, exchangeRate: number) => {
+  return exchangeRate === 0 ? 0 : Math.floor((value / exchangeRate) * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
+};
+
+export const conversionFromUSD = (value: number, exchangeRate: number) =>
+  Math.floor(value * exchangeRate * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
 
 export const divideNumberToSpace = (num: number) => {
   const str = String(num);

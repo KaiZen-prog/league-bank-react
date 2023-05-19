@@ -54,6 +54,11 @@ export type Conversion = {
   }
 };
 
+export type ConverterInputParamsType = {
+  id: string,
+  name: string
+}
+
 export type exchangeRate = {
   date: string,
   exchangeRate: exchangeRateType
