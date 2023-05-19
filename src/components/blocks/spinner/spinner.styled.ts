@@ -11,5 +11,4 @@ export const SpinnerBlock: StyledComponent = styled.div`
   transform: translate(-50%, -50%);
 
   background: white;
-  opacity: 0.8;
 `;

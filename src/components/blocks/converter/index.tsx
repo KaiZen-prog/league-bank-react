@@ -46,7 +46,7 @@ const Converter: React.FunctionComponent = () => {
   let outputField = '';
 
   useEffect(() => {
-    if(!currentExchangeRate) {
+    if(!currentExchangeRate && !isFetchingData) {
       loadExchangeRate(currentDate, dispatch);
     }
   }, [[currentDate]]);
