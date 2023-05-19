@@ -159,7 +159,6 @@ const Converter: React.FunctionComponent = () => {
             valueChangeHandler={valueChangeHandler}
             typeChangeHandler={typeChangeHandler}
           />
-
         </FieldWrapper>
 
         <Calendar currentDate={currentDate}/>

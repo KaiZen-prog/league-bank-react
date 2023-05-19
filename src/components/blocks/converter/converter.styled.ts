@@ -1,10 +1,9 @@
-import styled, { StyledComponentBase } from "styled-components";
+import styled, { StyledComponentBase } from 'styled-components';
 import theme from '../../../theme/theme';
 import {button} from '../../../theme/mixins';
 
 const iconLeftArrow = require('../../../img/icon-left-arrow.svg') as string;
 const iconRightArrow = require('../../../img/icon-right-arrow.svg') as string;
-const iconSelect = require('../../../img/icon-select.svg') as string;
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 
@@ -76,33 +75,6 @@ export const FieldWrapper: StyledComponent = styled.div`
   flex-wrap: wrap;
 
   width: 100%;
-`;
-
-export const Select: StyledComponent = styled.select`
-  width: 120px;
-  height: 60px;
-
-  font-family: "Roboto", "Arial", sans-serif;
-  font-weight: normal;
-  font-size: 30px;
-  line-height: 140%;
-
-  padding-left: 17px;
-
-  border: 1px solid #1F1E25;
-  box-sizing: border-box;
-  border-radius: 4px;
-
-  background-image: url(${iconSelect});
-  background-repeat: no-repeat;
-  background-position-x: 85px;
-  background-position-y: 24px;
-
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-
-  cursor: pointer;
 `;
 
 export const Button: StyledComponent = styled.button`

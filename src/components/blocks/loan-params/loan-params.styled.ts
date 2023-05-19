@@ -2,7 +2,7 @@ import styled, { StyledComponentBase } from "styled-components";
 import {css} from 'styled-components';
 import theme from '../../../theme/theme';
 import {InputTypes, InputIconsTypes, LabelTypes} from '../../../const';
-import {visuallyHidden, textInput} from '../../../theme/mixins';
+import {visuallyHidden, input, textInput} from '../../../theme/mixins';
 
 const iconMinus = require('../../../img/icon-minus.svg') as string;
 const iconPlus = require('../../../img/icon-plus.svg') as string;
@@ -112,10 +112,12 @@ export const Icon: StyledComponent = styled.span<Props>`
 `;
 
 export const Input: StyledComponent = styled.input`
+  ${input()};
   ${textInput()};
 `;
 
 export const InputDiv: StyledComponent = styled.div`
+  ${input()};
   ${textInput()};
   display: block;
 `;
