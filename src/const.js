@@ -178,4 +178,6 @@ export const ConverterInputParams = {
     id: 'currency-output',
     name: 'currencyOutput',
   }
-}
+};
+
+export const RATING_SCALE_MULTIPLIER = 20;

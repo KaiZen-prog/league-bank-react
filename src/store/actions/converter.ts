@@ -1,4 +1,4 @@
-import {exchangeRate} from '../../common/types';
+import {ExchangeRate} from '../../common/types';
 
 export const ActionType = {
   CHANGE_CURRENT_DATE: 'CHANGE_CURRENT_DATE',
@@ -18,7 +18,7 @@ export const finishFetchingExchangeRates = () => ({
   type: ActionType.FINISH_FETCHING_EXCHANGE_RATES,
 });
 
-export const pasteExchangeRate = (exchangeRate: exchangeRate) => ({
+export const pasteExchangeRate = (exchangeRate: ExchangeRate) => ({
   type: ActionType.PASTE_EXCHANGE_RATE,
   payload: exchangeRate,
 });

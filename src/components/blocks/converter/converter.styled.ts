@@ -1,6 +1,6 @@
 import styled, { StyledComponentBase } from 'styled-components';
 import theme from '../../../theme/theme';
-import {button} from '../../../theme/mixins';
+import {button, headerH2} from '../../../theme/mixins';
 
 const iconLeftArrow = require('../../../img/icon-left-arrow.svg') as string;
 const iconRightArrow = require('../../../img/icon-right-arrow.svg') as string;
@@ -19,15 +19,7 @@ export const ConverterBlock: StyledComponent = styled.section`
 `;
 
 export const Header: StyledComponent = styled.h2`
-  font-weight: 700;
-  font-size: 41px;
-
-  color: ${theme.color.jaguar};
-
-  line-height: 57px;
-
-  margin-top: 0;
-  margin-bottom: 49px;
+  ${headerH2()};
 `;
 
 export const Form: StyledComponent = styled.form`

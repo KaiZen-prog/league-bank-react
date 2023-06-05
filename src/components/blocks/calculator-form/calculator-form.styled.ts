@@ -1,6 +1,6 @@
 import styled, {css, StyledComponentBase} from 'styled-components';
 import theme from '../../../theme/theme';
-import {backgroundImage} from '../../../theme/mixins';
+import {backgroundImage, headerH2} from '../../../theme/mixins';
 const iconPurposeSelect = require('../../../img/icon-purpose-select.svg') as string;
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
@@ -13,33 +13,8 @@ interface Props {
 export const Form: StyledComponent = styled.form`
 `;
 
-export const Title = styled.p`
-  font-style: normal;
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 31px;
-
-  margin-top: 0;
-  margin-bottom: 22px;
-  padding-left: 3px;
-
-  color: ${theme.color.jaguar};
-
-  @media (min-width: ${theme.tabletWidthMinThreshold}) {
-    font-size: 32px;
-    line-height: 45px;
-
-    margin-bottom: 28px;
-    padding-left: 3px;
-  }
-
-  @media (min-width: ${theme.desktopWidthMinThreshold}) {
-    font-size: 41px;
-    line-height: 57px;
-
-    margin-bottom: 49px;
-    padding-left: 0;
-  }
+export const Title = styled.h2`
+  ${headerH2()};
 `;
 
 export const FlexContainer: StyledComponent = styled.div`

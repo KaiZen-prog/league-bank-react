@@ -2,6 +2,7 @@ import axios from 'axios';
 import {BASE_URL} from '../../const';
 import {AppDispatch} from '../store';
 import {pasteExchangeRate, startFetchingExchangeRates, finishFetchingExchangeRates} from './converter';
+import {startFetchingReviews, finishFetchingReviews} from './reviews';
 import {adaptExchangeRatesToApp} from '../../utils/common';
 import {APIValues, APIRoutes} from '../../const';
 
@@ -13,6 +14,15 @@ export const loadExchangeRate = async (date: string, dispatch: AppDispatch) => {
       .then(({data}) => adaptExchangeRatesToApp(data))
       .then((exchangeRates) => dispatch(pasteExchangeRate({date: date, exchangeRate: exchangeRates})))
       .then(() => setTimeout(() => dispatch(finishFetchingExchangeRates()), 1000));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const loadReviews = async (dispatch: AppDispatch) => {
+  try {
+    dispatch(startFetchingReviews());
+    dispatch(finishFetchingReviews());
   } catch (error) {
     console.log(error);
   }

@@ -1,4 +1,5 @@
 import styled, {StyledComponentBase} from 'styled-components';
+import {headerH2} from '../../../theme/mixins';
 import theme from '../../../theme/theme';
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
@@ -22,31 +23,7 @@ export const MapBlock: StyledComponent = styled.section`
 `;
 
 export const Header: StyledComponent = styled.h2`
-  font-style: normal;
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 31px;
-
-  margin: 0;
-  padding: 43px 23px 27px;
-
-  color: ${theme.color.jaguar};
-
-  @media (min-width: ${theme.tabletWidthMinThreshold}) {
-    font-size: 32px;
-    line-height: 45px;
-
-    padding: 24px 0 33px;
-  }
-
-  @media (min-width: ${theme.desktopWidthMinThreshold}) {
-    font-size: 41px;
-    line-height: 57px;
-
-    padding-right: 20px;
-    padding-left: 0;
-    padding-bottom: 56px;
-  }
+  ${headerH2()};
 `;
 
 export const Iframe: StyledComponent = styled.iframe`

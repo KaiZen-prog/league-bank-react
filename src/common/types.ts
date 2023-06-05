@@ -54,14 +54,30 @@ export type Conversion = {
   }
 };
 
+export type Review = {
+  id: number,
+  date: string,
+  text: string,
+  rating: number,
+  author: {
+    name: string,
+    surname: string
+  }
+};
+
 export type ConverterInputParamsType = {
   id: string,
   name: string
 }
 
-export type exchangeRate = {
+export type ExchangeRate = {
   date: string,
   exchangeRate: exchangeRateType
+};
+
+export type InitialReviewsState = {
+  reviews: Array<Review>,
+  isFetchingData: boolean
 };
 
 export type InitialConverterState = {

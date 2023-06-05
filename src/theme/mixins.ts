@@ -135,6 +135,34 @@ export const input = () => css`
   border-radius: 4px;
 `;
 
+export const headerH2 = () => css`
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 31px;
+
+  margin: 0;
+  padding: 43px 23px 27px;
+
+  color: ${theme.color.jaguar};
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    font-size: 32px;
+    line-height: 45px;
+
+    padding: 24px 0 33px;
+  }
+
+  @media (min-width: ${theme.desktopWidthMinThreshold}) {
+    font-size: 41px;
+    line-height: 57px;
+
+    padding-right: 20px;
+    padding-left: 0;
+    padding-bottom: 56px;
+  }
+`;
+
 export const textInput = () => css<Props>`
   display: none;
 
