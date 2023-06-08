@@ -8,6 +8,22 @@ interface Props {
   $type: string
 }
 
+export const section = () => css`
+  margin: auto;
+  padding: 53px 20px 10px;
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    padding: 69px 42px 40px;
+  }
+
+  @media (min-width: ${theme.desktopWidthMinThreshold}) {
+    max-width: 1210px;
+
+    margin: auto;
+    padding: 96px 20px 40px 20px;
+  }
+`;
+
 export const button = (color: string, background: string, backgroundHovered: string) => css`
   display: inline-block;
 

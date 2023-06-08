@@ -1,6 +1,6 @@
 import styled, { StyledComponentBase } from 'styled-components';
 import theme from '../../../theme/theme';
-import {button, headerH2} from '../../../theme/mixins';
+import {section, button, headerH2} from '../../../theme/mixins';
 
 const iconLeftArrow = require('../../../img/icon-left-arrow.svg') as string;
 const iconRightArrow = require('../../../img/icon-right-arrow.svg') as string;
@@ -8,14 +8,8 @@ const iconRightArrow = require('../../../img/icon-right-arrow.svg') as string;
 interface StyledComponent extends StyledComponentBase<any, object> {}
 
 export const ConverterBlock: StyledComponent = styled.section`
+  ${section()};
   position: relative;
-
-  max-width: 1210px;
-
-  margin: 0 auto 100px auto;
-  padding-top: 46px;
-  padding-right: 20px;
-  padding-left: 20px;
 `;
 
 export const Header: StyledComponent = styled.h2`

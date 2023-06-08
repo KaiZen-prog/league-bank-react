@@ -1,15 +1,11 @@
 import styled, { StyledComponentBase } from 'styled-components';
 import theme from '../../../theme/theme';
-import {visuallyHidden, button} from '../../../theme/mixins';
+import {section, visuallyHidden, button} from '../../../theme/mixins';
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 
 export const ConversionHistoryBlock: StyledComponent = styled.section`
-  max-width: 1210px;
-
-  margin: 0 auto 110px auto;
-  padding-right: 20px;
-  padding-left: 20px;
+  ${section()};
 `;
 
 export const Wrapper = styled.div`
