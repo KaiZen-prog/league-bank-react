@@ -16,8 +16,8 @@ const ReviewsList: React.FunctionComponent = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if(!reviews && !isFetchingData) {
-      loadReviews(dispatch);
+    if (!isFetchingData) {
+      loadReviews(dispatch)
     }
   }, [reviews]);
 

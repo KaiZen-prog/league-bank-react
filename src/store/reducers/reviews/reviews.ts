@@ -1,9 +1,8 @@
 import {ActionType} from '../../actions/reviews';
 import {InitialReviewsState} from '../../../common/types';
-import {mockReviews} from '../../../__mocks__/mockReviews';
 
 const initialState: InitialReviewsState = {
-  reviews: mockReviews,
+  reviews: [],
   isFetchingData: false,
 };
 
