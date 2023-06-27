@@ -1,10 +1,10 @@
 import React, { ChangeEvent, createRef, RefObject, useState } from "react";
 import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
 import {CalculatorSteps, InputTypes, InputIconsTypes, LabelTypes, InputFields} from '../../../const';
-import {setTermLine} from '../../../utils/common';
+import {setTermLine} from '../../../common/utils';
 import {MouseEventHandler, FocusEventHandler, InputChangeEventHandler} from '../../../common/types';
 import {ActionType} from '../../../store/actions/calculator';
-import {divideNumberToSpace} from '../../../utils/common';
+import {divideNumberToSpace} from '../../../common/utils';
 import StepTitle from '../step-title';
 import InputContainer from '../input-container';
 import {

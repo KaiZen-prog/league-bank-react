@@ -1,6 +1,6 @@
-import React, { useEffect, useState, createRef, Touch } from "react";
+import React, { useEffect, useState, createRef, Touch } from 'react';
 import {DESKTOP_MIN_WIDTH, Sliders} from '../../../../const';
-import {getNextElement, getPreviousElement} from '../../../../utils/common';
+import {getNextElement, getPreviousElement} from '../../../../common/utils';
 import {MainSlideType, ServicesSlideType} from '../../../../common/types';
 import MainSlider from '../main-slider';
 import ServicesSlider from '../services-slider';

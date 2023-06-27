@@ -3,7 +3,7 @@ import GlobalStyle from '../../theme/globalStyle';
 import {Routes, Route} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import Header from '../blocks/header';
-import Footer from '../blocks/footer/footer';
+import Footer from '../blocks/footer';
 import MainPage from '../pages/main-page/main-page';
 import ConverterPage from '../pages/converter-page/converter-page';
 

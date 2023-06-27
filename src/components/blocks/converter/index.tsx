@@ -6,7 +6,7 @@ import {loadExchangeRate} from '../../../store/actions/api-actions';
 import {ActionType} from '../../../store/actions/converter';
 import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
 import {FormSubmitEventHandler, InputChangeEventHandler, SelectChangeEventHandler } from '../../../common/types';
-import {conversionToUSD, conversionFromUSD} from '../../../utils/common';
+import {conversionToUSD, conversionFromUSD} from '../../../common/utils';
 import ConverterField from '../converter-field';
 import Calendar from '../calendar';
 import Spinner from '../spinner';

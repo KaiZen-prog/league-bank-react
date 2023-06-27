@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import ReviewsItem from '../reviews-item';
 import {loadReviews} from '../../../store/actions/api-actions';
 import {

@@ -1,34 +1,53 @@
-import { Input } from './components/blocks/converter-input/converter-input.styled';
-import React from 'react';
-import { Select } from "./components/blocks/converter/converter.styled";
+// Common
+export const DESKTOP_MIN_WIDTH = 1024;
+export const DIGIT_SPACE = 3;
+export const PHONE_LENGTH = 17;
+export const RATING_SCALE_MULTIPLIER = 20;
+
+export const KeyCode = {
+  ESC: 27,
+};
 
 export const AppRoute = {
   MAIN: '',
   CONVERTER: '/converter',
 };
+// ---------------------------------
+
+// Converter
+export const FLOAT_COEFFICIENT = 100;
+export const MAX_HISTORY_LENGTH = 10;
+
+export const Currencies = ['RUB', 'USD', 'EUR', 'GBP', 'CNY'];
 
 export const FormFields = {
   INPUT: 'currencyInput',
   OUTPUT: 'currencyOutput',
 };
 
-export const Currencies = ['RUB', 'USD', 'EUR', 'GBP', 'CNY'];
+export const ConverterInputParams = {
+  maxValue: 1000000,
 
-export const FLOAT_COEFFICIENT = 100;
+  input: {
+    id: 'currency-input',
+    name: 'currencyInput',
+  },
 
-export const APIValues = {
-  ID: 'd07b14ca2bfd4e14afe52d782af853ca',
-  BASE_RATE: 1,
+  output: {
+    id: 'currency-output',
+    name: 'currencyOutput',
+  }
 };
+// ---------------------------------
 
-export const APIRoutes = {
-  HISTORICAL: 'historical/',
-  ID_PREFIX: '.json?app_id=',
+// Calculator
+export const REQUIRED_INCOME = 45;
+export const QUANTITY_MONTH = 12;
+
+export const CalculatorSteps = {
+  params: 'params',
+  request: 'request',
 };
-
-export const BASE_URL = 'https://openexchangerates.org/api/';
-
-export const MAX_HISTORY_LENGTH = 10;
 
 export const CreditPurpose = {
   none: {
@@ -45,58 +64,10 @@ export const CreditPurpose = {
   },
 };
 
-export const Sliders = {
-  main: {
-    name: 'main-slider',
-    slides: {
-      credit: 'credit',
-      promo: 'promo',
-      offices: 'offices',
-    },
-  },
-
-  services: {
-    name: 'services-slider',
-    slides: {
-      deposit: 'deposit',
-      credit: 'credit',
-      insurance: 'insurance',
-      online: 'online',
-    },
-  },
-};
-
 export const InputFields = {
   cost: 'cost',
   initialFee: 'initialFee',
   term: 'term',
-};
-
-export const ContactsTel = {
-  mobile: 'mobile',
-  main: 'main',
-};
-
-export const SocialLinks = {
-  facebook: 'facebook',
-  instagram: 'instagram',
-  twitter: 'twitter',
-  youtube: 'youtube',
-};
-
-export const CalculatorSteps = {
-  params: 'params',
-  request: 'request',
-};
-
-export const InputTypes = {
-  email: 'email',
-  fullName: 'fullName',
-  initialFee: 'initialFee',
-  phone: 'phone',
-  show: 'show',
-  term: 'term',
-  userInfo: 'userInfo',
 };
 
 export const LabelTypes = {
@@ -115,6 +86,16 @@ export const SubmitButtonTypes = {
 export const InputIconsTypes = {
   minus: 'minus',
   plus: 'plus',
+};
+
+export const InputTypes = {
+  email: 'email',
+  fullName: 'fullName',
+  initialFee: 'initialFee',
+  phone: 'phone',
+  show: 'show',
+  term: 'term',
+  userInfo: 'userInfo',
 };
 
 export const MortgageParams = {
@@ -155,29 +136,41 @@ export const CarParams = {
     allAdditions: 3.5,
   },
 };
+// ---------------------------------
 
-export const KeyCode = {
-  ESC: 27,
-};
-
-export const REQUIRED_INCOME = 45;
-export const QUANTITY_MONTH = 12;
-export const DESKTOP_MIN_WIDTH = 1024;
-export const DIGIT_SPACE = 3;
-export const PHONE_LENGTH = 17;
-
-export const ConverterInputParams = {
-  maxValue: 1000000,
-
-  input: {
-    id: 'currency-input',
-    name: 'currencyInput',
+// Slider
+export const Sliders = {
+  main: {
+    name: 'main-slider',
+    slides: {
+      credit: 'credit',
+      promo: 'promo',
+      offices: 'offices',
+    },
   },
 
-  output: {
-    id: 'currency-output',
-    name: 'currencyOutput',
-  }
+  services: {
+    name: 'services-slider',
+    slides: {
+      deposit: 'deposit',
+      credit: 'credit',
+      insurance: 'insurance',
+      online: 'online',
+    },
+  },
+};
+// ---------------------------------
+
+// Index
+export const ContactsTel = {
+  mobile: 'mobile',
+  main: 'main',
 };
 
-export const RATING_SCALE_MULTIPLIER = 20;
+export const SocialLinks = {
+  facebook: 'facebook',
+  instagram: 'instagram',
+  twitter: 'twitter',
+  youtube: 'youtube',
+};
+// ---------------------------------

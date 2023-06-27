@@ -1,7 +1,7 @@
 import React from 'react';
 import {useAppSelector} from '../../../hooks/hooks';
 import {CreditPurpose, OfferTypes, SubmitButtonTypes} from '../../../const';
-import {divideNumberToSpace} from '../../../utils/common';
+import {divideNumberToSpace} from '../../../common/utils';
 import {OfferBlock, Title, List, Item, Value, Name, SubmitButton} from './offer.styled';
 
 const Offer: React.FunctionComponent = () => {
