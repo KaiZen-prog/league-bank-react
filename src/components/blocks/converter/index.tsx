@@ -23,7 +23,7 @@ const Converter: React.FunctionComponent = () => {
   const exchangeRates = useAppSelector((store) => store.converter.exchangeRates);
   const isFetchingData = useAppSelector((store) => store.converter.isFetchingData);
 
-  let currentExchangeRate = exchangeRates[currentDate];
+  const currentExchangeRate = exchangeRates[currentDate];
 
   const dispatch = useAppDispatch();
 
@@ -172,7 +172,7 @@ const Converter: React.FunctionComponent = () => {
 
     </ConverterBlock>
   );
-}
+};
 
 Converter.displayName = 'Converter';
 export default Converter;

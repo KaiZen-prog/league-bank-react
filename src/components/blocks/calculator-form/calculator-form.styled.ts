@@ -78,7 +78,7 @@ export const PurposeSelect: StyledComponent = styled.div<Props>`
         }
       `;
     } else {
-      return css``
+      return css``;
     }
   }}
 `;
@@ -108,14 +108,14 @@ export const PurposeList: StyledComponent = styled.ul<Props>`
   margin: 0;
   padding-left: 0;
 
-  ${(props) => {
-      if(props.$isClosed) {
-        return css`
+  ${(props: Props) => {
+    if(props.$isClosed) {
+      return css`
           display: none;
         `;
-      } else {
-        return css``
-      }
+    } else {
+      return css``;
+    }
   }}
 `;
 
