@@ -39,7 +39,7 @@ const Calendar: React.FunctionComponent<Props> = (props) => {
       />
     </CalendarBlock>
   );
-}
+};
 
 Calendar.displayName = 'Calendar';
 export default Calendar;

@@ -1,4 +1,4 @@
-import styled, { StyledComponentBase } from "styled-components";
+import styled, { StyledComponentBase } from 'styled-components';
 import {css} from 'styled-components';
 import theme from '../../../theme/theme';
 import {InputTypes, InputIconsTypes, LabelTypes} from '../../../const';
@@ -57,7 +57,7 @@ export const Label: StyledComponent = styled.label<Props>`
           }
         `;
     } else {
-      return css``
+      return css``;
     }
   }}
 `;
@@ -89,8 +89,8 @@ export const Icon: StyledComponent = styled.span<Props>`
           background-image: url(${iconMinus});
         `;
 
-    case InputIconsTypes.plus:
-      return css`
+      case InputIconsTypes.plus:
+        return css`
         top: 44px;
         right: 7px;
         background-image: url(${iconPlus});
@@ -104,11 +104,11 @@ export const Icon: StyledComponent = styled.span<Props>`
         }
       `;
 
-    default:
-      return css`
+      default:
+        return css`
               `;
-  }
-}}
+    }
+  }}
 `;
 
 export const Input: StyledComponent = styled.input`
@@ -228,7 +228,7 @@ export const Additional: StyledComponent = styled.label<Props>`
           margin-bottom: 10px;
         `;
     } else {
-      return css``
+      return css``;
     }
   }}
 `;

@@ -1,5 +1,4 @@
 import React, {useState, useRef} from 'react';
-import ReactDOM from 'react-dom';
 import {CalculatorSteps, InputTypes, PHONE_LENGTH, SubmitButtonTypes} from '../../../const';
 import {FormSubmitEventHandler, InputChangeEventHandler} from '../../../common/types';
 import {ActionType} from '../../../store/actions/calculator';
@@ -20,6 +19,7 @@ import {
 
 const ApplicationForm: React.FunctionComponent = () => {
   const telRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
 
   const state = useAppSelector((store) => store.calculator);
 
@@ -33,13 +33,14 @@ const ApplicationForm: React.FunctionComponent = () => {
     email: localStorage.getItem('email') !== null ? localStorage.getItem('email') : '',
   });
 
+  const [isTelValid, setIsTelValid] = useState(true);
+
   const dispatch = useAppDispatch();
 
   const onSubmit: FormSubmitEventHandler = (evt) => {
     evt.preventDefault();
     if (telRef.current !== null && telRef.current.value.length < PHONE_LENGTH) {
-      const node = ReactDOM.findDOMNode(telRef.current) as HTMLInputElement;
-      node.style.borderColor = 'red';
+      setIsTelValid(false);
       return;
     }
 
@@ -59,8 +60,7 @@ const ApplicationForm: React.FunctionComponent = () => {
     const { name, value } = evt.target;
 
     if (name === 'tel') {
-      const node = ReactDOM.findDOMNode(telRef.current) as HTMLInputElement;
-      node.style.borderColor = '#1F1E25';
+      setIsTelValid(true);
     }
 
     setFormFields((prevState) => ({
@@ -116,34 +116,42 @@ const ApplicationForm: React.FunctionComponent = () => {
           name="fullName"
           placeholder="ФИО"
           onChange={onInputChange}
-          onInvalid={(evt: Event) => {shakeEffect(evt.target as HTMLElement);}}
+          onInvalid={(evt: Event) => {
+            shakeEffect(evt.target as HTMLElement);
+          }}
           value={formFields.fullName}
           autoFocus
           required
         />
 
         <PhoneInput
+          ref={telRef}
           $type={InputTypes.phone}
+          $isValid={isTelValid}
           mask="+7 (999) 999-99-99"
           maskChar=""
           type="tel"
           name="tel"
-          ref={telRef}
           minLength={17}
           placeholder="Телефон"
           onChange={onInputChange}
-          onInvalid={(evt: Event) => {shakeEffect(evt.target as HTMLElement);}}
+          onInvalid={(evt: Event) => {
+            shakeEffect(evt.target as HTMLElement);
+          }}
           value={formFields.tel}
           required
         />
 
         <TextInput
+          ref={emailRef}
           $type={InputTypes.email}
           type="email"
           name="email"
           placeholder="E-mail"
           onChange={onInputChange}
-          onInvalid={(evt: Event) => {shakeEffect(evt.target as HTMLElement);}}
+          onInvalid={(evt: Event) => {
+            shakeEffect(evt.target as HTMLElement);
+          }}
           value={formFields.email}
           required
         />
@@ -156,7 +164,7 @@ const ApplicationForm: React.FunctionComponent = () => {
       </SubmitButton>
     </Form>
   );
-}
+};
 
 ApplicationForm.displayName = 'ApplicationForm';
 

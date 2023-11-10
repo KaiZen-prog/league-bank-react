@@ -5,7 +5,11 @@ import {InputTypes, SubmitButtonTypes} from '../const';
 const iconPopupClose = require('../img/icon-close.svg') as string;
 
 interface Props {
-  $type: string
+  $type: string;
+}
+
+interface ValidationProps {
+  $isValid: boolean;
 }
 
 export const section = () => css`
@@ -179,6 +183,19 @@ export const headerH2 = () => css`
   }
 `;
 
+export const validatedInput = () => css<ValidationProps>`
+  ${(props) => {
+    if (!props.$isValid) {
+      return css`
+        border-color: ${theme.color.freeSpeechRed};
+      `;
+    } else {
+      return css``;
+    }
+  }
+};
+`;
+
 export const textInput = () => css<Props>`
   display: none;
 
@@ -271,7 +288,7 @@ export const textInput = () => css<Props>`
               padding: 19px 50px 16px 23px;
               background-color: ${theme.color.ghostWhite};
             }
-          `;
+        `;
 
       case InputTypes.email:
         return css`

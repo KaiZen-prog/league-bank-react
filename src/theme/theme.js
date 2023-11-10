@@ -5,6 +5,7 @@ const theme = {
 
     blackPearl: '#0A1E32',
     cello: '#394959',
+    freeSpeechRed: '#CC0000',
     gainsboro: '#E0E0E0',
     ghost: '#C1C2CA',
     ghostWhite: '#F6F7FF',

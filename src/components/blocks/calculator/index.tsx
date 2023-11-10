@@ -29,7 +29,7 @@ const Calculator: React.FunctionComponent = () => {
       {state.step >= 4 && (<ModalConfirm/>)}
     </CalculatorSection>
   );
-}
+};
 
 Calculator.displayName = 'Calculator';
 

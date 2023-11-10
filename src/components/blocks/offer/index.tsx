@@ -61,7 +61,7 @@ const Offer: React.FunctionComponent = () => {
       )}
     </>
   );
-}
+};
 
 Offer.displayName = 'Offer';
 

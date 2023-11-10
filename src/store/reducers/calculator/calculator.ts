@@ -46,10 +46,11 @@ const getInterestRate = (state: InitialCalculatorState) => {
   let percent = 0;
 
   if (state.purpose === 'mortgage') {
-    state.initialFee >=
-    (state.cost * state.paramsCredit.percent.amountForSpecialPercent) / 100
-      ? percent = parseInt(state.paramsCredit.percent.specialPercent.toFixed(2))
-      : percent = parseInt(state.paramsCredit.percent.default.toFixed(2));
+    if (state.initialFee >= (state.cost * state.paramsCredit.percent.amountForSpecialPercent) / 100) {
+      percent = parseInt(state.paramsCredit.percent.specialPercent.toFixed(2), 10);
+    } else {
+      percent = parseInt(state.paramsCredit.percent.default.toFixed(2), 10);
+    }
   }
 
   if (state.purpose === 'car') {
@@ -67,7 +68,7 @@ const getInterestRate = (state: InitialCalculatorState) => {
       percent = state.paramsCredit.percent.allAdditions;
     }
 
-    percent = parseInt(percent.toFixed(2));
+    percent = parseInt(percent.toFixed(2),10);
   }
 
   return percent;
@@ -90,9 +91,11 @@ const getNewCostAndInitialFee = (state: InitialCalculatorState, evtID: string) =
       ? state.paramsCredit.minCost
       : state.cost;
 
-  evtID === 'plus'
-    ? (newCost += state.paramsCredit.step)
-    : (newCost -= state.paramsCredit.step);
+  if (evtID === 'plus') {
+    newCost += state.paramsCredit.step;
+  } else {
+    newCost -= state.paramsCredit.step;
+  }
 
   if (newCost < state.paramsCredit.minCost) {
     newCost = state.paramsCredit.minCost;

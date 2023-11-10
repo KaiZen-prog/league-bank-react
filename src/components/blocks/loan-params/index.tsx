@@ -1,4 +1,4 @@
-import React, { ChangeEvent, createRef, RefObject, useState } from "react";
+import React, { ChangeEvent, createRef, RefObject, useState } from 'react';
 import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
 import {CalculatorSteps, InputTypes, InputIconsTypes, LabelTypes, InputFields} from '../../../const';
 import {setTermLine} from '../../../common/utils';
@@ -112,7 +112,7 @@ const LoanParams: React.FunctionComponent = () => {
   const onCostChange: InputChangeEventHandler = (evt) => {
     const element: HTMLInputElement = evt.target;
     const nextElement: HTMLElement = element.nextElementSibling as HTMLElement;
-    let value = parseInt(element.value);
+    let value = parseInt(element.value, 10);
 
     if (value < state.paramsCredit.minCost || value > state.paramsCredit.maxCost) {
       nextElement.style.color = 'red';
@@ -128,7 +128,7 @@ const LoanParams: React.FunctionComponent = () => {
   };
 
   const onInitialFeeChange: InputChangeEventHandler = (evt) => {
-    let value = parseInt(evt.target.value);
+    let value = parseInt(evt.target.value, 10);
 
     if (value < (state.cost * state.paramsCredit.minInitialFee) / 100) {
       value = (state.cost * state.paramsCredit.minInitialFee) / 100;
@@ -141,7 +141,7 @@ const LoanParams: React.FunctionComponent = () => {
   };
 
   const onTermChange: InputChangeEventHandler = (evt) => {
-    let value = parseInt(evt.target.value);
+    let value = parseInt(evt.target.value, 10);
 
     if (value < state.paramsCredit.minTerm) {
       value = state.paramsCredit.minTerm;
@@ -155,7 +155,7 @@ const LoanParams: React.FunctionComponent = () => {
 
   const onInputRangeChange: InputChangeEventHandler = (evt) => {
     const { name, value } = evt.target;
-    const newValue = parseInt(value);
+    const newValue = parseInt(value, 10);
 
     name === 'initialFee'
       ? dispatch({type: ActionType.CHANGE_FIELD_VALUE, payload: {
@@ -351,7 +351,7 @@ const LoanParams: React.FunctionComponent = () => {
       )}
     </LoanParamsBlock>
   );
-}
+};
 
 LoanParams.displayName = 'LoanParams';
 

@@ -1,4 +1,4 @@
-import styled, { StyledComponentBase } from "styled-components";
+import styled, { StyledComponentBase } from 'styled-components';
 import {css} from 'styled-components';
 import theme from '../../../theme/theme';
 import {ContactsTel, SocialLinks} from '../../../const';
@@ -22,7 +22,7 @@ export const FooterBLock: StyledComponent = styled.footer`
   background-color: ${theme.color.ghostWhite};
 `;
 
-export const Container: StyledComponent  = styled.div`
+export const Container: StyledComponent = styled.div`
   display: flex;
   justify-content: space-between;
 
@@ -40,7 +40,7 @@ export const Container: StyledComponent  = styled.div`
   }
 `;
 
-export const Address: StyledComponent  = styled.section`
+export const Address: StyledComponent = styled.section`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -59,7 +59,7 @@ export const Address: StyledComponent  = styled.section`
   }
 `;
 
-export const Info: StyledComponent  = styled.div`
+export const Info: StyledComponent = styled.div`
   margin-top: -4px;
   padding-left: 1px;
   font-size: 12px;
@@ -80,7 +80,7 @@ export const Info: StyledComponent  = styled.div`
   }
 `;
 
-export const Nav: StyledComponent  = styled.nav`
+export const Nav: StyledComponent = styled.nav`
   padding-left: 56px;
   align-self: flex-end;
 
@@ -102,13 +102,13 @@ export const Nav: StyledComponent  = styled.nav`
   }
 `;
 
-export const NavList: StyledComponent  = styled.ul`
+export const NavList: StyledComponent = styled.ul`
   margin: 0;
   padding: 0;
   list-style: none;
 `;
 
-export const NavItem: StyledComponent  = styled.li`
+export const NavItem: StyledComponent = styled.li`
   margin-bottom: 11px;
 
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
@@ -116,7 +116,7 @@ export const NavItem: StyledComponent  = styled.li`
   }
 `;
 
-export const NavLink: StyledComponent  = styled.a`
+export const NavLink: StyledComponent = styled.a`
   font-size: 16px;
   line-height: 20px;
   font-weight: 500;
@@ -127,7 +127,7 @@ export const NavLink: StyledComponent  = styled.a`
   }
 `;
 
-export const Contacts: StyledComponent  = styled.section`
+export const Contacts: StyledComponent = styled.section`
   display: flex;
   justify-content: space-between;
   flex-grow: 1;
@@ -141,7 +141,7 @@ export const Contacts: StyledComponent  = styled.section`
   }
 `;
 
-export const ContactsList: StyledComponent  = styled.ul`
+export const ContactsList: StyledComponent = styled.ul`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -163,7 +163,7 @@ export const ContactsList: StyledComponent  = styled.ul`
   }
 `;
 
-export const ContactsItem: StyledComponent  = styled.li<Props>`
+export const ContactsItem: StyledComponent = styled.li<Props>`
   padding-left: 44px;
 
   @media (max-width: ${theme.desktopWidthMinThreshold}) {
@@ -172,14 +172,14 @@ export const ContactsItem: StyledComponent  = styled.li<Props>`
     padding-left: 0;
 
     ${(props) => {
-      if (props.$isPhone) {
-        return css`
+    if (props.$isPhone) {
+      return css`
           margin-left: 4px;
-        `
-      } else {
-        return css``
-      }
-    }};
+        `;
+    } else {
+      return css``;
+    }
+  }};
 
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
     margin-right: 40px;
@@ -193,7 +193,7 @@ export const ContactsItem: StyledComponent  = styled.li<Props>`
   }
 `;
 
-export const ContactsPhone: StyledComponent  = styled.a<Props>`
+export const ContactsPhone: StyledComponent = styled.a<Props>`
   position: relative;
   display: block;
   font-size: 16px;
@@ -238,7 +238,7 @@ export const ContactsPhone: StyledComponent  = styled.a<Props>`
   }}
 `;
 
-export const PhoneInfo: StyledComponent  = styled.p`
+export const PhoneInfo: StyledComponent = styled.p`
   width: 170px;
   margin-top: 1px;
   font-size: 12px;
@@ -250,7 +250,7 @@ export const PhoneInfo: StyledComponent  = styled.p`
   }
 `;
 
-export const Socials: StyledComponent  = styled.section`
+export const Socials: StyledComponent = styled.section`
   margin-left: 17px;
   margin-right: -1px;
   padding-left: 0;
@@ -269,7 +269,7 @@ export const Socials: StyledComponent  = styled.section`
   }
 `;
 
-export const SocialsList: StyledComponent  = styled.ul`
+export const SocialsList: StyledComponent = styled.ul`
   display: flex;
   margin: 4px 0 0;
   padding: 0;
@@ -280,7 +280,7 @@ export const SocialsList: StyledComponent  = styled.ul`
   }
 `;
 
-export const SocialsItem: StyledComponent  = styled.li`
+export const SocialsItem: StyledComponent = styled.li`
 
   @media (max-width: ${theme.desktopWidthMinThreshold}) {
     margin-right: 5px;
@@ -292,7 +292,7 @@ export const SocialsItem: StyledComponent  = styled.li`
   }
 `;
 
-export const SocialsLink: StyledComponent  = styled.a<Props>`
+export const SocialsLink: StyledComponent = styled.a<Props>`
   position: relative;
   display: block;
   width: 16px;

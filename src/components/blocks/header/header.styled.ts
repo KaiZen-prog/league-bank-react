@@ -1,4 +1,4 @@
-import styled, { StyledComponentBase } from "styled-components";
+import styled, { StyledComponentBase } from 'styled-components';
 import { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 import theme from '../../../theme/theme';
@@ -35,9 +35,9 @@ export const HeaderBlock: StyledComponent = styled.header<Props>`
         }
       `;
     } else {
-      return css``
+      return css``;
     }
-}}
+  }}
 `;
 
 export const Container: StyledComponent = styled.div`
@@ -98,7 +98,7 @@ export const CloseNavButton: StyledComponent = styled.button<Props>`
           display: block;
         `;
     } else {
-      return css``
+      return css``;
     }
   }}
   }
@@ -110,18 +110,18 @@ export const Nav: StyledComponent = styled.nav<Props>`
     margin-top: 36px;
 
     ${(props) => {
-      if (props.$isNavOpened) {
-        return css`
+    if (props.$isNavOpened) {
+      return css`
           display: block;
 
           margin-top: 47px;
           padding-left: 14px;
           padding-right: 3px;
         `;
-      } else {
-        return css``
-      }
-    }}
+    } else {
+      return css``;
+    }
+  }}
   }
 `;
 
@@ -184,7 +184,7 @@ export const NavLink: StyledComponent = styled(Link)<Props>`
         padding-bottom: 20px;
       `;
     } else {
-      return css``
+      return css``;
     }
   }}
 `;

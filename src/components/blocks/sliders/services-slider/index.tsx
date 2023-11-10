@@ -40,7 +40,9 @@ const ServicesSlider: React.FunctionComponent<Props> = (props) => {
             key={index}
             id={slide.name}
             $isCurrent={index === currentSlideNumber}
-            onClick={() => {onTabClick(slide, index);}}
+            onClick={() => {
+              onTabClick(slide, index);
+            }}
           >
             <TabLabel $tabName={slide.name}>
               {slide.tabName}
@@ -61,11 +63,11 @@ const ServicesSlider: React.FunctionComponent<Props> = (props) => {
       <Dots
         slides={slides}
         currentSlideNumber={currentSlideNumber}
-        hideDotsOnDesktop={true}
+        hideDotsOnDesktop
       />
     </ServicesSliderBlock>
   );
-}
+};
 
 ServicesSlider.displayName = 'ServicesSlider';
 

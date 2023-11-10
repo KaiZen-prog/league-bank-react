@@ -44,7 +44,7 @@ export const DotList: StyledComponent = styled.ul<Props>`
         }
       `;
     } else {
-      return css``
+      return css``;
     }
   }}
 `;
@@ -72,7 +72,7 @@ export const Dot: StyledComponent = styled.li<Props>`
           background-color: ${theme.color.gainsboro};
         `;
     } else {
-      return css``
+      return css``;
     }
   }}
 `;

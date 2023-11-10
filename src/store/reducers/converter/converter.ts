@@ -6,7 +6,7 @@ import {getItem} from '../../../services/localstorage';
 
 const dateNow = moment().utc().format('YYYY-MM-DD');
 
-let history = getItem('conversionHistory');
+const history = getItem('conversionHistory');
 
 const initialState: InitialConverterState = {
   currentDate: dateNow,
@@ -37,7 +37,7 @@ const converter = (state = initialState, action: {type: string; payload?: any;})
         exchangeRates: Object.assign({}, state.exchangeRates, {
           [action.payload.date]: action.payload.exchangeRate
         })
-      })
+      });
 
     case ActionType.ADD_CONVERSION:
       return Object.assign({}, state, {

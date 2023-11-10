@@ -1,4 +1,4 @@
-import styled, { StyledComponentBase } from "styled-components";
+import styled, { StyledComponentBase } from 'styled-components';
 import theme from '../../../theme/theme';
 import {closeButton} from '../../../theme/mixins';
 

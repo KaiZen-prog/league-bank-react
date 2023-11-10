@@ -1,12 +1,17 @@
 import styled, {StyledComponentBase} from 'styled-components';
 import InputMask from 'react-input-mask';
 import theme from '../../../theme/theme';
-import {input, textInput, submitButton} from '../../../theme/mixins';
+import { input, textInput, validatedInput, submitButton } from '../../../theme/mixins';
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 
-interface Props {
+interface SubmitProps {
   $type: string;
+}
+
+interface InputProps {
+  $type: string;
+  $isValid: boolean;
 }
 
 export const Form: StyledComponent = styled.form`
@@ -29,14 +34,15 @@ export const Form: StyledComponent = styled.form`
   }
 `;
 
-export const TextInput: StyledComponent= styled.input`
+export const TextInput: StyledComponent = styled.input`
   ${input()};
   ${textInput()};
 `;
 
-export const PhoneInput: StyledComponent= styled(InputMask)`
+export const PhoneInput: StyledComponent = styled(InputMask)<InputProps>`
   ${input()};
   ${textInput()};
+  ${validatedInput()};
 `;
 
 export const RequestTable: StyledComponent = styled.table`
@@ -104,6 +110,6 @@ export const RequestName: StyledComponent = styled.td`
   }
 `;
 
-export const SubmitButton: StyledComponent = styled.button<Props>`
+export const SubmitButton: StyledComponent = styled.button<SubmitProps>`
   ${submitButton()};
 `;

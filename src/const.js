@@ -1,7 +1,7 @@
 // Common
 export const DESKTOP_MIN_WIDTH = 1024;
 export const DIGIT_SPACE = 3;
-export const PHONE_LENGTH = 17;
+export const PHONE_LENGTH = 18;
 export const RATING_SCALE_MULTIPLIER = 20;
 
 export const KeyCode = {
