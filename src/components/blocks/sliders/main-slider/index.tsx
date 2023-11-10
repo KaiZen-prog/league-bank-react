@@ -32,9 +32,9 @@ const MainSlider:React.FunctionComponent<Props> = (props) => {
         onMouseDown={onSwipeStart}
         onTouchStart={onSwipeStart}
       >
-      {slides.map((slide, index) => (
-        <MainSlide key={index} currentSlide={slide} />
-      ))}
+        {slides.map((slide, index) => (
+          <MainSlide key={index} currentSlide={slide} />
+        ))}
       </SlidesContainer>
 
       <Dots
@@ -43,7 +43,7 @@ const MainSlider:React.FunctionComponent<Props> = (props) => {
       />
     </MainSliderBlock>
   );
-}
+};
 
 MainSlider.displayName = 'MainSlider';
 

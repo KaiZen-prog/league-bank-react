@@ -25,7 +25,7 @@ export const loadExchangeRate = async (date: string, dispatch: AppDispatch) => {
   }
 };
 
-//Получает c api отзывы клиентов
+//Получает c firebase отзывы клиентов
 export const loadReviews = async (dispatch: AppDispatch) => {
   try {
     dispatch(startFetchingReviews());

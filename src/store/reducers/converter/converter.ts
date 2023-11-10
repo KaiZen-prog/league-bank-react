@@ -12,7 +12,7 @@ const initialState: InitialConverterState = {
   currentDate: dateNow,
   isFetchingData: false,
   exchangeRates: {},
-  conversionHistory: history
+  conversionHistory: history ? history : []
 };
 
 const converter = (state = initialState, action: {type: string; payload?: any;}) => {

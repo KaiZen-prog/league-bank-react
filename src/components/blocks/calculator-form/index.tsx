@@ -52,7 +52,7 @@ const CalculatorForm: React.FunctionComponent = () => {
   const onMakeRequest: FormSubmitEventHandler = (evt) => {
     evt.preventDefault();
 
-    let newNumber = parseInt(requestNumber as string) + 1;
+    const newNumber = parseInt(requestNumber as string, 10) + 1;
     setRequestNumber(newNumber.toString());
 
     dispatch({type: ActionType.CHANGE_STEP, payload: 3});
@@ -90,7 +90,7 @@ const CalculatorForm: React.FunctionComponent = () => {
       </FlexContainer>
     </Form>
   );
-}
+};
 
 CalculatorForm.displayName = 'CalculatorForm';
 

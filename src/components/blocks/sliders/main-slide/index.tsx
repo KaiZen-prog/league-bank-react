@@ -11,17 +11,16 @@ import {
 } from './main-slide.styled';
 
 interface Props {
-  key: number,
   currentSlide: MainSlideType
 }
 
 
 const MainSlide:React.FunctionComponent<Props> = (props) => {
-  const {key, currentSlide} = props;
+  const { currentSlide} = props;
   const {name, slogan, link, linkHref} = currentSlide;
 
   return (
-    <MainSlideBlock key={key} $slideName={name}>
+    <MainSlideBlock $slideName={name}>
       <GradientContainer $slideName={name}>
         <BackgroundContainer $slideName={name}/>
       </GradientContainer>

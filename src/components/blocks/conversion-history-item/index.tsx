@@ -12,12 +12,11 @@ import {
 } from './conversion-history-item.styled';
 
 interface Props {
-  key: number,
   conversion: Conversion
 }
 
 const ConversionHistoryItem: React.FunctionComponent<Props> = (props) => {
-  const {key, conversion} = props;
+  const {conversion} = props;
   const {id, date, currencyInput, currencyOutput} = conversion;
 
   const inputAmount = currencyInput.amount;
@@ -33,7 +32,7 @@ const ConversionHistoryItem: React.FunctionComponent<Props> = (props) => {
   }
 
   return (
-    <ConversionHistoryItemBlock key={key}>
+    <ConversionHistoryItemBlock>
       <Date>{date}</Date>
       <Container>
         <Before>

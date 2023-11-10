@@ -15,9 +15,7 @@ export const shakeEffect = (element: any) => {
   }, 600);
 };
 
-export const conversionToUSD = (value: number, exchangeRate: number) => {
-  return exchangeRate === 0 ? 0 : Math.floor((value / exchangeRate) * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
-};
+export const conversionToUSD = (value: number, exchangeRate: number) => exchangeRate === 0 ? 0 : Math.floor((value / exchangeRate) * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
 
 export const conversionFromUSD = (value: number, exchangeRate: number) =>
   Math.floor(value * exchangeRate * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;

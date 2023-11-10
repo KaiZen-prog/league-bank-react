@@ -1,18 +1,20 @@
 module.exports = {
   root: true,
   env: {
+    browser: true,
     node: true,
     es6: true,
   },
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: 'module',
   },
   ignorePatterns: ['node_modules/*', '.next/*', '.out/*', '!.prettierrc.js'],
-  extends: ['eslint:recommended', 'htmlacademy/react'],
+  extends: ['eslint:recommended', 'htmlacademy/react', 'plugin:react-hooks/recommended'],
   overrides: [
     {
-      files: ['**/*.js', '**/*.jsx', '**/*.svg'],
+      files: ['**/*.ts', '**/*.tsx','**/*.js', '**/*.jsx', '**/*.svg'],
       settings: { react: { version: 'detect' } },
       env: {
         browser: true,

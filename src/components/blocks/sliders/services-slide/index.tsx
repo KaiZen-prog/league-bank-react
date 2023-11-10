@@ -12,16 +12,15 @@ import {
 } from './services-slide.styled';
 
 interface Props {
-  key: number,
   currentSlide: ServicesSlideType
 }
 
 const ServicesSlide: React.FunctionComponent<Props> = (props) => {
-  const {key, currentSlide} = props;
+  const {currentSlide} = props;
   const {name, slogan, features, link, text} = currentSlide;
 
   return (
-    <ServicesSlideBlock key={key}>
+    <ServicesSlideBlock>
       <SlideWrapper $currentSlideName={name}>
         <Slogan $currentSlideName={name}>
           {slogan}

@@ -3,10 +3,11 @@ const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
+  mode: 'development',
   entry: './src/index.tsx',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'public')
+    path: path.resolve(__dirname, 'build')
   },
 
   devServer: {
@@ -16,7 +17,7 @@ module.exports = {
     compress: true,
     port: 8080,
     open: false,
-    historyApiFallback: true
+    historyApiFallback: true,
   },
 
   performance: {
@@ -75,6 +76,18 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
+            options: {
+              outputPath: 'assets/img/',
+            }
+          },
+        ],
+      },
+
+      {
+        test: /\.html$/i,
+        use: [
+          {
+            loader: 'file-loader',
           },
         ],
       },
@@ -84,7 +97,8 @@ module.exports = {
         use: {
           loader: 'svg-url-loader',
           options: {
-            encoding: 'base64'
+            encoding: 'base64',
+            outputPath: 'assets/img/',
           }
         }
       },
