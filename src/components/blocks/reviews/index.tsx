@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import {useAppDispatch, useAppSelector} from '../../../hooks/hooks';
 import {downloadReviews} from '../../../store/actions/api-actions';
 import Section from '../../UI/section/section';
 import ReviewsList from '../reviews-list';
@@ -17,7 +17,7 @@ const Reviews: React.FunctionComponent = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (!isFetchingData) {
+    if (!isFetchingData && reviews.length === 0) {
       downloadReviews(dispatch);
     }
   }, []);
