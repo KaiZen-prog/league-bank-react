@@ -28,8 +28,8 @@ const ConversionHistoryItem: React.FunctionComponent<Props> = (props) => {
   const dispatch = useAppDispatch();
 
   const onItemDelete = () => {
-    dispatch({type: ActionType.DELETE_CONVERSION, payload: id})
-  }
+    dispatch({type: ActionType.DELETE_CONVERSION, payload: id});
+  };
 
   return (
     <ConversionHistoryItemBlock>
@@ -45,7 +45,7 @@ const ConversionHistoryItem: React.FunctionComponent<Props> = (props) => {
       <CloseButton type='button' onClick={onItemDelete}></CloseButton>
     </ConversionHistoryItemBlock>
   );
-}
+};
 
 ConversionHistoryItem.displayName = 'ConversionHistoryItem';
 export default ConversionHistoryItem;

@@ -7,11 +7,12 @@ import {ActionType} from '../../../store/actions/converter';
 import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
 import {FormSubmitEventHandler, InputChangeEventHandler, SelectChangeEventHandler } from '../../../common/types';
 import {conversionToUSD, conversionFromUSD} from '../../../common/utils';
+import Section from '../../UI/section';
 import ConverterField from '../converter-field';
 import Calendar from '../calendar';
 import Spinner from '../spinner';
 import {
-  ConverterBlock,
+  ConverterWrapper,
   Header,
   Form,
   FieldWrapper,
@@ -139,38 +140,39 @@ const Converter: React.FunctionComponent = () => {
   };
 
   return (
-    <ConverterBlock>
-      <Header>Конвертер валют</Header>
+    <Section>
+      <ConverterWrapper>
+        <Header>Конвертер валют</Header>
 
-      <Form method="post" action="#" onSubmit={submitHandler}>
-        <FieldWrapper>
-          <ConverterField
-            inputParams={ConverterInputParams.input}
-            amount={currencyInput.amount}
-            currency={currencyInput.type}
-            valueChangeHandler={valueChangeHandler}
-            typeChangeHandler={typeChangeHandler}
-          />
+        <Form method="post" action="#" onSubmit={submitHandler}>
+          <FieldWrapper>
+            <ConverterField
+              inputParams={ConverterInputParams.input}
+              amount={currencyInput.amount}
+              currency={currencyInput.type}
+              valueChangeHandler={valueChangeHandler}
+              typeChangeHandler={typeChangeHandler}
+            />
 
-          <ConverterField
-            inputParams={ConverterInputParams.output}
-            amount={currencyOutput.amount}
-            currency={currencyOutput.type}
-            valueChangeHandler={valueChangeHandler}
-            typeChangeHandler={typeChangeHandler}
-          />
-        </FieldWrapper>
+            <ConverterField
+              inputParams={ConverterInputParams.output}
+              amount={currencyOutput.amount}
+              currency={currencyOutput.type}
+              valueChangeHandler={valueChangeHandler}
+              typeChangeHandler={typeChangeHandler}
+            />
+          </FieldWrapper>
 
-        <Calendar currentDate={currentDate}/>
+          <Calendar currentDate={currentDate}/>
 
-        <Button type="submit">
-          Сохранить результат
-        </Button>
-      </Form>
+          <Button type="submit">
+            Сохранить результат
+          </Button>
+        </Form>
 
-      <Spinner isLoading={isFetchingData}/>
-
-    </ConverterBlock>
+        <Spinner isLoading={isFetchingData}/>
+      </ConverterWrapper>
+    </Section>
   );
 };
 

@@ -1,12 +1,8 @@
 import styled, { StyledComponentBase } from 'styled-components';
 import theme from '../../../theme/theme';
-import {section, visuallyHidden, button} from '../../../theme/mixins';
+import {visuallyHidden, button} from '../../../theme/mixins';
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
-
-export const ConversionHistoryBlock: StyledComponent = styled.section`
-  ${section()};
-`;
 
 export const Wrapper = styled.div`
   position: relative;

@@ -1,12 +1,8 @@
 import styled, {StyledComponentBase} from 'styled-components';
-import {section, headerH2} from '../../../theme/mixins';
+import {headerH2} from '../../../theme/mixins';
 import theme from '../../../theme/theme';
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
-
-export const MapBlock: StyledComponent = styled.section`
-  ${section()};
-`;
 
 export const Header: StyledComponent = styled.h2`
   ${headerH2()};

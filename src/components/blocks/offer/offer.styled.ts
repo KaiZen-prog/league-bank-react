@@ -50,7 +50,7 @@ export const OfferBlock: StyledComponent = styled.div<Props>`
         }
       `;
     } else {
-      return css``
+      return css``;
     }
   }}
 `;
@@ -82,7 +82,7 @@ export const Title: StyledComponent = styled.h3<Props>`
         }
       `;
     } else {
-      return css``
+      return css``;
     }
   }}
 `;
@@ -149,7 +149,7 @@ export const Name: StyledComponent = styled.p<Props>`
         }
       `;
     } else {
-      return css``
+      return css``;
     }
   }}
 `;

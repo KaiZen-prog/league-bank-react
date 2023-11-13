@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
 import {ActionType} from '../../../store/actions/calculator';
-import CalculatorSection from './calculator.styled';
+import Section from '../../UI/section';
 import ModalConfirm from '../../modals/modal-confirm';
 import CalculatorForm from '../calculator-form';
 import ApplicationForm from '../applicaion-form';
@@ -23,11 +23,11 @@ const Calculator: React.FunctionComponent = () => {
   ]);
 
   return (
-    <CalculatorSection>
+    <Section>
       <CalculatorForm/>
       {state.step >= 3 && (<ApplicationForm/>)}
       {state.step >= 4 && (<ModalConfirm/>)}
-    </CalculatorSection>
+    </Section>
   );
 };
 

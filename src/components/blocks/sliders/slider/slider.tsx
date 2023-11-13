@@ -15,7 +15,7 @@ const Slider: React.FunctionComponent<Props> = (props) => {
   const sliderRef: React.RefObject<HTMLElement> = createRef();
 
   const [sliderState, setSliderState] = useState({
-    slides: slides  as MainSlideType[] | ServicesSlideType[],
+    slides: slides as MainSlideType[] | ServicesSlideType[],
     currentSlide: slides[0] as MainSlideType | ServicesSlideType,
     currentSlideNumber: 0
   });
@@ -151,31 +151,27 @@ const Slider: React.FunctionComponent<Props> = (props) => {
   switch (true) {
     case 'linkHref' in sliderState.currentSlide:
       return (
-        <>
-          <MainSlider
-            slides={sliderState.slides as MainSlideType[]}
-            currentSlideNumber={sliderState.currentSlideNumber}
-            sliderRef={sliderRef}
-            onSwipeStart={onSwipeStart}
-          />
-        </>
+        <MainSlider
+          slides={sliderState.slides as MainSlideType[]}
+          currentSlideNumber={sliderState.currentSlideNumber}
+          sliderRef={sliderRef}
+          onSwipeStart={onSwipeStart}
+        />
       );
 
     case 'tabName' in sliderState.currentSlide:
       return (
-        <>
-          <ServicesSlider
-            slides={sliderState.slides as ServicesSlideType[]}
-            currentSlideNumber={sliderState.currentSlideNumber}
-            sliderRef={sliderRef}
-            onTabClick={slideChangeHandler}
-            onSwipeStart={onSwipeStart}
-          />
-        </>
+        <ServicesSlider
+          slides={sliderState.slides as ServicesSlideType[]}
+          currentSlideNumber={sliderState.currentSlideNumber}
+          sliderRef={sliderRef}
+          onTabClick={slideChangeHandler}
+          onSwipeStart={onSwipeStart}
+        />
       );
     default:
       return null;
   }
-}
+};
 
 export default Slider;

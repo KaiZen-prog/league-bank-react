@@ -18,30 +18,28 @@ const ReviewsItem: React.FunctionComponent<Props> = (props) => {
   const {review} = props;
 
   return (
-    <React.Fragment>
-      <ReviewBlock>
-        <User>
-          <UserName>
-            {review.author.name}
-          </UserName>
-          <UserName>
-            {review.author.surname}
-          </UserName>
-        </User>
-        <div>
-          <Rating>
-            <Stars>
-              <span style={{width: `${Math.round(review.rating * RATING_SCALE_MULTIPLIER)}%`}}></span>
-              <span className="visually-hidden">Rating</span>
-            </Stars>
-          </Rating>
-          <p className="reviews__text">
-            {review.text}
-          </p>
-          <time className="reviews__time" dateTime={review.date}>{moment(review.date).format(`MMMM YYYY`)}</time>
-        </div>
-      </ReviewBlock>
-    </React.Fragment>
+    <ReviewBlock>
+      <User>
+        <UserName>
+          {review.author.name}
+        </UserName>
+        <UserName>
+          {review.author.surname}
+        </UserName>
+      </User>
+      <div>
+        <Rating>
+          <Stars>
+            <span style={{width: `${Math.round(review.rating * RATING_SCALE_MULTIPLIER)}%`}}></span>
+            <span className="visually-hidden">Rating</span>
+          </Stars>
+        </Rating>
+        <p className="reviews__text">
+          {review.text}
+        </p>
+        <time className="reviews__time" dateTime={review.date}>{moment(review.date).format('MMMM YYYY')}</time>
+      </div>
+    </ReviewBlock>
   );
 };
 

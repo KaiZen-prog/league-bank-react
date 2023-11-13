@@ -2,11 +2,11 @@ import React, {useEffect} from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import ReviewsItem from '../reviews-item';
 import {loadReviews} from '../../../store/actions/api-actions';
+import Section from '../../UI/section';
 import {
-  ReviewsListBlock,
   Title,
   List
-} from './reviews-list.styled'
+} from './reviews-list.styled';
 
 const ReviewsList: React.FunctionComponent = () => {
 
@@ -17,12 +17,12 @@ const ReviewsList: React.FunctionComponent = () => {
 
   useEffect(() => {
     if (!isFetchingData) {
-      loadReviews(dispatch)
+      loadReviews(dispatch);
     }
   }, [reviews]);
 
   return (
-    <ReviewsListBlock>
+    <Section>
       <Title>Отзывы наших клиентов</Title>
       <List>
         {reviews.map((review, i) => (
@@ -32,7 +32,7 @@ const ReviewsList: React.FunctionComponent = () => {
           />
         ))}
       </List>
-    </ReviewsListBlock>
+    </Section>
   );
 };
 

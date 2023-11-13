@@ -1,11 +1,11 @@
 import React, {CSSProperties} from 'react';
 import MoonLoader from 'react-spinners/MoonLoader';
 import {SpinnerBlock} from './spinner.styled';
-import theme from '../../../theme/theme'
+import theme from '../../../theme/theme';
 
 
 const override: CSSProperties = {
-  margin: "0 auto",
+  margin: '0 auto',
 };
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Spinner: React.FunctionComponent<Props> = (props) => {
-  const {isLoading=false} = props;
+  const {isLoading = false} = props;
 
   return (
     <SpinnerBlock className="spinner">
@@ -27,7 +27,7 @@ const Spinner: React.FunctionComponent<Props> = (props) => {
       />
     </SpinnerBlock>
   );
-}
+};
 
 Spinner.displayName = 'Spinner';
 

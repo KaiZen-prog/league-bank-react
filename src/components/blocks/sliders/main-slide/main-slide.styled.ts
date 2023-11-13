@@ -1,4 +1,4 @@
-import styled, { StyledComponentBase } from "styled-components";
+import styled, { StyledComponentBase } from 'styled-components';
 import { css } from 'styled-components';
 import theme from '../../../../theme/theme';
 import {Sliders} from '../../../../const';
@@ -47,7 +47,7 @@ export const MainSlideBlock: StyledComponent = styled.div<Props>`
         }
       `;
     } else {
-      return css``
+      return css``;
     }
   }}
 `;
@@ -61,8 +61,8 @@ export const GradientContainer: StyledComponent = styled.div<Props>`
 
   @media (min-width: ${theme.tabletWidthMinThreshold}) {
     ${(props) => {
-      if (props.$slideName === Sliders.main.slides.credit) {
-        return css`
+    if (props.$slideName === Sliders.main.slides.credit) {
+      return css`
           &::after {
             content: "";
             position: absolute;
@@ -76,16 +76,16 @@ export const GradientContainer: StyledComponent = styled.div<Props>`
             z-index: 1;
           }
         `;
-      }
+    }
 
-      if (props.$slideName === Sliders.main.slides.promo || props.$slideName === Sliders.main.slides.offices) {
-        return css`
+    if (props.$slideName === Sliders.main.slides.promo || props.$slideName === Sliders.main.slides.offices) {
+      return css`
           max-width: 100%;
         `;
-      } else {
-        return css``
-      }
-    }}
+    } else {
+      return css``;
+    }
+  }}
   }
 
   @media (min-width: ${theme.desktopWidthMinThreshold}) {
@@ -115,9 +115,10 @@ export const GradientContainer: StyledComponent = styled.div<Props>`
         }
       `;
     } else {
-      return css``
-  }}
+      return css``;
+    }
   }
+}
 
   ${(props) => {
     if (props.$slideName === Sliders.main.slides.credit || props.$slideName === Sliders.main.slides.promo) {
@@ -125,7 +126,7 @@ export const GradientContainer: StyledComponent = styled.div<Props>`
         max-width: 100%;
       `;
     } else {
-      return css``
+      return css``;
     }
   }}
 `;
@@ -135,9 +136,9 @@ export const BackgroundContainer: StyledComponent = styled.div<Props>`
   position: absolute;
 
   ${(props) => {
-  switch (props.$slideName) {
-    case Sliders.main.slides.credit:
-      return css`
+    switch (props.$slideName) {
+      case Sliders.main.slides.credit:
+        return css`
         width: 78.3%;
         margin-left: -45.5%;
         top: 0;
@@ -159,8 +160,8 @@ export const BackgroundContainer: StyledComponent = styled.div<Props>`
         }
       `;
 
-    case Sliders.main.slides.promo:
-      return css`
+      case Sliders.main.slides.promo:
+        return css`
         width: 100%;
         background-color: #dde2ec;
         background-image: url(${promoSlideBackgroundMobile});
@@ -191,8 +192,8 @@ export const BackgroundContainer: StyledComponent = styled.div<Props>`
           }
       `;
 
-    case Sliders.main.slides.offices:
-      return css`
+      case Sliders.main.slides.offices:
+        return css`
         width: 100%;
         background-color: #E6F1FE;
         background-image: url(${officesSlideBackgroundMobile});
@@ -209,10 +210,10 @@ export const BackgroundContainer: StyledComponent = styled.div<Props>`
           background-position: center;
         }
       `;
-    default:
-      return css``;
-  }
-}}
+      default:
+        return css``;
+    }
+  }}
 `;
 
 export const TextContainer: StyledComponent = styled.div<Props>`
@@ -291,7 +292,7 @@ export const TextContainer: StyledComponent = styled.div<Props>`
         }
       `;
     } else {
-      return css``
+      return css``;
     }
   }}
 `;
@@ -317,7 +318,7 @@ export const Title: StyledComponent = styled.h1<Props>`
           color: ${theme.color.ghostWhite};
         `;
     } else {
-      return css``
+      return css``;
     }
   }}
 `;

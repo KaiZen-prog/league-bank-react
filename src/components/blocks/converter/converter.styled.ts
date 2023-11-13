@@ -1,14 +1,13 @@
 import styled, { StyledComponentBase } from 'styled-components';
 import theme from '../../../theme/theme';
-import {section, button, headerH2} from '../../../theme/mixins';
+import {button, headerH2} from '../../../theme/mixins';
 
 const iconLeftArrow = require('../../../img/icon-left-arrow.svg') as string;
 const iconRightArrow = require('../../../img/icon-right-arrow.svg') as string;
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 
-export const ConverterBlock: StyledComponent = styled.section`
-  ${section()};
+export const ConverterWrapper: StyledComponent = styled.div`
   position: relative;
 `;
 

@@ -4,8 +4,8 @@ import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
 import ConversionHistoryItem from '../conversion-history-item';
 import {ActionType} from '../../../store/actions/converter';
 import {Conversion} from '../../../common/types';
+import Section from '../../UI/section';
 import {
-  ConversionHistoryBlock,
   Wrapper,
   Header,
   List,
@@ -25,7 +25,7 @@ const ConversionHistory: React.FunctionComponent = () => {
   };
 
   return (
-    <ConversionHistoryBlock>
+    <Section>
       <Wrapper>
         <Header>История конвертации</Header>
         <List>
@@ -40,9 +40,9 @@ const ConversionHistory: React.FunctionComponent = () => {
           Очистить историю
         </ButtonClearHistory>
       </Wrapper>
-    </ConversionHistoryBlock>
+    </Section>
   );
-}
+};
 
 ConversionHistory.displayName = 'ConversionHistory';
 export default ConversionHistory;
