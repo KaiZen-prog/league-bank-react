@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
 import {ActionType} from '../../../store/actions/calculator';
-import Section from '../../UI/section';
+import Section from '../../UI/section/section';
 import ModalConfirm from '../../modals/modal-confirm';
 import CalculatorForm from '../calculator-form';
 import ApplicationForm from '../applicaion-form';

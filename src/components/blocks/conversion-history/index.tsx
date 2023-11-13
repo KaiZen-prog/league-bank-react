@@ -4,7 +4,7 @@ import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
 import ConversionHistoryItem from '../conversion-history-item';
 import {ActionType} from '../../../store/actions/converter';
 import {Conversion} from '../../../common/types';
-import Section from '../../UI/section';
+import Section from '../../UI/section/section';
 import {
   Wrapper,
   Header,

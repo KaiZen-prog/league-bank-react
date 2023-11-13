@@ -1,6 +1,6 @@
 import React from 'react';
 import {Header, Iframe} from './map.styled';
-import Section from '../../UI/section';
+import Section from '../../UI/section/section';
 
 const Map: React.FunctionComponent = () => (
   <Section id="map">

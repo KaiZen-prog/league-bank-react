@@ -7,7 +7,7 @@ import {ActionType} from '../../../store/actions/converter';
 import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
 import {FormSubmitEventHandler, InputChangeEventHandler, SelectChangeEventHandler } from '../../../common/types';
 import {conversionToUSD, conversionFromUSD} from '../../../common/utils';
-import Section from '../../UI/section';
+import Section from '../../UI/section/section';
 import ConverterField from '../converter-field';
 import Calendar from '../calendar';
 import Spinner from '../spinner';

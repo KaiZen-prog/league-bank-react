@@ -1,6 +1,8 @@
 import styled, {StyledComponentBase} from 'styled-components';
+import {input} from '../../../theme/mixins';
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 
-export const ReviewsFormBlock: StyledComponent = styled.form`
+export const Input: StyledComponent = styled.input`
+  ${input()};
 `;

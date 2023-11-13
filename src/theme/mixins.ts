@@ -132,7 +132,15 @@ export const input = () => css`
   height: 60px;
 
   font-weight: 500;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 22px;
+  
   text-align: center;
+
+  padding: 19px 50px;
+
+  box-sizing: border-box;
 
   color: ${theme.color.jaguar};
   border: 1px solid ${theme.color.jaguar};
@@ -183,14 +191,7 @@ export const validatedInput = () => css<ValidationProps>`
 export const textInput = () => css<Props>`
   display: none;
 
-  font-style: normal;
-  font-size: 16px;
-  line-height: 22px;
-
   margin-bottom: 6px;
-  padding: 19px 50px;
-
-  box-sizing: border-box;
 
   &[type="number"] {
       -moz-appearance:textfield;

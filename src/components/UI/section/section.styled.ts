@@ -1,5 +1,5 @@
 import styled, {StyledComponentBase} from 'styled-components';
-import theme from '../../theme/theme';
+import theme from '../../../theme/theme';
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 

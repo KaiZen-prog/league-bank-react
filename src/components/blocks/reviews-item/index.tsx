@@ -21,10 +21,7 @@ const ReviewsItem: React.FunctionComponent<Props> = (props) => {
     <ReviewBlock>
       <User>
         <UserName>
-          {review.author.name}
-        </UserName>
-        <UserName>
-          {review.author.surname}
+          {review.author}
         </UserName>
       </User>
       <div>

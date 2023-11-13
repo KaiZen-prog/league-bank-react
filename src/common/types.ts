@@ -59,10 +59,7 @@ export type Review = {
   date: string,
   text: string,
   rating: number,
-  author: {
-    name: string,
-    surname: string
-  }
+  author: string
 };
 
 export type ConverterInputParamsType = {

@@ -3,7 +3,7 @@ import {headerH2} from '../../../theme/mixins';
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 
-export const Title: StyledComponent = styled.section`
+export const Title: StyledComponent = styled.h2`
   ${headerH2()};
 `;
 

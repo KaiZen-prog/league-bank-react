@@ -23,7 +23,7 @@ const ConverterInput: React.FunctionComponent<Props> = (props) => {
       onChange={changeHandler}
     />
   );
-}
+};
 
 ConverterInput.displayName = 'ConverterInput';
 export default ConverterInput;
