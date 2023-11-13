@@ -7,10 +7,6 @@ const iconRightArrow = require('../../../img/icon-right-arrow.svg') as string;
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 
-export const ConverterWrapper: StyledComponent = styled.div`
-  position: relative;
-`;
-
 export const Header: StyledComponent = styled.h2`
   ${headerH2()};
 `;
@@ -54,12 +50,17 @@ export const Form: StyledComponent = styled.form`
 
 `;
 
-export const FieldWrapper: StyledComponent = styled.div`
+export const Wrapper: StyledComponent = styled.div`
+  position: relative;
+  
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 
   width: 100%;
+  
+  margin-left: 5px;
+  margin-right: 5px;
 `;
 
 export const Button: StyledComponent = styled.button`

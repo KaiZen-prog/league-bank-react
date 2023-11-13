@@ -1,39 +1,27 @@
-import React, {useEffect} from 'react';
-import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import React from 'react';
 import ReviewsItem from '../reviews-item';
-import {loadReviews} from '../../../store/actions/api-actions';
-import Section from '../../UI/section/section';
-import {
-  Title,
-  List
-} from './reviews-list.styled';
+import {Review} from '../../../common/types';
+import Spinner from '../../UI/spinner';
 
-const ReviewsList: React.FunctionComponent = () => {
+import {Wrapper, List} from './reviews-list.styled';
 
-  const reviews = useAppSelector((store) => store.reviews.reviews);
-  const isFetchingData = useAppSelector((store) => store.reviews.isFetchingData);
+interface Props {
+  reviews: Array<Review>;
+  isFetchingData: boolean
+}
 
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (!isFetchingData) {
-      loadReviews(dispatch);
-    }
-  }, [reviews]);
-
-  return (
-    <Section>
-      <Title>Отзывы наших клиентов</Title>
-      <List>
-        {reviews.map((review, i) => (
-          <ReviewsItem
-            review={review}
-            key={i}
-          />
-        ))}
-      </List>
-    </Section>
-  );
-};
+const ReviewsList: React.FunctionComponent<Props> = ({reviews, isFetchingData }) => (
+  <Wrapper>
+    <List>
+      {reviews.map((review, i) => (
+        <ReviewsItem
+          review={review}
+          key={i}
+        />
+      ))}
+    </List>
+    <Spinner isLoading={isFetchingData}/>
+  </Wrapper>
+);
 
 export default ReviewsList;

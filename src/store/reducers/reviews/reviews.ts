@@ -20,7 +20,7 @@ const reviews = (state = initialState, action: {type: string; payload?: any;}) =
 
     case ActionType.PASTE_REVIEWS:
       return Object.assign({}, state, {
-        reviews: action.payload
+        reviews: [...state.reviews, ...action.payload]
       });
   }
 

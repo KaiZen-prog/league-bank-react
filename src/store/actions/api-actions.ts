@@ -26,7 +26,7 @@ export const loadExchangeRate = async (date: string, dispatch: AppDispatch) => {
 };
 
 //Получает c firebase отзывы клиентов
-export const loadReviews = async (dispatch: AppDispatch) => {
+export const downloadReviews = async (dispatch: AppDispatch) => {
   try {
     dispatch(startFetchingReviews());
     const reviewsCollection = collection(fireStore, 'reviews');

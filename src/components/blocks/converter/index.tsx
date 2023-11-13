@@ -10,12 +10,11 @@ import {conversionToUSD, conversionFromUSD} from '../../../common/utils';
 import Section from '../../UI/section/section';
 import ConverterField from '../converter-field';
 import Calendar from '../calendar';
-import Spinner from '../spinner';
+import Spinner from '../../UI/spinner';
 import {
-  ConverterWrapper,
   Header,
   Form,
-  FieldWrapper,
+  Wrapper,
   Button
 } from './converter.styled';
 
@@ -141,37 +140,37 @@ const Converter: React.FunctionComponent = () => {
 
   return (
     <Section>
-      <ConverterWrapper>
-        <Header>Конвертер валют</Header>
+      <Header>Конвертер валют</Header>
 
-        <Form method="post" action="#" onSubmit={submitHandler}>
-          <FieldWrapper>
-            <ConverterField
-              inputParams={ConverterInputParams.input}
-              amount={currencyInput.amount}
-              currency={currencyInput.type}
-              valueChangeHandler={valueChangeHandler}
-              typeChangeHandler={typeChangeHandler}
-            />
+      <Form method="post" action="#" onSubmit={submitHandler}>
+        <Wrapper>
+          <ConverterField
+            inputParams={ConverterInputParams.input}
+            amount={currencyInput.amount}
+            currency={currencyInput.type}
+            valueChangeHandler={valueChangeHandler}
+            typeChangeHandler={typeChangeHandler}
+          />
 
-            <ConverterField
-              inputParams={ConverterInputParams.output}
-              amount={currencyOutput.amount}
-              currency={currencyOutput.type}
-              valueChangeHandler={valueChangeHandler}
-              typeChangeHandler={typeChangeHandler}
-            />
-          </FieldWrapper>
+          <ConverterField
+            inputParams={ConverterInputParams.output}
+            amount={currencyOutput.amount}
+            currency={currencyOutput.type}
+            valueChangeHandler={valueChangeHandler}
+            typeChangeHandler={typeChangeHandler}
+          />
 
+          <Spinner isLoading={isFetchingData}/>
+        </Wrapper>
+
+        <Wrapper>
           <Calendar currentDate={currentDate}/>
 
           <Button type="submit">
             Сохранить результат
           </Button>
-        </Form>
-
-        <Spinner isLoading={isFetchingData}/>
-      </ConverterWrapper>
+        </Wrapper>
+      </Form>
     </Section>
   );
 };

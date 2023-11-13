@@ -15,7 +15,7 @@ export const FieldBlock: StyledComponent = styled.div`
   margin-bottom: 85px;
 
   &:first-child {
-    margin-right: 120px;
+    margin-right: 110px;
   }
 
   @media (max-width: ${theme.tabletWidthMinThreshold}) {
