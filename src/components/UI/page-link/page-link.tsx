@@ -8,14 +8,14 @@ interface Props {
 }
 
 const PageLink: React.FunctionComponent<Props> = (props) => {
-  const {link, description, isFooterLogo=false} = props;
+  const {link, description, isFooterLogo = false} = props;
 
   return (
     <PageLinkBlock to={link} $isFooterLogo={isFooterLogo}>
       {description}
     </PageLinkBlock>
   );
-}
+};
 
 PageLink.displayName = 'PageLink';
 

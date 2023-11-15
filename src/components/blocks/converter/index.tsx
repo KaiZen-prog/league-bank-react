@@ -6,7 +6,7 @@ import {loadExchangeRate} from '../../../store/actions/api-actions';
 import {ActionType} from '../../../store/actions/converter';
 import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
 import {FormSubmitEventHandler, InputChangeEventHandler, SelectChangeEventHandler } from '../../../common/types';
-import {conversionToUSD, conversionFromUSD} from '../../../common/utils';
+import {getConversionResult} from '../../../common/utils';
 import Section from '../../UI/section/section';
 import ConverterField from '../converter-field';
 import Calendar from '../calendar';
@@ -39,9 +39,6 @@ const Converter: React.FunctionComponent = () => {
 
   const {currencyInput, currencyOutput} = inputs;
 
-  let entryField = '';
-  let outputField = '';
-
   useEffect(() => {
     if(!currentExchangeRate && !isFetchingData) {
       loadExchangeRate(currentDate, dispatch);
@@ -55,19 +52,7 @@ const Converter: React.FunctionComponent = () => {
   }, [inputToChange, currentExchangeRate]);
 
   function valueConversion(name: string, value: number) {
-    if (name === FormFields.INPUT) {
-      entryField = FormFields.INPUT;
-      outputField = FormFields.OUTPUT;
-    } else {
-      entryField = FormFields.OUTPUT;
-      outputField = FormFields.INPUT;
-    }
-
-    const entryExchangeRate: number = currentExchangeRate[inputs[entryField].type];
-    const outputExchangeRate: number = currentExchangeRate[inputs[outputField].type];
-
-    const convertedToUSD = conversionToUSD(value, entryExchangeRate);
-    const result = conversionFromUSD(convertedToUSD, outputExchangeRate);
+    const [result, outputField] = getConversionResult(name, value, currentExchangeRate, inputs);
 
     setInputs((prevState) => ({
       ...prevState,
@@ -78,7 +63,7 @@ const Converter: React.FunctionComponent = () => {
   const valueChangeHandler: InputChangeEventHandler = (evt) => {
     const {name, value} = evt.target;
 
-    const valueNumber = parseInt(value);
+    const valueNumber = parseInt(value, 10);
     let checkedValue: number = 0;
 
     checkedValue = valueNumber > ConverterInputParams.maxValue

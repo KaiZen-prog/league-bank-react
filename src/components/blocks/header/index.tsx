@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {AppRoute} from '../../../const';
-import PageLink from '../page-link/page-link';
+import PageLink from '../../UI/page-link/page-link';
 import UserAccount from '../user-accout';
 import {
   HeaderBlock,

@@ -1,7 +1,7 @@
 import React, { ChangeEvent, createRef, RefObject, useState } from 'react';
 import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
 import {CalculatorSteps, InputTypes, InputIconsTypes, LabelTypes, InputFields} from '../../../const';
-import {setTermLine} from '../../../common/utils';
+import {setTermLine, getRangeValuePosition} from '../../../common/utils';
 import {MouseEventHandler, FocusEventHandler, InputChangeEventHandler} from '../../../common/types';
 import {ActionType} from '../../../store/actions/calculator';
 import {divideNumberToSpace} from '../../../common/utils';
@@ -41,20 +41,6 @@ const LoanParams: React.FunctionComponent = () => {
     const evtID = evt.target.id;
 
     dispatch({type: ActionType.CHANGE_COST, payload: evtID});
-  };
-
-  const getRangeValuePosition = () => {
-    let position =
-      (((state.initialFee * 100) / state.cost - state.paramsCredit.minInitialFee) * 100) /
-      (100 - state.paramsCredit.minInitialFee);
-    if (position < 0) {
-      position = 0;
-    }
-    if (position > 100) {
-      position = 100;
-    }
-
-    return position;
   };
 
   const onLabelClick: MouseEventHandler = (evt) => {
@@ -122,32 +108,6 @@ const LoanParams: React.FunctionComponent = () => {
       value = +value;
 
       dispatch({type: ActionType.CHANGE_INITIAL_FEE, payload: value});
-    }
-
-    onInputBlur(evt);
-  };
-
-  const onInitialFeeChange: InputChangeEventHandler = (evt) => {
-    let value = parseInt(evt.target.value, 10);
-
-    if (value < (state.cost * state.paramsCredit.minInitialFee) / 100) {
-      value = (state.cost * state.paramsCredit.minInitialFee) / 100;
-    }
-    if (value > state.cost) {
-      value = state.cost;
-    }
-
-    onInputBlur(evt);
-  };
-
-  const onTermChange: InputChangeEventHandler = (evt) => {
-    let value = parseInt(evt.target.value, 10);
-
-    if (value < state.paramsCredit.minTerm) {
-      value = state.paramsCredit.minTerm;
-    }
-    if (value > state.paramsCredit.maxTerm) {
-      value = state.paramsCredit.maxTerm;
     }
 
     onInputBlur(evt);
@@ -236,7 +196,6 @@ const LoanParams: React.FunctionComponent = () => {
           min={(state.paramsCredit.minCost * state.paramsCredit.minInitialFee) / 100}
           max={state.paramsCredit.maxCost}
           value={state.initialFee}
-          onBlur={onInitialFeeChange}
           onChange={onInputChange}
         />
         <InputDiv
@@ -260,8 +219,8 @@ const LoanParams: React.FunctionComponent = () => {
         />
         <RangeValue
           style={{
-            marginLeft: `${getRangeValuePosition()}%`,
-            transform: `translateX(-${getRangeValuePosition() / 2}%)`,
+            marginLeft: `${getRangeValuePosition(state.initialFee, state.paramsCredit.minInitialFee, state.cost)}%`,
+            transform: `translateX(-${getRangeValuePosition(state.initialFee, state.paramsCredit.minInitialFee, state.cost) / 2}%)`,
           }}
         >
           {isNaN(Math.floor((state.initialFee as number * 100) / state.cost as number))
@@ -284,7 +243,6 @@ const LoanParams: React.FunctionComponent = () => {
           min={state.paramsCredit.minTerm}
           max={state.paramsCredit.maxTerm}
           value={state.term}
-          onBlur={onTermChange}
           onChange={onInputChange}
         />
         <InputDiv

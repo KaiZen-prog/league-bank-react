@@ -137,7 +137,7 @@ const Slider: React.FunctionComponent<Props> = (props) => {
 
     slider = evt.currentTarget as HTMLElement;
     width = slider.clientWidth;
-    startCoords = parseInt(slider.style.left);
+    startCoords = parseInt(slider.style.left, 10);
 
     slider.style.transition = 'none';
 

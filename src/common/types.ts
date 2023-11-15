@@ -29,7 +29,17 @@ export type ServicesSlideType = Slide & {
   }
 };
 
-type exchangeRateType = {
+export type CurrencyInput = {
+  type: string,
+  amount: number
+}
+
+export type ConverterInputs = {
+  currencyInput: CurrencyInput,
+  currencyOutput: CurrencyInput,
+}
+
+export type exchangeRate = {
   USD: number,
   RUB: number,
   EUR: number,
@@ -38,20 +48,14 @@ type exchangeRateType = {
 };
 
 export type ratesData = {
-  rates: exchangeRateType
+  rates: exchangeRate
 }
 
 export type Conversion = {
   id: string,
   date: string,
-  currencyInput: {
-    type: string,
-    amount: number
-  },
-  currencyOutput: {
-    type: string,
-    amount: number
-  }
+  currencyInput: CurrencyInput,
+  currencyOutput: CurrencyInput
 };
 
 export type Review = {
@@ -69,7 +73,7 @@ export type ConverterInputParamsType = {
 
 export type ExchangeRate = {
   date: string,
-  exchangeRate: exchangeRateType
+  exchangeRate: exchangeRate
 };
 
 export type InitialReviewsState = {
@@ -80,7 +84,7 @@ export type InitialReviewsState = {
 export type InitialConverterState = {
   currentDate: string,
   isFetchingData: boolean,
-  exchangeRates: Record<string, exchangeRateType>,
+  exchangeRates: Record<string, exchangeRate>,
   conversionHistory: Array<Conversion>
 };
 

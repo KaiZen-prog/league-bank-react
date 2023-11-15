@@ -1,6 +1,6 @@
 import React from 'react';
 import {AppRoute, ContactsTel, SocialLinks} from '../../../const';
-import PageLink from '../page-link/page-link';
+import PageLink from '../../UI/page-link/page-link';
 import {
   FooterBLock, Container, Address, Info,
   Nav, NavList, NavItem, NavLink,
@@ -14,7 +14,7 @@ const Footer: React.FunctionComponent = () => {
       <Container>
         <Address>
           <PageLink link={AppRoute.MAIN} description={'ЛИГА Банк'} isFooterLogo />
-          <Info  className="footer__info">
+          <Info>
             <p>150015, г. Москва, ул. Московская, д. 32</p>
             <p>Генеральная лицензия Банка России №1050</p>
             <p>Ⓒ Лига Банк, 2019</p>
