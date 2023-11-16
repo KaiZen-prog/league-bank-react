@@ -1,6 +1,5 @@
-import { DIGIT_SPACE, FLOAT_COEFFICIENT, FormFields } from '../const';
-import {ExchangeRatesAPI} from '../api/open-exchange';
-import { ConverterInputs, exchangeRate, ratesData } from "./types";
+import {DIGIT_SPACE, FLOAT_COEFFICIENT, FormFields} from '../const';
+import {ConverterInputs, exchangeRate} from './types';
 
 export const getPreviousElement = (array: Array<any>, element: any) =>
   array[(array.indexOf(element) + array.length - 1) % array.length];
@@ -97,11 +96,3 @@ export const setTermLine = (term: number) => {
       return `${term} лет`;
   }
 };
-
-export const adaptExchangeRatesToApp = (data: ratesData) => ({
-  USD: ExchangeRatesAPI.baseRate,
-  RUB: data.rates.RUB,
-  EUR: data.rates.EUR,
-  GBP: data.rates.GBP,
-  CNY: data.rates.CNY,
-});

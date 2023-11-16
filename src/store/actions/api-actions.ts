@@ -1,12 +1,10 @@
-import axios from 'axios';
-import {ExchangeRatesAPI} from '../../api/open-exchange';
+import ExchangeRates from '../../API/open-exchange';
 import {AppDispatch} from '../store';
 import {pasteExchangeRate, startFetchingExchangeRates, finishFetchingExchangeRates} from './converter';
 import {startFetchingReviews, pasteReviews, finishFetchingReviews} from './reviews';
-import {adaptExchangeRatesToApp} from '../../common/utils';
 import {initializeApp} from 'firebase/app';
 import {getFirestore, collection, getDocs} from 'firebase/firestore';
-import {firebaseConfig} from '../../api/firebase';
+import {firebaseConfig} from '../../API/firebase';
 
 const app = initializeApp(firebaseConfig);
 const fireStore = getFirestore(app);
@@ -16,8 +14,7 @@ const fireStore = getFirestore(app);
 export const loadExchangeRate = async (date: string, dispatch: AppDispatch) => {
   try {
     dispatch(startFetchingExchangeRates());
-    await axios.get(`${ExchangeRatesAPI.URL}${date}${ExchangeRatesAPI.IDPrefix}`)
-      .then(({data}) => adaptExchangeRatesToApp(data))
+    await ExchangeRates.download(date)
       .then((exchangeRates) => dispatch(pasteExchangeRate({date: date, exchangeRate: exchangeRates})))
       .then(() => setTimeout(() => dispatch(finishFetchingExchangeRates()), 1000));
   } catch (error) {
