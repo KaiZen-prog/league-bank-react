@@ -1,6 +1,4 @@
-import ExchangeRates from '../../API/open-exchange';
 import {AppDispatch} from '../store';
-import {pasteExchangeRate, startFetchingExchangeRates, finishFetchingExchangeRates} from './converter';
 import {startFetchingReviews, pasteReviews, finishFetchingReviews} from './reviews';
 import {initializeApp} from 'firebase/app';
 import {getFirestore, collection, getDocs} from 'firebase/firestore';
@@ -8,19 +6,6 @@ import {firebaseConfig} from '../../API/firebase';
 
 const app = initializeApp(firebaseConfig);
 const fireStore = getFirestore(app);
-
-//Получает с openexchangerates.org данные о курсах валют
-//Добавлен искусственный setTimeout() для демонстрации работы полосы загрузки в блоке Converter
-export const loadExchangeRate = async (date: string, dispatch: AppDispatch) => {
-  try {
-    dispatch(startFetchingExchangeRates());
-    await ExchangeRates.download(date)
-      .then((exchangeRates) => dispatch(pasteExchangeRate({date: date, exchangeRate: exchangeRates})))
-      .then(() => setTimeout(() => dispatch(finishFetchingExchangeRates()), 1000));
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 //Получает c firebase отзывы клиентов
 export const downloadReviews = async (dispatch: AppDispatch) => {
@@ -41,6 +26,6 @@ export const downloadReviews = async (dispatch: AppDispatch) => {
 
     dispatch(finishFetchingReviews());
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 };

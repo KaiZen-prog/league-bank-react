@@ -1,16 +1,15 @@
 import axios from 'axios';
 import {ratesData} from '../common/types';
 
-export default class ExchangeRates {
-  private static _settings = {
-    URL: 'https://openexchangerates.org/api/historical/',
-    IDPrefix: '.json?app_id=d07b14ca2bfd4e14afe52d782af853ca',
-    baseRate: 1,
-  };
+export default class OpenExchange {
+
+  private static _URL = 'https://openexchangerates.org/api/historical/';
+  private static _IDPrefix = '.json?app_id=d07b14ca2bfd4e14afe52d782af853ca';
+  private static _baseRate = 1;
 
   private static _adaptExchangeRatesToApp(data: ratesData) {
     return {
-      USD: this._settings.baseRate,
+      USD: this._baseRate,
       RUB: data.rates.RUB,
       EUR: data.rates.EUR,
       GBP: data.rates.GBP,
@@ -18,8 +17,8 @@ export default class ExchangeRates {
     };
   }
 
-  static async download(date: string) {
-    return await axios.get(`${this._settings.URL}${date}${this._settings.IDPrefix}`)
+  static async fetchRates(date: string) {
+    return await axios.get(`${this._URL}${date}${this._IDPrefix}`)
       .then((response) => this._adaptExchangeRatesToApp(response.data));
   }
 }

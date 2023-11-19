@@ -9,28 +9,21 @@ const override: CSSProperties = {
 };
 
 interface Props {
-  isLoading: boolean
+  isLoading: boolean;
 }
 
-const Spinner: React.FunctionComponent<Props> = ({isLoading}) => {
-  if (isLoading) {
-    return (
-      <SpinnerBlock className="spinner">
-        <MoonLoader
-          color={theme.color.neonBlue}
-          loading={isLoading}
-          cssOverride={override}
-          size={150}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-        />
-      </SpinnerBlock>
-    );
-  }
-
-  return null;
-};
-
+const Spinner: React.FunctionComponent<Props> = ({isLoading}) => (
+  <SpinnerBlock className="spinner">
+    <MoonLoader
+      color={theme.color.neonBlue}
+      loading={isLoading}
+      cssOverride={override}
+      size={150}
+      aria-label="Loading Spinner"
+      data-testid="loader"
+    />
+  </SpinnerBlock>
+);
 
 Spinner.displayName = 'Spinner';
 

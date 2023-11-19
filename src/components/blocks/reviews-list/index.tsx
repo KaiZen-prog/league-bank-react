@@ -20,7 +20,7 @@ const ReviewsList: React.FunctionComponent<Props> = ({reviews, isFetchingData })
         />
       ))}
     </List>
-    <Spinner isLoading={isFetchingData}/>
+    {isFetchingData && <Spinner isLoading={isFetchingData}/>}
   </Wrapper>
 );
 

@@ -12,6 +12,20 @@ interface ValidationProps {
   $isValid: boolean;
 }
 
+export const topper = () => css`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background: white;
+
+  z-index: 1;
+`;
+
 export const button = (color: string, background: string, backgroundHovered: string) => css`
   display: inline-block;
 

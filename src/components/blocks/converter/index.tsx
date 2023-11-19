@@ -2,14 +2,15 @@ import React, {useState, useEffect} from 'react';
 import {v4 as uuidv4} from 'uuid';
 import moment from 'moment';
 import {Currencies, FLOAT_COEFFICIENT, FormFields, ConverterInputParams} from '../../../const';
-import {loadExchangeRate} from '../../../store/actions/api-actions';
+import OpenExchange from '../../../API/open-exchange';
 import {ActionType} from '../../../store/actions/converter';
 import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
-import {FormSubmitEventHandler, InputChangeEventHandler, SelectChangeEventHandler } from '../../../common/types';
+import { FormSubmitEventHandler, InputChangeEventHandler, SelectChangeEventHandler } from '../../../common/types';
 import {getConversionResult} from '../../../common/utils';
 import Section from '../../UI/section/section';
 import ConverterField from '../converter-field';
 import Calendar from '../calendar';
+import Error from '../error';
 import Spinner from '../../UI/spinner';
 import {
   Header,
@@ -17,13 +18,11 @@ import {
   Wrapper,
   Button
 } from './converter.styled';
+import { useFetching } from '../../../hooks/use-fetching';
 
 const Converter: React.FunctionComponent = () => {
   const currentDate = useAppSelector((store) => store.converter.currentDate);
-  const exchangeRates = useAppSelector((store) => store.converter.exchangeRates);
-  const isFetchingData = useAppSelector((store) => store.converter.isFetchingData);
-
-  const currentExchangeRate = exchangeRates[currentDate];
+  const [currentExchangeRate, setCurrentExchangeRate] = useState({USD: 0, RUB: 0, EUR: 0, GBP: 0, CNY: 0});
 
   const dispatch = useAppDispatch();
 
@@ -39,11 +38,17 @@ const Converter: React.FunctionComponent = () => {
 
   const {currencyInput, currencyOutput} = inputs;
 
+  const [downloadData, isLoading, error] = useFetching(async () => {
+    const rates = await OpenExchange.fetchRates(currentDate);
+    setCurrentExchangeRate(rates);
+  }
+  );
+
   useEffect(() => {
-    if(!currentExchangeRate && !isFetchingData) {
-      loadExchangeRate(currentDate, dispatch);
+    if(!isLoading) {
+      downloadData();
     }
-  }, [[currentDate]]);
+  }, [currentDate]);
 
   useEffect(() => {
     if(currentExchangeRate) {
@@ -145,7 +150,8 @@ const Converter: React.FunctionComponent = () => {
             typeChangeHandler={typeChangeHandler}
           />
 
-          <Spinner isLoading={isFetchingData}/>
+          {error && <Error error={error}/>}
+          {isLoading && <Spinner isLoading={isLoading}/>}
         </Wrapper>
 
         <Wrapper>
