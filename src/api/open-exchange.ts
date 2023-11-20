@@ -2,7 +2,6 @@ import axios from 'axios';
 import {ratesData} from '../common/types';
 
 export default class OpenExchange {
-
   private static _URL = 'https://openexchangerates.org/api/historical/';
   private static _IDPrefix = '.json?app_id=d07b14ca2bfd4e14afe52d782af853ca';
   private static _baseRate = 1;

@@ -14,7 +14,10 @@ export const shakeEffect = (element: any) => {
   }, 600);
 };
 
-export const conversionToUSD = (value: number, exchangeRate: number) => exchangeRate === 0 ? 0 : Math.floor((value / exchangeRate) * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
+export const conversionToUSD = (value: number, exchangeRate: number) =>
+  exchangeRate === 0
+    ? 0
+    : Math.floor((value / exchangeRate) * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
 
 export const conversionFromUSD = (value: number, exchangeRate: number) =>
   Math.floor(value * exchangeRate * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
@@ -39,8 +42,8 @@ export const getConversionResult = (name: string, value: number, currentExchange
 };
 
 export const getRangeValuePosition = (max: number, min: number, value: number) => {
-  let position =
-    (((max * 100) / value - min) * 100) / (100 - min);
+  let position = (((max * 100) / value - min) * 100) / (100 - min);
+
   if (position < 0) {
     position = 0;
   }

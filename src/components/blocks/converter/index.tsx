@@ -38,7 +38,7 @@ const Converter: React.FunctionComponent = () => {
 
   const {currencyInput, currencyOutput} = inputs;
 
-  const [downloadData, isLoading, error] = useFetching(async () => {
+  const [downloadRates, isLoading, error] = useFetching(async () => {
     const rates = await OpenExchange.fetchRates(currentDate);
     setCurrentExchangeRate(rates);
   }
@@ -46,7 +46,7 @@ const Converter: React.FunctionComponent = () => {
 
   useEffect(() => {
     if(!isLoading) {
-      downloadData();
+      downloadRates();
     }
   }, [currentDate]);
 

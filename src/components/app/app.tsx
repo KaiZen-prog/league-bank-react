@@ -1,6 +1,6 @@
 import React from 'react';
 import GlobalStyle from '../../theme/globalStyle';
-import {Routes, Route} from 'react-router-dom';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import Header from '../blocks/header';
 import Footer from '../blocks/footer';
@@ -9,17 +9,18 @@ import ConverterPage from '../pages/converter-page/converter-page';
 
 function App() {
   return (
-    <>
-      <GlobalStyle />
-      <Header />
+    <BrowserRouter>
+      <GlobalStyle/>
+      <Header/>
       <main>
         <Routes>
           <Route path={AppRoute.MAIN} element={<MainPage/>} />
           <Route path={AppRoute.CONVERTER} element={<ConverterPage/>} />
+          <Route path="*" element={<MainPage/>} />
         </Routes>
       </main>
-      <Footer />
-    </>
+      <Footer/>
+    </BrowserRouter>
   );
 }
 

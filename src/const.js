@@ -161,7 +161,7 @@ export const Sliders = {
 };
 // ---------------------------------
 
-// Index
+// Footer
 export const ContactsTel = {
   mobile: 'mobile',
   main: 'main',

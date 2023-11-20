@@ -1,6 +1,6 @@
 import styled, { StyledComponentBase } from 'styled-components';
-import { css } from 'styled-components';
-import { Link } from 'react-router-dom';
+import {css} from 'styled-components';
+import {Link} from 'react-router-dom';
 import theme from '../../../theme/theme';
 
 const iconBurger = require('../../../img/icon-burger.svg') as string;
