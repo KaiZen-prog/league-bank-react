@@ -39,7 +39,7 @@ const CalculatorForm: React.FunctionComponent = () => {
     dispatch({type: ActionType.CHANGE_PURPOSE, payload: {
       step: 2,
       purpose: id,
-      paramsCredit: params,
+      creditParams: params,
 
       cost: params.minCost,
       initialFee: (params.minCost * params.minInitialFee) / 100,

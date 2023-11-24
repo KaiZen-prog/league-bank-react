@@ -3,7 +3,7 @@ import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
 import {CalculatorSteps, InputTypes, InputIconsTypes, LabelTypes, InputFields} from '../../../const';
 import {setTermLine, getRangeValuePosition} from '../../../common/utils';
 import {MouseEventHandler, FocusEventHandler, InputChangeEventHandler} from '../../../common/types';
-import {ActionType} from '../../../store/actions/calculator';
+import {ActionType, changeCost } from '../../../store/actions/calculator';
 import {divideNumberToSpace} from '../../../common/utils';
 import StepTitle from '../step-title';
 import InputContainer from '../input-container';
@@ -40,7 +40,7 @@ const LoanParams: React.FunctionComponent = () => {
     costDivRef.current.style.color = '#1F1E25';
     const evtID = evt.target.id;
 
-    dispatch({type: ActionType.CHANGE_COST, payload: evtID});
+    dispatch(changeCost(state.cost, state.creditParams.minCost, state.creditParams.maxCost, state.creditParams.step, state.initialFee, state.creditParams.minInitialFee, evtID));
   };
 
   const onLabelClick: MouseEventHandler = (evt) => {
@@ -100,7 +100,7 @@ const LoanParams: React.FunctionComponent = () => {
     const nextElement: HTMLElement = element.nextElementSibling as HTMLElement;
     let value = parseInt(element.value, 10);
 
-    if (value < state.paramsCredit.minCost || value > state.paramsCredit.maxCost) {
+    if (value < state.creditParams.minCost || value > state.creditParams.maxCost) {
       nextElement.style.color = 'red';
       value = NaN;
     } else {
@@ -138,7 +138,7 @@ const LoanParams: React.FunctionComponent = () => {
 
       <InputContainer>
         <Label htmlFor="cost" onClick={onLabelClick}>
-          Стоимость {state.paramsCredit.type === 'mortgage' ? 'недвижимости' : 'автомобиля'}
+          Стоимость {state.creditParams.type === 'mortgage' ? 'недвижимости' : 'автомобиля'}
         </Label>
         <Icon
           $type={InputIconsTypes.minus}
@@ -151,8 +151,8 @@ const LoanParams: React.FunctionComponent = () => {
           name="cost"
           id="cost"
           ref={costInputRef}
-          min={state.paramsCredit.minCost}
-          max={state.paramsCredit.maxCost}
+          min={state.creditParams.minCost}
+          max={state.creditParams.maxCost}
           value={state.cost}
           onBlur={onCostChange}
           onChange={onInputChange}
@@ -173,8 +173,8 @@ const LoanParams: React.FunctionComponent = () => {
         </Icon>
 
         <HelpText>
-          От {divideNumberToSpace(state.paramsCredit.minCost)} &nbsp;до{' '}
-          {divideNumberToSpace(state.paramsCredit.maxCost)} рублей
+          От {divideNumberToSpace(state.creditParams.minCost)} &nbsp;до{' '}
+          {divideNumberToSpace(state.creditParams.maxCost)} рублей
         </HelpText>
       </InputContainer>
 
@@ -193,8 +193,8 @@ const LoanParams: React.FunctionComponent = () => {
           name="initialFee"
           id="initialFee"
           ref={initialFeeInputRef}
-          min={(state.paramsCredit.minCost * state.paramsCredit.minInitialFee) / 100}
-          max={state.paramsCredit.maxCost}
+          min={(state.creditParams.minCost * state.creditParams.minInitialFee) / 100}
+          max={state.creditParams.maxCost}
           value={state.initialFee}
           onChange={onInputChange}
         />
@@ -211,7 +211,7 @@ const LoanParams: React.FunctionComponent = () => {
         <InputRange
           type="range"
           name="initialFee"
-          min={state.paramsCredit.minInitialFee}
+          min={state.creditParams.minInitialFee}
           max="100"
           step="5"
           value={(state.initialFee * 100) / state.cost}
@@ -219,8 +219,8 @@ const LoanParams: React.FunctionComponent = () => {
         />
         <RangeValue
           style={{
-            marginLeft: `${getRangeValuePosition(state.initialFee, state.paramsCredit.minInitialFee, state.cost)}%`,
-            transform: `translateX(-${getRangeValuePosition(state.initialFee, state.paramsCredit.minInitialFee, state.cost) / 2}%)`,
+            marginLeft: `${getRangeValuePosition(state.initialFee, state.creditParams.minInitialFee, state.cost)}%`,
+            transform: `translateX(-${getRangeValuePosition(state.initialFee, state.creditParams.minInitialFee, state.cost) / 2}%)`,
           }}
         >
           {isNaN(Math.floor((state.initialFee as number * 100) / state.cost as number))
@@ -240,8 +240,8 @@ const LoanParams: React.FunctionComponent = () => {
           name="term"
           id="term"
           ref={termInputRef}
-          min={state.paramsCredit.minTerm}
-          max={state.paramsCredit.maxTerm}
+          min={state.creditParams.minTerm}
+          max={state.creditParams.maxTerm}
           value={state.term}
           onChange={onInputChange}
         />
@@ -258,39 +258,39 @@ const LoanParams: React.FunctionComponent = () => {
         <InputRange
           type="range"
           name="term"
-          min={state.paramsCredit.minTerm}
-          max={state.paramsCredit.maxTerm}
+          min={state.creditParams.minTerm}
+          max={state.creditParams.maxTerm}
           step="1"
           value={state.term}
           onChange={onInputRangeChange}
         />
         <TermContainer>
           <RangeValue>
-            {state.paramsCredit.minTerm} {state.paramsCredit.minTerm === 1 ? 'год' : 'лет'}
+            {state.creditParams.minTerm} {state.creditParams.minTerm === 1 ? 'год' : 'лет'}
           </RangeValue>
           <RangeValue>
-            {state.paramsCredit.maxTerm} лет
+            {state.creditParams.maxTerm} лет
           </RangeValue>
         </TermContainer>
       </InputContainer>
 
-      {state.paramsCredit.maternalCapitalValue && (
+      {state.creditParams.maternalCapitalValue && (
         <Additional>
           <InputCheckbox
             type="checkbox"
-            name="maternalCapital"
+            name="isMaternalCapital"
             onChange={onAdditionalChange}
           />
           <CheckboxIcon className="calculator__checkbox-icon"/>
           Использовать материнский капитал
         </Additional>
       )}
-      {state.paramsCredit.additionalToCar && (
+      {state.creditParams.additionalToCar && (
         <>
           <Additional $type={LabelTypes.car}>
             <InputCheckbox
               type="checkbox"
-              name="casco"
+              name="isCasco"
               onChange={onAdditionalChange}
             />
             <CheckboxIcon className="calculator__checkbox-icon"/>
@@ -299,7 +299,7 @@ const LoanParams: React.FunctionComponent = () => {
           <Additional $type={LabelTypes.car}>
             <InputCheckbox
               type="checkbox"
-              name="lifeInsurance"
+              name="isLifeInsurance"
               onChange={onAdditionalChange}
             />
             <CheckboxIcon className="calculator__checkbox-icon"/>

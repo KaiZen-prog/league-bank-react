@@ -109,7 +109,7 @@ export const MortgageParams = {
   minCreditAmount: 500000,
   maternalCapitalValue: 470000,
   percent: {
-    default: 9.4,
+    defaultPercent: 9.4,
     specialPercent: 8.5,
     amountForSpecialPercent: 15,
   },
@@ -129,7 +129,7 @@ export const CarParams = {
     lifeInsurance: 'lifeInsurance',
   },
   percent: {
-    default: 16,
+    defaultPercent: 16,
     specialPercent: 15,
     amountForSpecialPercent: 2000000,
     oneAddition: 8.5,

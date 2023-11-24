@@ -10,7 +10,7 @@ export const startFetchingReviews = () => ({
   type: ActionType.START_FETCHING_REVIEWS,
 });
 
-export const finishFetchingReviews= () => ({
+export const finishFetchingReviews = () => ({
   type: ActionType.FINISH_FETCHING_REVIEWS,
 });
 

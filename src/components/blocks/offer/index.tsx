@@ -9,7 +9,7 @@ const Offer: React.FunctionComponent = () => {
 
   return (
     <>
-      {state.creditAmount >= state.paramsCredit.minCreditAmount && (
+      {state.creditAmount >= state.creditParams.minCreditAmount && (
         <OfferBlock>
           <Title>Наше предложение</Title>
           <List>
@@ -47,12 +47,12 @@ const Offer: React.FunctionComponent = () => {
           </SubmitButton>
         </OfferBlock>
       )}
-      {state.creditAmount < state.paramsCredit.minCreditAmount && (
+      {state.creditAmount < state.creditParams.minCreditAmount && (
         <OfferBlock $type={OfferTypes.refusal}>
           <Title $type={OfferTypes.refusal}>
             Наш банк не выдаёт{' '}
             {state.purpose === CreditPurpose.mortgage.type ? 'ипотечные кредиты' : 'автокредиты'}{' '}
-            меньше {divideNumberToSpace(state.paramsCredit.minCreditAmount)} рублей.
+            меньше {divideNumberToSpace(state.creditParams.minCreditAmount)} рублей.
           </Title>
           <Name $type={OfferTypes.refusal}>
             Попробуйте использовать другие параметры для расчёта.

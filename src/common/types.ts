@@ -88,39 +88,43 @@ export type InitialConverterState = {
   conversionHistory: Array<Conversion>
 };
 
+export type LoanPercent = {
+  amountForSpecialPercent: number,
+  specialPercent: number,
+  defaultPercent: number,
+  oneAddition: number,
+  allAdditions: number
+};
+
+export type CreditParams = {
+  maternalCapitalValue: number,
+  minCreditAmount: number,
+  minInitialFee: number,
+  step: number,
+  type: string,
+  minCost: number,
+  maxCost: number,
+  percent: LoanPercent,
+  minTerm?: number,
+  maxTerm?: number,
+  additionalToCar?: {
+    casco: string,
+    lifeInsurance: string,
+  }
+};
+
 export type InitialCalculatorState = {
   step: number,
   purpose: string
-  paramsCredit: {
-    maternalCapitalValue: number,
-    minCreditAmount: number,
-    minInitialFee: number,
-    step: number,
-    type: string,
-    minCost: number,
-    maxCost: number,
-    percent: {
-      amountForSpecialPercent: number,
-      specialPercent: number,
-      default: number,
-      oneAddition: number,
-      allAdditions: number
-    },
-    minTerm?: number,
-    maxTerm?: number,
-    additionalToCar?: {
-      casco: string,
-      lifeInsurance: string,
-    }
-  },
+  creditParams: CreditParams,
 
   cost: number,
   initialFee: number,
   term: number,
 
-  maternalCapital: boolean,
-  casco: boolean,
-  lifeInsurance: boolean,
+  isMaternalCapital: boolean,
+  isCasco: boolean,
+  isLifeInsurance: boolean,
 
   creditAmount: number,
   percent: number,
