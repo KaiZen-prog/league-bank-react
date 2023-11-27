@@ -39,7 +39,7 @@ export type ConverterInputs = {
   currencyOutput: CurrencyInput,
 }
 
-export type exchangeRate = {
+export type ExchangeRate = {
   USD: number,
   RUB: number,
   EUR: number,
@@ -48,7 +48,7 @@ export type exchangeRate = {
 };
 
 export type ratesData = {
-  rates: exchangeRate
+  rates: ExchangeRate
 }
 
 export type Conversion = {
@@ -71,11 +71,6 @@ export type ConverterInputParamsType = {
   name: string
 }
 
-export type ExchangeRate = {
-  date: string,
-  exchangeRate: exchangeRate
-};
-
 export type InitialReviewsState = {
   reviews: Array<Review>,
   isFetchingData: boolean
@@ -83,8 +78,7 @@ export type InitialReviewsState = {
 
 export type InitialConverterState = {
   currentDate: string,
-  isFetchingData: boolean,
-  exchangeRates: Record<string, exchangeRate>,
+  exchangeRates: Record<string, ExchangeRate>,
   conversionHistory: Array<Conversion>
 };
 

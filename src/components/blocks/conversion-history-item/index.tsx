@@ -1,6 +1,6 @@
 import React from 'react';
 import {useAppDispatch} from '../../../hooks/hooks';
-import {ActionType} from '../../../store/actions/converter';
+import {deleteConversion} from '../../../store/actions/converter';
 import {Conversion} from '../../../common/types';
 import {
   ConversionHistoryItemBlock,
@@ -28,7 +28,7 @@ const ConversionHistoryItem: React.FunctionComponent<Props> = (props) => {
   const dispatch = useAppDispatch();
 
   const onItemDelete = () => {
-    dispatch({type: ActionType.DELETE_CONVERSION, payload: id});
+    dispatch(deleteConversion(id));
   };
 
   return (

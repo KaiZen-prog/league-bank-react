@@ -1,5 +1,5 @@
 import {DIGIT_SPACE, FLOAT_COEFFICIENT, FormFields} from '../const';
-import {ConverterInputs, exchangeRate} from './types';
+import {ConverterInputs, ExchangeRate} from './types';
 
 export const getPreviousElement = (array: Array<any>, element: any) =>
   array[(array.indexOf(element) + array.length - 1) % array.length];
@@ -22,7 +22,7 @@ export const conversionToUSD = (value: number, exchangeRate: number) =>
 export const conversionFromUSD = (value: number, exchangeRate: number) =>
   Math.floor(value * exchangeRate * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
 
-export const getConversionResult = (name: string, value: number, currentExchangeRate: exchangeRate, inputs: ConverterInputs) => {
+export const getConversionResult = (name: string, value: number, currentExchangeRate: ExchangeRate, inputs: ConverterInputs) => {
   let entryField = '';
   let outputField = '';
 

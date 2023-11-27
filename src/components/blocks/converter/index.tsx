@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {v4 as uuidv4} from 'uuid';
 import moment from 'moment';
 import {Currencies, FLOAT_COEFFICIENT, FormFields, ConverterInputParams} from '../../../const';
 import OpenExchange from '../../../API/open-exchange';
-import {ActionType} from '../../../store/actions/converter';
+import {pasteNewExchangeRates, addConversion} from '../../../store/actions/converter';
 import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
 import { FormSubmitEventHandler, InputChangeEventHandler, SelectChangeEventHandler } from '../../../common/types';
 import {getConversionResult} from '../../../common/utils';
@@ -22,7 +21,9 @@ import {
 
 const Converter: React.FunctionComponent = () => {
   const currentDate = useAppSelector((store) => store.converter.currentDate);
-  const [currentExchangeRate, setCurrentExchangeRate] = useState({USD: 0, RUB: 0, EUR: 0, GBP: 0, CNY: 0});
+  const exchangeRates = useAppSelector((store) => store.converter.exchangeRates);
+
+  const currentExchangeRate = exchangeRates[currentDate];
 
   const dispatch = useAppDispatch();
 
@@ -40,12 +41,12 @@ const Converter: React.FunctionComponent = () => {
 
   const [downloadRates, isLoading, error] = useFetching(async () => {
     const rates = await OpenExchange.fetchRates(currentDate);
-    setCurrentExchangeRate(rates);
+    dispatch(pasteNewExchangeRates(currentDate, rates));
   }
   );
 
   useEffect(() => {
-    if(!isLoading) {
+    if(!isLoading && !exchangeRates[currentDate]) {
       downloadRates();
     }
   }, [currentDate]);
@@ -119,13 +120,7 @@ const Converter: React.FunctionComponent = () => {
 
   const submitHandler: FormSubmitEventHandler = (evt) => {
     evt.preventDefault();
-
-    dispatch({type: ActionType.ADD_CONVERSION, payload: {
-      id: uuidv4(),
-      date: moment(currentDate).format('DD.MM.YYYY'),
-      currencyInput: inputs.currencyInput,
-      currencyOutput: inputs.currencyOutput,
-    }});
+    dispatch(addConversion(moment(currentDate).format('DD.MM.YYYY'), inputs.currencyInput, inputs.currencyOutput));
   };
 
   return (

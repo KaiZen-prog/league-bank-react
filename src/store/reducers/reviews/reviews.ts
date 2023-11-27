@@ -9,19 +9,22 @@ const initialState: InitialReviewsState = {
 const reviews = (state = initialState, action: {type: string; payload?: any;}) => {
   switch (action.type) {
     case ActionType.START_FETCHING_REVIEWS:
-      return Object.assign({}, state, {
-        isFetchingData: true,
-      });
+      return {
+        ...state,
+        isFetchingData: true
+      };
 
     case ActionType.FINISH_FETCHING_REVIEWS:
-      return Object.assign({}, state, {
-        isFetchingData: false,
-      });
+      return {
+        ...state,
+        isFetchingData: false
+      };
 
     case ActionType.PASTE_REVIEWS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         reviews: [...state.reviews, ...action.payload]
-      });
+      };
   }
 
   return state;

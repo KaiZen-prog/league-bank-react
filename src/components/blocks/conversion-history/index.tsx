@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {setItem} from '../../../services/localstorage';
 import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
 import ConversionHistoryItem from '../conversion-history-item';
-import {ActionType} from '../../../store/actions/converter';
+import {clearConversionHistory} from '../../../store/actions/converter';
 import {Conversion} from '../../../common/types';
 import Section from '../../UI/section/section';
 import {
@@ -21,7 +21,7 @@ const ConversionHistory: React.FunctionComponent = () => {
   }, [conversionHistory]);
 
   const clearHistory = () => {
-    dispatch({type: ActionType.CLEAR_HISTORY, payload: []});
+    dispatch(clearConversionHistory());
   };
 
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import {useAppDispatch} from '../../../hooks/hooks';
-import {ActionType} from '../../../store/actions/converter';
+import {changeCurrentDate} from '../../../store/actions/converter';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -20,7 +20,7 @@ const Calendar: React.FunctionComponent<Props> = (props) => {
 
   const onDateChange = (date: Date) => {
     const formatDate = moment(date).format('YYYY-MM-DD');
-    dispatch({type: ActionType.CHANGE_CURRENT_DATE, payload: formatDate});
+    dispatch(changeCurrentDate(formatDate));
   };
 
   return (
