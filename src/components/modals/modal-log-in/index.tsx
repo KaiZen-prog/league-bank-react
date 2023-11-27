@@ -90,6 +90,6 @@ const ModalLogin: React.FunctionComponent<Props> = (props) => {
     </LoginBlock>,
     modalRoot,
   );
-}
+};
 
 export default ModalLogin;

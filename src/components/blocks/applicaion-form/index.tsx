@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react';
 import {CalculatorSteps, InputTypes, PHONE_LENGTH, SubmitButtonTypes} from '../../../const';
 import {FormSubmitEventHandler, InputChangeEventHandler} from '../../../common/types';
-import {ActionType} from '../../../store/actions/calculator';
+import {changeStep} from '../../../store/actions/calculator';
 import {divideNumberToSpace, shakeEffect, setTermLine} from '../../../common/utils';
 import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
 import StepTitle from '../step-title';
@@ -44,14 +44,14 @@ const ApplicationForm: React.FunctionComponent = () => {
       return;
     }
 
-    let newRequestNumberInt: number = 0;
+    let newRequestNumberInt = 0;
 
     if (requestNumber) {
       newRequestNumberInt = parseInt(requestNumber, 10) + 1;
     }
 
     localStorage.setItem('requestNumber', newRequestNumberInt.toString());
-    dispatch({type: ActionType.CHANGE_STEP, payload: 4});
+    dispatch(changeStep(4));
 
     document.documentElement.style.overflow = 'hidden';
   };

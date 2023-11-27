@@ -12,13 +12,13 @@ import ConverterField from '../converter-field';
 import Calendar from '../calendar';
 import Error from '../error';
 import Spinner from '../../UI/spinner';
+import { useFetching } from '../../../hooks/use-fetching';
 import {
   Header,
   Form,
   Wrapper,
   Button
 } from './converter.styled';
-import { useFetching } from '../../../hooks/use-fetching';
 
 const Converter: React.FunctionComponent = () => {
   const currentDate = useAppSelector((store) => store.converter.currentDate);

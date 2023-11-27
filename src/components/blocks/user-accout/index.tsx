@@ -44,7 +44,7 @@ const UserAccount: React.FunctionComponent<Props> = (props) => {
       )}
     </UserBlock>
   );
-}
+};
 
 UserAccount.displayName = 'UserAccount';
 

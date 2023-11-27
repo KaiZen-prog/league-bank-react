@@ -48,7 +48,7 @@ const ModalConfirm: React.FunctionComponent = () => {
     </ModalConfirmBlock>,
     modalRoot,
   );
-}
+};
 
 ModalConfirm.displayName = 'ModalConfirm';
 

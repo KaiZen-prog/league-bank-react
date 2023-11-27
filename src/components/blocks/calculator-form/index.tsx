@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
 import {CarParams, CreditPurpose, MortgageParams} from '../../../const';
 import {FormSubmitEventHandler, SelectChangeEventHandler} from '../../../common/types';
-import {ActionType} from '../../../store/actions/calculator';
+import {changePurpose, changeStep} from '../../../store/actions/calculator';
 import LoanParams from '../loan-params';
 import StepTitle from '../step-title';
 import Offer from '../offer';
@@ -36,16 +36,7 @@ const CalculatorForm: React.FunctionComponent = () => {
     const id = evt.currentTarget.id;
     const params = id === 'mortgage' ? MortgageParams : CarParams;
 
-    dispatch({type: ActionType.CHANGE_PURPOSE, payload: {
-      step: 2,
-      purpose: id,
-      creditParams: params,
-
-      cost: params.minCost,
-      initialFee: (params.minCost * params.minInitialFee) / 100,
-      term: params.minTerm
-    }});
-
+    dispatch(changePurpose(2, id, params));
     togglePurposeSelect();
   };
 
@@ -55,7 +46,7 @@ const CalculatorForm: React.FunctionComponent = () => {
     const newNumber = parseInt(requestNumber as string, 10) + 1;
     setRequestNumber(newNumber.toString());
 
-    dispatch({type: ActionType.CHANGE_STEP, payload: 3});
+    dispatch(changeStep(3));
   };
 
   return (

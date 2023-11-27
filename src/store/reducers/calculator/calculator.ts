@@ -8,7 +8,7 @@ const initialState: InitialCalculatorState = {
     maternalCapitalValue: 0,
     minCreditAmount: 0,
     minInitialFee: 0,
-    step : 0,
+    costStep : 0,
     type: '',
     minCost: 0,
     maxCost: 0,
@@ -53,7 +53,6 @@ const calculator = (state = initialState, action: {type: string; payload?: any;}
         step: action.payload.step,
         purpose: action.payload.purpose,
         creditParams: action.payload.creditParams,
-
         cost: action.payload.cost,
         initialFee: action.payload.initialFee,
         term: action.payload.term

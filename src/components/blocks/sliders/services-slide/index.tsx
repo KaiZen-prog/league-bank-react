@@ -59,7 +59,7 @@ const ServicesSlide: React.FunctionComponent<Props> = (props) => {
       </SlideWrapper>
     </ServicesSlideBlock>
   );
-}
+};
 
 ServicesSlide.displayName = 'ServicesSlide';
 

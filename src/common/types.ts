@@ -100,7 +100,7 @@ export type CreditParams = {
   maternalCapitalValue: number,
   minCreditAmount: number,
   minInitialFee: number,
-  step: number,
+  costStep: number,
   type: string,
   minCost: number,
   maxCost: number,
@@ -110,6 +110,42 @@ export type CreditParams = {
   additionalToCar?: {
     casco: string,
     lifeInsurance: string,
+  }
+};
+
+export type PurposeParams = {
+  maxTerm: number,
+  maternalCapitalValue: number,
+  costStep: number,
+  minTerm: number,
+  maxCost: number,
+  minCreditAmount: number,
+  type: string,
+  minInitialFee: number,
+  minCost: number,
+  percent: {
+    amountForSpecialPercent: number,
+    specialPercent: number,
+    defaultPercent: number
+  }
+} | {
+  maxTerm: number,
+  costStep: number,
+  minTerm: number,
+  additionalToCar: {
+    lifeInsurance: string,
+    casco: string
+  }, maxCost: number,
+  minCreditAmount: number,
+  type: string,
+  minInitialFee: number,
+  minCost: number,
+  percent: {
+    amountForSpecialPercent: number,
+    oneAddition: number,
+    specialPercent: number,
+    defaultPercent: number,
+    allAdditions: number
   }
 };
 

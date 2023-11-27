@@ -12,7 +12,7 @@ const StepTitle: React.FunctionComponent<Props> = (props) => {
   return (
     <StepTitleBlock $type={type}>{value}</StepTitleBlock>
   );
-}
+};
 
 StepTitle.displayName = 'StepTitle';
 

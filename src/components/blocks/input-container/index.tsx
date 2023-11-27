@@ -14,7 +14,7 @@ const InputContainer: React.FunctionComponent<Props> = props => {
       {children}
     </Block>
   );
-}
+};
 
 InputContainer.displayName = 'InputContainer';
 export default InputContainer;

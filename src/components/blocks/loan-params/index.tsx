@@ -40,7 +40,7 @@ const LoanParams: React.FunctionComponent = () => {
     costDivRef.current.style.color = '#1F1E25';
     const evtID = evt.target.id;
 
-    dispatch(changeCost(state.cost, state.creditParams.minCost, state.creditParams.maxCost, state.creditParams.step, state.initialFee, state.creditParams.minInitialFee, evtID));
+    dispatch(changeCost(state.cost, state.creditParams.minCost, state.creditParams.maxCost, state.creditParams.costStep, state.initialFee, state.creditParams.minInitialFee, evtID));
   };
 
   const onLabelClick: MouseEventHandler = (evt) => {

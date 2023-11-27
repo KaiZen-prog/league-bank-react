@@ -93,7 +93,7 @@ const Footer: React.FunctionComponent = () => {
       </Container>
     </FooterBLock>
   );
-}
+};
 
 Footer.displayName = 'Footer';
 

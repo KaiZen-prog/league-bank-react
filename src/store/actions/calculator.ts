@@ -1,4 +1,4 @@
-import {LoanPercent} from '../../common/types';
+import {LoanPercent, PurposeParams} from '../../common/types';
 import {getCreditAmount, getInterestRate, getMonthlyPayment, getNewCostAndInitialFee} from'./utils';
 import {REQUIRED_INCOME} from '../../const';
 
@@ -45,12 +45,12 @@ export const changeCost = (
   cost: number,
   minCost: number,
   maxCost: number,
-  step: number,
+  costStep: number,
   initialFee: number,
   minInitialFee: number,
   evtID: string
 ) => {
-  const [newCost, newInitialFee] = getNewCostAndInitialFee (cost, minCost, maxCost, step, initialFee, minInitialFee, evtID);
+  const [newCost, newInitialFee] = getNewCostAndInitialFee (cost, minCost, maxCost, costStep, initialFee, minInitialFee, evtID);
   return {
     type: ActionType.CHANGE_COST,
     payload: {
@@ -59,3 +59,21 @@ export const changeCost = (
     }
   };
 };
+
+export const changePurpose = (step: number, id: string, params: PurposeParams) => ({
+  type: ActionType.CHANGE_PURPOSE,
+  payload: {
+    step: step,
+    purpose: id,
+    creditParams: params,
+
+    cost: params.minCost,
+    initialFee: (params.minCost * params.minInitialFee) / 100,
+    term: params.minTerm
+  }
+});
+
+export const changeStep = (step: number) => ({
+  type: ActionType.CHANGE_STEP,
+  payload: step
+});

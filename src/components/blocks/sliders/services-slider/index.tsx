@@ -21,15 +21,7 @@ interface Props {
 }
 
 const ServicesSlider: React.FunctionComponent<Props> = (props) => {
-  const {
-    slides,
-    currentSlideNumber,
-
-    sliderRef,
-
-    onTabClick,
-    onSwipeStart,
-  } = props;
+  const {slides, currentSlideNumber, sliderRef, onTabClick, onSwipeStart} = props;
 
   return (
     <ServicesSliderBlock ref={sliderRef} id={Sliders.services.name}>

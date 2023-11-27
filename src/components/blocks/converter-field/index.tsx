@@ -50,7 +50,7 @@ const ConverterField: React.FunctionComponent<Props> = (props) => {
       </InputWrapper>
     </FieldBlock>
   );
-}
+};
 
 ConverterField.displayName = 'ConverterField';
 export default ConverterField;

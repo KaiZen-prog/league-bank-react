@@ -16,14 +16,7 @@ interface Props {
 }
 
 const MainSlider:React.FunctionComponent<Props> = (props) => {
-  const {
-    slides,
-    currentSlideNumber,
-
-    sliderRef,
-
-    onSwipeStart,
-  } = props;
+  const {slides, currentSlideNumber, sliderRef, onSwipeStart} = props;
 
   return (
     <MainSliderBlock ref={sliderRef} id={Sliders.main.name}>

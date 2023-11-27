@@ -14,7 +14,6 @@ interface Props {
   currentSlide: MainSlideType
 }
 
-
 const MainSlide:React.FunctionComponent<Props> = (props) => {
   const { currentSlide} = props;
   const {name, slogan, link, linkHref} = currentSlide;
@@ -35,7 +34,7 @@ const MainSlide:React.FunctionComponent<Props> = (props) => {
       </TextContainer>
     </MainSlideBlock>
   );
-}
+};
 
 MainSlide.displayName = 'MainSlide';
 

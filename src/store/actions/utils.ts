@@ -48,16 +48,16 @@ export const getMonthlyPayment = (percent: number, creditAmount: number, term: n
   return isNaN(result) ? 0 : result;
 };
 
-export const getNewCostAndInitialFee = (cost: number, minCost: number, maxCost: number, step: number, initialFee: number, minInitialFee: number, evtID: string) => {
+export const getNewCostAndInitialFee = (cost: number, minCost: number, maxCost: number, costStep: number, initialFee: number, minInitialFee: number, evtID: string) => {
   let newCost: number =
     isNaN(cost)
       ? minCost
       : cost;
 
   if (evtID === 'plus') {
-    newCost += step;
+    newCost += costStep;
   } else {
-    newCost -= step;
+    newCost -= costStep;
   }
 
   if (newCost < minCost) {
