@@ -4,13 +4,13 @@ import {REQUIRED_INCOME} from '../../const';
 
 export const ActionType = {
   SET_CREDIT_DATA: 'SET_CREDIT_DATA',
-  CHANGE_PURPOSE: 'CHANGE_PURPOSE',
   CHANGE_COST: 'CHANGE_COST',
-  CHANGE_INITIAL_FEE: 'CHANGE_INITIAL_FEE',
-  CHANGE_FIELD_VALUE: 'CHANGE_FIELD_VALUE',
-  CHANGE_ADDITIONAL: 'CHANGE_ADDITIONAL',
+  CHANGE_PURPOSE: 'CHANGE_PURPOSE',
   CHANGE_STEP: 'CHANGE_STEP',
-  CLOSE_POPUP: 'CLOSE_POPUP',
+  CHANGE_FIELD_VALUE: 'CHANGE_FIELD_VALUE',
+  CHANGE_INITIAL_FEE: 'CHANGE_INITIAL_FEE',
+  CHANGE_ADDITIONAL: 'CHANGE_ADDITIONAL',
+  RESET_CALCULATOR: 'RESET_CALCULATOR'
 };
 
 export const setCreditData = (
@@ -76,4 +76,33 @@ export const changePurpose = (step: number, id: string, params: PurposeParams) =
 export const changeStep = (step: number) => ({
   type: ActionType.CHANGE_STEP,
   payload: step
+});
+
+export const changeFieldValue = (name: string, value: string | number) => ({
+  type: ActionType.CHANGE_FIELD_VALUE,
+  payload: {
+    name: name,
+    value: value
+  }
+});
+
+export const changeInitialFee = (value: number) => ({
+  type: ActionType.CHANGE_INITIAL_FEE,
+  payload: value
+});
+
+export const changeAdditional = (name: string, value: boolean) => ({
+  type: ActionType.CHANGE_ADDITIONAL,
+  payload: {
+    name: name,
+    value: value
+  }
+});
+
+export const resetCalculator = () => ({
+  type: ActionType.RESET_CALCULATOR,
+  payload: {
+    step: 1,
+    purpose: 'none',
+  }
 });

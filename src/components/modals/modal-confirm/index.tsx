@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch} from '../../../hooks/hooks';
 import ReactDOM from 'react-dom';
-import {ActionType} from '../../../store/actions/calculator';
+import {resetCalculator} from '../../../store/actions/calculator';
 import {KeyCode} from '../../../const';
 import {
   ModalConfirmBlock,
@@ -21,10 +21,7 @@ const ModalConfirm: React.FunctionComponent = () => {
   });
 
   const onModalClose = () => {
-    dispatch({type: ActionType.CLOSE_POPUP, payload: {
-      step: 1,
-      purpose: 'none',
-    }});
+    dispatch(resetCalculator());
 
     document.documentElement.style.overflow = 'auto';
     document.removeEventListener('keydown', closeModalKeydown);

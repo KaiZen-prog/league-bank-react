@@ -3,7 +3,7 @@ import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
 import {CalculatorSteps, InputTypes, InputIconsTypes, LabelTypes, InputFields} from '../../../const';
 import {setTermLine, getRangeValuePosition} from '../../../common/utils';
 import {MouseEventHandler, FocusEventHandler, InputChangeEventHandler} from '../../../common/types';
-import {ActionType, changeCost } from '../../../store/actions/calculator';
+import {changeCost, changeFieldValue, changeInitialFee, changeAdditional} from '../../../store/actions/calculator';
 import {divideNumberToSpace} from '../../../common/utils';
 import StepTitle from '../step-title';
 import InputContainer from '../input-container';
@@ -68,10 +68,7 @@ const LoanParams: React.FunctionComponent = () => {
 
   const onInputChange: InputChangeEventHandler = (evt) => {
     const {name, value} = evt.target;
-    dispatch({type: ActionType.CHANGE_FIELD_VALUE, payload: {
-      name: name,
-      value: value,
-    }});
+    dispatch(changeFieldValue(name, value));
   };
 
   const onInputFocus: FocusEventHandler = (evt) => {
@@ -107,29 +104,24 @@ const LoanParams: React.FunctionComponent = () => {
       nextElement.style.color = '#1F1E25';
       value = +value;
 
-      dispatch({type: ActionType.CHANGE_INITIAL_FEE, payload: value});
+      const newFee = (value * state.creditParams.minInitialFee) / 100;
+      dispatch(changeInitialFee(newFee));
     }
 
     onInputBlur(evt);
   };
 
   const onInputRangeChange: InputChangeEventHandler = (evt) => {
-    const { name, value } = evt.target;
+    const {name, value} = evt.target;
     const newValue = parseInt(value, 10);
 
     name === 'initialFee'
-      ? dispatch({type: ActionType.CHANGE_FIELD_VALUE, payload: {
-        name: name,
-        value: (state.cost * newValue) / 100,
-      }})
+      ? dispatch(changeFieldValue(name, (state.cost * newValue) / 100))
       : onInputChange(evt);
   };
 
   const onAdditionalChange: InputChangeEventHandler = (evt) => {
-    dispatch({type: ActionType.CHANGE_ADDITIONAL, payload: {
-      name: evt.target.name,
-      value: !state[evt.target.name],
-    }});
+    dispatch(changeAdditional(evt.target.name, !state[evt.target.name]));
   };
 
   return (

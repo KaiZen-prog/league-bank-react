@@ -1,4 +1,4 @@
-import { ActionType } from '../../actions/calculator';
+import {ActionType} from '../../actions/calculator';
 import {InitialCalculatorState} from '../../../common/types';
 
 const initialState: InitialCalculatorState = {
@@ -40,62 +40,69 @@ const initialState: InitialCalculatorState = {
 const calculator = (state = initialState, action: {type: string; payload?: any;}) => {
   switch (action.type) {
     case ActionType.SET_CREDIT_DATA: {
-      return Object.assign({}, state, {
+      return {
+        ...state,
         creditAmount: action.payload.creditAmount,
         percent: action.payload.percent,
         monthlyPayment: action.payload.monthlyPayment,
-        requiredIncome: action.payload.requiredIncome,
-      });
+        requiredIncome: action.payload.requiredIncome
+      };
     }
 
     case ActionType.CHANGE_PURPOSE: {
-      return Object.assign({}, state, {
+      return {
+        ...state,
         step: action.payload.step,
         purpose: action.payload.purpose,
         creditParams: action.payload.creditParams,
         cost: action.payload.cost,
         initialFee: action.payload.initialFee,
         term: action.payload.term
-      });
+      };
     }
 
     case ActionType.CHANGE_COST: {
-      return Object.assign({}, state, {
+      return {
+        ...state,
         cost: action.payload.cost,
-        initialFee: action.payload.initialFee,
-      });
+        initialFee: action.payload.initialFee
+      };
     }
 
     case ActionType.CHANGE_INITIAL_FEE: {
-      const initialFee = (action.payload * state.creditParams.minInitialFee) / 100;
-      return Object.assign({}, state, {
-        initialFee: initialFee,
-      });
+      return {
+        ...state,
+        initialFee: action.payload
+      };
     }
 
     case ActionType.CHANGE_FIELD_VALUE: {
-      return Object.assign({}, state, {
-        [action.payload.name]: action.payload.value,
-      });
+      return {
+        ...state,
+        [action.payload.name]: action.payload.value
+      };
     }
 
     case ActionType.CHANGE_ADDITIONAL: {
-      return Object.assign({}, state, {
-        [action.payload.name]: action.payload.value,
-      });
+      return {
+        ...state,
+        [action.payload.name]: action.payload.value
+      };
     }
 
     case ActionType.CHANGE_STEP: {
-      return Object.assign({}, state, {
-        step: action.payload,
-      });
+      return {
+        ...state,
+        step: action.payload
+      };
     }
 
-    case ActionType.CLOSE_POPUP: {
-      return Object.assign({}, state, {
+    case ActionType.RESET_CALCULATOR: {
+      return {
+        ...state,
         step: action.payload.step,
-        purpose: action.payload.purpose,
-      });
+        purpose: action.payload.purpose
+      };
     }
   }
 
