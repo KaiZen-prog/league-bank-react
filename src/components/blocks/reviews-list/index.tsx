@@ -7,10 +7,10 @@ import {Wrapper, List} from './reviews-list.styled';
 
 interface Props {
   reviews: Array<Review>;
-  isFetchingData: boolean
+  isLoading: boolean
 }
 
-const ReviewsList: React.FunctionComponent<Props> = ({reviews, isFetchingData }) => (
+const ReviewsList: React.FunctionComponent<Props> = ({reviews, isLoading }) => (
   <Wrapper>
     <List>
       {reviews.map((review, i) => (
@@ -20,7 +20,7 @@ const ReviewsList: React.FunctionComponent<Props> = ({reviews, isFetchingData })
         />
       ))}
     </List>
-    {isFetchingData && <Spinner isLoading={isFetchingData}/>}
+    {isLoading && <Spinner isLoading={isLoading}/>}
   </Wrapper>
 );
 

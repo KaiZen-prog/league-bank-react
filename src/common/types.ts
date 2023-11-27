@@ -71,10 +71,7 @@ export type ConverterInputParamsType = {
   name: string
 }
 
-export type InitialReviewsState = {
-  reviews: Array<Review>,
-  isFetchingData: boolean
-};
+export type InitialReviewsState = Array<Review>;
 
 export type InitialConverterState = {
   currentDate: string,

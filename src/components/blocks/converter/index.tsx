@@ -4,14 +4,14 @@ import {Currencies, FLOAT_COEFFICIENT, FormFields, ConverterInputParams} from '.
 import OpenExchange from '../../../API/open-exchange';
 import {pasteNewExchangeRates, addConversion} from '../../../store/actions/converter';
 import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
-import { FormSubmitEventHandler, InputChangeEventHandler, SelectChangeEventHandler } from '../../../common/types';
+import {FormSubmitEventHandler, InputChangeEventHandler, SelectChangeEventHandler} from '../../../common/types';
 import {getConversionResult} from '../../../common/utils';
 import Section from '../../UI/section/section';
 import ConverterField from '../converter-field';
 import Calendar from '../calendar';
 import Error from '../error';
 import Spinner from '../../UI/spinner';
-import { useFetching } from '../../../hooks/use-fetching';
+import {useFetching} from '../../../hooks/use-fetching';
 import {
   Header,
   Form,
