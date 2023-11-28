@@ -19,6 +19,7 @@ interface Props {
 }
 
 export const FooterBLock: StyledComponent = styled.footer`
+  flex: 0 0 auto;
   background-color: ${theme.color.ghostWhite};
 `;
 

@@ -1,5 +1,6 @@
 import {initializeApp} from 'firebase/app';
 import {collection, getDocs, getFirestore} from 'firebase/firestore';
+import {Review} from '../common/types';
 
 export default class Firebase {
   private static _firebaseConfig = {
@@ -18,12 +19,12 @@ export default class Firebase {
     const fireStore = getFirestore(app);
     const reviewsCollection = collection(fireStore, 'reviews');
 
-    const reviews: Array<any> = [];
+    const reviews: Array<Review> = [];
 
     await getDocs(reviewsCollection)
       .then((reviewSnapshot) => {
         reviewSnapshot.forEach((doc) => {
-          reviews.push(doc.data());
+          reviews.push(doc.data() as Review);
         });
       });
 

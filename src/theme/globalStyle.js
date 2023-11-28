@@ -49,7 +49,18 @@ html {
 body {
   font-family: "Roboto", "Arial", sans-serif;
   width: 100%;
+  height: 100vh;
   margin: auto;
+}
+
+#root {
+ display: flex;
+ flex-direction: column;
+ height: 100%;
+}
+
+main {
+ flex: 1 0 auto;
 }
 
 a {
