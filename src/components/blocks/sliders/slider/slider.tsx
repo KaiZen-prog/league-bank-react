@@ -1,22 +1,23 @@
 import React, { useEffect, useState, createRef, Touch } from 'react';
-import {DESKTOP_MIN_WIDTH, Sliders} from '../../../../const';
+import {DESKTOP_MIN_WIDTH, MainSliderParams, ServicesSliderParams} from '../../../../const';
 import {getNextElement, getPreviousElement} from '../../../../common/utils';
-import {MainSlideType, ServicesSlideType} from '../../../../common/types';
+import {SliderType, MainSlideType, ServicesSlideType} from '../../../../common/types';
 import MainSlider from '../main-slider';
 import ServicesSlider from '../services-slider';
 
 interface Props {
-  slides: MainSlideType[] | ServicesSlideType[]
+  params: SliderType
 }
 
 const Slider: React.FunctionComponent<Props> = (props) => {
-  const {slides} = props;
+  const {params} = props;
+  const {type, isCarousel, slides} = params;
 
   const sliderRef: React.RefObject<HTMLElement> = createRef();
 
   const [sliderState, setSliderState] = useState({
-    slides: slides as MainSlideType[] | ServicesSlideType[],
-    currentSlide: slides[0] as MainSlideType | ServicesSlideType,
+    slides: slides,
+    currentSlide: slides[0],
     currentSlideNumber: 0
   });
 
@@ -49,7 +50,7 @@ const Slider: React.FunctionComponent<Props> = (props) => {
 
   // Запускаем карусель если не предусмотрены табы для перехода по слайдам
   useEffect(() => {
-    if (!('tabName' in sliderState.currentSlide)) {
+    if (isCarousel) {
       initCarouselInterval();
     }
 
@@ -119,7 +120,7 @@ const Slider: React.FunctionComponent<Props> = (props) => {
 
     posX = 0;
 
-    if (sliderRef.current.id === Sliders.main.name) {
+    if (sliderRef.current.id === MainSliderParams.type) {
       initCarouselInterval();
     }
   };
@@ -148,8 +149,8 @@ const Slider: React.FunctionComponent<Props> = (props) => {
   };
 
   // В зависимости от типа полученных слайдов, рендерим подходящий для них компонент
-  switch (true) {
-    case 'linkHref' in sliderState.currentSlide:
+  switch (type) {
+    case MainSliderParams.type:
       return (
         <MainSlider
           slides={sliderState.slides as MainSlideType[]}
@@ -159,7 +160,7 @@ const Slider: React.FunctionComponent<Props> = (props) => {
         />
       );
 
-    case 'tabName' in sliderState.currentSlide:
+    case ServicesSliderParams.type:
       return (
         <ServicesSlider
           slides={sliderState.slides as ServicesSlideType[]}

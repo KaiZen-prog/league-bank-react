@@ -2,7 +2,7 @@ import styled, {StyledComponentBase} from 'styled-components';
 import {css} from 'styled-components';
 import { visuallyHidden } from '../../../../theme/mixins';
 import theme from '../../../../theme/theme';
-import {Sliders} from '../../../../const';
+import {ServicesSlidesNames} from '../../../../const';
 
 const iconDeposit = require('../../../../img/icon-deposit.svg') as string;
 const iconCredit = require('../../../../img/icon-credit.svg') as string;
@@ -72,9 +72,10 @@ export const Tab: StyledComponent = styled.li<Props>`
         background-color: ${theme.color.ghostWhite};
       `;
     } else {
-      return css``
-  }}
+      return css``;
+    }
   }
+}
 `;
 
 export const TabLabel: StyledComponent = styled.span<Props>`
@@ -97,7 +98,7 @@ export const TabLabel: StyledComponent = styled.span<Props>`
 
     ${(props) => {
     switch (props.$tabName) {
-      case Sliders.services.slides.deposit:
+      case ServicesSlidesNames.deposit:
         return css`
             ::before {
               width: 34px;
@@ -106,7 +107,7 @@ export const TabLabel: StyledComponent = styled.span<Props>`
             }
         `;
 
-      case Sliders.services.slides.credit:
+      case ServicesSlidesNames.credit:
         return css`
             ::before {
               width: 34px;
@@ -115,7 +116,7 @@ export const TabLabel: StyledComponent = styled.span<Props>`
             }
         `;
 
-      case Sliders.services.slides.insurance:
+      case ServicesSlidesNames.insurance:
         return css`
             transform: translateX(20px);
 
@@ -127,7 +128,7 @@ export const TabLabel: StyledComponent = styled.span<Props>`
               }
         `;
 
-      case Sliders.services.slides.online:
+      case ServicesSlidesNames.online:
         return css`
             transform: translateX(15px);
 

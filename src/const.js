@@ -139,25 +139,104 @@ export const CarParams = {
 // ---------------------------------
 
 // Slider
-export const Sliders = {
-  main: {
-    name: 'main-slider',
-    slides: {
-      credit: 'credit',
-      promo: 'promo',
-      offices: 'offices',
-    },
-  },
+export const MainSlidesNames = {
+  credit: 'credit',
+  promo: 'promo',
+  offices: 'offices'
+};
 
-  services: {
-    name: 'services-slider',
-    slides: {
-      deposit: 'deposit',
-      credit: 'credit',
-      insurance: 'insurance',
-      online: 'online',
+export const MainSliderParams = {
+  type: 'main-slider',
+  isCarousel: true,
+  slides: [
+    {
+      name: MainSlidesNames.credit,
+      title: 'Лига Банк',
+      slogan: 'Кредиты на любой случай',
+      linkHref: 'calculator',
+      link: 'Рассчитать кредит',
     },
-  },
+
+    {
+      name: MainSlidesNames.promo,
+      title: 'Лига Банк',
+      slogan: 'Ваша уверенность в завтрашнем дне',
+      linkHref: '',
+      link: '',
+    },
+
+    {
+      name: MainSlidesNames.offices,
+      title: 'Лига Банк',
+      slogan: 'Всегда рядом',
+      linkHref: 'map',
+      link: 'Найти отделение',
+    },
+  ]
+};
+
+export const ServicesSlidesNames = {
+  deposit: 'deposit',
+  credit: 'credit',
+  insurance: 'insurance',
+  online: 'online'
+};
+
+export const ServicesSliderParams = {
+  type: 'services-slider',
+  isCarousel: false,
+  slides: [
+    {
+      name: ServicesSlidesNames.deposit,
+      tabName: 'Вклады',
+      slogan: 'Вклады Лига Банка – это выгодная инвестиция в свое будущее',
+      features: [
+        'Проценты по вкладам до 7%',
+        'Разнообразные условия',
+        'Возможность ежемесячной капитализации или вывод процентов на банковскую карту',
+      ],
+      text: {},
+      link: 'Узнать подробнее',
+    },
+
+    {
+      name: ServicesSlidesNames.credit,
+      tabName: 'Кредиты',
+      slogan: 'Лига Банк выдает кредиты под любые цели',
+      features: ['Ипотечный кредит', 'Автокредит', 'Потребительский кредит'],
+      text: {
+        firstLine: 'Рассчитайте ежемесячный платеж',
+        secondLine: 'и ставку по кредиту воспользовавшись нашим ',
+        link: 'кредитным калькулятором',
+      },
+      link: '',
+    },
+
+    {
+      name: ServicesSlidesNames.insurance,
+      tabName: 'Страхование',
+      slogan: 'Лига Страхование — застрахуем все что захотите',
+      features: [
+        'Автомобильное страхование',
+        'Страхование жизни и здоровья',
+        'Страхование недвижимости',
+      ],
+      text: {},
+      link: 'Узнать подробнее',
+    },
+
+    {
+      name: ServicesSlidesNames.online,
+      tabName: 'Онлайн-сервисы',
+      slogan: 'Лига Банк — это огромное количество онлайн-сервисов для вашего удобства',
+      features: [
+        'Мобильный банк, который всегда под рукой',
+        'Приложение Лига-проездной позволит вам оплачивать билеты по всему миру',
+      ],
+      text: {},
+      link: 'Узнать подробнее',
+    },
+  ]
 };
 // ---------------------------------
 

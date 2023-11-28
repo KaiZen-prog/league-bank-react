@@ -1,7 +1,7 @@
 import styled, {StyledComponentBase} from 'styled-components';
 import {css} from 'styled-components';
 import theme from '../../../../theme/theme';
-import {Sliders} from '../../../../const';
+import {ServicesSlidesNames} from '../../../../const';
 import {blockCentered, backgroundImage, button} from '../../../../theme/mixins';
 
 import slideDeposit from '../../../../img/slide-services-deposit.jpg';
@@ -101,7 +101,7 @@ export const SlideWrapper: StyledComponent = styled.div<Props>`
 
   ${(props) => {
     switch (props.$currentSlideName) {
-      case Sliders.services.slides.deposit:
+      case ServicesSlidesNames.deposit:
         return css`
             &::before {
               background-image: url(${slideDeposit});
@@ -116,7 +116,7 @@ export const SlideWrapper: StyledComponent = styled.div<Props>`
             }
         `;
 
-      case Sliders.services.slides.credit:
+      case ServicesSlidesNames.credit:
         return css`
           ::before {
             background-image: url(${slideCredit});
@@ -131,7 +131,7 @@ export const SlideWrapper: StyledComponent = styled.div<Props>`
           }
         `;
 
-      case Sliders.services.slides.insurance:
+      case ServicesSlidesNames.insurance:
         return css`
           &::before {
             background-image: url(${slideInsurance});
@@ -146,7 +146,7 @@ export const SlideWrapper: StyledComponent = styled.div<Props>`
           }
         `;
 
-      case Sliders.services.slides.online:
+      case ServicesSlidesNames.online:
         return css`
           &::before {
             background-image: url(${slideOnline});
@@ -197,7 +197,7 @@ export const Slogan: StyledComponent = styled.p<Props>`
 
   ${(props) => {
     switch (props.$currentSlideName) {
-      case Sliders.services.slides.deposit:
+      case ServicesSlidesNames.deposit:
         return css`
           @media (min-width: ${theme.tabletWidthMinThreshold}) {
             width: 320px;
@@ -208,7 +208,7 @@ export const Slogan: StyledComponent = styled.p<Props>`
           }
         `;
 
-      case Sliders.services.slides.credit:
+      case ServicesSlidesNames.credit:
         return css`
           width: 290px;
           padding-right: 60px;
@@ -222,7 +222,7 @@ export const Slogan: StyledComponent = styled.p<Props>`
           }
         `;
 
-      case Sliders.services.slides.insurance:
+      case ServicesSlidesNames.insurance:
         return css`
           padding-right: 35px;
 
@@ -239,7 +239,7 @@ export const Slogan: StyledComponent = styled.p<Props>`
           }
         `;
 
-      case Sliders.services.slides.online:
+      case ServicesSlidesNames.online:
         return css`
           margin-bottom: 20px;
           padding-right: 45px;
@@ -286,7 +286,7 @@ export const Features: StyledComponent = styled.ul<Props>`
 
   ${(props) => {
     switch (props.$currentSlideName) {
-      case Sliders.services.slides.credit:
+      case ServicesSlidesNames.credit:
         return css`
           margin-bottom: 22px;
 
@@ -299,7 +299,7 @@ export const Features: StyledComponent = styled.ul<Props>`
           }
         `;
 
-      case Sliders.services.slides.insurance:
+      case ServicesSlidesNames.insurance:
         return css`
           margin-bottom: 25px;
 
@@ -312,7 +312,7 @@ export const Features: StyledComponent = styled.ul<Props>`
           }
         `;
 
-      case Sliders.services.slides.online:
+      case ServicesSlidesNames.online:
         return css`
           padding-right: 45px;
 
@@ -381,7 +381,7 @@ export const Feature: StyledComponent = styled.li<Props>`
 
   ${(props) => {
     switch (props.$currentSlideName) {
-      case Sliders.services.slides.deposit:
+      case ServicesSlidesNames.deposit:
         return css`
           @media (min-width: ${theme.tabletWidthMinThreshold}) {
             &:last-child {
@@ -396,7 +396,7 @@ export const Feature: StyledComponent = styled.li<Props>`
           }
         `;
 
-      case Sliders.services.slides.online:
+      case ServicesSlidesNames.online:
         return css`
           padding-right: 30px;
 
@@ -491,7 +491,7 @@ export const SlideLink: StyledComponent = styled.a<Props>`
 
   ${(props) => {
     switch (props.$currentSlideName) {
-      case Sliders.services.slides.insurance:
+      case ServicesSlidesNames.insurance:
         return css`
           padding-top: 15px;
           padding-bottom: 12px;
@@ -507,7 +507,7 @@ export const SlideLink: StyledComponent = styled.a<Props>`
           }
           `;
 
-      case Sliders.services.slides.online:
+      case ServicesSlidesNames.online:
         return css`
           padding-top: 15px;
           padding-bottom: 12px;

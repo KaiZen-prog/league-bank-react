@@ -1,7 +1,7 @@
 import styled, { StyledComponentBase } from 'styled-components';
 import { css } from 'styled-components';
 import theme from '../../../../theme/theme';
-import {Sliders} from '../../../../const';
+import {MainSlidesNames} from '../../../../const';
 
 import promoSlideBackgroundMobile from '../../../../img/slide-promo-mobile.jpg';
 import promoSlideBackgroundTablet from '../../../../img/slide-promo-tablet.jpg';
@@ -38,7 +38,7 @@ export const MainSlideBlock: StyledComponent = styled.div<Props>`
   }
 
   ${(props) => {
-    if (props.$slideName === Sliders.main.slides.credit) {
+    if (props.$slideName === MainSlidesNames.credit) {
       return css`
         background-color: ${theme.color.neonBlue};
 
@@ -61,7 +61,7 @@ export const GradientContainer: StyledComponent = styled.div<Props>`
 
   @media (min-width: ${theme.tabletWidthMinThreshold}) {
     ${(props) => {
-    if (props.$slideName === Sliders.main.slides.credit) {
+    if (props.$slideName === MainSlidesNames.credit) {
       return css`
           &::after {
             content: "";
@@ -78,7 +78,7 @@ export const GradientContainer: StyledComponent = styled.div<Props>`
         `;
     }
 
-    if (props.$slideName === Sliders.main.slides.promo || props.$slideName === Sliders.main.slides.offices) {
+    if (props.$slideName === MainSlidesNames.promo || props.$slideName === MainSlidesNames.offices) {
       return css`
           max-width: 100%;
         `;
@@ -93,7 +93,7 @@ export const GradientContainer: StyledComponent = styled.div<Props>`
     transform: translateX(-50%);
 
     ${(props) => {
-    if (props.$slideName === Sliders.main.slides.credit) {
+    if (props.$slideName === MainSlidesNames.credit) {
       return css`
         &::before {
           content: "";
@@ -121,7 +121,7 @@ export const GradientContainer: StyledComponent = styled.div<Props>`
 }
 
   ${(props) => {
-    if (props.$slideName === Sliders.main.slides.credit || props.$slideName === Sliders.main.slides.promo) {
+    if (props.$slideName === MainSlidesNames.credit || props.$slideName === MainSlidesNames.promo) {
       return css`
         max-width: 100%;
       `;
@@ -137,7 +137,7 @@ export const BackgroundContainer: StyledComponent = styled.div<Props>`
 
   ${(props) => {
     switch (props.$slideName) {
-      case Sliders.main.slides.credit:
+      case MainSlidesNames.credit:
         return css`
         width: 78.3%;
         margin-left: -45.5%;
@@ -160,7 +160,7 @@ export const BackgroundContainer: StyledComponent = styled.div<Props>`
         }
       `;
 
-      case Sliders.main.slides.promo:
+      case MainSlidesNames.promo:
         return css`
         width: 100%;
         background-color: #dde2ec;
@@ -192,7 +192,7 @@ export const BackgroundContainer: StyledComponent = styled.div<Props>`
           }
       `;
 
-      case Sliders.main.slides.offices:
+      case MainSlidesNames.offices:
         return css`
         width: 100%;
         background-color: #E6F1FE;
@@ -235,7 +235,7 @@ export const TextContainer: StyledComponent = styled.div<Props>`
   }
 
   ${(props) => {
-    if (props.$slideName === Sliders.main.slides.credit) {
+    if (props.$slideName === MainSlidesNames.credit) {
       return css`
         &::before {
           content: "";
@@ -313,7 +313,7 @@ export const Title: StyledComponent = styled.h1<Props>`
   }
 
   ${(props) => {
-    if (props.$slideName === Sliders.main.slides.credit) {
+    if (props.$slideName === MainSlidesNames.credit) {
       return css`
           color: ${theme.color.ghostWhite};
         `;
@@ -342,12 +342,12 @@ export const Slogan: StyledComponent = styled.p<Props>`
 
   ${(props) => {
     switch (props.$slideName) {
-      case Sliders.main.slides.credit:
+      case MainSlidesNames.credit:
         return css`
           color: ${theme.color.quartz};
         `;
 
-      case Sliders.main.slides.promo:
+      case MainSlidesNames.promo:
         return css`
           margin-right: 140px;
         `;
@@ -388,13 +388,13 @@ export const Link: StyledComponent = styled.a<Props>`
 
   ${(props) => {
     switch (props.$slideName) {
-      case Sliders.main.slides.credit:
+      case MainSlidesNames.credit:
         return css`
           color: ${theme.color.jaguar};
           background-color: ${theme.color.ghostWhite};
         `;
 
-      case Sliders.main.slides.offices:
+      case MainSlidesNames.offices:
         return css`
           width: 243px;
           color: ${theme.color.ghostWhite};

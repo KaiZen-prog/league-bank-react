@@ -29,6 +29,12 @@ export type ServicesSlideType = Slide & {
   }
 };
 
+export type SliderType = {
+  type: string,
+  isCarousel: boolean,
+  slides: MainSlideType[] | ServicesSlideType[]
+}
+
 export type CurrencyInput = {
   type: string,
   amount: number

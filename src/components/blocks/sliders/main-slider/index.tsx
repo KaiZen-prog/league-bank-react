@@ -2,7 +2,7 @@ import React from 'react';
 import Dots from '../dots';
 import MainSlide from '../main-slide';
 import {MainSlideType} from '../../../../common/types';
-import {Sliders} from '../../../../const';
+import {MainSliderParams} from '../../../../const';
 import {
   MainSliderBlock,
   SlidesContainer
@@ -19,7 +19,7 @@ const MainSlider:React.FunctionComponent<Props> = (props) => {
   const {slides, currentSlideNumber, sliderRef, onSwipeStart} = props;
 
   return (
-    <MainSliderBlock ref={sliderRef} id={Sliders.main.name}>
+    <MainSliderBlock ref={sliderRef} id={MainSliderParams.type}>
       <SlidesContainer
         style={{ left: currentSlideNumber === 0 ? '0' : `-${currentSlideNumber}00%` }}
         onMouseDown={onSwipeStart}

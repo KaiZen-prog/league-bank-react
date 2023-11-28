@@ -22,7 +22,6 @@ export default class Firebase {
 
     await getDocs(reviewsCollection)
       .then((reviewSnapshot) => {
-
         reviewSnapshot.forEach((doc) => {
           reviews.push(doc.data());
         });

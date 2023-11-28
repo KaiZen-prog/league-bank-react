@@ -2,7 +2,7 @@ import React from 'react';
 import Dots from '../dots';
 import ServicesSlide from '../services-slide';
 import {ServicesSlideType} from '../../../../common/types';
-import {Sliders} from '../../../../const';
+import {ServicesSliderParams} from '../../../../const';
 import {
   ServicesSliderBlock,
   Header,
@@ -24,7 +24,7 @@ const ServicesSlider: React.FunctionComponent<Props> = (props) => {
   const {slides, currentSlideNumber, sliderRef, onTabClick, onSwipeStart} = props;
 
   return (
-    <ServicesSliderBlock ref={sliderRef} id={Sliders.services.name}>
+    <ServicesSliderBlock ref={sliderRef} id={ServicesSliderParams.type}>
       <Header>Наши сервисы</Header>
       <TabList>
         {slides.map((slide, index) => (
