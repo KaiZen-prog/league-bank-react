@@ -1,4 +1,5 @@
 import styled, {css, StyledComponentBase} from 'styled-components';
+import { commonText } from '../../../theme/mixins';
 
 const starIcon = require('../../../img/icon-star.svg') as string;
 const starIconActive = require('../../../img/icon-star-active.svg') as string;
@@ -17,18 +18,21 @@ export const Wrapper: StyledComponent = styled.div`
   flex-direction: row-reverse;
   
   height: 37px;
+
+  margin-bottom: 20px;
 `;
 
-export const InputContainer: StyledComponent = styled.div`
-`;
-
-export const Label: StyledComponent = styled.label`
-  &:hover span,
-  &:hover ~ label span {
+export const StarContainer: StyledComponent = styled.div`
+  &:hover label span,
+  &:hover ~ div label span {
     &:before{
       background: url(${starIconActive}) transparent no-repeat center;
     }
   }
+`;
+
+export const RatingTitle = styled.p`
+  ${commonText()};
 `;
 
 export const Star: StyledComponent = styled.span<Props>`

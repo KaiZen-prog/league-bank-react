@@ -1,7 +1,7 @@
 import React from 'react';
 import {RatingParams, StarIconWidth} from '../../../const';
 import {InputChangeEventHandler} from '../../../common/types';
-import { Wrapper, Label, Star} from './review-rating-inputs.styled';
+import {Wrapper, StarContainer, RatingTitle, Star} from './review-rating-inputs.styled';
 
 interface Props {
   rating: number,
@@ -13,20 +13,20 @@ const ReviewRatingInputs: React.FunctionComponent<Props> = (props) => {
 
   return (
     <>
-      <p>Рейтинг</p>
+      <RatingTitle>Ваша оценка:</RatingTitle>
       <Wrapper>
         {RatingParams.map((star) => (
-          <>
+          <StarContainer key={star.id}>
             <input className="visually-hidden" name="rating" value={star.value} id={star.id}
               type="radio"
               checked={rating === star.value}
               onChange={(e) => RatingChangeHandler(e)}
             />
-            <Label htmlFor={star.id} title={star.title}>
+            <label htmlFor={star.id} title={star.title}>
               <Star $left={(star.value - 1) * StarIconWidth} $isActive={rating >= star.value}>
               </Star>
-            </Label>
-          </>
+            </label>
+          </StarContainer>
         ))}
       </Wrapper>
     </>

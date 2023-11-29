@@ -27,7 +27,7 @@ const ConversionHistory: React.FunctionComponent = () => {
   return (
     <Section>
       <Wrapper>
-        <Header>История конвертации</Header>
+        <Header>История конвертаций</Header>
         <List>
           {conversionHistory.map((elem: Conversion, i: number) => (
             <ConversionHistoryItem

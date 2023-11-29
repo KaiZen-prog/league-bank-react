@@ -1,6 +1,7 @@
 import styled, {StyledComponentBase} from 'styled-components';
 import {css} from 'styled-components';
 import theme from '../../../theme/theme';
+import {headerH3} from '../../../theme/mixins';
 import {CalculatorSteps} from '../../../const';
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
@@ -10,27 +11,7 @@ interface Props {
 }
 
 export const StepTitleBlock: StyledComponent = styled.h3<Props>`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-
-  margin-top: 0;
-  margin-bottom: 14px;
-
-  @media (min-width: ${theme.tabletWidthMinThreshold}) {
-    font-size: 18px;
-    line-height: 25px;
-
-    margin-bottom: 18px;
-  }
-
-  @media (min-width: ${theme.desktopWidthMinThreshold}) {
-    font-size: 22px;
-    line-height: 31px;
-
-    margin-bottom: 22px;
-  }
+  ${headerH3()};
 
   ${(props) => {
     switch (props.$type) {

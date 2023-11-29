@@ -1,4 +1,5 @@
 import styled, {StyledComponentBase} from 'styled-components';
+import {commonText} from '../../../theme/mixins';
 
 const stars = require('../../../img/icon-stars.svg') as string;
 const starsActive = require('../../../img/icon-stars-active.svg') as string;
@@ -6,47 +7,36 @@ const starsActive = require('../../../img/icon-stars-active.svg') as string;
 interface StyledComponent extends StyledComponentBase<any, object> {}
 
 export const ReviewBlock: StyledComponent = styled.li`
-  display:-webkit-box;
-  display:-ms-flexbox;
-  display:flex;
-  -webkit-box-align:start;
-  -ms-flex-align:start;
-  align-items:flex-start;
-
-  margin-bottom:22px
+  margin-bottom: 42px;
 `;
 
-export const User: StyledComponent = styled.div`
-  display:-webkit-box;
-  display:-ms-flexbox;
-  display:flex;
-  -webkit-box-orient:vertical;
-  -webkit-box-direction:normal;
-  -ms-flex-direction:column;
-  flex-direction:column;
-  -webkit-box-align:center;
-  -ms-flex-align:center;
-  align-items:center;
-  max-width:54px;
-  margin-right:22px
+export const Wrapper: StyledComponent = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-right: 12px;
 `;
 
-export const UserName: StyledComponent = styled.span`
+export const ReviewText: StyledComponent = styled.p`
+  ${commonText()};
+`;
+
+export const Info: StyledComponent = styled.span`
   font-size:14px;
-  line-height:1.2143;
-  color:#000;
-  word-break:break-word;
-  word-wrap:break-word;
-  overflow-wrap:break-word
+  line-height:1.2;
+  
+  margin-right: 10px;
 `;
 
-export const Rating: StyledComponent = styled.div`
-  margin-bottom:7px
+export const Time: StyledComponent = styled.time`
+  font-size:14px;
+  line-height:1.2;
 `;
 
 export const Stars: StyledComponent = styled.div`
   position:relative;
   display:block;
+  margin-bottom:5px;
   font-size:0;
   width:98px;
   height:16px;

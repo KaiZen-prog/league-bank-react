@@ -65,7 +65,6 @@ export type Conversion = {
 };
 
 export type Review = {
-  id: number,
   date: string,
   text: string,
   rating: number,

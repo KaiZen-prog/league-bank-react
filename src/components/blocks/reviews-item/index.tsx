@@ -4,10 +4,11 @@ import moment from 'moment';
 import {RATING_SCALE_MULTIPLIER} from '../../../const';
 import {
   ReviewBlock,
-  User,
-  UserName,
-  Rating,
-  Stars
+  Wrapper,
+  ReviewText,
+  Stars,
+  Info,
+  Time
 } from './reviews-item.styled';
 
 interface Props {
@@ -19,23 +20,19 @@ const ReviewsItem: React.FunctionComponent<Props> = (props) => {
 
   return (
     <ReviewBlock>
-      <User>
-        <UserName>
+      <Stars>
+        <span style={{width: `${Math.round(review.rating * RATING_SCALE_MULTIPLIER)}%`}}></span>
+        <span className="visually-hidden">Rating</span>
+      </Stars>
+      <ReviewText>
+        {review.text}
+      </ReviewText>
+      <Wrapper>
+        <Info>
           {review.author}
-        </UserName>
-      </User>
-      <div>
-        <Rating>
-          <Stars>
-            <span style={{width: `${Math.round(review.rating * RATING_SCALE_MULTIPLIER)}%`}}></span>
-            <span className="visually-hidden">Rating</span>
-          </Stars>
-        </Rating>
-        <p className="reviews__text">
-          {review.text}
-        </p>
-        <time className="reviews__time" dateTime={review.date}>{moment(review.date).format('MMMM YYYY')}</time>
-      </div>
+        </Info>
+        <Time dateTime={review.date}>{moment(review.date).format('MMMM YYYY')}</Time>
+      </Wrapper>
     </ReviewBlock>
   );
 };

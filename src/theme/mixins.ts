@@ -1,6 +1,6 @@
-import { css } from 'styled-components';
+import {css} from 'styled-components';
 import theme from './theme';
-import {InputTypes, SubmitButtonTypes} from '../const';
+import {InputTypes, SubmitButtonTypes } from '../const';
 
 const iconPopupClose = require('../img/icon-close.svg') as string;
 
@@ -186,6 +186,50 @@ export const headerH2 = () => css`
     padding-right: 20px;
     padding-left: 0;
     padding-bottom: 56px;
+  }
+`;
+
+export const headerH3 = () => css`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+
+  margin-top: 0;
+  margin-bottom: 14px;
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    font-size: 18px;
+    line-height: 25px;
+
+    margin-bottom: 18px;
+  }
+
+  @media (min-width: ${theme.desktopWidthMinThreshold}) {
+    font-size: 22px;
+    line-height: 31px;
+
+    margin-bottom: 22px;
+  }
+`;
+
+export const commonText = () => css`
+  margin-top: 0;
+  margin-bottom: 5px;
+  padding-right: 12px;
+
+  font-size: 16px;
+  line-height: 19px;
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) and (max-width: ${theme.desktopWidthMinThreshold}) {
+    padding-right: 10px;
+
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  @media (max-width: ${theme.tabletWidthMinThreshold}) {
+    line-height: 19px;
   }
 `;
 
