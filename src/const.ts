@@ -240,6 +240,38 @@ export const ServicesSliderParams = {
 };
 // ---------------------------------
 
+// ReviewsForm
+export const StarIconWidth = 37;
+
+export const RatingParams = [
+  {
+    value: 5,
+    id: 'star-5',
+    title: 'perfect'
+  },
+  {
+    value: 4,
+    id: 'star-4',
+    title: 'good'
+  },
+  {
+    value: 3,
+    id: 'star-3',
+    title: 'not bad'
+  },
+  {
+    value: 2,
+    id: 'star-2',
+    title: 'badly'
+  },
+  {
+    value: 1,
+    id: 'star-1',
+    title: 'terribly'
+  }
+];
+// ---------------------------------
+
 // Footer
 export const ContactsTel = {
   mobile: 'mobile',

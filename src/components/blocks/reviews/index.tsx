@@ -5,7 +5,7 @@ import {useFetching} from '../../../hooks/use-fetching';
 import {pasteReviews} from '../../../store/actions/reviews';
 import Section from '../../UI/section/section';
 import ReviewsList from '../reviews-list';
-import ReviewsForm from '../reviews-form';
+import ReviewForm from '../review-form';
 import {Title, Wrapper} from './reviews.styled';
 
 const Reviews: React.FunctionComponent = () => {
@@ -32,7 +32,7 @@ const Reviews: React.FunctionComponent = () => {
         : null}
       <Wrapper>
         <ReviewsList reviews={reviews} isLoading={isLoading}/>
-        <ReviewsForm/>
+        <ReviewForm/>
       </Wrapper>
     </Section>
   );
