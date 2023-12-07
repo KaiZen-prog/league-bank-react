@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react';
+import {Suspense} from 'react';
 import GlobalStyle from '../../theme/globalStyle';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import {AppRoute} from '../../const';

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "outDir": "./dist/",
     "ignoreDeprecations": "5.0",
     "allowUnreachableCode": false,
     "exactOptionalPropertyTypes": false,
@@ -12,15 +13,22 @@
     "alwaysStrict": true,
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
-    "jsx": "react",
-    "esModuleInterop": true,
+    "module": "ESNext",
+    "target": "es5",
+    "jsx": "react-jsx",
     "allowJs": true,
-    "checkJs": false,
     "isolatedModules": true,
     "suppressImplicitAnyIndexErrors": true,
     "strictNullChecks": false,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "."
   },
-  "include": ["src/**/**/*"],
-  "exclude": ["node_modules"]
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
 }
