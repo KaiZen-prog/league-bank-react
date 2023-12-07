@@ -5,12 +5,10 @@ interface StyledComponent extends StyledComponentBase<any, object> {}
 
 export const Wrapper: StyledComponent = styled.div`
   position: relative;
-  max-height: 375px;
+  max-height: 500px;
   width: 50%;
-  padding-top: 60px;
   padding-right: 40px;
 `;
-
 
 export const List: StyledComponent = styled.ul`
   list-style: none;
