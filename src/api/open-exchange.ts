@@ -11,6 +11,7 @@ export default class OpenExchange {
       USD: this._baseRate,
       RUB: data.rates.RUB,
       EUR: data.rates.EUR,
+      KZT: data.rates.KZT,
       GBP: data.rates.GBP,
       CNY: data.rates.CNY,
     };

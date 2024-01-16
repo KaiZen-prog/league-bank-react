@@ -30,6 +30,7 @@ const ReviewForm: React.FunctionComponent = () => {
     };
 
     dispatch(createReview(newReview));
+    setReview({text: '', rating: 0, author: ''});
   };
 
   return (

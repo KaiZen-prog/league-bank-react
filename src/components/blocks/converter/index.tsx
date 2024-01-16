@@ -42,8 +42,7 @@ const Converter: React.FunctionComponent = () => {
   const [downloadRates, isLoading, error] = useFetching(async () => {
     const rates = await OpenExchange.fetchRates(currentDate);
     dispatch(pasteNewExchangeRates(currentDate, rates));
-  }
-  );
+  });
 
   useEffect(() => {
     if(!isLoading && !exchangeRates[currentDate]) {

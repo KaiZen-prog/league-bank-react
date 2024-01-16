@@ -18,7 +18,7 @@ export const AppRoute = {
 export const FLOAT_COEFFICIENT = 100;
 export const MAX_HISTORY_LENGTH = 10;
 
-export const Currencies = ['RUB', 'USD', 'EUR', 'GBP', 'CNY'];
+export const Currencies = ['RUB', 'USD', 'EUR', 'KZT', 'GBP', 'CNY'];
 
 export const FormFields = {
   INPUT: 'currencyInput',

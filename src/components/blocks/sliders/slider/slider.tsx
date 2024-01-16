@@ -48,7 +48,7 @@ const Slider: React.FunctionComponent<Props> = (props) => {
     return newSlide;
   };
 
-  // Запускаем карусель если не предусмотрены табы для перехода по слайдам
+  // Запускаем карусель, если задан параметр
   useEffect(() => {
     if (isCarousel) {
       initCarouselInterval();

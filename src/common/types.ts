@@ -49,6 +49,7 @@ export type ExchangeRate = {
   USD: number,
   RUB: number,
   EUR: number,
+  KZT: number,
   GBP: number,
   CNY: number,
 };
