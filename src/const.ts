@@ -17,6 +17,7 @@ export const AppRoute = {
 // Converter
 export const FLOAT_COEFFICIENT = 100;
 export const MAX_HISTORY_LENGTH = 10;
+export const MAX_DAYS = 8;
 
 export const Currencies = ['RUB', 'USD', 'EUR', 'KZT', 'GBP', 'CNY'];
 

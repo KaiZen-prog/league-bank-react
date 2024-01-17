@@ -18,6 +18,7 @@ import {
   Wrapper,
   Button
 } from './converter.styled';
+import CurrencyGraph from '../currency-graph';
 
 const Converter: React.FunctionComponent = () => {
   const currentDate = useAppSelector((store) => store.converter.currentDate);
@@ -156,6 +157,11 @@ const Converter: React.FunctionComponent = () => {
           </Button>
         </Wrapper>
       </Form>
+      <CurrencyGraph
+        currentDate={currentDate}
+        currencyX={currencyInput.type}
+        currencyY={currencyOutput.type}
+      />
     </Section>
   );
 };

@@ -1,5 +1,6 @@
 import {DIGIT_SPACE, FLOAT_COEFFICIENT, FormFields} from '../const';
 import {ConverterInputs, ExchangeRate} from './types';
+import moment from 'moment';
 
 export const getPreviousElement = (array: Array<any>, element: any) =>
   array[(array.indexOf(element) + array.length - 1) % array.length];
@@ -12,6 +13,15 @@ export const shakeEffect = (element: any) => {
   setTimeout(() => {
     element.style.animation = '';
   }, 600);
+};
+
+export const generateDatesArray = (arrayLength: number) => {
+  const dates = [];
+  for (let i = 0; i < arrayLength; i++) {
+    const newDate = moment().utc().subtract(i, 'day').format('DD.MM');
+    dates.push(newDate);
+  }
+  return dates;
 };
 
 export const conversionToUSD = (value: number, exchangeRate: number) =>
