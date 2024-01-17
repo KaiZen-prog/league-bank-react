@@ -4,6 +4,7 @@ import {MAX_DAYS} from '../../../const';
 import {
   Header,
 } from './currency-graph.styled';
+import Canvas from '../../UI/canvas';
 
 interface Props {
   currentDate: string,
@@ -20,6 +21,7 @@ const CurrencyGraph: React.FunctionComponent<Props> = React.memo(({currentDate, 
       <p>currencyY: {currencyY}</p>
       <p>currentDate: {currentDate}</p>
       <p>dates: {dates.map((date, i) => <span key={i}>{date}, </span>)}</p>
+      <Canvas/>
     </>
   );
 });
