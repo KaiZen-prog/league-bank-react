@@ -13,20 +13,20 @@ interface Props {
 const CurrencyGraph: React.FunctionComponent<Props> = React.memo(({currentDate, currencyX, currencyY}) => {
   const dates = useMemo(() => generateDatesArray(MAX_DAYS), []);
 
-  const draw = (ctx: CanvasRenderingContext2D, width: number, heigth: number) => {
+  const draw = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
     const dateInterval = Math.floor(width / (MAX_DAYS + 1));
 
-    console.log(`Width: ${width}, Height: ${heigth}, dateInterval: ${dateInterval}`);
+    console.log(`Width: ${width}, Height: ${height}, dateInterval: ${dateInterval}`);
 
     ctx.beginPath();
     ctx.moveTo(5, 0);
-    ctx.lineTo(5, heigth - 5);
-    ctx.lineTo(width, heigth - 5);
+    ctx.lineTo(5, height - 5);
+    ctx.lineTo(width, height - 5);
 
     for (let i = 1; i <= MAX_DAYS; i++) {
       const x = 5 + dateInterval * i;
-      ctx.moveTo(x, heigth);
-      ctx.lineTo(x, heigth - 10);
+      ctx.moveTo(x, height);
+      ctx.lineTo(x, height - 10);
     }
 
     ctx.lineWidth = 2;
