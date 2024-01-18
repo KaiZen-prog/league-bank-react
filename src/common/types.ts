@@ -77,7 +77,7 @@ export type ConverterInputParamsType = {
   name: string
 }
 export type CanvasContextType = CanvasRenderingContext2D | ImageBitmapRenderingContext | WebGLRenderingContext | WebGL2RenderingContext;
-export type CanvasDrawFunctionType = (canvas: HTMLCanvasElement) => void;
+export type CanvasDrawFunctionType = (ctx: CanvasRenderingContext2D, width: number, height: number) => void;
 
 export type InitialReviewsState = Array<Review>;
 
