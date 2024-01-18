@@ -1,17 +1,41 @@
-import React, {useRef, useEffect} from 'react';
+import React from 'react';
+import useCanvas from '../../../hooks/use-canvas';
+import {CanvasBlock} from './canvas.styled';
 
-const Canvas: React.FunctionComponent = (props) => {
-  const canvasRef = useRef(null);
+interface Props {
+  draw: (...args: any[]) => any
+}
+
+const Canvas: React.FunctionComponent<Props> = (props) => {
+  const {draw} = props;
+  //const [canvasWidth, setCanvasWidth] = useState(0);
+  //const [canvasHeight, setCanvasHeight] = useState(0);
+
+  const canvasRef = useCanvas(draw);
+  /*
+  const updateCanvasSize = () => {
+    const parentDiv = canvasRef.current.parentElement;
+    console.log('in updateCanvasSize');
+    console.log(`parentDiv.clientWidth: ${parentDiv.clientWidth}, parentDiv.clientHeight: ${parentDiv.clientHeight}`);
+
+    setCanvasWidth(parentDiv.clientWidth);
+    setCanvasHeight(parentDiv.clientHeight);
+  };
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
+    updateCanvasSize();
+    window.addEventListener('resize', updateCanvasSize);
 
-    context.fillStyle = '#000000';
-    context.fillRect(0, 0, context.canvas.width, context.canvas.height);
-  }, []);
+    return () => {
+      window.removeEventListener('resize', updateCanvasSize);
+    };
+  }, []);*/
 
-  return <canvas ref={canvasRef} {...props}/>;
+  return (
+    <CanvasBlock
+      ref={canvasRef}
+    />
+  );
 };
 
 Canvas.displayName = 'Canvas';
