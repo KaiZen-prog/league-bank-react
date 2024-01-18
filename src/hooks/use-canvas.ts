@@ -27,7 +27,7 @@ const useCanvas = (draw: CanvasDrawFunctionType) => {
     return () => {
       window.removeEventListener('resize', updateCanvasSize);
     };
-  }, [draw, width]);
+  }, [width]);
 
   return canvasRef;
 };

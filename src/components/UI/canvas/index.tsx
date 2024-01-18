@@ -6,7 +6,7 @@ interface Props {
   draw: (...args: any[]) => any
 }
 
-const Canvas: React.FunctionComponent<Props> = (props) => {
+const Canvas: React.FunctionComponent<Props> = React.memo((props) => {
   const {draw} = props;
   const canvasRef = useCanvas(draw);
 
@@ -15,7 +15,7 @@ const Canvas: React.FunctionComponent<Props> = (props) => {
       ref={canvasRef}
     />
   );
-};
+});
 
 Canvas.displayName = 'Canvas';
 export default Canvas;
