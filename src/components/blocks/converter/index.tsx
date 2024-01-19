@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import moment from 'moment';
-import {Currencies, FLOAT_COEFFICIENT, FormFields, ConverterInputParams} from '../../../const';
+import {ConverterFormCurrencies, FLOAT_COEFFICIENT, FormFields, ConverterInputParams} from '../../../const';
 import OpenExchange from '../../../API/open-exchange';
 import {pasteNewExchangeRates, addConversion} from '../../../store/actions/converter';
 import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
@@ -29,8 +29,8 @@ const Converter: React.FunctionComponent = () => {
   const dispatch = useAppDispatch();
 
   const [inputs, setInputs] = useState({
-    currencyInput: {type: Currencies[0], amount: 0},
-    currencyOutput: {type: Currencies[1], amount: 0},
+    currencyInput: {type: ConverterFormCurrencies[0], amount: 0},
+    currencyOutput: {type: ConverterFormCurrencies[1], amount: 0},
   });
 
   const [inputToChange, setInputToChange] = useState({

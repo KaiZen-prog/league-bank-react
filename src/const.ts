@@ -19,7 +19,8 @@ export const FLOAT_COEFFICIENT = 1000000;
 export const MAX_HISTORY_LENGTH = 10;
 export const MAX_DAYS = 8;
 
-export const Currencies = ['RUB', 'USD', 'EUR', 'KZT', 'GBP', 'CNY'];
+export const ConverterFormCurrencies = ['RUB', 'USD', 'EUR', 'KZT', 'GBP', 'CNY'];
+export const ConverterCanvasCurrencies = ['USD', 'EUR', 'KZT', 'GBP', 'CNY'];
 
 export const FormFields = {
   INPUT: 'currencyInput',

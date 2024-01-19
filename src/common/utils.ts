@@ -15,7 +15,7 @@ export const shakeEffect = (element: any) => {
   }, 600);
 };
 
-export const scaleValue = (value: number, fromMin: number, fromMax: number, toMin: number, toMax: number) => ((value - fromMin) / (fromMax - fromMin)) * (toMax - toMin) + toMin;
+export const scaleValue = (value: number, fromMin: number, fromMax: number, toMin: number, toMax: number) => Math.floor(((value - fromMin) / (fromMax - fromMin)) * (toMax - toMin) + toMin);
 
 export const generateDatesArray = (arrayLength: number) => {
   const dates = [];
