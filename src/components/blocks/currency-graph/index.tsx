@@ -1,11 +1,12 @@
 import React, {useState, useEffect, useMemo} from 'react';
-import {conversionFromUSD, conversionToUSD, generateDatesArray} from '../../../common/utils';
+import {conversionFromUSD, conversionToUSD, generateDatesArray, scaleValue} from '../../../common/utils';
 import Select from '../../UI/select';
 import CurrencyOptions from '../currency-options';
 import {Currencies, MAX_DAYS} from '../../../const';
 import {CanvasWrapper, Header} from './currency-graph.styled';
+import theme from '../../../theme/theme';
 import Canvas from '../../UI/canvas';
-import {ExchangeRate, SelectChangeEventHandler} from '../../../common/types';
+import {ExchangeRate, SelectChangeEventHandler, CanvasCoefficientsType} from '../../../common/types';
 
 interface Props {
   exchangeRates: Record<string, ExchangeRate>
@@ -13,7 +14,7 @@ interface Props {
 
 const CurrencyGraph: React.FunctionComponent<Props> = React.memo(({exchangeRates}) => {
   const [currencyX, setCurrencyX] = useState(Currencies[1]);
-  const [currencies, setCurrencies] = useState({array: [], med: 0});
+  const [currencies, setCurrencies] = useState({array: [], max: 0, med: 0, min: 0});
   const dates = useMemo(() => generateDatesArray(MAX_DAYS), []);
 
   console.log(currencies);
@@ -47,10 +48,10 @@ const CurrencyGraph: React.FunctionComponent<Props> = React.memo(({exchangeRates
 
     const med = (max + min) / 2;
 
-    setCurrencies({array: arr, med: med});
+    setCurrencies({array: arr, max: max, med: med, min: min});
   }, [currencyX]);
 
-  const draw = useMemo(() => (ctx: CanvasRenderingContext2D, width: number, height: number) => {
+  const draw = useMemo(() => (ctx: CanvasRenderingContext2D, width: number, height: number, coefficients: CanvasCoefficientsType) => {
     const dateInterval = Math.floor(width / (MAX_DAYS + 1));
 
     console.log(`Width: ${width}, Height: ${height}, dateInterval: ${dateInterval}`);
@@ -71,11 +72,42 @@ const CurrencyGraph: React.FunctionComponent<Props> = React.memo(({exchangeRates
     ctx.stroke();
 
     ctx.beginPath();
-    ctx.moveTo(5, (height - 5) / 2);
-    ctx.lineTo(width, (height - 5) / 2);
+    const yMax = 30;
+    const yMin = height - 20;
+    const yMed = (height + 10) / 2;
+
+    ctx.moveTo(5, yMax);
+    ctx.lineTo(width, yMax);
+
+    ctx.moveTo(5, yMed);
+    ctx.lineTo(width, yMed);
+
+    ctx.moveTo(5, yMin);
+    ctx.lineTo(width, yMin);
     ctx.lineWidth = 1;
     ctx.stroke();
-  }, []);
+
+    if (coefficients.array.length > 0) {
+      const scaledValues = coefficients.array.map((value) =>
+        scaleValue(value, coefficients.min, coefficients.max, yMin, yMax)
+      );
+
+      console.log(scaledValues);
+
+      ctx.beginPath();
+
+      for (let i = 1; i < MAX_DAYS; i++) {
+        const x = 5 + dateInterval * i;
+
+        ctx.moveTo(x, scaledValues[i - 1]);
+        ctx.lineTo(x + dateInterval , scaledValues[i]);
+      }
+
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = theme.color.persianBlue;
+      ctx.stroke();
+    }
+  }, [currencies]);
 
   const currencyChangeHandler: SelectChangeEventHandler = (evt) => {
     const {value} = evt.target;
@@ -97,9 +129,10 @@ const CurrencyGraph: React.FunctionComponent<Props> = React.memo(({exchangeRates
       <p>currencyY: {Currencies[0]}</p>
       <p>dates: {dates.map((date, i) => <span key={i}>{date}, </span>)}</p>
       <CanvasWrapper>
-        <Canvas
+        {currencies.array.length > 0 && <Canvas
           draw={draw}
-        />
+          coefficients={currencies}
+        />}
       </CanvasWrapper>
     </>
   );

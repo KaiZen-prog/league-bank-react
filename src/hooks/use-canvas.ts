@@ -1,7 +1,7 @@
 import {useState, useRef, useEffect} from 'react';
-import {CanvasDrawFunctionType} from '../common/types';
+import {CanvasCoefficientsType, CanvasDrawFunctionType} from '../common/types';
 
-const useCanvas = (draw: CanvasDrawFunctionType) => {
+const useCanvas = (draw: CanvasDrawFunctionType, coefficients: CanvasCoefficientsType) => {
   const canvasRef = useRef(null);
   const [width, setWidth] = useState(0);
 
@@ -20,14 +20,14 @@ const useCanvas = (draw: CanvasDrawFunctionType) => {
     ctx.canvas.width = calculatedWidth;
     ctx.canvas.height = height;
 
-    draw(ctx, calculatedWidth, calculatedHeight);
+    draw(ctx, calculatedWidth, calculatedHeight, coefficients);
 
     window.addEventListener('resize', updateCanvasSize);
 
     return () => {
       window.removeEventListener('resize', updateCanvasSize);
     };
-  }, [width]);
+  }, [width, coefficients]);
 
   return canvasRef;
 };

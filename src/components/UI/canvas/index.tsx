@@ -1,14 +1,16 @@
 import React from 'react';
 import useCanvas from '../../../hooks/use-canvas';
 import {CanvasBlock} from './canvas.styled';
+import {CanvasCoefficientsType} from '../../../common/types';
 
 interface Props {
-  draw: (...args: any[]) => any
+  draw: (...args: any[]) => any,
+  coefficients: CanvasCoefficientsType
 }
 
 const Canvas: React.FunctionComponent<Props> = React.memo((props) => {
-  const {draw} = props;
-  const canvasRef = useCanvas(draw);
+  const {draw, coefficients} = props;
+  const canvasRef = useCanvas(draw, coefficients);
 
   return (
     <CanvasBlock
