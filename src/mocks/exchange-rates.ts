@@ -1,5 +1,5 @@
 export const exchangeRates = {
-  '2024-01-18': {
+  '2024-01-19': {
     USD: 1,
     RUB: 88.573959,
     EUR: 0.918438,
@@ -7,7 +7,7 @@ export const exchangeRates = {
     GBP: 0.787512,
     CNY: 7.1197
   },
-  '2024-01-17': {
+  '2024-01-18': {
     USD: 1,
     RUB: 88.638497,
     EUR: 0.918649,
@@ -15,7 +15,7 @@ export const exchangeRates = {
     GBP: 0.788835,
     CNY: 7.1263
   },
-  '2024-01-16': {
+  '2024-01-17': {
     USD: 1,
     RUB: 88.105727,
     EUR: 0.919239,
@@ -23,7 +23,7 @@ export const exchangeRates = {
     GBP: 0.791321,
     CNY: 7.1265
   },
-  '2024-01-15': {
+  '2024-01-16': {
     USD: 1,
     RUB: 87.719298,
     EUR: 0.913662,
@@ -31,7 +31,7 @@ export const exchangeRates = {
     GBP: 0.786436,
     CNY: 7.1073
   },
-  '2024-01-14': {
+  '2024-01-15': {
     USD: 1,
     RUB: 88.043653,
     EUR: 0.913639,
@@ -39,7 +39,7 @@ export const exchangeRates = {
     GBP: 0.785191,
     CNY: 7.111
   },
-  '2024-01-13': {
+  '2024-01-14': {
     USD: 1,
     RUB: 87.959997,
     EUR: 0.912076,
@@ -47,7 +47,7 @@ export const exchangeRates = {
     GBP: 0.78456,
     CNY: 7.1126
   },
-  '2024-01-12': {
+  '2024-01-13': {
     USD: 1,
     RUB: 87.959997,
     EUR: 0.912076,
@@ -55,7 +55,7 @@ export const exchangeRates = {
     GBP: 0.78456,
     CNY: 7.1106
   },
-  '2024-01-11': {
+  '2024-01-12': {
     USD: 1,
     RUB: 88.495575,
     EUR: 0.910544,

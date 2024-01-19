@@ -3,11 +3,11 @@ import {ConverterInputParamsType} from '../../../common/types';
 import {ConverterInputParams} from '../../../const';
 import ConverterInput from '../converter-input';
 import CurrencyOptions from '../currency-options';
+import Select from '../../UI/select';
 import {
   FieldBlock,
   FieldTitle,
   InputWrapper,
-  Select,
 } from './converter-field.styled';
 
 interface Props {
@@ -37,16 +37,14 @@ const ConverterField: React.FunctionComponent<Props> = (props) => {
           amount={amount}
           changeHandler={valueChangeHandler}
         />
-        <label>
-          <Select
-            name={name}
-            value={currency}
-            onChange={typeChangeHandler}
-          >
-            <CurrencyOptions/>
-          </Select>
-          <span className="visually-hidden">валюта</span>
-        </label>
+        <Select
+          name={name}
+          value={currency}
+          label={'валюта'}
+          changeHandler={typeChangeHandler}
+        >
+          <CurrencyOptions/>
+        </Select>
       </InputWrapper>
     </FieldBlock>
   );

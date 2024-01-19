@@ -158,9 +158,7 @@ const Converter: React.FunctionComponent = () => {
         </Wrapper>
       </Form>
       <CurrencyGraph
-        currentDate={currentDate}
-        currencyX={currencyInput.type}
-        currencyY={currencyOutput.type}
+        exchangeRates={exchangeRates}
       />
     </Section>
   );
