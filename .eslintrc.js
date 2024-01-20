@@ -11,7 +11,7 @@ module.exports = {
     sourceType: 'module',
   },
   ignorePatterns: ['node_modules/*', '.next/*', '.out/*', '!.prettierrc.js'],
-  extends: ['eslint:recommended', 'htmlacademy/react', 'plugin:react-hooks/recommended'],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'htmlacademy/react', 'plugin:react-hooks/recommended'],
   overrides: [
     {
       files: ['**/*.ts', '**/*.tsx','**/*.js', '**/*.jsx', '**/*.svg'],

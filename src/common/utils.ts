@@ -1,4 +1,4 @@
-import {DIGIT_SPACE, FLOAT_COEFFICIENT, FormFields} from '../const';
+import {DIGIT_SPACE, FLOAT_COEFFICIENT, FormFields, MAX_DAYS} from '../const';
 import {ConverterInputs, ExchangeRate} from './types';
 import moment from 'moment';
 
@@ -26,13 +26,13 @@ export const generateDatesArray = (arrayLength: number) => {
   return dates;
 };
 
-export const conversionToUSD = (value: number, exchangeRate: number) =>
+export const conversionToUSD = (value: number, exchangeRate: number, coefficient = FLOAT_COEFFICIENT) =>
   exchangeRate === 0
     ? 0
-    : Math.floor((value / exchangeRate) * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
+    : Math.floor((value / exchangeRate) * coefficient) / coefficient;
 
-export const conversionFromUSD = (value: number, exchangeRate: number) =>
-  Math.floor(value * exchangeRate * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
+export const conversionFromUSD = (value: number, exchangeRate: number, coefficient = FLOAT_COEFFICIENT) =>
+  Math.floor(value * exchangeRate * coefficient) / coefficient;
 
 export const getConversionResult = (name: string, value: number, currentExchangeRate: ExchangeRate, inputs: ConverterInputs) => {
   let entryField = '';
@@ -110,4 +110,23 @@ export const setTermLine = (term: number) => {
     default:
       return `${term} лет`;
   }
+};
+
+export const getCurrentDate = (date: Date) => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
+export const getSevenDates = () => {
+  const sevenDates = [];
+  const currentDate = new Date();
+
+  for (let i = 0; i < MAX_DAYS; i++) {
+    sevenDates.push(getCurrentDate(currentDate));
+    currentDate.setDate(currentDate.getDate() - 1);
+  }
+
+  return sevenDates;
 };

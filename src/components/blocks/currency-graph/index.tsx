@@ -26,8 +26,8 @@ const CurrencyGraph: React.FunctionComponent<Props> = React.memo(({exchangeRates
     let isFirstIteration = true;
 
     for (const key in exchangeRates) {
-      const convertedToUSD = conversionToUSD(1, exchangeRates[key][currencyX]);
-      const result = conversionFromUSD(convertedToUSD, exchangeRates[key][ConverterFormCurrencies[0]]);
+      const convertedToUSD = conversionToUSD(1, exchangeRates[key][currencyX], 1000000);
+      const result = conversionFromUSD(convertedToUSD, exchangeRates[key][ConverterFormCurrencies[0]], 1000000);
 
       arr.push(result);
 
@@ -49,7 +49,7 @@ const CurrencyGraph: React.FunctionComponent<Props> = React.memo(({exchangeRates
     const med = (max + min) / 2;
 
     setCurrencies({array: arr, max: max, med: med, min: min});
-  }, [currencyX]);
+  }, [exchangeRates, currencyX]);
 
   const currencyChangeHandler: SelectChangeEventHandler = (evt) => {
     const {value} = evt.target;

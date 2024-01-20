@@ -3,7 +3,6 @@ import {InitialConverterState} from '../../../common/types';
 import moment from 'moment';
 import {MAX_HISTORY_LENGTH} from '../../../const';
 import {getItem} from '../../../services/localstorage';
-import {exchangeRates} from '../../../mocks/exchange-rates';
 
 const dateNow = moment().utc().format('YYYY-MM-DD');
 
@@ -11,7 +10,7 @@ const history = getItem('conversionHistory');
 
 const initialState: InitialConverterState = {
   currentDate: dateNow,
-  exchangeRates: exchangeRates,
+  exchangeRates: {},
   conversionHistory: history ? history : []
 };
 
@@ -26,10 +25,7 @@ const converter = (state = initialState, action: {type: string; payload?: any;})
     case ActionType.PASTE_NEW_EXCHANGE_RATES:
       return {
         ...state,
-        exchangeRates: {
-          ...state.exchangeRates,
-          [action.payload.date]: action.payload.exchangeRate
-        }
+        exchangeRates: action.payload
       };
 
     case ActionType.ADD_CONVERSION:

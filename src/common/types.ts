@@ -54,6 +54,8 @@ export type ExchangeRate = {
   CNY: number,
 };
 
+export type ExchangeRatesType = Record<string, ExchangeRate>
+
 export type ratesData = {
   rates: ExchangeRate
 }
@@ -90,7 +92,7 @@ export type InitialReviewsState = Array<Review>;
 
 export type InitialConverterState = {
   currentDate: string,
-  exchangeRates: Record<string, ExchangeRate>,
+  exchangeRates: ExchangeRatesType,
   conversionHistory: Array<Conversion>
 };
 

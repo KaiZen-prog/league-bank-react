@@ -1,4 +1,4 @@
-import {CurrencyInput, ExchangeRate} from '../../common/types';
+import {CurrencyInput, ExchangeRatesType} from '../../common/types';
 import {v4 as uuidv4} from 'uuid';
 
 export const ActionType = {
@@ -9,12 +9,9 @@ export const ActionType = {
   CLEAR_CONVERSION_HISTORY: 'CLEAR_CONVERSION_HISTORY',
 };
 
-export const pasteNewExchangeRates = (date: string, exchangeRate: ExchangeRate) => ({
+export const pasteNewExchangeRates = (exchangeRates: ExchangeRatesType) => ({
   type: ActionType.PASTE_NEW_EXCHANGE_RATES,
-  payload: {
-    date: date,
-    exchangeRate: exchangeRate
-  },
+  payload: exchangeRates,
 });
 
 export const addConversion = (date: string, input: CurrencyInput, output: CurrencyInput) => ({
