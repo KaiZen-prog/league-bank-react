@@ -27,13 +27,16 @@ export default class OpenExchange {
 
   static async fetchLastWeekRates() {
     const dates = getSevenDates();
-    const result = await Promise.all(dates.map((date) => this.fetchRates(date)));
 
-    return result.reduce((newObj, currentObject) => {
-      const key = Object.keys(currentObject)[0];
-      newObj[key] = currentObject[key];
+    return Object.fromEntries(
+      await Promise.all(
+        dates.map(async (date) => {
+          const response = await this.fetchRates(date);
+          const key = Object.keys(response)[0];
 
-      return newObj;
-    }, {});
+          return [key, response[key]];
+        })
+      )
+    );
   }
 }
