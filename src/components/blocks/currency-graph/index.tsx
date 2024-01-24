@@ -3,7 +3,7 @@ import {conversionFromUSD, conversionToUSD, generateDatesArray} from '../../../c
 import Select from '../../UI/select';
 import CurrencyOptions from '../currency-options';
 import {ConverterCanvasCurrencies, ConverterFormCurrencies, MAX_DAYS} from '../../../const';
-import {CanvasWrapper, Header} from './currency-graph.styled';
+import {GraphSection, CanvasWrapper, Header, DatesWrapper, DateSpan} from './currency-graph.styled';
 import Canvas from '../../UI/canvas';
 import {ExchangeRate, SelectChangeEventHandler} from '../../../common/types';
 import useCurrencyDraw from '../../../hooks/use-currency-draw';
@@ -26,8 +26,8 @@ const CurrencyGraph: React.FunctionComponent<Props> = React.memo(({exchangeRates
     let isFirstIteration = true;
 
     for (const key in exchangeRates) {
-      const convertedToUSD = conversionToUSD(1, exchangeRates[key][currencyX], 1000000);
-      const result = conversionFromUSD(convertedToUSD, exchangeRates[key][ConverterFormCurrencies[0]], 1000000);
+      const convertedToUSD = conversionToUSD(1, exchangeRates[key][currencyX]);
+      const result = conversionFromUSD(convertedToUSD, exchangeRates[key][ConverterFormCurrencies[0]]);
 
       arr.push(result);
 
@@ -57,8 +57,8 @@ const CurrencyGraph: React.FunctionComponent<Props> = React.memo(({exchangeRates
   };
 
   return (
-    <>
-      <Header>Динамика курса</Header>
+    <GraphSection>
+      <Header>Динамика курса к рублю</Header>
       <Select
         name={'x-currency'}
         value={currencyX}
@@ -71,14 +71,16 @@ const CurrencyGraph: React.FunctionComponent<Props> = React.memo(({exchangeRates
       </Select>
       <p>currencyX: {currencyX}</p>
       <p>currencyY: {ConverterFormCurrencies[0]}</p>
-      <p>dates: {dates.map((date, i) => <span key={i}>{date}, </span>)}</p>
       <CanvasWrapper>
         {currencies.array.length > 0 &&
           <Canvas
             draw={draw}
           />}
+        <DatesWrapper>
+          {dates.map((date, i) => <DateSpan key={i} style={{order: dates.length - i}}>{date}</DateSpan>)}
+        </DatesWrapper>
       </CanvasWrapper>
-    </>
+    </GraphSection>
   );
 });
 

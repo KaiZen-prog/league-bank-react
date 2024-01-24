@@ -26,13 +26,13 @@ export const generateDatesArray = (arrayLength: number) => {
   return dates;
 };
 
-export const conversionToUSD = (value: number, exchangeRate: number, coefficient = FLOAT_COEFFICIENT) =>
-  exchangeRate === 0
-    ? 0
-    : Math.floor((value / exchangeRate) * coefficient) / coefficient;
+export const conversionToUSD = (value: number, exchangeRate: number) => {
+  return value / exchangeRate;
+};
 
-export const conversionFromUSD = (value: number, exchangeRate: number, coefficient = FLOAT_COEFFICIENT) =>
-  Math.floor(value * exchangeRate * coefficient) / coefficient;
+export const conversionFromUSD = (value: number, exchangeRate: number) => {
+  return value * exchangeRate;
+};
 
 export const getConversionResult = (name: string, value: number, currentExchangeRate: ExchangeRate, inputs: ConverterInputs) => {
   let entryField = '';
@@ -50,7 +50,8 @@ export const getConversionResult = (name: string, value: number, currentExchange
   const outputExchangeRate: number = currentExchangeRate[inputs[outputField].type];
 
   const convertedToUSD = conversionToUSD(value, entryExchangeRate);
-  return [conversionFromUSD(convertedToUSD, outputExchangeRate), outputField];
+  const result = Math.floor(conversionFromUSD(convertedToUSD, outputExchangeRate) * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
+  return [result, outputField];
 };
 
 export const getRangeValuePosition = (max: number, min: number, value: number) => {

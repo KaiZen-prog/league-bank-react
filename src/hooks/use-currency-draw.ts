@@ -6,12 +6,12 @@ import {CanvasCoefficientsType} from '../common/types';
 
 const drawAxis = (ctx: CanvasRenderingContext2D, width: number, height: number, XInterval: number) => {
   ctx.beginPath();
-  ctx.moveTo(5, 0);
-  ctx.lineTo(5, height - 5);
-  ctx.lineTo(width, height - 5);
+  ctx.moveTo(20, 0);
+  ctx.lineTo(20, height - 5);
+  ctx.lineTo(width - 20, height - 5);
 
   for (let i = 1; i < MAX_DAYS; i++) {
-    const x = 5 + XInterval * i;
+    const x = 20 + XInterval * i;
     ctx.moveTo(x, height);
     ctx.lineTo(x, height - 10);
   }
@@ -22,7 +22,7 @@ const drawAxis = (ctx: CanvasRenderingContext2D, width: number, height: number, 
 };
 
 const useCurrencyDraw = (currencies: CanvasCoefficientsType) => useMemo(() => (ctx: CanvasRenderingContext2D, width: number, height: number) => {
-  const dateInterval = Math.floor(width / (MAX_DAYS));
+  const dateInterval = Math.floor((width - 40) / (MAX_DAYS));
 
   drawAxis(ctx, width, height, dateInterval);
 
@@ -37,7 +37,7 @@ const useCurrencyDraw = (currencies: CanvasCoefficientsType) => useMemo(() => (c
     ctx.beginPath();
 
     for (let i = 0; i < MAX_DAYS; i++) {
-      const x = 5 + dateInterval * i;
+      const x = 20 + dateInterval * i;
 
       ctx.moveTo(x, scaledValues[scaledValues.length - 1 - i]);
       ctx.lineTo(x + dateInterval, scaledValues[scaledValues.length - 2 - i]);
