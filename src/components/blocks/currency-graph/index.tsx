@@ -72,28 +72,32 @@ const CurrencyGraph: React.FunctionComponent<Props> = React.memo((props) => {
   return (
     <GraphSection>
       <Header>Динамика курсов валют за неделю</Header>
-      <p>Ось Y:</p>
-      <Select
-        name={'y-currency'}
-        value={currencyY}
-        label={'валюта'}
-        changeHandler={currencyChangeHandler}
-      >
-        <CurrencyOptions
-          options={ConverterFormCurrencies}
-        />
-      </Select>
-      <p>Ось X:</p>
-      <Select
-        name={'x-currency'}
-        value={currencyX}
-        label={'валюта'}
-        changeHandler={currencyChangeHandler}
-      >
-        <CurrencyOptions
-          options={ConverterFormCurrencies}
-        />
-      </Select>
+      <div>
+        <span>Ось Y:</span>
+        <Select
+          name={'y-currency'}
+          value={currencyY}
+          label={'валюта'}
+          changeHandler={currencyChangeHandler}
+        >
+          <CurrencyOptions
+            options={ConverterFormCurrencies}
+          />
+        </Select>
+      </div>
+      <div>
+        <span>Ось X:</span>
+        <Select
+          name={'x-currency'}
+          value={currencyX}
+          label={'валюта'}
+          changeHandler={currencyChangeHandler}
+        >
+          <CurrencyOptions
+            options={ConverterFormCurrencies}
+          />
+        </Select>
+      </div>
       <CanvasWrapper>
         {currencies.array.length > 0 &&
           <Canvas
