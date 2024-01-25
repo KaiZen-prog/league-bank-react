@@ -1,6 +1,5 @@
 import {DIGIT_SPACE, FLOAT_COEFFICIENT, FormFields, MAX_DAYS} from '../const';
 import {ConverterInputs, ExchangeRate} from './types';
-import moment from 'moment';
 
 export const getPreviousElement = (array: Array<any>, element: any) =>
   array[(array.indexOf(element) + array.length - 1) % array.length];
@@ -17,22 +16,11 @@ export const shakeEffect = (element: any) => {
 
 export const scaleValue = (value: number, fromMin: number, fromMax: number, toMin: number, toMax: number) => Math.floor(((value - fromMin) / (fromMax - fromMin)) * (toMax - toMin) + toMin);
 
-export const generateDatesArray = (arrayLength: number) => {
-  const dates = [];
-  for (let i = 0; i < arrayLength; i++) {
-    const newDate = moment().utc().subtract(i, 'day').format('DD.MM');
-    dates.push(newDate);
-  }
-  return dates;
-};
+export const conversionToUSD = (value: number, exchangeRate: number) => value / exchangeRate;
 
-export const conversionToUSD = (value: number, exchangeRate: number) => {
-  return value / exchangeRate;
-};
+export const conversionFromUSD = (value: number, exchangeRate: number) => value * exchangeRate;
 
-export const conversionFromUSD = (value: number, exchangeRate: number) => {
-  return value * exchangeRate;
-};
+export const getRoundedValue = (value: number, coefficient = FLOAT_COEFFICIENT) => Math.floor(value * coefficient) / coefficient;
 
 export const getConversionResult = (name: string, value: number, currentExchangeRate: ExchangeRate, inputs: ConverterInputs) => {
   let entryField = '';

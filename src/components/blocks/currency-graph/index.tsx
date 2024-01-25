@@ -1,23 +1,25 @@
-import React, {useState, useEffect, useMemo} from 'react';
-import {conversionFromUSD, conversionToUSD, generateDatesArray} from '../../../common/utils';
+import React, {useState, useEffect} from 'react';
+import {conversionFromUSD, conversionToUSD} from '../../../common/utils';
 import Select from '../../UI/select';
 import CurrencyOptions from '../currency-options';
-import {ConverterCanvasCurrencies, ConverterFormCurrencies, MAX_DAYS} from '../../../const';
-import {GraphSection, CanvasWrapper, Header, DatesWrapper, DateSpan} from './currency-graph.styled';
+import {ConverterCanvasCurrencies, ConverterFormCurrencies} from '../../../const';
+import {GraphSection, CanvasWrapper, Header} from './currency-graph.styled';
 import Canvas from '../../UI/canvas';
 import {ExchangeRate, SelectChangeEventHandler} from '../../../common/types';
 import useCurrencyDraw from '../../../hooks/use-currency-draw';
 
 interface Props {
-  exchangeRates: Record<string, ExchangeRate>
+  exchangeRates: Record<string, ExchangeRate>,
+  datesArray: Array<string>
 }
 
-const CurrencyGraph: React.FunctionComponent<Props> = React.memo(({exchangeRates}) => {
+const CurrencyGraph: React.FunctionComponent<Props> = React.memo((props) => {
+  const {exchangeRates, datesArray} = props;
+
   const [currencyX, setCurrencyX] = useState(ConverterCanvasCurrencies[0]);
   const [currencies, setCurrencies] = useState({array: [], max: 0, med: 0, min: 0});
 
-  const dates = useMemo(() => generateDatesArray(MAX_DAYS), []);
-  const draw = useCurrencyDraw(currencies);
+  const draw = useCurrencyDraw(currencies, datesArray);
 
   useEffect(() => {
     const arr = [];
@@ -49,7 +51,7 @@ const CurrencyGraph: React.FunctionComponent<Props> = React.memo(({exchangeRates
     const med = (max + min) / 2;
 
     setCurrencies({array: arr, max: max, med: med, min: min});
-  }, [exchangeRates, currencyX]);
+  }, [currencyX]);
 
   const currencyChangeHandler: SelectChangeEventHandler = (evt) => {
     const {value} = evt.target;
@@ -69,16 +71,11 @@ const CurrencyGraph: React.FunctionComponent<Props> = React.memo(({exchangeRates
           options={ConverterCanvasCurrencies}
         />
       </Select>
-      <p>currencyX: {currencyX}</p>
-      <p>currencyY: {ConverterFormCurrencies[0]}</p>
       <CanvasWrapper>
         {currencies.array.length > 0 &&
           <Canvas
             draw={draw}
           />}
-        <DatesWrapper>
-          {dates.map((date, i) => <DateSpan key={i} style={{order: dates.length - i}}>{date}</DateSpan>)}
-        </DatesWrapper>
       </CanvasWrapper>
     </GraphSection>
   );

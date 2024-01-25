@@ -16,18 +16,7 @@ export const CanvasWrapper: StyledComponent = styled.div`
   position: relative;
   
   width: 100%; 
-  padding-bottom: 33.33%;
-`;
-
-export const DatesWrapper: StyledComponent = styled.div`
-  position: absolute;
-  bottom: -45px;
   
-  display: flex;
-
-  width: 100%;
-`;
-
-export const DateSpan: StyledComponent = styled.span`
-  margin-right: 8.64%;
+  margin-top: 30px;
+  padding-bottom: 33.33%;
 `;

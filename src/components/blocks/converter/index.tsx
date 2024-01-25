@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import moment from 'moment';
-import {ConverterFormCurrencies, FLOAT_COEFFICIENT, FormFields, ConverterInputParams} from '../../../const';
+import {ConverterFormCurrencies, FormFields, ConverterInputParams, MAX_DAYS} from '../../../const';
 import OpenExchange from '../../../API/open-exchange';
 import {pasteNewExchangeRates, addConversion} from '../../../store/actions/converter';
 import {useAppSelector, useAppDispatch} from '../../../hooks/hooks';
 import {FormSubmitEventHandler, InputChangeEventHandler, SelectChangeEventHandler} from '../../../common/types';
-import {getConversionResult} from '../../../common/utils';
+import {getConversionResult, getRoundedValue} from '../../../common/utils';
 import Section from '../../UI/section/section';
 import ConverterField from '../converter-field';
 import Calendar from '../calendar';
@@ -25,6 +25,12 @@ const Converter: React.FunctionComponent = () => {
   const exchangeRates = useAppSelector((store) => store.converter.exchangeRates);
 
   const currentExchangeRate = exchangeRates[currentDate];
+
+  const datesArray = useMemo(() => Object.keys(exchangeRates).map((date) => {
+    const month = date.slice(5, 7);
+    const day = date.slice(8);
+    return `${day}.${month}`;
+  }), [exchangeRates]);
 
   const dispatch = useAppDispatch();
 
@@ -77,7 +83,7 @@ const Converter: React.FunctionComponent = () => {
     setInputs((prevState) => ({
       ...prevState,
       [name]: Object.assign({}, prevState[name], {
-        amount: checkedValue === 0 ? '' : (Math.floor(checkedValue * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT).toString(),
+        amount: checkedValue === 0 ? '' : getRoundedValue(checkedValue).toString(),
       }),
     }));
 
@@ -155,9 +161,7 @@ const Converter: React.FunctionComponent = () => {
           </Button>
         </Wrapper>
       </Form>
-      <CurrencyGraph
-        exchangeRates={exchangeRates}
-      />
+      {datesArray.length === MAX_DAYS && <CurrencyGraph exchangeRates={exchangeRates} datesArray={datesArray}/>}
     </Section>
   );
 };
