@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {conversionFromUSD, conversionToUSD} from '../../../common/utils';
 import Select from '../../UI/select';
 import CurrencyOptions from '../currency-options';
-import {ConverterCanvasCurrencies, ConverterFormCurrencies} from '../../../const';
+import {ConverterFormCurrencies, CanvasCurrencyNames} from '../../../const';
 import {GraphSection, CanvasWrapper, Header} from './currency-graph.styled';
 import Canvas from '../../UI/canvas';
 import {ExchangeRate, SelectChangeEventHandler} from '../../../common/types';
@@ -16,7 +16,9 @@ interface Props {
 const CurrencyGraph: React.FunctionComponent<Props> = React.memo((props) => {
   const {exchangeRates, datesArray} = props;
 
-  const [currencyX, setCurrencyX] = useState(ConverterCanvasCurrencies[0]);
+  const [currencyY, setCurrencyY] = useState(ConverterFormCurrencies[0]);
+  const [currencyX, setCurrencyX] = useState(ConverterFormCurrencies[1]);
+
   const [currencies, setCurrencies] = useState({array: [], max: 0, med: 0, min: 0});
 
   const draw = useCurrencyDraw(currencies, datesArray);
@@ -29,7 +31,7 @@ const CurrencyGraph: React.FunctionComponent<Props> = React.memo((props) => {
 
     for (const key in exchangeRates) {
       const convertedToUSD = conversionToUSD(1, exchangeRates[key][currencyX]);
-      const result = conversionFromUSD(convertedToUSD, exchangeRates[key][ConverterFormCurrencies[0]]);
+      const result = conversionFromUSD(convertedToUSD, exchangeRates[key][currencyY]);
 
       arr.push(result);
 
@@ -51,16 +53,37 @@ const CurrencyGraph: React.FunctionComponent<Props> = React.memo((props) => {
     const med = (max + min) / 2;
 
     setCurrencies({array: arr, max: max, med: med, min: min});
-  }, [currencyX]);
+  }, [currencyX, currencyY]);
 
   const currencyChangeHandler: SelectChangeEventHandler = (evt) => {
-    const {value} = evt.target;
-    setCurrencyX(value);
+    const {name, value} = evt.target;
+
+    switch (name) {
+      case CanvasCurrencyNames.X:
+        setCurrencyX(value);
+        break;
+
+      case CanvasCurrencyNames.Y:
+        setCurrencyY(value);
+        break;
+    }
   };
 
   return (
     <GraphSection>
-      <Header>Динамика курса к рублю</Header>
+      <Header>Динамика курсов валют за неделю</Header>
+      <p>Ось Y:</p>
+      <Select
+        name={'y-currency'}
+        value={currencyY}
+        label={'валюта'}
+        changeHandler={currencyChangeHandler}
+      >
+        <CurrencyOptions
+          options={ConverterFormCurrencies}
+        />
+      </Select>
+      <p>Ось X:</p>
       <Select
         name={'x-currency'}
         value={currencyX}
@@ -68,7 +91,7 @@ const CurrencyGraph: React.FunctionComponent<Props> = React.memo((props) => {
         changeHandler={currencyChangeHandler}
       >
         <CurrencyOptions
-          options={ConverterCanvasCurrencies}
+          options={ConverterFormCurrencies}
         />
       </Select>
       <CanvasWrapper>

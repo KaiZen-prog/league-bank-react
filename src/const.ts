@@ -20,7 +20,11 @@ export const MAX_HISTORY_LENGTH = 10;
 export const MAX_DAYS = 8;
 
 export const ConverterFormCurrencies = ['RUB', 'USD', 'EUR', 'KZT', 'GBP', 'CNY'];
-export const ConverterCanvasCurrencies = ['USD', 'EUR', 'KZT', 'GBP', 'CNY'];
+
+export const CanvasCurrencyNames = {
+  X: 'x-currency',
+  Y: 'y-currency'
+};
 
 export const FormFields = {
   INPUT: 'currencyInput',
