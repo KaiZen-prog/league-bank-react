@@ -50,6 +50,8 @@ const drawAxis = (
 };
 
 const drawGraph = (ctx: CanvasRenderingContext2D, scaledValues: Array<number>, leftOffset: number, dateInterval: number) => {
+  ctx.imageSmoothingEnabled = false;
+
   ctx.beginPath();
 
   for (let i = 0; i < MAX_DAYS; i++) {

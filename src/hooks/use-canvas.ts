@@ -17,8 +17,10 @@ const useCanvas = (draw: CanvasDrawFunctionType) => {
     const calculatedWidth = Math.floor(width);
     const calculatedHeight = Math.floor(height);
 
-    ctx.canvas.width = calculatedWidth;
-    ctx.canvas.height = height;
+    ctx.canvas.width = calculatedWidth * window.devicePixelRatio;
+    ctx.canvas.height = height * window.devicePixelRatio;
+
+    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
 
     draw(ctx, calculatedWidth, calculatedHeight);
 
