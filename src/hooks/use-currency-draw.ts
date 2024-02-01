@@ -1,5 +1,5 @@
 import {useMemo} from 'react';
-import {FLOAT_COEFFICIENT, MAX_DAYS} from '../const';
+import {FLOAT_COEFFICIENT, FLOAT_COEFFICIENT_BIG, MAX_DAYS} from '../const';
 import {getRoundedValue, scaleValue} from '../common/utils';
 import theme from '../theme/theme';
 import {CanvasCoefficientsType} from '../common/types';
@@ -13,13 +13,13 @@ const drawAxis = (
   leftOffset: number,
   bottomOffset: number,
   yMax: number,
+  yMed: number,
   yMin: number,
   currencyMax: number,
   currencyMed: number,
   currencyMin: number
 ) => {
   const serifLength = 5;
-  const yMed = (yMax + yMin) / 2;
 
   ctx.beginPath();
   ctx.moveTo(leftOffset, height - bottomOffset);
@@ -84,12 +84,12 @@ const useCurrencyDraw = (currencies: CanvasCoefficientsType, datesArray: Array<s
   const bottomOffset = 20;
   const yMax = bottomOffset;
   const yMin = height - 2 * bottomOffset;
-  const currencyMed = (currencies.max + currencies.min) / 2;
+  const yMed = (yMax + yMin) / 2;
 
-  const coefficient = currencies.max < 1 ? 1000000 : FLOAT_COEFFICIENT;
+  const coefficient = currencies.max < 1 ? FLOAT_COEFFICIENT_BIG : FLOAT_COEFFICIENT;
 
   const roundedCurrencyMax = getRoundedValue(currencies.max, coefficient);
-  const roundedCurrencyMed = getRoundedValue(currencyMed, coefficient);
+  const roundedCurrencyMed = getRoundedValue(currencies.med, coefficient);
   const roundedCurrencyMin = getRoundedValue(currencies.min, coefficient);
 
   const dateInterval = Math.floor((width - 2 * leftOffset) / (MAX_DAYS));
@@ -98,7 +98,7 @@ const useCurrencyDraw = (currencies: CanvasCoefficientsType, datesArray: Array<s
     scaleValue(value, currencies.min, currencies.max, yMin, yMax)
   );
 
-  drawAxis(ctx, datesArray, width, height, dateInterval, leftOffset, bottomOffset, yMax, yMin, roundedCurrencyMax, roundedCurrencyMed, roundedCurrencyMin);
+  drawAxis(ctx, datesArray, width, height, dateInterval, leftOffset, bottomOffset, yMax, yMed, yMin, roundedCurrencyMax, roundedCurrencyMed, roundedCurrencyMin);
   drawGraph(ctx, scaledValues, leftOffset, dateInterval);
 }, [currencies]);
 

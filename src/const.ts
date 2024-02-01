@@ -16,6 +16,7 @@ export const AppRoute = {
 
 // Converter
 export const FLOAT_COEFFICIENT = 100;
+export const FLOAT_COEFFICIENT_BIG = 1000000;
 export const MAX_HISTORY_LENGTH = 10;
 export const MAX_DAYS = 8;
 
