@@ -20,3 +20,13 @@ export const CanvasWrapper: StyledComponent = styled.div`
   margin-top: 30px;
   padding-bottom: 33.33%;
 `;
+
+export const SelectWrapper: StyledComponent = styled.div`
+  &:first-child {
+    margin-bottom: 15px;
+  }
+`;
+
+export const AxisSpan: StyledComponent = styled.span`
+  margin-right: 15px;
+`;

@@ -3,7 +3,7 @@ import {conversionFromUSD, conversionToUSD} from '../../../common/utils';
 import Select from '../../UI/select';
 import CurrencyOptions from '../currency-options';
 import {ConverterFormCurrencies, CanvasCurrencyNames} from '../../../const';
-import {GraphSection, CanvasWrapper, Header} from './currency-graph.styled';
+import {GraphSection, CanvasWrapper, Header, SelectWrapper, AxisSpan} from './currency-graph.styled';
 import Canvas from '../../UI/canvas';
 import {ExchangeRate, SelectChangeEventHandler} from '../../../common/types';
 import useCurrencyDraw from '../../../hooks/use-currency-draw';
@@ -73,30 +73,32 @@ const CurrencyGraph: React.FunctionComponent<Props> = React.memo((props) => {
     <GraphSection>
       <Header>Динамика курсов валют за неделю</Header>
       <div>
-        <span>Ось Y:</span>
-        <Select
-          name={'y-currency'}
-          value={currencyY}
-          label={'валюта'}
-          changeHandler={currencyChangeHandler}
-        >
-          <CurrencyOptions
-            options={ConverterFormCurrencies}
-          />
-        </Select>
-      </div>
-      <div>
-        <span>Ось X:</span>
-        <Select
-          name={'x-currency'}
-          value={currencyX}
-          label={'валюта'}
-          changeHandler={currencyChangeHandler}
-        >
-          <CurrencyOptions
-            options={ConverterFormCurrencies}
-          />
-        </Select>
+        <SelectWrapper>
+          <AxisSpan>Ось Y:</AxisSpan>
+          <Select
+            name={'y-currency'}
+            value={currencyY}
+            label={'валюта'}
+            changeHandler={currencyChangeHandler}
+          >
+            <CurrencyOptions
+              options={ConverterFormCurrencies}
+            />
+          </Select>
+        </SelectWrapper>
+        <SelectWrapper>
+          <AxisSpan>Ось X:</AxisSpan>
+          <Select
+            name={'x-currency'}
+            value={currencyX}
+            label={'валюта'}
+            changeHandler={currencyChangeHandler}
+          >
+            <CurrencyOptions
+              options={ConverterFormCurrencies}
+            />
+          </Select>
+        </SelectWrapper>
       </div>
       <CanvasWrapper>
         {currencies.array.length > 0 &&

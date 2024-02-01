@@ -1,5 +1,5 @@
 import {useMemo} from 'react';
-import {MAX_DAYS} from '../const';
+import {FLOAT_COEFFICIENT, MAX_DAYS} from '../const';
 import {getRoundedValue, scaleValue} from '../common/utils';
 import theme from '../theme/theme';
 import {CanvasCoefficientsType} from '../common/types';
@@ -7,33 +7,30 @@ import {CanvasCoefficientsType} from '../common/types';
 const drawAxis = (
   ctx: CanvasRenderingContext2D,
   datesArray: Array<string>,
-  width: number, height: number,
+  width: number,
+  height: number,
   XInterval: number,
   leftOffset: number,
   bottomOffset: number,
   yMax: number,
   yMin: number,
   currencyMax: number,
+  currencyMed: number,
   currencyMin: number
 ) => {
   const serifLength = 5;
+  const yMed = (yMax + yMin) / 2;
 
   ctx.beginPath();
-  ctx.moveTo(leftOffset, 0);
+  ctx.moveTo(leftOffset, height - bottomOffset);
 
-  // Отрисовка осей X и Y
-  ctx.lineTo(leftOffset, height - bottomOffset);
-  ctx.lineTo(width - leftOffset, height - bottomOffset);
+  // Отрисовка оси X
+  ctx.lineTo(width - XInterval, height - bottomOffset);
 
-  // Отрисовка засечек на оси Y
-  ctx.moveTo(leftOffset - serifLength, yMin);
-  ctx.lineTo(leftOffset + serifLength, yMin);
-
-  ctx.moveTo(leftOffset - serifLength, yMax);
-  ctx.lineTo(leftOffset + serifLength, yMax);
-
-  ctx.fillText(currencyMax.toString(), 0, yMax + 3);
-  ctx.fillText(currencyMin.toString(), 0, yMin + 3);
+  // Отрисовка значений на оси Y
+  ctx.fillText(currencyMax.toString(), leftOffset + XInterval * (MAX_DAYS - 1) + 10, yMax + 3);
+  ctx.fillText(currencyMed.toString(), leftOffset + XInterval * (MAX_DAYS - 1) + 10, yMed + 3);
+  ctx.fillText(currencyMin.toString(), leftOffset + XInterval * (MAX_DAYS - 1) + 10, yMin + 3);
 
   // Отрисовка засечек на оси X
   for (let i = 1; i < MAX_DAYS; i++) {
@@ -46,6 +43,22 @@ const drawAxis = (
 
   ctx.lineWidth = 2;
   ctx.strokeStyle = theme.color.basicBlack;
+  ctx.stroke();
+
+  //Отрисовка средней линии
+  ctx.beginPath();
+  let startX = leftOffset + XInterval * (MAX_DAYS - 1) + 5;
+  ctx.moveTo(startX, yMed);
+
+  while (startX >= leftOffset) {
+    startX -= 1;
+    ctx.lineTo(startX, yMed);
+    startX -= 2;
+    ctx.moveTo(startX, yMed);
+  }
+
+  ctx.lineWidth = 1;
+  ctx.strokeStyle = theme.color.matterhorn;
   ctx.stroke();
 };
 
@@ -71,9 +84,13 @@ const useCurrencyDraw = (currencies: CanvasCoefficientsType, datesArray: Array<s
   const bottomOffset = 20;
   const yMax = bottomOffset;
   const yMin = height - 2 * bottomOffset;
+  const currencyMed = (currencies.max + currencies.min) / 2;
 
-  const roundedCurrencyMax = getRoundedValue(currencies.max);
-  const roundedCurrencyMin = getRoundedValue(currencies.min);
+  const coefficient = currencies.max < 1 ? 1000000 : FLOAT_COEFFICIENT;
+
+  const roundedCurrencyMax = getRoundedValue(currencies.max, coefficient);
+  const roundedCurrencyMed = getRoundedValue(currencyMed, coefficient);
+  const roundedCurrencyMin = getRoundedValue(currencies.min, coefficient);
 
   const dateInterval = Math.floor((width - 2 * leftOffset) / (MAX_DAYS));
 
@@ -81,7 +98,7 @@ const useCurrencyDraw = (currencies: CanvasCoefficientsType, datesArray: Array<s
     scaleValue(value, currencies.min, currencies.max, yMin, yMax)
   );
 
-  drawAxis(ctx, datesArray, width, height, dateInterval, leftOffset, bottomOffset, yMax, yMin, roundedCurrencyMax, roundedCurrencyMin);
+  drawAxis(ctx, datesArray, width, height, dateInterval, leftOffset, bottomOffset, yMax, yMin, roundedCurrencyMax, roundedCurrencyMed, roundedCurrencyMin);
   drawGraph(ctx, scaledValues, leftOffset, dateInterval);
 }, [currencies]);
 
