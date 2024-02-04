@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useAppDispatch} from '../../../hooks/hooks';
 import {FormSubmitEventHandler, InputChangeEventHandler} from '../../../common/types';
 import ReviewRatingInputs from '../review-rating-inputs';
@@ -8,8 +8,17 @@ import moment from 'moment';
 
 const ReviewForm: React.FunctionComponent = () => {
   const [review, setReview] = useState({text: '', rating: 0, author: ''});
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const isTextValid = review.text.length > 0;
+    const isRatingValid = review.rating > 0;
+    const isAuthorValid = review.author.length > 0;
+
+    setIsFormValid(isTextValid && isRatingValid && isAuthorValid);
+  },[review]);
 
   const InputChangeHandler: InputChangeEventHandler = (evt) => {
     setReview({...review, [evt.target.name]: evt.target.value});
@@ -17,7 +26,7 @@ const ReviewForm: React.FunctionComponent = () => {
 
   const RatingChangeHandler: InputChangeEventHandler = (evt) => {
     const newRating = parseInt(evt.target.value, 10);
-    setReview({...review, rating: newRating});
+    setReview({ ...review, rating: newRating });
   };
 
   const submitHandler: FormSubmitEventHandler = (evt) => {
@@ -42,7 +51,7 @@ const ReviewForm: React.FunctionComponent = () => {
       />
       <Input type='text' placeholder='Имя' name='author' value={review.author} onChange={InputChangeHandler}></Input>
       <Input type='text' placeholder='Отзыв' name='text' value={review.text} onChange={InputChangeHandler}></Input>
-      <SubmitButton type="submit">Отправить</SubmitButton>
+      <SubmitButton $isValid={isFormValid} type="submit">Отправить</SubmitButton>
     </Wrapper>
   );
 };

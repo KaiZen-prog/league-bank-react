@@ -233,6 +233,24 @@ export const commonText = () => css`
   }
 `;
 
+export const validatedButton = () => css<ValidationProps>`
+  ${(props) => {
+    if (!props.$isValid) {
+      return css`
+        pointer-events: none;
+        background: ${theme.color.slateGrey};
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+      `;
+    } else {
+      return css``;
+    }
+  }
+};
+`;
+
 export const validatedInput = () => css<ValidationProps>`
   ${(props) => {
     if (!props.$isValid) {

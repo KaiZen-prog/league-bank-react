@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {RatingParams, StarIconWidth} from '../../../const';
 import {InputChangeEventHandler} from '../../../common/types';
 import {Wrapper, StarContainer, RatingTitle, Star} from './review-rating-inputs.styled';
@@ -8,7 +8,7 @@ interface Props {
   RatingChangeHandler: InputChangeEventHandler
 }
 
-const ReviewRatingInputs: React.FunctionComponent<Props> = (props) => {
+const ReviewRatingInputs: React.FunctionComponent<Props> = memo((props) => {
   const {rating, RatingChangeHandler} = props;
 
   return (
@@ -31,6 +31,8 @@ const ReviewRatingInputs: React.FunctionComponent<Props> = (props) => {
       </Wrapper>
     </>
   );
-};
+});
+
+ReviewRatingInputs.displayName = 'ReviewRatingInputs';
 
 export default ReviewRatingInputs;
