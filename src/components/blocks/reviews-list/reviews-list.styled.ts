@@ -5,9 +5,22 @@ interface StyledComponent extends StyledComponentBase<any, object> {}
 
 export const Wrapper: StyledComponent = styled.div`
   position: relative;
+
+  width: 100%;
   max-height: 500px;
-  width: 50%;
-  padding-right: 40px;
+  
+  margin-bottom: 40px;
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    width: 50%;
+
+    margin-bottom: 0;
+    padding-right: 20px;
+  }
+
+  @media (min-width: ${theme.desktopWidthMinThreshold}) {
+    padding-right: 40px;
+  }
 `;
 
 export const List: StyledComponent = styled.ul`

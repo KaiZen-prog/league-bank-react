@@ -50,12 +50,12 @@ export const submitButton = () => css<Props>`
   font-size: 14px;
   line-height: 20px;
 
-  padding: 16px 60px 15px 71px;
+  padding: 16px 60px 15px 60px;
 
   @media (min-width: ${theme.tabletWidthMinThreshold}) {
     font-size: 16px;
     line-height: 22px;
-    padding: 15px 214px 14px 212px;
+    padding: 15px 60px 14px 60px;
   }
 
   @media (min-width: ${theme.desktopWidthMinThreshold}) {
@@ -80,7 +80,7 @@ export const submitButton = () => css<Props>`
 
           margin-right: 3px;
           margin-left: 3px;
-          padding: 16px 112px 15px 109px;
+          padding: 16px 60px 15px 60px;
 
           @media (min-width: ${theme.tabletWidthMinThreshold}) {
             width: calc(100% - 6px);
@@ -152,13 +152,18 @@ export const input = () => css`
   
   text-align: center;
 
-  padding: 19px 50px;
+  padding: 19px 25px;
 
   box-sizing: border-box;
 
   color: ${theme.color.jaguar};
   border: 1px solid ${theme.color.jaguar};
   border-radius: 4px;
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    padding-right: 50px;
+    padding-left: 50px;
+  }
 `;
 
 export const headerH2 = () => css`
@@ -268,6 +273,7 @@ export const textInput = () => css<Props>`
   display: none;
 
   margin-bottom: 6px;
+  padding: 18px 25px;
 
   &[type="number"] {
       -moz-appearance:textfield;
@@ -282,7 +288,8 @@ export const textInput = () => css<Props>`
     font-size: 18px;
     line-height: 25px;
 
-    padding: 18px 50px 16px 50px;
+    padding-right: 50px;
+    padding-left: 50px;
   }
 
   ${(props) => {

@@ -1,4 +1,5 @@
 import styled, {StyledComponentBase} from 'styled-components';
+import theme from '../../../theme/theme';
 import {input, submitButton, validatedButton, headerH3} from '../../../theme/mixins';
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
@@ -9,7 +10,11 @@ interface ISubmitButton {
 }
 
 export const Wrapper: StyledComponent = styled.form`
-  width: 50%;
+  width: 100%;
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    width: 50%;
+  }
 `;
 
 export const Title: StyledComponent = styled.h3`

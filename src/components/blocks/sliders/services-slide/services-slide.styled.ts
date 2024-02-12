@@ -469,9 +469,7 @@ export const SlideLink: StyledComponent = styled.a<Props>`
   font-size: 14px;
   line-height: 16px;
 
-  width: 290px;
-
-  padding: 14px 11px 13px 6px;
+  padding: 14px 60px 13px 60px;
 
   @media (min-width: ${theme.tabletWidthMinThreshold}) {
     font-size: 16px;
@@ -479,7 +477,7 @@ export const SlideLink: StyledComponent = styled.a<Props>`
 
     width: 198px;
 
-    padding: 13px 6px 13px 6px;
+    padding: 13px 60px 13px 60px;
   }
 
   @media (min-width: ${theme.desktopWidthMinThreshold}) {

@@ -8,6 +8,10 @@ interface StyledComponent extends StyledComponentBase<any, object> {}
 
 export const ReviewBlock: StyledComponent = styled.li`
   margin-bottom: 42px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 export const Wrapper: StyledComponent = styled.div`

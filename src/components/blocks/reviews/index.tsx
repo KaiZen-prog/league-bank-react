@@ -4,16 +4,14 @@ import ReviewsList from '../reviews-list';
 import ReviewForm from '../review-form';
 import {Title, Wrapper} from './reviews.styled';
 
-const Reviews: React.FunctionComponent = () => {
-  return (
-    <Section>
-      <Title>Отзывы наших клиентов</Title>
-      <Wrapper>
-        <ReviewsList/>
-        <ReviewForm/>
-      </Wrapper>
-    </Section>
-  );
-};
+const Reviews: React.FunctionComponent = () => (
+  <Section>
+    <Title>Отзывы наших клиентов</Title>
+    <Wrapper>
+      <ReviewsList/>
+      <ReviewForm/>
+    </Wrapper>
+  </Section>
+);
 
 export default Reviews;
