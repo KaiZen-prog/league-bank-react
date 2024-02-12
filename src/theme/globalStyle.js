@@ -47,10 +47,12 @@ html {
 }
 
 body {
-  font-family: "Roboto", "Arial", sans-serif;
-  width: 100%;
-  height: 100vh;
-  margin: auto;
+ font-family: "Roboto", "Arial", sans-serif;
+ width: 100%;
+ height: 100vh;
+ margin: 0;
+ padding: 0;
+ overflow-x: hidden
 }
 
 #root {

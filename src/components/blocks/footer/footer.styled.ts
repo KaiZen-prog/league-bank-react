@@ -31,8 +31,11 @@ export const Container: StyledComponent = styled.div`
   max-width: 1210px;
   padding: 56px 20px 40px 20px;
 
-  @media (max-width: ${theme.tabletWidthMinThreshold}) {
+  @media (max-width: ${theme.footerMobileWidth}) {
     flex-wrap: wrap;
+  }
+
+  @media (max-width: ${theme.tabletWidthMinThreshold}) {
     padding: 30px 15px 62px 15px;
   }
 
@@ -240,11 +243,14 @@ export const ContactsPhone: StyledComponent = styled.a<Props>`
 `;
 
 export const PhoneInfo: StyledComponent = styled.p`
-  width: 170px;
   margin-top: 1px;
   font-size: 12px;
   line-height: 17px;
   color: ${theme.color.slateGrey};
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    width: 170px;
+  }
 
   @media (min-width: ${theme.tabletWidthMinThreshold}) and (max-width: ${theme.desktopWidthMinThreshold}) {
     margin-bottom: 0;

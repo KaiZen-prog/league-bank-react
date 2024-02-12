@@ -26,6 +26,7 @@ const theme = {
   converterFlexWrapWidth: '1227px',
   converterHistoryListWidth: '1220px',
   converterHistoryListMobileWidth: '560px',
+  footerMobileWidth: '440px',
 };
 
 export default theme;
