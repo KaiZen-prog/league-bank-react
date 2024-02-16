@@ -3,19 +3,19 @@ import { css } from 'styled-components';
 import theme from '../../../../theme/theme';
 import {MainSlidesNames} from '../../../../const';
 
-import promoSlideBackgroundMobile from '../../../../img/slide-promo-mobile.jpg';
-import promoSlideBackgroundTablet from '../../../../img/slide-promo-tablet.jpg';
-import promoSlideBackgroundDesktop from '../../../../img/slide-promo-desktop.jpg';
+import promoSlideBackgroundMobile from '../../../../assets/img/slide-promo-mobile.jpg';
+import promoSlideBackgroundTablet from '../../../../assets/img/slide-promo-tablet.jpg';
+import promoSlideBackgroundDesktop from '../../../../assets/img/slide-promo-desktop.jpg';
 
-import officesSlideBackgroundMobile from '../../../../img/slide-offices-mobile.jpg';
-import officesSlideBackgroundTablet from '../../../../img/slide-offices-tablet.jpg';
-import officesSlideBackgroundDesktop from '../../../../img/slide-offices-desktop.jpg';
+import officesSlideBackgroundMobile from '../../../../assets/img/slide-offices-mobile.jpg';
+import officesSlideBackgroundTablet from '../../../../assets/img/slide-offices-tablet.jpg';
+import officesSlideBackgroundDesktop from '../../../../assets/img/slide-offices-desktop.jpg';
 
-import creditSlideBlackCardMobile from '../../../../img/card-black-mobile.png';
-import creditSlideBlackCardTablet from '../../../../img/card-black-tablet.png';
-import creditSlideBlackCardDesktop from '../../../../img/card-black-desktop.png';
-import creditSlideWhiteCardTablet from '../../../../img/card-white-tablet.png';
-import creditSlideWhiteCardDesktop from '../../../../img/card-white-desktop.png';
+import creditSlideBlackCardMobile from '../../../../assets/img/card-black-mobile.png';
+import creditSlideBlackCardTablet from '../../../../assets/img/card-black-tablet.png';
+import creditSlideBlackCardDesktop from '../../../../assets/img/card-black-desktop.png';
+import creditSlideWhiteCardTablet from '../../../../assets/img/card-white-tablet.png';
+import creditSlideWhiteCardDesktop from '../../../../assets/img/card-white-desktop.png';
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 

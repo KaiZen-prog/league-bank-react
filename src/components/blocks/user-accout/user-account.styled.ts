@@ -2,8 +2,8 @@ import styled, { StyledComponentBase } from "styled-components";
 import {css} from 'styled-components';
 import theme from '../../../theme/theme';
 
-const iconLogin = require('../../../img/icon-login.svg') as string;
-const iconLoginMobile = require('../../../img/icon-login-mobile.svg') as string;
+const iconLogin = require('../../../assets/img/icon-login.svg') as string;
+const iconLoginMobile = require('../../../assets/img/icon-login-mobile.svg') as string;
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 

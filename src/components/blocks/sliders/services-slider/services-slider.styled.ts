@@ -4,10 +4,10 @@ import { visuallyHidden } from '../../../../theme/mixins';
 import theme from '../../../../theme/theme';
 import {ServicesSlidesNames} from '../../../../const';
 
-const iconDeposit = require('../../../../img/icon-deposit.svg') as string;
-const iconCredit = require('../../../../img/icon-credit.svg') as string;
-const iconInsurance = require('../../../../img/icon-insurance.svg') as string;
-const iconOnline = require('../../../../img/icon-online.svg') as string;
+const iconDeposit = require('../../../../assets/img/icon-deposit.svg') as string;
+const iconCredit = require('../../../../assets/img/icon-credit.svg') as string;
+const iconInsurance = require('../../../../assets/img/icon-insurance.svg') as string;
+const iconOnline = require('../../../../assets/img/icon-online.svg') as string;
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 

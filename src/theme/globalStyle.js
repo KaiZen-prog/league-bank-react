@@ -1,5 +1,12 @@
-import { createGlobalStyle } from 'styled-components';
-import { normalize } from 'styled-normalize';
+import {createGlobalStyle} from 'styled-components';
+import {normalize} from 'styled-normalize';
+
+import RobotoRegular from '../assets/fonts/roboto-v20-latin_cyrillic-regular.woff';
+import RobotoRegular2 from '../assets/fonts/roboto-v20-latin_cyrillic-regular.woff2';
+import RobotoMiddle from '../assets/fonts/roboto-v20-latin_cyrillic-500.woff';
+import RobotoMiddle2 from '../assets/fonts/roboto-v20-latin_cyrillic-500.woff2';
+import RobotoBig from '../assets/fonts/roboto-v20-latin_cyrillic-700.woff';
+import RobotoBig2 from '../assets/fonts/roboto-v20-latin_cyrillic-700.woff2';
 
 const GlobalStyle = createGlobalStyle`
  ${normalize}
@@ -10,28 +17,28 @@ const GlobalStyle = createGlobalStyle`
   font-style: normal;
   font-display: swap;
 
-  src: url("../assets/fonts/roboto-v20-latin_cyrillic-regular.woff2") format("woff2"),
-  url("../assets/fonts/roboto-v20-latin_cyrillic-regular.woff") format("woff");
+  src: url(${RobotoRegular2}) format("woff2"),
+  url(${RobotoRegular}) format("woff");
 }
 
 @font-face {
-  font-family: "Roboto";
+  font-family: "Roboto-midle";
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 
-  src: url("../assets/fonts/roboto-v20-latin_cyrillic-500.woff2") format("woff2"),
-  url("../assets/fonts/roboto-v20-latin_cyrillic-500.woff") format("woff");
+  src: url(${RobotoMiddle2}) format("woff2"),
+  url(${RobotoMiddle}) format("woff");
 }
 
 @font-face {
-  font-family: "Roboto";
+  font-family: "Roboto-big";
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 
-  src: url("../assets/fonts/roboto-v20-latin_cyrillic-700.woff2") format("woff2"),
-  url("../assets/fonts/roboto-v20-latin_cyrillic-700.woff") format("woff");
+ src: url(${RobotoBig2}) format("woff2"),
+  url(${RobotoBig}) format("woff");
 }
 
 html {

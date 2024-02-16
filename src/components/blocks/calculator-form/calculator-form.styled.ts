@@ -1,7 +1,7 @@
 import styled, {css, StyledComponentBase} from 'styled-components';
 import theme from '../../../theme/theme';
 import {backgroundImage, headerH2} from '../../../theme/mixins';
-const iconPurposeSelect = require('../../../img/icon-purpose-select.svg') as string;
+const iconPurposeSelect = require('../../../assets/img/icon-purpose-select.svg') as string;
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 

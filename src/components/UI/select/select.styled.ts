@@ -1,6 +1,6 @@
 import styled, { StyledComponentBase } from 'styled-components';
 
-const iconSelect = require('../../../img/icon-select.svg') as string;
+const iconSelect = require('../../../assets/img/icon-select.svg') as string;
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 

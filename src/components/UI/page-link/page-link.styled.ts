@@ -3,13 +3,13 @@ import {css} from 'styled-components';
 import {Link} from 'react-router-dom';
 import theme from '../../../theme/theme';
 
-const logoMobile = require('../../../img/logo-mobile.svg') as string;
-const logoTablet = require('../../../img/logo-tablet.svg') as string;
-const logoDesktop = require('../../../img/logo-desktop.svg') as string;
+const logoMobile = require('../../../assets/img/logo-mobile.svg') as string;
+const logoTablet = require('../../../assets/img/logo-tablet.svg') as string;
+const logoDesktop = require('../../../assets/img/logo-desktop.svg') as string;
 
-const logoFooterMobile = require('../../../img/logo-footer-mobile.svg') as string;
-const logoFooterTablet = require('../../../img/logo-footer-tablet.svg') as string;
-const logoFooterDesktop = require('../../../img/logo-footer-desktop.svg') as string;
+const logoFooterMobile = require('../../../assets/img/logo-footer-mobile.svg') as string;
+const logoFooterTablet = require('../../../assets/img/logo-footer-tablet.svg') as string;
+const logoFooterDesktop = require('../../../assets/img/logo-footer-desktop.svg') as string;
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 

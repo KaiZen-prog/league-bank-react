@@ -2,7 +2,7 @@ import styled, { StyledComponentBase } from 'styled-components';
 import theme from '../../../theme/theme';
 import {closeButton} from '../../../theme/mixins';
 
-const iconArrow = require('../../../img/icon-conversion-arrow.svg') as string;
+const iconArrow = require('../../../assets/img/icon-conversion-arrow.svg') as string;
 interface StyledComponent extends StyledComponentBase<any, object> {}
 
 export const ConversionHistoryItemBlock: StyledComponent = styled.li`

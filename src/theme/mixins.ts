@@ -2,7 +2,7 @@ import {css} from 'styled-components';
 import theme from './theme';
 import {InputTypes, SubmitButtonTypes } from '../const';
 
-const iconPopupClose = require('../img/icon-close.svg') as string;
+const iconPopupClose = require('../assets/img/icon-close.svg') as string;
 
 interface Props {
   $type: string;

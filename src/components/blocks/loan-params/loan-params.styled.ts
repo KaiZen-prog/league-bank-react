@@ -4,9 +4,9 @@ import theme from '../../../theme/theme';
 import {InputTypes, InputIconsTypes, LabelTypes} from '../../../const';
 import {visuallyHidden, input, textInput} from '../../../theme/mixins';
 
-const iconMinus = require('../../../img/icon-minus.svg') as string;
-const iconPlus = require('../../../img/icon-plus.svg') as string;
-const iconCheckbox = require('../../../img/icon-checkbox.svg') as string;
+const iconMinus = require('../../../assets/img/icon-minus.svg') as string;
+const iconPlus = require('../../../assets/img/icon-plus.svg') as string;
+const iconCheckbox = require('../../../assets/img/icon-checkbox.svg') as string;
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 

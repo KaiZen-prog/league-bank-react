@@ -1,8 +1,8 @@
 import styled, {StyledComponentBase} from 'styled-components';
 import {commonText} from '../../../theme/mixins';
 
-const stars = require('../../../img/icon-stars.svg') as string;
-const starsActive = require('../../../img/icon-stars-active.svg') as string;
+const stars = require('../../../assets/img/icon-stars.svg') as string;
+const starsActive = require('../../../assets/img/icon-stars-active.svg') as string;
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 

@@ -3,13 +3,13 @@ import {css} from 'styled-components';
 import theme from '../../../theme/theme';
 import {ContactsTel, SocialLinks} from '../../../const';
 
-const iconMobile = require('../../../img/icon-mobile-tablet.svg') as string;
-const iconPhone = require('../../../img/icon-phone-tablet.svg') as string;
+import iconMobile from '../../../assets/img/icon-mobile-tablet.svg';
+import iconPhone from '../../../assets/img/icon-phone-tablet.svg';
 
-const iconFacebook = require('../../../img/icon-facebook-mobile.svg') as string;
-const iconInstagram = require('../../../img/icon-instagram-mobile.svg') as string;
-const iconTwitter = require('../../../img/icon-twitter-mobile.svg') as string;
-const iconYoutube = require('../../../img/icon-youtube-mobile.svg') as string;
+import iconFacebook from '../../../assets/img/icon-facebook-mobile.svg';
+import iconInstagram from '../../../assets/img/icon-instagram-mobile.svg';
+import iconTwitter from '../../../assets/img/icon-twitter-mobile.svg';
+import iconYoutube from '../../../assets/img/icon-youtube-mobile.svg';
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 

@@ -2,9 +2,9 @@ import styled, {StyledComponentBase} from 'styled-components';
 import { button } from '../../../theme/mixins';
 import theme from '../../../theme/theme';
 
-const iconClose = require('../../../img/icon-close.svg') as string;
-const iconLogin = require('../../../img/logo-log-in.svg') as string;
-const iconPassword = require('../../../img/icon-password.svg') as string;
+const iconClose = require('../../../assets/img/icon-close.svg') as string;
+const iconLogin = require('../../../assets/img/logo-log-in.svg') as string;
+const iconPassword = require('../../../assets/img/icon-password.svg') as string;
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 

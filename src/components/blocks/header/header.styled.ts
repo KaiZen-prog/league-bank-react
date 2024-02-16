@@ -3,8 +3,8 @@ import {css} from 'styled-components';
 import {Link} from 'react-router-dom';
 import theme from '../../../theme/theme';
 
-const iconBurger = require('../../../img/icon-burger.svg') as string;
-const iconClose = require('../../../img/icon-close.svg') as string;
+const iconBurger = require('../../../assets/img/icon-burger.svg') as string;
+const iconClose = require('../../../assets/img/icon-close.svg') as string;
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 

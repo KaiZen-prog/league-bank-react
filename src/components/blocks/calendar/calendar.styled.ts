@@ -1,7 +1,7 @@
 import styled, { StyledComponentBase } from 'styled-components';
 import theme from '../../../theme/theme';
 
-const iconCalendar = require('../../../img/icon-calendar.svg') as string;
+const iconCalendar = require('../../../assets/img/icon-calendar.svg') as string;
 interface StyledComponent extends StyledComponentBase<any, object> {}
 
 export const CalendarBlock: StyledComponent = styled.div`

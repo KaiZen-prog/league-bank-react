@@ -24,6 +24,19 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     ],
   };
 
+  const fontLoader = {
+    test: /\.woff2?$/,
+    use: [
+      {
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'assets/fonts/'
+        }
+      }
+    ]
+  };
+
   const imageLoader = {
     test: /\.(png|jpe?g|gif)$/i,
     use: [
@@ -55,6 +68,7 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 
   return [
     typescriptLoader,
+    fontLoader,
     imageLoader,
     svgLoader,
     cssLoader

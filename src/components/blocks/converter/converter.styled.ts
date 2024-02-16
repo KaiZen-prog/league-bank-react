@@ -2,8 +2,8 @@ import styled, { StyledComponentBase } from 'styled-components';
 import theme from '../../../theme/theme';
 import {button, headerH2} from '../../../theme/mixins';
 
-const iconLeftArrow = require('../../../img/icon-left-arrow.svg') as string;
-const iconRightArrow = require('../../../img/icon-right-arrow.svg') as string;
+const iconLeftArrow = require('../../../assets/img/icon-left-arrow.svg') as string;
+const iconRightArrow = require('../../../assets/img/icon-right-arrow.svg') as string;
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 

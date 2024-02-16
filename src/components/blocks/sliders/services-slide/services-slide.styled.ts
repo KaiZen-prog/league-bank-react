@@ -4,24 +4,24 @@ import theme from '../../../../theme/theme';
 import {ServicesSlidesNames} from '../../../../const';
 import {blockCentered, backgroundImage, button} from '../../../../theme/mixins';
 
-import slideDeposit from '../../../../img/slide-services-deposit.jpg';
-import slideDepositTablet from '../../../../img/slide-services-deposit-tablet.jpg';
-import slideDepositDesktop from '../../../../img/slide-services-deposit-desktop.jpg';
+import slideDeposit from '../../../../assets/img/slide-services-deposit.jpg';
+import slideDepositTablet from '../../../../assets/img/slide-services-deposit-tablet.jpg';
+import slideDepositDesktop from '../../../../assets/img/slide-services-deposit-desktop.jpg';
 
-import slideCredit from '../../../../img/slide-services-credit.jpg';
-import slideCreditTablet from '../../../../img/slide-services-credit-tablet.jpg';
-import slideCreditDesktop from '../../../../img/slide-services-credit-desktop.jpg';
+import slideCredit from '../../../../assets/img/slide-services-credit.jpg';
+import slideCreditTablet from '../../../../assets/img/slide-services-credit-tablet.jpg';
+import slideCreditDesktop from '../../../../assets/img/slide-services-credit-desktop.jpg';
 
-import slideInsurance from '../../../../img/slide-services-insurance.jpg';
-import slideInsuranceTablet from '../../../../img/slide-services-insurance-tablet.jpg';
-import slideInsuranceDesktop from '../../../../img/slide-services-insurance-desktop.jpg';
+import slideInsurance from '../../../../assets/img/slide-services-insurance.jpg';
+import slideInsuranceTablet from '../../../../assets/img/slide-services-insurance-tablet.jpg';
+import slideInsuranceDesktop from '../../../../assets/img/slide-services-insurance-desktop.jpg';
 
-import slideOnline from '../../../../img/slide-services-online.jpg';
-import slideOnlineTablet from '../../../../img/slide-services-online-tablet.jpg';
-import slideOnlineDesktop from '../../../../img/slide-services-online-desktop.jpg';
+import slideOnline from '../../../../assets/img/slide-services-online.jpg';
+import slideOnlineTablet from '../../../../assets/img/slide-services-online-tablet.jpg';
+import slideOnlineDesktop from '../../../../assets/img/slide-services-online-desktop.jpg';
 
-const iconFeatureMobile = require('../../../../img/icon-feature-mobile.svg') as string;
-const iconFeatureTablet = require('../../../../img/icon-feature-tablet.svg') as string;
+const iconFeatureMobile = require('../../../../assets/img/icon-feature-mobile.svg') as string;
+const iconFeatureTablet = require('../../../../assets/img/icon-feature-tablet.svg') as string;
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 
