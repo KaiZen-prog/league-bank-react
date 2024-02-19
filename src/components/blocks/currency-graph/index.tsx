@@ -77,7 +77,7 @@ const CurrencyGraph: React.FunctionComponent<Props> = React.memo((props) => {
           <Select
             name={'y-currency'}
             value={currencyY}
-            label={'валюта'}
+            label={'валюта для оси Y'}
             changeHandler={currencyChangeHandler}
           >
             <CurrencyOptions
@@ -90,7 +90,7 @@ const CurrencyGraph: React.FunctionComponent<Props> = React.memo((props) => {
           <Select
             name={'x-currency'}
             value={currencyX}
-            label={'валюта'}
+            label={'валюта для оси X'}
             changeHandler={currencyChangeHandler}
           >
             <CurrencyOptions

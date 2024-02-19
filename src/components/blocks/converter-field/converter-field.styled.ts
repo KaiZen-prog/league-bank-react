@@ -23,7 +23,7 @@ export const FieldBlock: StyledComponent = styled.div`
   }
 `;
 
-export const FieldTitle: StyledComponent = styled.h3`
+export const FieldTitle: StyledComponent = styled.span`
   flex-grow: 1;
   width: 100%;
 
