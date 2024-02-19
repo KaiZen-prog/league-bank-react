@@ -48,15 +48,15 @@ const Footer: React.FunctionComponent = () => {
         <Contacts>
           <ContactsList>
             <ContactsItem>
-              <ContactsPhone href="tel: *0904" $type={ContactsTel.mobile}>
-                *0904
+              <ContactsPhone href="tel:+79044445566" $type={ContactsTel.mobile}>
+                +7 904 444 55 66
               </ContactsPhone>
               <PhoneInfo>
                 Бесплатно для абонентов МТС, Билайн, Мегафон, Теле2
               </PhoneInfo>
             </ContactsItem>
             <ContactsItem $isPhone>
-              <ContactsPhone href="tel: +78001112233" $type={ContactsTel.main}>
+              <ContactsPhone href="tel:+78001112233" $type={ContactsTel.main}>
                 8 800 111 22 33
               </ContactsPhone>
               <PhoneInfo>

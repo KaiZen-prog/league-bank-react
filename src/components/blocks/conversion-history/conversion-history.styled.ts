@@ -62,7 +62,7 @@ export const List: StyledComponent = styled.ul`
 
   @media (min-width: ${theme.converterHistoryListWidth}) {
     align-content: space-between;
-    max-height: 330px;
+    height: 310px;
   }
 `;
 
