@@ -8,7 +8,6 @@ import {MainPageAsync} from '../pages/main-page/main-page.async';
 import {ConverterPageAsync} from '../pages/converter-page/converter-page.async';
 import Spinner from '../UI/spinner';
 
-
 function App() {
   return (
     <BrowserRouter>

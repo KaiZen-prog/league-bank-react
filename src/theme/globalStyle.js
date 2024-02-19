@@ -82,6 +82,11 @@ img {
   height: auto;
 }
 
+ p {
+  margin-top: 0;
+  margin-bottom: 0;
+ }
+
 .hidden {
   display: none;
 }

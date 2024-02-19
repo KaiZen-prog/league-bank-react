@@ -18,7 +18,6 @@ const CurrencyGraph: React.FunctionComponent<Props> = React.memo((props) => {
 
   const [currencyY, setCurrencyY] = useState(ConverterFormCurrencies[0]);
   const [currencyX, setCurrencyX] = useState(ConverterFormCurrencies[1]);
-
   const [currencies, setCurrencies] = useState({array: [], max: 0, med: 0, min: 0});
 
   const draw = useCurrencyDraw(currencies, datesArray);

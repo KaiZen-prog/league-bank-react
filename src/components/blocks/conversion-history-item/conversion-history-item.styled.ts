@@ -8,39 +8,52 @@ interface StyledComponent extends StyledComponentBase<any, object> {}
 export const ConversionHistoryItemBlock: StyledComponent = styled.li`
   position: relative;
   display: flex;
+  flex-wrap: wrap;
+  
+  width: 100%;
+  max-width: 390px;
+  
+  margin-bottom: 20px;
   padding-right: 12px;
+  padding-bottom: 10px;
 
   box-sizing: border-box;
+  border-bottom: 1px solid ${theme.color.ghost};
 
   p {
-    font-size: 18px;
-    line-height: 18px;
-
-    margin-top: 0;
-    margin-bottom: 28px;
+    font-size: 12px;
+    line-height: 12px;
   }
 
-  @media (max-width: ${theme.converterHistoryListWidth}) {
-    padding-right: 0;
-  }
-
-  @media (max-width: ${theme.converterHistoryListMobileWidth}) {
-    flex-flow: column;
-    margin-bottom: 20px;
-
-    border-bottom: 1px solid ${theme.color.ghost};
-
-  &:last-child {
-      border-bottom: none;
-    }
+  @media (min-width: ${theme.converterHistoryListMobileWidth}) {
+    width: 460px;
+    max-width: unset;
 
     p {
-      margin-bottom: 5px;
+      font-size: 14px;
+      line-height: 14px;
     }
+  }
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    width: 600px;
+    padding-right: 0;
+
+    p {
+      font-size: 18px;
+      line-height: 18px;
+    }
+  }
+
+  @media (min-width: ${theme.converterHistoryListWidth}) {
+    width: 46%;
+
+    border: none;
   }
 `;
 
 export const Date: StyledComponent = styled.p`
+  margin-bottom: 5px;
   margin-right: 41px;
 `;
 
@@ -58,8 +71,8 @@ export const Container: StyledComponent = styled.div`
 
     display: block;
 
-    top: 1px;
-    left: 174px;
+    top: -4px;
+    left: 115px;
 
     width: 41px;
     height: 18px;
@@ -68,16 +81,27 @@ export const Container: StyledComponent = styled.div`
 
     background-image: url(${iconArrow});
     background-repeat: no-repeat;
+
+    @media (min-width: ${theme.converterHistoryListMobileWidth}) {
+      left: 155px;
+    }
   }
 `;
 
 export const Before: StyledComponent = styled.p`
-  margin-right: 70px;
+  margin-right: 5px;
   width: 130px;
+
+  @media (min-width: ${theme.converterHistoryListMobileWidth}) {
+    margin-right: 60px;
+  }
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    margin-right: 70px;
+  }
 `;
 
 export const After: StyledComponent = styled.p`
-  width: 130px;
 `;
 
 export const CloseButton: StyledComponent = styled.button`
@@ -86,12 +110,12 @@ export const CloseButton: StyledComponent = styled.button`
   width: 10px;
   height: 10px;
 
-  top: 3px;
-  right: 15px;
+  top: 0;
+  right: 10px;
 
   @media (min-width: ${theme.tabletWidthMinThreshold}) {
-    top: 30px;
-    right: 30px;
+    top: 4px;
+    right: 15px;
   }
 
   @media (min-width: ${theme.desktopWidthMinThreshold}) {
@@ -99,6 +123,6 @@ export const CloseButton: StyledComponent = styled.button`
     height: 10px;
 
     top: 3px;
-    right: 15px;
+    right: 0;
   }
 `;

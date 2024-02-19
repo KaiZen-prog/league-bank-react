@@ -65,18 +65,22 @@ const drawAxis = (
 const drawGraph = (ctx: CanvasRenderingContext2D, scaledValues: Array<number>, leftOffset: number, dateInterval: number) => {
   ctx.imageSmoothingEnabled = false;
 
-  ctx.beginPath();
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = theme.color.persianBlue;
+  ctx.fillStyle = theme.color.persianBlue;
 
   for (let i = 0; i < MAX_DAYS; i++) {
     const x = leftOffset + dateInterval * i;
 
+    ctx.beginPath();
     ctx.moveTo(x, scaledValues[scaledValues.length - 1 - i]);
     ctx.lineTo(x + dateInterval, scaledValues[scaledValues.length - 2 - i]);
-  }
+    ctx.stroke();
 
-  ctx.lineWidth = 2;
-  ctx.strokeStyle = theme.color.persianBlue;
-  ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(x + dateInterval, scaledValues[scaledValues.length - 2 - i], 3, 0, Math.PI * 2);
+    ctx.fill();
+  }
 };
 
 const useCurrencyDraw = (currencies: CanvasCoefficientsType, datesArray: Array<string>) => useMemo(() => (ctx: CanvasRenderingContext2D, width: number, height: number) => {

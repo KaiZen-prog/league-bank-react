@@ -3,7 +3,6 @@ import MoonLoader from 'react-spinners/MoonLoader';
 import {SpinnerBlock} from './spinner.styled';
 import theme from '../../../theme/theme';
 
-
 const override: CSSProperties = {
   margin: '0 auto',
 };

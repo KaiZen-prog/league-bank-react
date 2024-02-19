@@ -1,6 +1,6 @@
 import styled, { StyledComponentBase } from 'styled-components';
 import theme from '../../../theme/theme';
-import {visuallyHidden, button} from '../../../theme/mixins';
+import {visuallyHidden, button, headerH2} from '../../../theme/mixins';
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 
@@ -8,10 +8,10 @@ export const Wrapper = styled.div`
   position: relative;
 
   width: 100%;
-
-  padding-top: 44px;
+  
   padding-bottom: 30px;
-  padding-left: 70px;
+  padding-left: 20px;
+  padding-right: 20px;
 
   background-color: ${theme.color.ghostWhite};
   border-radius: 0 4px 4px 4px;
@@ -28,11 +28,15 @@ export const Wrapper = styled.div`
 
     border: 1px solid #C1C2CA;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    
+  }
+
+  @media (min-width: ${theme.tabletWidthMinThreshold}) {
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
   @media (max-width: ${theme.converterHistoryListWidth}) {
-    padding-left: 0;
-
     &::before {
       ${visuallyHidden()};
     }
@@ -40,51 +44,25 @@ export const Wrapper = styled.div`
 `;
 
 export const Header: StyledComponent = styled.h2`
-  width: 371px;
-
-  font-weight: 500;
-  font-size: 28px;
-  line-height: 39px;
-
-  margin-top: 0;
-  margin-bottom: 52px;
-
-  @media (max-width: ${theme.converterHistoryListWidth}) {
-    text-align: center;
-
-    margin-right: auto;
-    margin-left: auto;
-  }
+  text-align: center;
+  ${headerH2()};
 `;
 
 export const List: StyledComponent = styled.ul`
   display: flex;
   flex-direction: column;
-  align-content: space-between;
+  align-content: center;
   flex-wrap: wrap;
 
   list-style: none;
 
-  min-height: 230px;
-  max-height: 230px;
-
   margin: 0 0 22px 0;
-  padding-right: 50px;
+  padding-right: 0;
   padding-left: 0;
 
-  @media (max-width: ${theme.converterHistoryListWidth}) {
-    flex-wrap: nowrap;
-    align-items: center;
-    align-content: center;
-
-    min-height: 230px;
-    max-height: 450px;
-
-    padding: 0;
-  }
-
-  @media (max-width: ${theme.converterHistoryListMobileWidth}) {
-    max-height: 650px;
+  @media (min-width: ${theme.converterHistoryListWidth}) {
+    align-content: space-between;
+    max-height: 330px;
   }
 `;
 
