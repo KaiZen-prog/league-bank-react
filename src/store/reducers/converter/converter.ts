@@ -1,15 +1,12 @@
 import {ActionType} from '../../actions/converter';
 import {InitialConverterState} from '../../../common/types';
-import moment from 'moment';
 import {MAX_HISTORY_LENGTH} from '../../../const';
 import {getItem} from '../../../services/localstorage';
-
-const dateNow = moment().utc().format('YYYY-MM-DD');
 
 const history = getItem('conversionHistory');
 
 const initialState: InitialConverterState = {
-  currentDate: dateNow,
+  currentDate: '',
   exchangeRates: {},
   conversionHistory: history ? history : []
 };

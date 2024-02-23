@@ -21,8 +21,12 @@ import {
 import CurrencyGraph from '../currency-graph';
 
 const Converter: React.FunctionComponent = () => {
-  const currentDate = useAppSelector((store) => store.converter.currentDate);
+  let currentDate = useAppSelector((store) => store.converter.currentDate);
   const exchangeRates = useAppSelector((store) => store.converter.exchangeRates);
+
+  if (!currentDate) {
+    currentDate = moment().utc().format('YYYY-MM-DD');
+  }
 
   const datesArray = useMemo(() => Object.keys(exchangeRates).map((date) => {
     const month = date.slice(5, 7);
