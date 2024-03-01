@@ -9,7 +9,7 @@ interface Props {
   params: SliderType
 }
 
-const Slider: React.FunctionComponent<Props> = (props) => {
+const Index: React.FunctionComponent<Props> = (props) => {
   const {params} = props;
   const {type, isCarousel, slides} = params;
 
@@ -175,4 +175,4 @@ const Slider: React.FunctionComponent<Props> = (props) => {
   }
 };
 
-export default Slider;
+export default Index;

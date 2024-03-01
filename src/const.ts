@@ -145,7 +145,7 @@ export const CarParams = {
 };
 // ---------------------------------
 
-// Slider
+// Index
 export const MainSlidesNames = {
   credit: 'credit',
   promo: 'promo',
