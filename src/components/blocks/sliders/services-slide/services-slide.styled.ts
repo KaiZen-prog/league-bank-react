@@ -4,21 +4,21 @@ import theme from '../../../../theme/theme';
 import {ServicesSlidesNames} from '../../../../const';
 import {blockCentered, backgroundImage, button} from '../../../../theme/mixins';
 
-import slideDeposit from '../../../../assets/img/slide-services-deposit.jpg';
-import slideDepositTablet from '../../../../assets/img/slide-services-deposit-tablet.jpg';
-import slideDepositDesktop from '../../../../assets/img/slide-services-deposit-desktop.jpg';
+import slideDeposit from '../../../../assets/img/slide-services-deposit.webp';
+import slideDepositTablet from '../../../../assets/img/slide-services-deposit-tablet.webp';
+import slideDepositDesktop from '../../../../assets/img/slide-services-deposit-desktop.webp';
 
-import slideCredit from '../../../../assets/img/slide-services-credit.jpg';
-import slideCreditTablet from '../../../../assets/img/slide-services-credit-tablet.jpg';
-import slideCreditDesktop from '../../../../assets/img/slide-services-credit-desktop.jpg';
+import slideCredit from '../../../../assets/img/slide-services-credit.webp';
+import slideCreditTablet from '../../../../assets/img/slide-services-credit-tablet.webp';
+import slideCreditDesktop from '../../../../assets/img/slide-services-credit-desktop.webp';
 
-import slideInsurance from '../../../../assets/img/slide-services-insurance.jpg';
-import slideInsuranceTablet from '../../../../assets/img/slide-services-insurance-tablet.jpg';
-import slideInsuranceDesktop from '../../../../assets/img/slide-services-insurance-desktop.jpg';
+import slideInsurance from '../../../../assets/img/slide-services-insurance.webp';
+import slideInsuranceTablet from '../../../../assets/img/slide-services-insurance-tablet.webp';
+import slideInsuranceDesktop from '../../../../assets/img/slide-services-insurance-desktop.webp';
 
-import slideOnline from '../../../../assets/img/slide-services-online.jpg';
-import slideOnlineTablet from '../../../../assets/img/slide-services-online-tablet.jpg';
-import slideOnlineDesktop from '../../../../assets/img/slide-services-online-desktop.jpg';
+import slideOnline from '../../../../assets/img/slide-services-online.webp';
+import slideOnlineTablet from '../../../../assets/img/slide-services-online-tablet.webp';
+import slideOnlineDesktop from '../../../../assets/img/slide-services-online-desktop.webp';
 
 const iconFeatureMobile = require('../../../../assets/img/icon-feature-mobile.svg') as string;
 const iconFeatureTablet = require('../../../../assets/img/icon-feature-tablet.svg') as string;

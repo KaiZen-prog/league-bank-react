@@ -51,9 +51,10 @@ const ServicesSlide: React.FunctionComponent<Props> = (props) => {
         {link && (
           <SlideLink
             $currentSlideName={name}
-            href="#"
+            href={link.href}
+            aria-label={link.name}
           >
-            {link}
+            {link.name}
           </SlideLink>
         )}
       </SlideWrapper>

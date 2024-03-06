@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {conversionFromUSD, conversionToUSD} from '../../../common/utils';
 import Select from '../../UI/select';
 import CurrencyOptions from '../currency-options';
-import {ConverterFormCurrencies, CanvasCurrencyNames} from '../../../const';
+import {ConverterFormCurrencies, CanvasCurrencyNames, EqualCurrenciesObject} from '../../../const';
 import {GraphSection, CanvasWrapper, Header, SelectWrapper, AxisSpan} from './currency-graph.styled';
 import Canvas from '../../UI/canvas';
 import {ExchangeRate, SelectChangeEventHandler} from '../../../common/types';
@@ -18,11 +18,18 @@ const CurrencyGraph: React.FunctionComponent<Props> = React.memo((props) => {
 
   const [currencyY, setCurrencyY] = useState(ConverterFormCurrencies[0]);
   const [currencyX, setCurrencyX] = useState(ConverterFormCurrencies[1]);
+
   const [currencies, setCurrencies] = useState({array: [], max: 0, med: 0, min: 0});
 
   const draw = useCurrencyDraw(currencies, datesArray);
 
   useEffect(() => {
+    //Если выбраны одинаковые валюты - используем заранее заготовленный объект для отрисовки горизонтальной линии на графике
+    if (currencyY === currencyX) {
+      setCurrencies(EqualCurrenciesObject);
+      return;
+    }
+
     const arr = [];
     let max = 0;
     let min = 0;

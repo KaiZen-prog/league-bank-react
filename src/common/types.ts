@@ -12,12 +12,13 @@ export type TouchEventHandler = React.TouchEvent<HTMLElement>
 type Slide = {
   name: string,
   slogan: string,
-  link: string
+  link?: {
+    href: string,
+    name: string
+  },
 };
 
-export type MainSlideType = Slide & {
-  linkHref: string,
-}
+export type MainSlideType = Slide
 
 export type ServicesSlideType = Slide & {
   tabName: string,
@@ -26,7 +27,7 @@ export type ServicesSlideType = Slide & {
     firstLine?: string,
     secondLine?: string,
     link?: string,
-  }
+  },
 };
 
 export type SliderType = {

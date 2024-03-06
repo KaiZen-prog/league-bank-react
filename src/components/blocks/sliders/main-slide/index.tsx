@@ -15,8 +15,8 @@ interface Props {
 }
 
 const MainSlide:React.FunctionComponent<Props> = (props) => {
-  const { currentSlide} = props;
-  const {name, slogan, link, linkHref} = currentSlide;
+  const {currentSlide} = props;
+  const {name, slogan, link} = currentSlide;
 
   return (
     <MainSlideBlock $slideName={name}>
@@ -27,8 +27,8 @@ const MainSlide:React.FunctionComponent<Props> = (props) => {
         <Title $slideName={name}>Лига Банк</Title>
         <Slogan $slideName={name}>{slogan}</Slogan>
         {link && (
-          <Link $slideName={name} href={`#${linkHref}`}>
-            {link}
+          <Link $slideName={name} href={`#${link.href}`}>
+            {link.name}
           </Link>
         )}
       </TextContainer>

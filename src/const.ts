@@ -22,6 +22,13 @@ export const MAX_DAYS = 8;
 
 export const ConverterFormCurrencies = ['RUB', 'USD', 'EUR', 'KZT', 'GBP', 'CNY'];
 
+export const EqualCurrenciesObject = {
+  array: [1,1,1,1,1,1,1,1],
+  max: 2,
+  med: 1,
+  min: 0
+};
+
 export const CanvasCurrencyNames = {
   X: 'x-currency',
   Y: 'y-currency'
@@ -160,24 +167,26 @@ export const MainSliderParams = {
       name: MainSlidesNames.credit,
       title: 'Лига Банк',
       slogan: 'Кредиты на любой случай',
-      linkHref: 'calculator',
-      link: 'Рассчитать кредит',
+      link: {
+        href: 'calculator',
+        name: 'Рассчитать кредит'
+      },
     },
 
     {
       name: MainSlidesNames.promo,
       title: 'Лига Банк',
       slogan: 'Ваша уверенность в завтрашнем дне',
-      linkHref: '',
-      link: '',
     },
 
     {
       name: MainSlidesNames.offices,
       title: 'Лига Банк',
       slogan: 'Всегда рядом',
-      linkHref: 'map',
-      link: 'Найти отделение',
+      link: {
+        href: 'map',
+        name: 'Найти отделение'
+      },
     },
   ]
 };
@@ -202,8 +211,10 @@ export const ServicesSliderParams = {
         'Разнообразные условия',
         'Возможность ежемесячной капитализации или вывод процентов на банковскую карту',
       ],
-      text: {},
-      link: 'Узнать подробнее',
+      link: {
+        href: '#',
+        name: 'Узнать подробнее'
+      },
     },
 
     {
@@ -215,8 +226,7 @@ export const ServicesSliderParams = {
         firstLine: 'Рассчитайте ежемесячный платеж',
         secondLine: 'и ставку по кредиту воспользовавшись нашим ',
         link: 'кредитным калькулятором',
-      },
-      link: '',
+      }
     },
 
     {
@@ -228,8 +238,10 @@ export const ServicesSliderParams = {
         'Страхование жизни и здоровья',
         'Страхование недвижимости',
       ],
-      text: {},
-      link: 'Узнать подробнее',
+      link: {
+        href: '#',
+        name: 'Узнать подробнее'
+      },
     },
 
     {
@@ -240,8 +252,10 @@ export const ServicesSliderParams = {
         'Мобильный банк, который всегда под рукой',
         'Приложение Лига-проездной позволит вам оплачивать билеты по всему миру',
       ],
-      text: {},
-      link: 'Узнать подробнее',
+      link: {
+        href: '#',
+        name: 'Узнать подробнее'
+      },
     },
   ]
 };

@@ -3,19 +3,19 @@ import { css } from 'styled-components';
 import theme from '../../../../theme/theme';
 import {MainSlidesNames} from '../../../../const';
 
-import promoSlideBackgroundMobile from '../../../../assets/img/slide-promo-mobile.jpg';
-import promoSlideBackgroundTablet from '../../../../assets/img/slide-promo-tablet.jpg';
-import promoSlideBackgroundDesktop from '../../../../assets/img/slide-promo-desktop.jpg';
+import promoSlideBackgroundMobile from '../../../../assets/img/slide-promo-mobile.webp';
+import promoSlideBackgroundTablet from '../../../../assets/img/slide-promo-tablet.webp';
+import promoSlideBackgroundDesktop from '../../../../assets/img/slide-promo-desktop.webp';
 
-import officesSlideBackgroundMobile from '../../../../assets/img/slide-offices-mobile.jpg';
-import officesSlideBackgroundTablet from '../../../../assets/img/slide-offices-tablet.jpg';
-import officesSlideBackgroundDesktop from '../../../../assets/img/slide-offices-desktop.jpg';
+import officesSlideBackgroundMobile from '../../../../assets/img/slide-offices-mobile.webp';
+import officesSlideBackgroundTablet from '../../../../assets/img/slide-offices-tablet.webp';
+import officesSlideBackgroundDesktop from '../../../../assets/img/slide-offices-desktop.webp';
 
-import creditSlideBlackCardMobile from '../../../../assets/img/card-black-mobile.png';
-import creditSlideBlackCardTablet from '../../../../assets/img/card-black-tablet.png';
-import creditSlideBlackCardDesktop from '../../../../assets/img/card-black-desktop.png';
-import creditSlideWhiteCardTablet from '../../../../assets/img/card-white-tablet.png';
-import creditSlideWhiteCardDesktop from '../../../../assets/img/card-white-desktop.png';
+import creditSlideBlackCardMobile from '../../../../assets/img/card-black-mobile.webp';
+import creditSlideBlackCardTablet from '../../../../assets/img/card-black-tablet.webp';
+import creditSlideBlackCardDesktop from '../../../../assets/img/card-black-desktop.webp';
+import creditSlideWhiteCardTablet from '../../../../assets/img/card-white-tablet.webp';
+import creditSlideWhiteCardDesktop from '../../../../assets/img/card-white-desktop.webp';
 
 interface StyledComponent extends StyledComponentBase<any, object> {}
 
