@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {CalculatorSteps, InputTypes, PHONE_LENGTH, SubmitButtonTypes} from '../../../const';
 import {FormSubmitEventHandler, InputChangeEventHandler} from '../../../common/types';
 import {changeStep} from '../../../store/actions/calculator';
@@ -18,6 +18,8 @@ import {
 } from './application-form.styled';
 
 const ApplicationForm: React.FunctionComponent = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
   const telRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
 
@@ -36,6 +38,15 @@ const ApplicationForm: React.FunctionComponent = () => {
   const [isTelValid, setIsTelValid] = useState(true);
 
   const dispatch = useAppDispatch();
+
+  // При первом рендере компонента, плавно прокручивается к нему и берет в фокус инпут ФИО
+  useEffect(() => {
+    formRef.current.scrollIntoView({behavior: 'smooth'});
+
+    setTimeout(() => {
+      nameRef.current.focus();
+    }, 500);
+  }, []);
 
   const onSubmit: FormSubmitEventHandler = (evt) => {
     evt.preventDefault();
@@ -72,7 +83,7 @@ const ApplicationForm: React.FunctionComponent = () => {
   };
 
   return (
-    <Form action="#" onSubmit={onSubmit}>
+    <Form action="#" onSubmit={onSubmit} ref={formRef}>
       <StepTitle type={CalculatorSteps.request} value={'Шаг 3. Оформление заявки'}/>
       <RequestTable>
         <tbody>
@@ -112,6 +123,7 @@ const ApplicationForm: React.FunctionComponent = () => {
       <InputContainer type={InputTypes.userInfo}>
         <TextInput
           $type={InputTypes.fullName}
+          ref={nameRef}
           type="text"
           name="fullName"
           placeholder="ФИО"
@@ -120,7 +132,6 @@ const ApplicationForm: React.FunctionComponent = () => {
             shakeEffect(evt.target as HTMLElement);
           }}
           value={formFields.fullName}
-          autoFocus
           required
         />
 

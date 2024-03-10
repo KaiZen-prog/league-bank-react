@@ -19,7 +19,6 @@ import {
 } from './calculator-form.styled';
 
 const CalculatorForm: React.FunctionComponent = () => {
-
   const state = useAppSelector((store) => store.calculator);
   const [isPurposeSelectOpened, setIsPurposeSelectOpened] = useState(false);
   const [requestNumber, setRequestNumber] = useState(localStorage.getItem('requestNumber') !== null
