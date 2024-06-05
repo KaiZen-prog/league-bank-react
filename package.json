@@ -20,7 +20,7 @@
     "test": "npm run eslint && npm run test.jest",
     "test.jest": "jest",
     "start": "webpack serve --env port=3000",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build:prod",
     "deploy": "gh-pages -d build",
     "build:prod": "webpack --env mode=production",
     "build:dev": "webpack --env mode=development"
