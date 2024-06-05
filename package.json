@@ -1,4 +1,5 @@
 {
+  "homepage": "http://KaiZen-prog.github.io/league-bank-react",
   "name": "league-bank",
   "version": "0.1.0",
   "private": true,
@@ -19,6 +20,8 @@
     "test": "npm run eslint && npm run test.jest",
     "test.jest": "jest",
     "start": "webpack serve --env port=3000",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build:prod": "webpack --env mode=production",
     "build:dev": "webpack --env mode=development"
   },
@@ -69,6 +72,7 @@
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-typescript": "0.14.0",
     "file-loader": "6.2.0",
+    "gh-pages": "6.1.1",
     "html-webpack-plugin": "5.5.3",
     "identity-obj-proxy": "3.0.0",
     "mini-css-extract-plugin": "2.7.6",
