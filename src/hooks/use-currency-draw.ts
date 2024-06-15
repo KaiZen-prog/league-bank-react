@@ -1,6 +1,6 @@
 import {useMemo} from 'react';
 import {FLOAT_COEFFICIENT, FLOAT_COEFFICIENT_BIG, MAX_DAYS} from '../const';
-import {getRoundedValue, scaleValue} from '../common/utils';
+import {getRoundedValue, scaleValue, drawYValues} from '../common/utils';
 import theme from '../theme/theme';
 import {CanvasCoefficientsType} from '../common/types';
 
@@ -28,9 +28,9 @@ const drawAxis = (
   ctx.lineTo(width - XInterval, height - bottomOffset);
 
   // Отрисовка значений на оси Y
-  ctx.fillText(currencyMax.toString(), leftOffset + XInterval * (MAX_DAYS - 1) + 10, yMax + 3);
-  ctx.fillText(currencyMed.toString(), leftOffset + XInterval * (MAX_DAYS - 1) + 10, yMed + 3);
-  ctx.fillText(currencyMin.toString(), leftOffset + XInterval * (MAX_DAYS - 1) + 10, yMin + 3);
+  drawYValues(ctx, currencyMin, leftOffset, XInterval, yMin);
+  drawYValues(ctx, currencyMed, leftOffset, XInterval, yMed);
+  drawYValues(ctx, currencyMax, leftOffset, XInterval, yMax);
 
   // Отрисовка засечек на оси X
   for (let i = 1; i < MAX_DAYS; i++) {

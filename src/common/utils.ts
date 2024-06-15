@@ -55,6 +55,10 @@ export const getRangeValuePosition = (max: number, min: number, value: number) =
   return position;
 };
 
+export const drawYValues = (ctx: CanvasRenderingContext2D, currency: number, leftOffset: number, XInterval: number, yPoint: number) => {
+  ctx.fillText(currency.toString(), leftOffset + XInterval * (MAX_DAYS - 1) + 10, yPoint + 3);
+};
+
 export const divideNumberToSpace = (num: number) => {
   const str = String(num);
 
